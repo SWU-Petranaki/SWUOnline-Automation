@@ -147,4 +147,99 @@ export const SpecificTWICases = {
     await browser.assert.not.elementPresent(com.EnemyGroundUnit(2));
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 3), '3');
   },
+  'Shadowed Intentions: avoids enemy capture': async function() {
+    await LoadTestGameStateAsync('specific/twi/shadowed-intentions');
+
+    await browser.waitForElementPresent(com.MyHand)
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToBegin)
+      .click(com.HandCard(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
+      .click(com.EnemyGroundUnit(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    ;
+
+    await browser.assert.elementPresent(com.EnemySpaceUnit(1));
+    const lastLog = (await browser.getText(com.GameLog)).split('\n').slice(-1)[0];
+    await browser.assert.equal(lastLog, 'Greedo Slow on the Draw avoided capture.');
+  },
+  'Shadowed Intentions: enemy damage': async function() {
+    await LoadTestGameStateAsync('specific/twi/shadowed-intentions');
+
+    await browser.waitForElementPresent(com.MyHand)
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToBegin)
+      .click(com.HandCard(2))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
+      .click(com.EnemyGroundUnit(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    ;
+
+    await browser.assert.textEquals(com.UnitDivPiece(com.EnemyGroundUnit(1), 5), '1');
+  },
+  'Shadowed Intentions: defeats (merciless contest)': async function() {
+    await LoadTestGameStateAsync('specific/twi/shadowed-intentions');
+
+    await browser.waitForElementPresent(com.MyHand)
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToBegin)
+      .click(com.HandCard(3))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
+      .click(com.AllyGroundUnit(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    ;
+
+    await browser.window.switchTo(player2Window).refresh()
+      .waitForElementPresent(com.AllyGroundUnit(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToBegin)
+      .click(com.AllyGroundUnit(1))
+    ;
+
+    await browser.window.switchTo(player1Window).refresh();
+
+    await browser.assert.not.elementPresent(com.AllyGroundUnit(1));
+    await browser.assert.elementPresent(com.EnemyGroundUnit(1));
+    const lastLog = (await browser.getText(com.GameLog)).split('\n').slice(-1)[0];
+    await browser.assert.equal(lastLog, 'Greedo Slow on the Draw cannot be defeated by enemy card effects.');
+  },
+  'Shadowed Intentions: damaged by self': async function() {
+    await LoadTestGameStateAsync('specific/twi/shadowed-intentions');
+
+    await browser.waitForElementPresent(com.MyHand)
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToBegin)
+      .click(com.HandCard(2))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
+      .click(com.AllyGroundUnit(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    ;
+
+    await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 5), '1');
+  },
+  'Shadowed Intentions: bounced by enemy': async function() {
+    await LoadTestGameStateAsync('specific/twi/shadowed-intentions');
+
+    await browser.waitForElementPresent(com.MyHand)
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToBegin)
+      .click(com.HandCard(4))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
+      .click(com.EnemyGroundUnit(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    ;
+
+    await browser.assert.elementPresent(com.EnemyGroundUnit(1));
+    await browser.assert.elementsCount(com.TheirHandDivs, 1);
+    const lastLog = (await browser.getText(com.GameLog)).split('\n').slice(-1)[0];
+    await browser.assert.equal(lastLog, 'Greedo Slow on the Draw avoided bounce.');
+  },
+  'Shadowed Intentions: bounced by self': async function() {
+    await LoadTestGameStateAsync('specific/twi/shadowed-intentions');
+
+    await browser.waitForElementPresent(com.MyHand)
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToBegin)
+      .click(com.HandCard(4))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
+      .click(com.AllyGroundUnit(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    ;
+
+    await browser.assert.not.elementPresent(com.AllyGroundUnit(1));
+    await browser.assert.elementsCount(com.MyHandDivs, 4);
+  },
 }

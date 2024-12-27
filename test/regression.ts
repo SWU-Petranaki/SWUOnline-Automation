@@ -10,6 +10,7 @@ import { LeaderAbilitySORCases } from './cases/leader-ability-sor';
 import { LeaderUnitCases } from './cases/leader-unit';
 import { BountyCases } from './cases/bounty';
 import { ExploitCases } from './cases/exploit';
+import { SpecificSHDCases } from './cases/specific/shd';
 import { SpecificTWICases } from './cases/specific/twi';
 
 const genericJangoDeck = 'https://swudb.com/deck/nwETxCRed';
@@ -106,9 +107,9 @@ const home: NightwatchTests = {
   ...BounceCases,
   ...LeaderAbilitySORCases,
   ...LeaderUnitCases,
-  //...SORSPecificCases,
+  //...SpecificSORCases,
   ...BountyCases,
-  //...SHDSpecificCases,
+  ...SpecificSHDCases,
   ...ExploitCases,
   ...SpecificTWICases,
 //end regression suite
