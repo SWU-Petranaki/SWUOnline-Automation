@@ -5,8 +5,6 @@
 *.vscode
 *.log
 *.env
-/nightwatch.json
-/nightwatch.conf.js
 node_modules
 dist
 npm-debug.log
