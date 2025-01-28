@@ -6,7 +6,6 @@ import { WhenDefeatCases } from './cases/when-defeat';
 import { OnAttackCases } from './cases/on-attack';
 import { AmbushCases } from './cases/ambush';
 import { BounceCases } from './cases/bounce';
-import { DamageCases } from './cases/damage';
 import { LeaderAbilitySORCases } from './cases/leader-ability-sor';
 import { LeaderUnitSORCases } from './cases/leader-unit-sor';
 import { LeaderUnitSHDCases } from './cases/leader-unit-shd';
@@ -21,21 +20,20 @@ import { init } from './utils/gamestart';
 const home: NightwatchTests = {
   before: init,
 //regression suite
-  // ...WhenPlayedCases,
-  // ...WhenDefeatCases,
-  // ...OnAttackCases,
-  // ...AmbushCases,
-  // ...BounceCases,
-  // ...DamageCases,
-  // ...LeaderAbilitySORCases,
-  // ...LeaderUnitSORCases,
-  // ...LeaderUnitSHDCases,
-  // ...LeaderUnitTWICases,
-  // ...SpecificSORCases,
-  // ...BountyCases,
-  // ...SpecificSHDCases,
-  // ...ExploitCases,
-  // ...SpecificTWICases,
+  ...WhenPlayedCases,
+  ...WhenDefeatCases,
+  ...OnAttackCases,
+  ...AmbushCases,
+  ...BounceCases,
+  ...LeaderAbilitySORCases,
+  ...LeaderUnitSORCases,
+  ...LeaderUnitSHDCases,
+  ...LeaderUnitTWICases,
+  ...SpecificSORCases,
+  ...BountyCases,
+  ...SpecificSHDCases,
+  ...ExploitCases,
+  ...SpecificTWICases,
 //end regression suite
   after: async (browser, done) => {
     await browser.window.switchTo(player2Window).window.close();
