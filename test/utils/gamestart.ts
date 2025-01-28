@@ -3,6 +3,7 @@ import { NightwatchAPI, NightwatchTestHook } from "nightwatch";
 import {
   com, p,
   player1Window, player2Window,
+  setGameName,
   setPlayer1Window, setPlayer2Window,
 } from "./util";
 
@@ -99,6 +100,9 @@ export const init: NightwatchTestHook = async (browser, done) => {
 
   await browser.window.switchTo(player1Window)
     .refresh().pause(p.WaitToBegin);
+
+  const game = new URL(await browser.getCurrentUrl()).searchParams.get('gameName') || '';
+  setGameName(game);
 
   done();
 };

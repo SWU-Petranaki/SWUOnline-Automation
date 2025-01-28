@@ -3,6 +3,7 @@ import { browser, NightwatchAPI } from 'nightwatch';
 
 export var player1Window = '';
 export var player2Window = '';
+export var gameName = '';
 
 export function setPlayer1Window(window: string) {
   player1Window = window;
@@ -10,9 +11,9 @@ export function setPlayer1Window(window: string) {
 export function setPlayer2Window(window: string) {
   player2Window = window;
 }
-//File Paths assumed from root directory
-async function LastGameNumberAsync() {
-  return Number.parseInt(await fsp.readFile('../SWUOnline/HostFiles/GameIDCounter.txt', 'ascii')) - 1;
+
+export function setGameName(name: string) {
+  gameName = name;
 }
 
 export async function LoadTestGameStateAsync(filename: string) {
@@ -20,9 +21,13 @@ export async function LoadTestGameStateAsync(filename: string) {
     throw new Error('player1Window and player2Window must be set before calling LoadTestGameStateAsync');
   }
 
-  const lastGameNumber = await LastGameNumberAsync();
+  if(gameName === '') {
+    throw new Error('gameName must be set before calling LoadTestGameStateAsync');
+  }
+
+  const gameStatePath = `${process.env.SWUONLINE_ROOT_PATH || '../SWUOnline'}/Games/${gameName}/gamestate.txt`;
   const testState = await fsp.readFile(`./test/cases/${filename}`, 'ascii');
-  const originalState = await fsp.readFile(`../SWUOnline/Games/${lastGameNumber}/gamestate.txt`, 'ascii');
+  const originalState = await fsp.readFile(gameStatePath, 'ascii');
   const originalStateModified = originalState.split('\r\n').slice(57);
   originalStateModified[3] = '200';
   originalStateModified[13] = '';
@@ -30,7 +35,7 @@ export async function LoadTestGameStateAsync(filename: string) {
   originalStateModified[15] = '2';
   originalStateModified[16] = '0';
   const newGameState = testState.split('\n').join('\r\n') + originalStateModified.join('\r\n');
-  await fsp.writeFile(`../SWUOnline/Games/${lastGameNumber}/gamestate.txt`, newGameState, 'ascii');
+  await fsp.writeFile(gameStatePath, newGameState, 'ascii');
   await browser.window.switchTo(player2Window).refresh();
   await browser.pause(p.WaitForEffect);
   await browser.window.switchTo(player1Window).refresh();
