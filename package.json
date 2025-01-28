@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "nightwatch ./test/regression.ts",
-    "test:engine": "nightwatch ./test/engine.ts"
+    "test:headless": "nightwatch ./test/regression.ts --env headless",
+    "test-engine": "nightwatch ./test/engine.ts",
+    "test-engine:headless": "nightwatch ./test/engine.ts --env headless"
   },
   "keywords": [],
   "author": "",
