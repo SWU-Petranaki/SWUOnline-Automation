@@ -20,11 +20,14 @@ export const init: NightwatchTestHook = async (browser, done) => {
 
   await browser
     .waitForElementPresent(com.DeckInput)
+    .saveScreenshot('./screenshots/github-action-1.png')
     .setValue(com.DeckInput, genericJangoDeck)
     .click(com.CreateGameButton).pause(p.ButtonPress)
+    .saveScreenshot('./screenshots/github-action-2.png')
     .refresh().refresh().refresh().refresh().refresh()
     .refresh().pause(p.ButtonPress)
     .refresh().pause(p.WaitToBegin)
+    .saveScreenshot('./screenshots/github-action-3.png')
   ;
 
   let inviteRetry = 0;
@@ -34,10 +37,12 @@ export const init: NightwatchTestHook = async (browser, done) => {
     .refresh().refresh().refresh().refresh().refresh()
     .refresh().pause(p.ButtonPress)
     .refresh().pause(p.WaitToBegin)
+    .saveScreenshot(`./screenshots/github-action-5${inviteRetry}.png`)
     inviteRetry++;
   }
 
   const inviteLink = await browser
+    .saveScreenshot('./screenshots/github-action-6.png')
     .waitForElementPresent(com.InviteLink)
     .getValue(com.InviteLink);
   ;
