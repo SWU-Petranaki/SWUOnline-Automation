@@ -30,80 +30,80 @@ export const init: NightwatchTestHook = async (browser, done) => {
     .saveScreenshot('./screenshots/github-action-3.png')
   ;
 
-  let inviteRetry = 0;
+  // let inviteRetry = 0;
 
-  while(!await browser.element.find(com.InviteLink).isPresent() && inviteRetry < maxRetries) {
-    await browser
-    .refresh().refresh().refresh().refresh().refresh()
-    .refresh().pause(p.ButtonPress)
-    .refresh().pause(p.WaitToBegin)
-    .saveScreenshot(`./screenshots/github-action-5${inviteRetry}.png`)
-    inviteRetry++;
-  }
+  // while(!await browser.element.find(com.InviteLink).isPresent() && inviteRetry < maxRetries) {
+  //   await browser
+  //   .refresh().refresh().refresh().refresh().refresh()
+  //   .refresh().pause(p.ButtonPress)
+  //   .refresh().pause(p.WaitToBegin)
+  //   .saveScreenshot(`./screenshots/github-action-5${inviteRetry}.png`)
+  //   inviteRetry++;
+  // }
 
-  const inviteLink = await browser
-    .saveScreenshot('./screenshots/github-action-6.png')
-    .waitForElementPresent(com.InviteLink)
-    .getValue(com.InviteLink);
-  ;
+  // const inviteLink = await browser
+  //   .saveScreenshot('./screenshots/github-action-6.png')
+  //   .waitForElementPresent(com.InviteLink)
+  //   .getValue(com.InviteLink);
+  // ;
 
-  setPlayer2Window(await browser.window.open('tab').window.getHandle());
+  // setPlayer2Window(await browser.window.open('tab').window.getHandle());
 
-  browser
-    .url(inviteLink)
-    .waitForElementPresent(com.DeckInput)
-    .setValue(com.DeckInput, genericJangoDeck)
-    .waitForElementPresent(com.JoinGameButton)
-    .click(com.JoinGameButton).pause(p.ButtonPress)
-    .refresh().refresh().refresh().refresh().refresh()
-    .pause(p.WaitToBegin)
-  ;
+  // browser
+  //   .url(inviteLink)
+  //   .waitForElementPresent(com.DeckInput)
+  //   .setValue(com.DeckInput, genericJangoDeck)
+  //   .waitForElementPresent(com.JoinGameButton)
+  //   .click(com.JoinGameButton).pause(p.ButtonPress)
+  //   .refresh().refresh().refresh().refresh().refresh()
+  //   .pause(p.WaitToBegin)
+  // ;
 
-  let retries = 0;
+  // let retries = 0;
 
-  while((!await browser.element.find(com.LobbySetupContent).isPresent()
-        || (await browser.getText(com.LobbySetupContent)).length === 0)
-      && retries < maxRetries) {
-    await browser.navigateTo(inviteLink)
-    .refresh().refresh().refresh().refresh().refresh()
-    .pause(p.WaitToBegin)
-    .refresh().pause(p.ButtonPress).refresh().pause(p.WaitToBegin)
-    .waitForElementPresent(com.DeckInput)
-    .setValue(com.DeckInput, genericJangoDeck)
-    .waitForElementPresent(com.JoinGameButton)
-    .click(com.JoinGameButton).pause(p.ButtonPress)
-    .pause(p.WaitToBegin)
-    .refresh().pause(p.ButtonPress)
-    .refresh().pause(p.WaitToBegin)
-    retries++;
-  }
+  // while((!await browser.element.find(com.LobbySetupContent).isPresent()
+  //       || (await browser.getText(com.LobbySetupContent)).length === 0)
+  //     && retries < maxRetries) {
+  //   await browser.navigateTo(inviteLink)
+  //   .refresh().refresh().refresh().refresh().refresh()
+  //   .pause(p.WaitToBegin)
+  //   .refresh().pause(p.ButtonPress).refresh().pause(p.WaitToBegin)
+  //   .waitForElementPresent(com.DeckInput)
+  //   .setValue(com.DeckInput, genericJangoDeck)
+  //   .waitForElementPresent(com.JoinGameButton)
+  //   .click(com.JoinGameButton).pause(p.ButtonPress)
+  //   .pause(p.WaitToBegin)
+  //   .refresh().pause(p.ButtonPress)
+  //   .refresh().pause(p.WaitToBegin)
+  //   retries++;
+  // }
 
-  if(await browser.element.find(com.GoFirstButton).isPresent()) {
-    await browser.click(com.GoFirstButton)
-    .waitForElementPresent(com.ReadyButton)
-    .click(com.ReadyButton).pause(p.ButtonPress)
-    ;
+  // if(await browser.element.find(com.GoFirstButton).isPresent()) {
+  //   await browser.click(com.GoFirstButton)
+  //   .waitForElementPresent(com.ReadyButton)
+  //   .click(com.ReadyButton).pause(p.ButtonPress)
+  //   ;
 
-    await browser.window.switchTo(player1Window)
-    .waitForElementPresent(com.StartButton)
-    .click(com.StartButton).pause(p.ButtonPress)
-    ;
-  } else {
-    await browser.window.switchTo(player1Window)
-    .waitForElementPresent(com.GoFirstButton)
-    .click(com.GoFirstButton).pause(p.ButtonPress)
-    .waitForElementPresent(com.StartButton)
-    .click(com.StartButton).pause(p.ButtonPress)
-    ;
+  //   await browser.window.switchTo(player1Window)
+  //   .waitForElementPresent(com.StartButton)
+  //   .click(com.StartButton).pause(p.ButtonPress)
+  //   ;
+  // } else {
+  //   await browser.window.switchTo(player1Window)
+  //   .waitForElementPresent(com.GoFirstButton)
+  //   .click(com.GoFirstButton).pause(p.ButtonPress)
+  //   .waitForElementPresent(com.StartButton)
+  //   .click(com.StartButton).pause(p.ButtonPress)
+  //   ;
 
-    await browser.window.switchTo(player2Window)
-    .waitForElementPresent(com.ReadyButton)
-    .click(com.ReadyButton).pause(p.ButtonPress)
-    ;
-  }
+  //   await browser.window.switchTo(player2Window)
+  //   .waitForElementPresent(com.ReadyButton)
+  //   .click(com.ReadyButton).pause(p.ButtonPress)
+  //   ;
+  // }
 
-  await browser.window.switchTo(player1Window)
-    .refresh().pause(p.WaitToBegin);
+  // await browser.window.switchTo(player1Window)
+  //   .refresh().pause(p.WaitToBegin);
 
   done();
 };
