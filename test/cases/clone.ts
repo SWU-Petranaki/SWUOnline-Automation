@@ -1,5 +1,5 @@
 import { cards } from '../utils/cards';
-import { GameState, SubcardBuilder } from '../utils/gamestate';
+import { GameState } from '../utils/gamestate';
 import {
   com, p,
   player1Window, player2Window,
@@ -22,7 +22,7 @@ export const CloneCases = {
       .AddCardToHand(1, cards.TWI.Clone)
       .AddUnit(1, cards.SOR.DSStormTrooper)
       .AddUnit(1, cards.SOR.DSStormTrooper, false, 0,//Han Solo piggy-backing on a stormtrooper..
-        new SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
       .AddUnit(1, cards.SOR.DSStormTrooper)
       .FlushAsync(com.BeginTestCallback)
     ;

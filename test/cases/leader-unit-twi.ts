@@ -1,6 +1,6 @@
 
 import { cards } from '../utils/cards';
-import { GameState, SubcardBuilder } from '../utils/gamestate';
+import { GameState } from '../utils/gamestate';
 import {
     com, p,
     player1Window, player2Window,
@@ -46,7 +46,7 @@ export const LeaderUnitTWICases = {
         .AddCardToDeck(1, cards.TWI.EliteP)
         .AddUnit(2, cards.SOR.TieLnFighter)
         .AddUnit(2, cards.SOR.TieLnFighter, true, 0,
-          new SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
+          gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
         .AddUnit(2, cards.SOR.TieLnFighter)
         .FlushAsync(com.BeginTestCallback)
       ;

@@ -3,7 +3,7 @@ import {
   player1Window, player2Window,
   gameName
 } from '../utils/util';
-import { GameState, SubcardBuilder } from '../utils/gamestate';
+import { GameState } from '../utils/gamestate';
 import { cards } from '../utils/cards';
 
 export const SmuggleCases = {

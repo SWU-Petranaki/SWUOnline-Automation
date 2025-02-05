@@ -1,5 +1,5 @@
 import { cards } from '../utils/cards';
-import { GameState, SubcardBuilder } from '../utils/gamestate';
+import { GameState } from '../utils/gamestate';
 import {
   com, p,
   player1Window, player2Window,
@@ -64,10 +64,10 @@ export const BounceCases = {
       .AddCardToHand(1, cards.SHD.Evacuate)
       .AddUnit(2, cards.SOR.SabineLeaderUnit)
       .AddUnit(2, cards.TWI.BattleDroid, false, 0,
-        new SubcardBuilder().AddCaptive(cards.SOR.LukeSkywalker, 1).Build())
+        gameState.SubcardBuilder().AddCaptive(cards.SOR.LukeSkywalker, 1).Build())
       .AddUnit(2, cards.TWI.BattleDroid, false, 0,
-        new SubcardBuilder().AddCaptive(cards.SOR.LukeSkywalker, 1).Build())
-      .AddUnit(2, cards.SOR.TieLnFighter, false, 0, new SubcardBuilder().AddUpgrade(cards.JTL.AsajjLeaderUnit, 2, true).Build())
+        gameState.SubcardBuilder().AddCaptive(cards.SOR.LukeSkywalker, 1).Build())
+      .AddUnit(2, cards.SOR.TieLnFighter, false, 0, gameState.SubcardBuilder().AddUpgrade(cards.JTL.AsajjLeaderUnit, 2, true).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -94,7 +94,7 @@ export const BounceCases = {
       .AddCardToHand(1, cards.SOR.Waylay)
       .AddUnit(2, cards.SOR.TieLnFighter)
       .AddUnit(2, cards.SOR.TieLnFighter, false, 0,
-        new SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
       .AddUnit(2, cards.SOR.TieLnFighter)
       .FlushAsync(com.BeginTestCallback)
     ;
@@ -120,7 +120,7 @@ export const BounceCases = {
       .AddCardToHand(1, cards.SOR.BrightHope)
       .AddUnit(1, cards.SOR.Snowspeeder)
       .AddUnit(1, cards.SOR.Snowspeeder, false, 0,
-        new SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -145,7 +145,7 @@ export const BounceCases = {
       .AddCardToHand(1, cards.SOR.Cunning)
       .AddUnit(2, cards.SOR.Snowspeeder)
       .AddUnit(2, cards.SOR.Snowspeeder, true, 0,
-        new SubcardBuilder()
+        gameState.SubcardBuilder()
           .AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true)
           .AddUpgrade(cards.TWI.PerilousPosition, 1)
           .Build())
@@ -178,7 +178,7 @@ export const BounceCases = {
       .AddCardToHand(1, cards.SOR.CantinaBouncer)
       .AddUnit(2, cards.SOR.Snowspeeder)
       .AddUnit(2, cards.SOR.Snowspeeder, false, 0,
-        new SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
       .AddUnit(2, cards.SOR.Snowspeeder)
       .FlushAsync(com.BeginTestCallback)
     ;
@@ -204,7 +204,7 @@ export const BounceCases = {
       .AddCardToHand(1, cards.TWI.EnfysNest)
       .AddUnit(2, cards.SOR.Snowspeeder)
       .AddUnit(2, cards.SOR.GreenSquadAWing, false, 0,
-        new SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
       .AddUnit(2, cards.SOR.Snowspeeder)
       .FlushAsync(com.BeginTestCallback)
     ;
@@ -230,7 +230,7 @@ export const BounceCases = {
       .AddCardToHand(1, cards.TWI.ClearTheField)
       .AddUnit(2, cards.SOR.TieLnFighter)
       .AddUnit(2, cards.SOR.TieLnFighter, false, 0,
-        new SubcardBuilder().AddUpgrade(cards.JTL.AsajjLeaderUnit, 2, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.AsajjLeaderUnit, 2, true).Build())
       .AddUnit(2, cards.SOR.TieLnFighter)
       .FlushAsync(com.BeginTestCallback)
     ;
@@ -265,7 +265,7 @@ export const BounceCases = {
       .AddCardToHand(1, cards.SHD.SpareTheTarget)
       .AddUnit(2, cards.SHD.CartelTurncoat)
       .AddUnit(2, cards.SHD.CartelTurncoat, false, 0,
-        new SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
       .AddUnit(2, cards.SHD.CartelTurncoat)
       .FlushAsync(com.BeginTestCallback)
     ;

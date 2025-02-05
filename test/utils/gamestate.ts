@@ -5,8 +5,80 @@ import {
   g
 } from './util';
 
+class SubcardBuilder {
+  private _subcard: string = '';
+  private _gameState: GameState;
+
+  public constructor(gameState: GameState) {
+    this._gameState = gameState;
+  }
+
+  public AddUpgrade(cardID: string, owner: number, isPilot: boolean = false) {
+    if(this._subcard !== '') {
+      this._subcard += ',';
+    }
+    this._subcard += `${cardID},${owner},${isPilot ? "1" : "0"},${this._gameState.GetNextUniqueID()}`;
+
+    return this;
+  }
+
+  public AddShield(owner: number, number: number = 1) {
+    if(this._subcard !== '') {
+      this._subcard += ',';
+    }
+    for(let i = 0; i < number; ++i) {
+      this._subcard += `8752877738,${owner},0,${this._gameState.GetNextUniqueID()}`;
+      if(i < number - 1) {
+        this._subcard += ',';
+      }
+    }
+
+    return this;
+  }
+
+  public AddExperience(owner: number, number: number = 1) {
+    if(this._subcard !== '') {
+      this._subcard += ',';
+    }
+    for(let i = 0; i < number; ++i) {
+      this._subcard += `2007868442,${owner},0,${this._gameState.GetNextUniqueID()}`;
+      if(i < number - 1) {
+        this._subcard += ',';
+      }
+    }
+
+    return this;
+  }
+
+  public AddCaptive(cardID: string, owner: number) {
+    if(this._subcard !== '') {
+      this._subcard += ',';
+    }
+    this._subcard += `${cardID},${owner},0,${this._gameState.GetNextUniqueID()}`;
+
+    return this;
+  }
+
+  public AddPilot(cardID: string, owner: number) {
+    if(this._subcard !== '') {
+      this._subcard += ',';
+    }
+    this._subcard += `${cardID},${owner},1,${this._gameState.GetNextUniqueID()}`;
+
+    return this;
+  }
+
+  public Build() {
+    const result = this._subcard;
+    this._subcard = '';
+
+    return result;
+  }
+}
 
 export class GameState {
+  private _subcardBuilder: SubcardBuilder = new SubcardBuilder(this);
+
   private _gameName: string = '';
   private _gameState: string[] = [];
   private _uniqueIdCounter: number = 0;
@@ -17,6 +89,10 @@ export class GameState {
     }
     this._gameName = gameName;
     this._uniqueIdCounter = 1;
+  }
+
+  public SubcardBuilder() {
+    return this._subcardBuilder;
   }
 
   public async LoadGameStateLinesAsync() {
@@ -166,7 +242,7 @@ export class GameState {
   }
 
   public AddUnit(player: number, cardID: string, ready: boolean = true,
-      damage: number = 0, upgrades = "-", owner = player, carbonite = false, numUses = 1,
+      damage: number = 0, subcards = "-", owner = player, carbonite = false, numUses = 1,
       turnsInPlay = 0, numAttacks = 0, cloned = false, healed = false, arenaOverride = "NA")
   {
     const index = player === 1 ? g.P1AlliesArray : g.P2AlliesArray;
@@ -174,7 +250,7 @@ export class GameState {
       this._gameState[index] += ' ';
     }
     this._gameState[index] += (
-      `${cardID} ${ready ? "2" : "1"} ${damage} ${carbonite ? "1" : "0"} ${upgrades} ${this._uniqueIdCounter++} 0 0 `
+      `${cardID} ${ready ? "2" : "1"} ${damage} ${carbonite ? "1" : "0"} ${subcards} ${this._uniqueIdCounter++} 0 0 `
       + `${numUses} 0 ${numAttacks} ${owner} ${turnsInPlay} ${cloned ? "1" : "0"} ${healed ? "1" : "0"} ${arenaOverride} 0`
     );
 
@@ -208,6 +284,10 @@ export class GameState {
     return deck[deck.length - position];
   }
 
+  public GetNextUniqueID() {
+    return this._uniqueIdCounter++;
+  }
+
   public GetAuthKey(player: number) {
     return this._gameState[player === 1 ? g.P1AuthKey : g.P2AuthKey];
   }
@@ -216,59 +296,5 @@ export class GameState {
     this._gameState[player === 1 ? g.P1AuthKey : g.P2AuthKey] = authKey;
 
     return this;
-  }
-}
-
-export class SubcardBuilder {
-  private _subcard: string = '';
-
-  public AddUpgrade(cardID: string, owner: number, isPilot: boolean = false) {
-    if(this._subcard !== '') {
-      this._subcard += ',';
-    }
-    this._subcard += `${cardID},${owner},${isPilot ? "1" : "0"}`;
-
-    return this;
-  }
-
-  public AddShield(owner: number, number: number = 1) {
-    if(this._subcard !== '') {
-      this._subcard += ',';
-    }
-    for(let i = 0; i < number; ++i) {
-      this._subcard += `8752877738,${owner},0`;
-      if(i < number - 1) {
-        this._subcard += ',';
-      }
-    }
-
-    return this;
-  }
-
-  public AddExperience(owner: number, number: number = 1) {
-    if(this._subcard !== '') {
-      this._subcard += ',';
-    }
-    for(let i = 0; i < number; ++i) {
-      this._subcard += `2007868442,${owner},0`;
-      if(i < number - 1) {
-        this._subcard += ',';
-      }
-    }
-
-    return this;
-  }
-
-  public AddCaptive(cardID: string, owner: number) {
-    if(this._subcard !== '') {
-      this._subcard += ',';
-    }
-    this._subcard += `${cardID},${owner},0`;
-
-    return this;
-  }
-
-  public Build() {
-    return this._subcard;
   }
 }

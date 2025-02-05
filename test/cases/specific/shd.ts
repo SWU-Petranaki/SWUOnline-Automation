@@ -1,5 +1,5 @@
 import { cards } from '../../utils/cards';
-import { GameState, SubcardBuilder } from '../../utils/gamestate';
+import { GameState } from '../../utils/gamestate';
 import {
     com, p,
     player1Window, player2Window,
@@ -141,7 +141,7 @@ export const SpecificSHDCases = {
       .FillResources(1, cards.SOR.CraftySmuggler, 8)
       .AddCardToHand(1, cards.SHD.Snoke)
       .AddUnit(2, cards.SOR.TieLnFighter, true, 3,
-        new SubcardBuilder().AddUpgrade(cards.JTL.AsajjLeaderUnit, 2, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.AsajjLeaderUnit, 2, true).Build())
       .AddUnit(2, cards.TWI.CloneTrooper)
       .AddUnit(2, cards.TWI.BattleDroid)
       .AddUnit(2, cards.SOR.SabineLeaderUnit, true, 3)

@@ -1,5 +1,5 @@
 import { cards } from '../utils/cards';
-import { GameState, SubcardBuilder } from '../utils/gamestate';
+import { GameState } from '../utils/gamestate';
 import {
   com, p, src, customAsserts,
   player1Window, player2Window,
@@ -21,7 +21,7 @@ export const LeaderUnitSHDCases = {
       .FillResources(2, cards.SHD.CollectionsStarhopper, 7)
       .AddUnit(1, cards.SOR.TieLnFighter)
       .AddUnit(1, cards.TWI.DevGunship, true, 5,
-        new SubcardBuilder().AddUpgrade(cards.TWI.DroidCohort, 1).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.TWI.DroidCohort, 1).Build())
       .AddUnit(1, cards.SHD.GarSaxonLeaderUnit)
       .AddUnit(1, cards.SHD.FinnLeaderUnit)
       .AddUnit(1, cards.SHD.ReyLeaderUnit)
@@ -247,7 +247,7 @@ export const LeaderUnitSHDCases = {
       .AddUnit(1, cards.SHD.MandoLeaderUnit)
       .AddUnit(2, cards.SOR.TieLnFighter, false)
       .AddUnit(2, cards.SOR.TieLnFighter, true, 0,
-        new SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
       .AddUnit(2, cards.SOR.TieLnFighter, false)
       .FlushAsync(com.BeginTestCallback)
     ;
@@ -281,7 +281,7 @@ export const LeaderUnitSHDCases = {
       .AddUnit(1, cards.SOR.TieLnFighter)
       .AddUnit(2, cards.SOR.TieLnFighter)
       .AddUnit(2, cards.SOR.TieLnFighter, true, 0,
-        new SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
       .AddUnit(2, cards.SOR.TieLnFighter, false)
       .FlushAsync(com.BeginTestCallback)
     ;

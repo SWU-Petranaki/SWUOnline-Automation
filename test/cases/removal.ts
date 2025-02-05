@@ -1,5 +1,5 @@
 import { cards } from '../utils/cards';
-import { GameState, SubcardBuilder } from '../utils/gamestate';
+import { GameState } from '../utils/gamestate';
 import {
   com, src, p,
   player1Window, player2Window,
@@ -20,10 +20,10 @@ export const RemovalCases = {
       .AddCardToHand(1, cards.SOR.Vanquish)
       .AddUnit(1, cards.SOR.Snowspeeder)
       .AddUnit(1, cards.SOR.Snowspeeder, false, 0,
-        new SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
       .AddUnit(2, cards.SOR.Snowspeeder)
       .AddUnit(2, cards.SOR.Snowspeeder, false, 0,
-        new SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -49,11 +49,11 @@ export const RemovalCases = {
       .AddCardToHand(1, cards.TWI.MercilessContest)
       .AddUnit(1, cards.SOR.TieLnFighter)
       .AddUnit(1, cards.SOR.TieLnFighter, false, 0,
-        new SubcardBuilder().AddUpgrade(cards.JTL.AsajjLeaderUnit, 1, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.AsajjLeaderUnit, 1, true).Build())
       .AddUnit(1, cards.SOR.TieLnFighter)
       .AddUnit(2, cards.SOR.Snowspeeder)
       .AddUnit(2, cards.SOR.Snowspeeder, false, 0,
-        new SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
       .AddUnit(2, cards.SOR.Snowspeeder)
       .FlushAsync(com.BeginTestCallback)
     ;

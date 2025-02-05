@@ -1,5 +1,5 @@
 import { cards } from '../utils/cards';
-import { GameState, SubcardBuilder } from '../utils/gamestate';
+import { GameState } from '../utils/gamestate';
 import {
   com, p,
   player1Window, player2Window,
@@ -49,9 +49,9 @@ export const OnAttackCases = {
       .AddLeader(2, cards.JTL.HanSoloLeader, true)
       .AddCardToHand(2, cards.SOR.Waylay)
       .AddUnit(1, cards.TWI.EnfysNest, true, 0,
-        new SubcardBuilder().AddExperience(1, 1).Build())
+        gameState.SubcardBuilder().AddExperience(1, 1).Build())
       .AddUnit(2, cards.SOR.TieLnFighter, false, 0,
-        new SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -77,7 +77,7 @@ export const OnAttackCases = {
       .AddLeader(2, cards.JTL.HanSoloLeader, true)
       .AddUnit(1, cards.SOR.Avenger)
       .AddUnit(2, cards.SOR.AllianceXWing, false, 0,
-        new SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -103,10 +103,10 @@ export const OnAttackCases = {
       .AddBase(2, cards.SOR.ECL)
       .AddLeader(2, cards.JTL.HanSoloLeader, true)
       .AddUnit(1, cards.SOR.OuterRimHH, true, 0,
-        new SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
       .AddUnit(2, cards.SOR.BFMarine)
       .AddUnit(2, cards.JTL.XWing, true, 0,
-        new SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
       .AddUnit(2, cards.JTL.XWing)
       .FlushAsync(com.BeginTestCallback)
     ;

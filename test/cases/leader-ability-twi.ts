@@ -1,6 +1,6 @@
 
 import { cards } from '../utils/cards';
-import { GameState, SubcardBuilder } from '../utils/gamestate';
+import { GameState } from '../utils/gamestate';
 import {
     com, p,
     player1Window, player2Window,

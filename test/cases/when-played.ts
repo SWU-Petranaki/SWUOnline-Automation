@@ -1,5 +1,5 @@
 import { cards } from '../utils/cards';
-import { GameState, SubcardBuilder } from '../utils/gamestate';
+import { GameState } from '../utils/gamestate';
 import {
   com, p,
   player1Window, player2Window,
@@ -135,7 +135,7 @@ export const WhenPlayedCases = {
       .AddCardToHand(1, cards.JTL.Leia)
       .AddUnit(1, cards.JTL.Mandalorian)
       .AddUnit(1, cards.JTL.XWing, true, 1,
-        new SubcardBuilder().AddUpgrade(cards.JTL.Chewbacca, 1, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.Chewbacca, 1, true).Build())
       .AddUnit(2, cards.SOR.TieLnFighter)
       .AddUnit(2, cards.SOR.DSStormTrooper)
       .FlushAsync(com.BeginTestCallback)
@@ -168,7 +168,7 @@ export const WhenPlayedCases = {
       .AddCardToHand(1, cards.JTL.Leia)
       .AddUnit(1, cards.JTL.Mandalorian)
       .AddUnit(1, cards.JTL.XWing, true, 1,
-        new SubcardBuilder().AddUpgrade(cards.JTL.Chewbacca, 1, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.Chewbacca, 1, true).Build())
       .AddUnit(2, cards.SOR.TieLnFighter)
       .AddUnit(2, cards.SOR.DSStormTrooper)
       .FlushAsync(com.BeginTestCallback)

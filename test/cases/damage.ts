@@ -1,5 +1,5 @@
 import { cards } from '../utils/cards';
-import { GameState, SubcardBuilder } from '../utils/gamestate';
+import { GameState } from '../utils/gamestate';
 import {
   com, src, p,
   player1Window, player2Window,
@@ -19,7 +19,7 @@ export const DamageCases = {
       .FillResources(1, cards.SOR.BFMarine, 5)
       .AddCardToHand(1, cards.SOR.OB)
       .AddUnit(1, cards.SOR.DSStormTrooper, true, 0,
-        new SubcardBuilder().AddExperience(1,3).Build())
+        gameState.SubcardBuilder().AddExperience(1,3).Build())
       .AddUnit(1, cards.SOR.DSStormTrooper)
       .AddUnit(2, cards.TWI.Malevolence, true, 3)
       .AddUnit(2, cards.SOR.SLT)
@@ -71,7 +71,7 @@ export const DamageCases = {
       .AddLeader(2, cards.JTL.HanSoloLeader, true)
       .AddUnit(2, cards.SOR.Snowspeeder, false, 1)
       .AddUnit(2, cards.SOR.Snowspeeder, false, 1,
-        new SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
       .AddUnit(2, cards.SOR.Snowspeeder, false, 1)
       .FlushAsync(com.BeginTestCallback)
     ;
@@ -98,7 +98,7 @@ export const DamageCases = {
       .AddCardToHand(1, cards.SHD.MaKlounkee)
       .AddUnit(1, cards.SOR.EscortSkiff, false, 1)
       .AddUnit(1, cards.SOR.EscortSkiff, false, 1,
-        new SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
       .AddUnit(1, cards.SOR.EscortSkiff, false, 1)
       .AddUnit(2, cards.SOR.BFMarine)
       .FlushAsync(com.BeginTestCallback)

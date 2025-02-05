@@ -1,5 +1,5 @@
 import { cards } from '../../utils/cards';
-import { GameState, SubcardBuilder } from '../../utils/gamestate';
+import { GameState } from '../../utils/gamestate';
 import {
     com, p,
     player1Window, player2Window,
@@ -23,10 +23,10 @@ const ShadowedIntentionsGameStateAsync = async () =>{
     .AddCardToHand(1, cards.TWI.MercilessContest)
     .AddCardToHand(1, cards.SOR.Waylay)
     .AddUnit(1, cards.SOR.Greedo, true, 0,
-      new SubcardBuilder().AddExperience(1).AddUpgrade(cards.TWI.ShadowedIntentions, 1).Build())
+      gameState.SubcardBuilder().AddExperience(1).AddUpgrade(cards.TWI.ShadowedIntentions, 1).Build())
     .AddUnit(1, cards.SHD.LurkingTie)
     .AddUnit(2, cards.SOR.Greedo, true, 0,
-      new SubcardBuilder().AddExperience(1).AddUpgrade(cards.TWI.ShadowedIntentions, 2).Build()
+      gameState.SubcardBuilder().AddExperience(1).AddUpgrade(cards.TWI.ShadowedIntentions, 2).Build()
     )
     .AddUnit(2, cards.SHD.LurkingTie)
     .FlushAsync(com.BeginTestCallback)

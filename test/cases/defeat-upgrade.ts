@@ -1,5 +1,5 @@
 import { cards } from '../utils/cards';
-import { GameState, SubcardBuilder } from '../utils/gamestate';
+import { GameState } from '../utils/gamestate';
 import {
   com, p,
   player1Window, player2Window,
@@ -19,7 +19,7 @@ export const DefeatUpgradeCases = {
       .FillResources(1, cards.SOR.Waylay, 3)
       .AddCardToHand(1, cards.SOR.DisablingFF)
       .AddUnit(2, cards.TWI.BattleDroid, false, 0,
-        new SubcardBuilder().AddUpgrade(cards.SHD.Darksaber, 2).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.SHD.Darksaber, 2).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act

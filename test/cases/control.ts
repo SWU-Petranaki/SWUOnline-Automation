@@ -1,5 +1,5 @@
 import { cards } from '../utils/cards';
-import { GameState, SubcardBuilder } from '../utils/gamestate';
+import { GameState } from '../utils/gamestate';
 import {
   com, p,
   player1Window, player2Window,
@@ -21,7 +21,7 @@ export const ControlCases = {
     .AddCardToHand(1, cards.SOR.Traitorous)
     .AddUnit(1, cards.SOR.SabineUnit, false)
     .AddUnit(2, cards.SOR.CraftySmuggler, true, 0,
-      new SubcardBuilder().AddShield(2).Build())
+      gameState.SubcardBuilder().AddShield(2).Build())
     .FlushAsync(com.BeginTestCallback)
   ;
   //act
@@ -51,9 +51,9 @@ export const ControlCases = {
       .AddCardToHand(1, cards.SOR.Confiscate)
       .AddUnit(1, cards.SOR.DSStormTrooper)
       .AddUnit(2, cards.SOR.DSStormTrooper, true, 0,
-        new SubcardBuilder().AddExperience(2, 8).Build())
+        gameState.SubcardBuilder().AddExperience(2, 8).Build())
       .AddUnit(2, cards.SOR.CraftySmuggler, true, 0,
-        new SubcardBuilder().AddShield(2).AddUpgrade(cards.SOR.Traitorous, 2).Build(), 1)
+        gameState.SubcardBuilder().AddShield(2).AddUpgrade(cards.SOR.Traitorous, 2).Build(), 1)
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -199,11 +199,11 @@ export const ControlCases = {
       .AddCardToHand(1, cards.SHD.ChooseSides)
       .AddUnit(1, cards.SOR.Snowspeeder)
       .AddUnit(1, cards.SOR.Snowspeeder, false, 0,
-        new SubcardBuilder().AddUpgrade(cards.SOR.SabineLeaderUnit, 1, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.SOR.SabineLeaderUnit, 1, true).Build())
       .AddUnit(1, cards.SOR.Snowspeeder)
       .AddUnit(2, cards.SOR.TieLnFighter)
       .AddUnit(2, cards.SOR.TieLnFighter, false, 0,
-        new SubcardBuilder().AddUpgrade(cards.JTL.AsajjLeaderUnit, 1, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.AsajjLeaderUnit, 1, true).Build())
       .AddUnit(2, cards.SOR.TieLnFighter)
       .FlushAsync(com.BeginTestCallback)
     ;

@@ -4,7 +4,7 @@ import {
   gameName,
   customAsserts,
 } from '../utils/util'
-import { GameState, SubcardBuilder } from '../utils/gamestate'
+import { GameState } from '../utils/gamestate'
 import { cards } from '../utils/cards'
 
 export const PilotJTLCases = {
@@ -38,7 +38,7 @@ export const PilotJTLCases = {
       .AddLeader(1, cards.JTL.BobaFettLeader)
       .AddBase(2, cards.SOR.EchoBase)
       .AddLeader(2, cards.JTL.HanSoloLeader)
-      .AddUnit(1, cards.SOR.TieLnFighter, true, 0, `${cards.JTL.Dengar},1,1`)
+      .AddUnit(1, cards.SOR.TieLnFighter, true, 0, `${cards.JTL.Dengar},1,1,100`)
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -64,9 +64,9 @@ export const PilotJTLCases = {
       .AddUnit(1, cards.JTL.NienNunb)
       .AddUnit(1, cards.JTL.Chewbacca)
       .AddUnit(1, cards.SOR.TieLnFighter, false, 0,
-          new SubcardBuilder().AddUpgrade(cards.JTL.Dengar, 1, true).Build())
+          gameState.SubcardBuilder().AddUpgrade(cards.JTL.Dengar, 1, true).Build())
       .AddUnit(1, cards.SOR.TieLnFighter, false, 0,
-        new SubcardBuilder().AddUpgrade(cards.JTL.BobaFettLeader, 1, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.BobaFettLeader, 1, true).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -85,9 +85,9 @@ export const PilotJTLCases = {
       .AddLeader(2, cards.JTL.HanSoloLeader)
       .AddUnit(1, cards.JTL.Chewbacca)
       .AddUnit(1, cards.SOR.TieLnFighter, false, 0,
-          new SubcardBuilder().AddUpgrade(cards.JTL.NienNunb, 1, true).Build())
+          gameState.SubcardBuilder().AddUpgrade(cards.JTL.NienNunb, 1, true).Build())
       .AddUnit(1, cards.SOR.TieLnFighter, false, 0,
-        new SubcardBuilder().AddUpgrade(cards.JTL.BobaFettLeader, 1, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.BobaFettLeader, 1, true).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -110,9 +110,9 @@ export const PilotJTLCases = {
       .AddCardToHand(1, cards.JTL.IndependentSmuggler)
       .AddUnit(1, cards.JTL.Chewbacca)
       .AddUnit(1, cards.SOR.TieLnFighter, false, 0,
-          new SubcardBuilder().AddUpgrade(cards.JTL.NienNunb, 1, true).Build())
+          gameState.SubcardBuilder().AddUpgrade(cards.JTL.NienNunb, 1, true).Build())
       .AddUnit(1, cards.SOR.TieLnFighter, false, 0,
-        new SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act

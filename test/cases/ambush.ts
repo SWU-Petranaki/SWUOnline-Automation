@@ -1,5 +1,5 @@
 import { cards } from '../utils/cards';
-import { GameState, SubcardBuilder } from '../utils/gamestate';
+import { GameState } from '../utils/gamestate';
 import {
   com, p,
   player1Window, player2Window,
@@ -20,7 +20,7 @@ export const AmbushCases = {
     .AddCardToHand(1, cards.SOR.SabineUnit)
     .AddUnit(1, cards.SOR.SabineUnit, false)
     .AddUnit(2, cards.SOR.CraftySmuggler, true, 0,
-      new SubcardBuilder().AddShield(2).Build())
+      gameState.SubcardBuilder().AddShield(2).Build())
     .FlushAsync(com.BeginTestCallback)
   ;
   //act

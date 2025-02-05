@@ -1,5 +1,5 @@
 import { cards } from '../utils/cards';
-import { GameState, SubcardBuilder } from '../utils/gamestate';
+import { GameState } from '../utils/gamestate';
 import {
   com, p, src,
   player1Window, player2Window,
@@ -308,7 +308,7 @@ export const LeaderUnitSORCases = {
       .AddLeader(2, cards.JTL.AsajjLeaderUnit, true)
       .FillResources(1, cards.SOR.InfernoFour, 8)
       .AddUnit(2, cards.SOR.TieLnFighter, false, 1,
-        new SubcardBuilder().AddUpgrade(cards.JTL.AsajjLeaderUnit, 2, true).Build())
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.AsajjLeaderUnit, 2, true).Build())
       .AddUnit(2, cards.SOR.Avenger, false, 1)
       .AddUnit(2, cards.SOR.CraftySmuggler, false, 1)
       .FlushAsync(com.BeginTestCallback)
