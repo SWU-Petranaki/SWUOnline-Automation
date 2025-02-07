@@ -211,6 +211,7 @@ export const cards = {
     Boshek: '5673100759',
     Mandalorian: '6421006753',
     BobaFettUnit: '7700932371',
+    IG88: '1463418669',
     //vehicles
     RedLeader: '3711891756',
     HoundsTooth: '3876470102',

@@ -142,5 +142,81 @@ export const PilotJTLCases = {
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(3), 2), '4');
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(3), 3), '5');
     customAsserts.AllySpaceUnitIsXWing(browser, 4);
+  },
+  'IG-88 pilot gives no buff if no damaged enemies': async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SOR.EchoBase)
+      .AddLeader(1, cards.JTL.BobaFettLeader)
+      .AddBase(2, cards.SHD.JabbasPalace)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .AddUnit(1, cards.JTL.TieFighter, true, 1,
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.IG88, 1, true).Build())
+      .AddUnit(2, cards.JTL.XWing)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    //assert
+    await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 1), 'IG-88 MURDEROUS PHLUTDROID');
+    await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 2), '1');
+    await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 3), '4');
+  },
+  'IG-88 pilot gives buff if damaged enemies': async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SOR.EchoBase)
+      .AddLeader(1, cards.JTL.BobaFettLeader)
+      .AddBase(2, cards.SHD.JabbasPalace)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .AddUnit(1, cards.JTL.TieFighter, true, 1,
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.IG88, 1, true).Build())
+      .AddUnit(2, cards.JTL.XWing, true, 1)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    //assert
+    await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 1), 'IG-88 MURDEROUS PHLUTDROID');
+    await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 2), '4');
+    await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 3), '4');
+  },
+  'IG-88 ground unit not buffed if no damaged enemies': async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SOR.EchoBase)
+      .AddLeader(1, cards.JTL.BobaFettLeader)
+      .AddBase(2, cards.SHD.JabbasPalace)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .AddUnit(1, cards.JTL.IG88, true, 1)
+      .AddUnit(2, cards.JTL.XWing)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    //assert
+    await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 1), '4');
+    await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 2), '5');
+  },
+  'IG-88 ground unit buffed if damaged enemies': async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SOR.EchoBase)
+      .AddLeader(1, cards.JTL.BobaFettLeader)
+      .AddBase(2, cards.SHD.JabbasPalace)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .AddUnit(1, cards.JTL.IG88, true, 1)
+      .AddUnit(2, cards.JTL.XWing, true, 1)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    //assert
+    await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 1), '7');
+    await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 2), '5');
   }
 }
