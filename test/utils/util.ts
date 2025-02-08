@@ -247,7 +247,7 @@ export const cs = {//copied from Constants.php
   LayerPlayIndex: 58,
   NumCardsPlayed: 59, //Amulet of Ignition
   NamesOfCardsPlayed: 60, //Amulet of Echoes
-  NumBoostPlayed: 61, //Hanabi Blaster
+  NumFirstOrderPlayed: 61,
   PlayedAsInstant: 62, //If the card was played as an instant -- some things like banish we lose memory of as soon as it is removed from the zone
   AnotherWeaponGainedGoAgain: 63,
   NumContractsCompleted: 64,

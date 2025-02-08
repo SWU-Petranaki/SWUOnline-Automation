@@ -217,6 +217,9 @@ export const cards = {
     LukeLeaderUnit: '11e54776e9',
     DarthVaderLeader: '7661383869',
     DarthVaderLeaderUnit: 'fb0da8985e',
+    RioDurantLeaderUnit: '81a416eb1f',
+    AckbarLeader: '7514405173',
+    AckbarLeaderUnit: '36859e7ec4',
     //units
     Leia: '7924461681',
     //pilots
