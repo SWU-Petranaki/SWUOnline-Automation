@@ -213,6 +213,10 @@ export const cards = {
     WedgeLeader: '0011262813',
     WedgeLeaderUnit: '6414788e89',
     RoseTicoLeaderUnit: '590b638b18',
+    LukeLeader: '0766281795',
+    LukeLeaderUnit: '11e54776e9',
+    DarthVaderLeader: '7661383869',
+    DarthVaderLeaderUnit: 'fb0da8985e',
     //units
     Leia: '7924461681',
     //pilots
@@ -227,6 +231,8 @@ export const cards = {
     IG88: '1463418669',
     BB8: '2283726359',
     SnapWexley: '0524529055',
+    CassianAndor: '3475471540',
+    KidAnakin: '8523415830',
     //vehicles
     RedLeader: '3711891756',
     HoundsTooth: '3876470102',
