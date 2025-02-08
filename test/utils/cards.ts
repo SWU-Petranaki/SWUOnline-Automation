@@ -239,6 +239,7 @@ export const cards = {
     //vehicles
     RedLeader: '3711891756',
     HoundsTooth: '3876470102',
+    MillenniumFalcon: '8845408332',
     //events
     ItsATrap: '0964312065',
     Commandeer: '8105698374',
