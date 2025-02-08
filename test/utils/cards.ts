@@ -1,4 +1,12 @@
 export const cards = {
+  generic: {
+    //bases
+    BlueBase: '3810584393',//30HP blue base
+    GreenBase: '2055904747',//30HP green base
+    RedBase: '0461841375',//30HP red base
+    YellowBase: '6093792814',//30HP yellow base
+    //units
+  },
   SOR: {
     //bases
     ChopperBase: '6093792814',//30HP yellow base
@@ -128,6 +136,7 @@ export const cards = {
     Finalizer: '9752523457',
     CartelTurncoat: '9108611319',
     LomPyke: '5632569775',
+    PoeDameron: '5966087637',
     //upgrades
     TopTarget: '4282425335',
     Darksaber: '3141660491',
@@ -200,6 +209,10 @@ export const cards = {
     HanSoloLeader: '0616724418',
     HanSoloLeaderUnit: 'a015eb5c5e',
     BobaFettLeader: '9831674351',
+    LandoLeader: '3658069276',
+    WedgeLeader: '0011262813',
+    WedgeLeaderUnit: '6414788e89',
+    RoseTicoLeaderUnit: '590b638b18',
     //units
     Leia: '7924461681',
     //pilots
@@ -212,6 +225,8 @@ export const cards = {
     Mandalorian: '6421006753',
     BobaFettUnit: '7700932371',
     IG88: '1463418669',
+    BB8: '2283726359',
+    SnapWexley: '0524529055',
     //vehicles
     RedLeader: '3711891756',
     HoundsTooth: '3876470102',
