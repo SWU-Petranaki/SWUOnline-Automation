@@ -47,6 +47,7 @@ export const com = {
     ClaimButton: 'button.claimButton',
     SubmitButton: 'input[type="button"]',
     YesNoButton(choice: "YES"|"NO") { return `div#mainDiv button:nth-of-type(${choice === "YES" ? 1 : 2})`; },
+    PilotYesNoButton(choice:"YES"|"NO") { return `div#YESNO div div button:nth-of-type(${choice === "YES" ? 1 : 2})`; },
     ChooseButton(index: number, choice: number) { return `div > table > tbody > tr > td:nth-of-type(${index}) button:nth-of-type(${choice})`; },
     InHandTopBottom(index: number, choice: number) { return `div#HANDTOPBOTTOM > div > table tr:nth-of-type(2) td:nth-of-type(${index}) span:nth-of-type(${choice}) button`; },
     ButtonMultiChoice(index: number) { return `div#BUTTONINPUT div button:nth-of-type(${index})`; },

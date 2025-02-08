@@ -218,5 +218,61 @@ export const PilotJTLCases = {
     //assert
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 1), '7');
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 2), '5');
+  },
+  'Unique Pilot upgrades should trigger uniqueness rule': async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("20 4")
+      .AddBase(1, cards.generic.YellowBase)
+      .AddLeader(1, cards.JTL.BobaFettLeader)
+      .AddBase(2, cards.generic.RedBase)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SOR.BFMarine, 2)
+      .AddCardToHand(1, cards.JTL.BobaFettUnit)
+      .AddUnit(1, cards.JTL.TieFighter)
+      .AddUnit(1, cards.JTL.BobaFettUnit)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    await browser.waitForElementPresent(com.MyHand)
+      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
+      .click(com.HandCard(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
+      .click(com.PilotYesNoButton("YES")).pause(p.ButtonPress)
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    ;
+    //assert
+    await browser.assert.not.elementPresent(com.AllyGroundUnit(1));
+    await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 1), 'BOBA FETT FEARED BOUNTY HUNTER');
+  },
+  'Unique Pilot unit should trigger uniqueness rule': async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("20 4")
+      .AddBase(1, cards.generic.YellowBase)
+      .AddLeader(1, cards.JTL.BobaFettLeader)
+      .AddBase(2, cards.generic.RedBase)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .AddCardToHand(1, cards.JTL.BobaFettUnit)
+      .AddUnit(1, cards.JTL.TieFighter, true, 0,
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.BobaFettUnit, 1, true).Build())
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    await browser.waitForElementPresent(com.MyHand)
+      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
+      .click(com.HandCard(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
+      .click(com.PilotYesNoButton("NO")).pause(p.ButtonPress)
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    ;
+    //assert
+    await browser.assert.elementPresent(com.AllyGroundUnit(1));
+    await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 1), '1');
   }
 }
