@@ -24,7 +24,7 @@ export const BoardWipeCases = {
       .AddUnit(2, cards.SOR.TieLnFighter)
       .AddUnit(2, cards.SOR.DSStormTrooper)
       .AddUnit(2, cards.SOR.TieLnFighter)
-      .AddUnit(2, cards.SOR.AdmiralAckbar, true, 0, `${cards.SHD.TopTarget},1,0`)
+      .AddUnit(2, cards.SOR.AdmiralAckbar, true, 0, gameState.SubcardBuilder().AddUpgrade(cards.SHD.TopTarget, 1).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -57,7 +57,7 @@ export const BoardWipeCases = {
       .AddUnit(1, cards.SOR.DSStormTrooper)
       .AddUnit(2, cards.SOR.DSStormTrooper)
       .AddUnit(2, cards.SOR.TieLnFighter)
-      .AddUnit(2, cards.SOR.IdenLeaderUnit, true, 0, `${cards.SHD.TopTarget},1,0`)
+      .AddUnit(2, cards.SOR.IdenLeaderUnit, true, 0, gameState.SubcardBuilder().AddUpgrade(cards.SHD.TopTarget, 1).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -91,7 +91,7 @@ export const BoardWipeCases = {
       .AddUnit(2, cards.SOR.TieLnFighter)
       .AddUnit(2, cards.SOR.DSStormTrooper)
       .AddUnit(2, cards.SOR.TieLnFighter)
-      .AddUnit(2, cards.SOR.AdmiralAckbar, true, 0, `${cards.SHD.TopTarget},1,0`)
+      .AddUnit(2, cards.SOR.AdmiralAckbar, true, 0, gameState.SubcardBuilder().AddUpgrade(cards.SHD.TopTarget, 1).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -126,7 +126,7 @@ export const BoardWipeCases = {
       .AddUnit(1, cards.SOR.DSStormTrooper)
       .AddUnit(2, cards.SOR.DSStormTrooper)
       .AddUnit(2, cards.SOR.TieLnFighter)
-      .AddUnit(2, cards.SOR.IdenLeaderUnit, true, 0, `${cards.SHD.TopTarget},1,0`)
+      .AddUnit(2, cards.SOR.IdenLeaderUnit, true, 0, gameState.SubcardBuilder().AddUpgrade(cards.SHD.TopTarget, 1).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
