@@ -81,6 +81,8 @@ export const cards = {
     Avenger: '8240629990',
     GreenSquadAWing: '7495752423',
     EscortSkiff: '2027289177',
+    Yoda: '4405415770',
+    EzraBridger: '9560139036',
     //upgrades
     Traitorous: '8055390529',
     //events

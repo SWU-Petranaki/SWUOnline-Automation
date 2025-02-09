@@ -7,7 +7,7 @@ import {
   src
 } from '../utils/util';
 
-export const DiscardCases = {
+export const CoreMechanicsCases = {
   'Cards go in Discard': async function() {
     //arrange
     const gameState = new GameState(gameName);
@@ -67,5 +67,38 @@ export const DiscardCases = {
     ;
     //assert
     await browser.assert.attributeEquals(com.MyDiscardCard(1), 'src', src.Concat(cards.SOR.CraftySmuggler));
+  },
+  'Unique units trigger unique rule': async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage('9 16')
+      .AddBase(1, cards.SHD.JabbasPalace)
+      .AddLeader(1, cards.TWI.YodaLeader)
+      .AddBase(2, cards.SOR.EchoBase)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SOR.CraftySmuggler, 3)
+      .AddCardToHand(1, cards.SOR.EzraBridger)
+      .AddUnit(1, cards.SOR.CraftySmuggler)
+      .AddUnit(1, cards.SOR.CraftySmuggler)
+      .AddUnit(1, cards.SOR.EzraBridger)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    await browser.waitForElementPresent(com.MyHand)
+      .moveToElement(com.MyHand, 0, 0).pause(p.Move)
+      .click(com.HandCard(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    ;
+    //assert
+    await browser.assert.textEquals(com.PlayerPickSpan, 'You have two of this unique unit; choose one to destroy ');
+    //act
+    await browser.click(com.AllyGroundUnit(4))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    ;
+    //assert
+    await browser.assert.not.elementPresent(com.AllyGroundUnit(4));
+    await browser.assert.textEquals(com.MyDiscardCount, '1');
   }
 }
