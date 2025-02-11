@@ -35,7 +35,7 @@ export const LeaderUnitSORCases = {
     await browser.waitForElementPresent(com.Leader(1))
       .moveToElement(com.GameChat, 0, 0).pause(p.Move)
       .click(com.Leader(1)).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
       .click(com.ButtonMultiChoice(2)).pause(p.ButtonPress)
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
@@ -47,7 +47,7 @@ export const LeaderUnitSORCases = {
       .waitForElementPresent(com.Leader(2))
       .moveToElement(com.GameChat, 0, 0).pause(p.Move)
       .click(com.Leader(2)).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
       .click(com.ButtonMultiChoice(2)).pause(p.ButtonPress)
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
       .click(com.EnemySpaceUnit(1))

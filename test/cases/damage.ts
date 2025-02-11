@@ -60,7 +60,7 @@ export const DamageCases = {
       .assert.not.elementPresent(com.EnemySpaceUnit(1))
     ;
   },
-  'Overwhelming Barrage pings both': ''+async function () {//WIP
+  'Overwhelming Barrage pings both': async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -106,7 +106,7 @@ export const DamageCases = {
       .assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 6), '3')
     ;
   },
-  'Overwhelming Barrage pings only self': ''+async function () {//WIP
+  'Overwhelming Barrage pings only self': async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -149,7 +149,7 @@ export const DamageCases = {
       .assert.not.elementPresent(com.AllyGroundUnit(2))
     ;
   },
-  'Overwhelming Barrage used only for buff': ''+async function () {//WIP
+  'Overwhelming Barrage used only for buff': async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
