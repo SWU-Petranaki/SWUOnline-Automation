@@ -80,10 +80,10 @@ export const com = {
 export const p = {
   Move: 150,
   CheckBox: 250,
-  ButtonPress: 500,
-  WaitForEffect: 500,
+  ButtonPress: 350,
+  WaitForEffect: 550,
   WaitToBegin: 2_500,
-  WaitToChooseTarget: 800,
+  WaitToChooseTarget: 1_000,
   Debug: 300_000,
   Indefinite: 1_000_000_000,
 }
