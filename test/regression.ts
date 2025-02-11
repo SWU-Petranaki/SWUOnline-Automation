@@ -29,7 +29,7 @@ import { CloneCases } from './cases/clone';
 import { SpecificTWICases } from './cases/specific/twi';
 import { PilotJTLCases } from './cases/pilots';
 
-import { LocalTestCase } from './cases/local';
+import { LocalTestCase } from './cases/_local';
 import { LeaderAbilityTWICases } from './cases/leader-ability-twi';
 
 const home: NightwatchTests = {

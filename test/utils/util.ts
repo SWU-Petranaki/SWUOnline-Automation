@@ -42,7 +42,7 @@ export const com = {
     TheirDiscardEmpty: 'div.their-discard div.their-discard-empty',
     HandCard(index: number) { return `div#myHand span:nth-of-type(${index}) a`; },
     HandCardImg(index: number) { return `div#myHand span:nth-of-type(${index}) img`; },
-    Checkbox(index: number) { return `td:nth-of-type(${index}) > label`; },
+    Checkbox(index: number, table: number = 1) { return `table:nth-of-type(${table}) td:nth-of-type(${index}) > label`; },
     PassButton: 'span.pass-label',
     ClaimButton: 'button.claimButton',
     SubmitButton: 'input[type="button"]',

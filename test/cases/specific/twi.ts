@@ -12,8 +12,8 @@ const ShadowedIntentionsGameStateAsync = async () =>{
   const gameState = new GameState(gameName);
   await gameState.LoadGameStateLinesAsync();
   await gameState.ResetGameStateLines()
-    .AddBase(1, cards.SOR.ChopperBase)
-    .AddLeader(1, cards.SOR.MoffTarkinLeader)
+    .AddBase(1, cards.generic.RedBase)
+    .AddLeader(1, cards.TWI.JangoLeader)
     .AddBase(2, cards.SOR.ChopperBase)
     .AddLeader(2, cards.SOR.SabineLeader)
     .FillResources(1, cards.SOR.CraftySmuggler, 3)
@@ -33,6 +33,26 @@ const ShadowedIntentionsGameStateAsync = async () =>{
 }
 
 export const SpecificTWICases = {
+  'Regroup: Sneak Attack Jango exhaust': ''+async function() {//test case is a WIP
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SOR.KestroCity)
+      .AddLeader(1, cards.TWI.JangoLeader)
+      .AddBase(2, cards.SOR.KestroCity)
+      .AddLeader(2, cards.SHD.MandoLeader)
+      .FillResources(1, cards.SOR.CraftySmuggler, 5)
+      .AddCardToHand(1, cards.SOR.SneakAttack)
+      .AddCardToHand(1, cards.SOR.RuthlessRaider)
+      .AddCardToDeck(1, cards.SOR.Waylay, 2)
+      .AddCardToDeck(2, cards.SOR.Waylay, 2)
+      .AddUnit(2, cards.SOR.Snowspeeder)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    await browser.pause(p.Indefinite);
+  },
   'Exploit: Red Dooku TWI and triggers': process.env.FULL_REGRESSION !== "true" ? '' : async function() {
     //arrange
     const gameState = new GameState(gameName);

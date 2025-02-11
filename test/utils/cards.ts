@@ -83,6 +83,9 @@ export const cards = {
     EscortSkiff: '2027289177',
     Yoda: '4405415770',
     EzraBridger: '9560139036',
+    Redemption: '3896582249',
+    RuthlessRaider: '1047592361',
+    PalpUnit: '9097316363',
     //upgrades
     Traitorous: '8055390529',
     //events
@@ -99,6 +102,7 @@ export const cards = {
     DisablingFF: '2668056720',
     POTDS: '0176921487',
     Vanquish: '6472095064',
+    SneakAttack: '3426168686',
   },
   SHD: {
     //bases
@@ -170,6 +174,7 @@ export const cards = {
     NalaSeLeader: '2742665601',
     NalaSeLeaderUnit: 'f05184bd91',
     YodaLeader: '2847868671',
+    JangoLeader: '9155536481',
     //units
     Malevolence: '3381931079',
     WTTradeOfficial: '0677558416',
@@ -242,6 +247,7 @@ export const cards = {
     RedLeader: '3711891756',
     HoundsTooth: '3876470102',
     MillenniumFalcon: '8845408332',
+    IG2000: '3722493191',
     //events
     ItsATrap: '0964312065',
     Commandeer: '8105698374',

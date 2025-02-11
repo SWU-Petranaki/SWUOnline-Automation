@@ -51,6 +51,34 @@ export const BounceCases = {
     await browser.assert.not.elementPresent(com.EnemyGroundUnit(1));
     await browser.assert.not.elementPresent(com.TheirHandDivs);
   },
+  'MaKlounkee cannot bounce own piloted leader unit': async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SOR.EchoBase)
+      .AddLeader(1, cards.JTL.HanSoloLeader, true)
+      .AddBase(2, cards.SOR.DagobahSwamp)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SHD.MaKlounkee, 1)
+      .AddCardToHand(1, cards.SHD.MaKlounkee)
+      .AddUnit(1, cards.SOR.EscortSkiff, false, 1)
+      .AddUnit(1, cards.SOR.EscortSkiff, false, 1,
+        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
+      .AddUnit(1, cards.SOR.EscortSkiff, false, 1)
+      .AddUnit(2, cards.SOR.BFMarine)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    await browser
+      .waitForElementPresent(com.Base(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
+      .click(com.HandCard(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
+    ;
+    //assert
+    await browser.assert.attributeEquals(com.UnitImg(com.AllyGroundUnit(2)), 'style', src.NotPlayableBorderUnit);
+  },
   'Bounce: Evacuate unique captives and ignore leaders': async function () {
     //arrange
     const gameState = new GameState(gameName);

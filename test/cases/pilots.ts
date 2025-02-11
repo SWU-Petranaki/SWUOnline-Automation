@@ -38,7 +38,7 @@ export const PilotJTLCases = {
       .AddLeader(1, cards.JTL.BobaFettLeader)
       .AddBase(2, cards.SOR.EchoBase)
       .AddLeader(2, cards.JTL.HanSoloLeader)
-      .AddUnit(1, cards.SOR.TieLnFighter, true, 0, gameState.SubcardBuilder().AddPilot(cards.JTL.Dengar, 1).Build())
+      .AddUnit(1, cards.SOR.TieLnFighter, true, 0, `${cards.JTL.Dengar},1,1,100`)
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
