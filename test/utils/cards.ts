@@ -248,9 +248,11 @@ export const cards = {
     HoundsTooth: '3876470102',
     MillenniumFalcon: '8845408332',
     IG2000: '3722493191',
+    Devastator: '1330473789',
     //events
     ItsATrap: '0964312065',
     Commandeer: '8105698374',
     TandemAssault: '4334684518',
+    PlanetBomb: '0425156332',
   }
 }

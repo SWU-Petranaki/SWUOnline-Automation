@@ -117,7 +117,7 @@ export const OnAttackCases = {
       .click(com.AllySpaceUnit(1))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
       .click(com.Base(2))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
     ;
     //assert
     await browser.assert.attributeEquals(com.UnitImg(com.EnemySpaceUnit(1)), 'style', src.NotPlayableBorderUnit);
