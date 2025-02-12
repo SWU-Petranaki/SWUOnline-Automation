@@ -92,7 +92,7 @@ export const PilotJTLCases = {
     ;
     //act
     //assert
-    await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 1), 'NIEN NUNB LOYAL CO-PILOT');
+    await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 1), 'NIEN NUNB');
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 2), '5');
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 3), '3');
   },
@@ -159,7 +159,7 @@ export const PilotJTLCases = {
     ;
     //act
     //assert
-    await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 1), 'IG-88 MURDEROUS PHLUTDROID');
+    await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 1), 'IG-88');
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 2), '1');
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 3), '4');
   },
@@ -179,7 +179,7 @@ export const PilotJTLCases = {
     ;
     //act
     //assert
-    await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 1), 'IG-88 MURDEROUS PHLUTDROID');
+    await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 1), 'IG-88');
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 2), '4');
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 3), '4');
   },
@@ -245,7 +245,7 @@ export const PilotJTLCases = {
     ;
     //assert
     await browser.assert.not.elementPresent(com.AllyGroundUnit(1));
-    await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 1), 'BOBA FETT FEARED BOUNTY HUNTER');
+    await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 1), 'BOBA FETT');
   },
   'Unique Pilot unit should trigger uniqueness rule': async function() {
     //arrange

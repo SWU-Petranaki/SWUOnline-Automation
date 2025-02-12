@@ -56,7 +56,7 @@ export const OnAttackCases = {
     ;
     //act
     await browser
-      .waitForElementPresent(com.AllyGroundUnit(1))
+      .waitForElementPresent(com.AllyGroundUnit(1)).pause(p.Debug)
       .moveToElement(com.GameChat, 0, 0).pause(p.Move)
       .click(com.AllyGroundUnit(1))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)

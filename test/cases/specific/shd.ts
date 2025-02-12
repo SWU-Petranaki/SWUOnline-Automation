@@ -149,7 +149,7 @@ export const SpecificSHDCases = {
       .FlushAsync(com.BeginTestCallback)
     ;
     //pre-assert
-    await browser.assert.textEquals(com.UnitDivPiece(com.EnemySpaceUnit(1), 1), 'ASAJJ VENTRESS I WORK ALONE');
+    await browser.assert.textEquals(com.UnitDivPiece(com.EnemySpaceUnit(1), 1), 'ASAJJ VENTRESS');
     await browser.assert.textEquals(com.UnitDivPiece(com.EnemySpaceUnit(1), 4), '3');
     await customAsserts.EnemyUnitDivPieceIsOverlay(browser, 'GROUND', 1, 3);
     await customAsserts.EnemyUnitDivPieceIsOverlay(browser, 'GROUND', 2, 3);

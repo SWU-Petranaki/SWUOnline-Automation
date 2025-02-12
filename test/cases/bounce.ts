@@ -278,7 +278,7 @@ export const BounceCases = {
     //assert
     await browser.assert.elementPresent(com.EnemySpaceUnit(1));
     await browser.assert.elementsCount(com.TheirHandDivs, 2);
-    await browser.assert.textEquals(com.UnitDivPiece(com.EnemySpaceUnit(1), 1), 'ASAJJ VENTRESS I WORK ALONE');
+    await browser.assert.textEquals(com.UnitDivPiece(com.EnemySpaceUnit(1), 1), 'ASAJJ VENTRESS');
   },
   'Spare the Target cant bounce piloted leader unit': async function () {
     //arrange
