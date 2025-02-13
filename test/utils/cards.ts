@@ -229,6 +229,8 @@ export const cards = {
     AckbarLeaderUnit: '36859e7ec4',
     ThrawnLeader: '5846322081',
     ThrawnLeaderUnit: '53207e4131',
+    PoeLeader: '8520821318',
+    PoeLeaderUnit: '3eb545eb4b',
     //units
     Leia: '7924461681',
     MoffGideon: '7312183744',

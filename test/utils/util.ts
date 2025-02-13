@@ -210,8 +210,8 @@ export const cs = {//copied from Constants.php
   NextDamagePrevented: 21,
   LastAttack: 22,
   NumLeftPlay: 23,
-  NumMaterializations: 24,
-  NumFusedLightning: 25,
+  NumUsesLeaderUpgrade1: 24,
+  NumUsesLeaderUpgrade2: 25,
   AfterPlayedBy: 26,
   PlayCCIndex: 27,
   NumAttackCards: 28, //Played or blocked
@@ -249,8 +249,8 @@ export const cs = {//copied from Constants.php
   NamesOfCardsPlayed: 60, //Amulet of Echoes
   NumFirstOrderPlayed: 61,
   PlayedAsInstant: 62, //If the card was played as an instant -- some things like banish we lose memory of as soon as it is removed from the zone
-  AnotherWeaponGainedGoAgain: 63,
-  NumContractsCompleted: 64,
+  LeaderUpgradeAbilityID1: 63,
+  LeaderUpgradeAbilityID2: 64,
   HitsWithSword: 65,
   NumClonesPlayed: 66,
   UnitsThatAttackedBase: 67,

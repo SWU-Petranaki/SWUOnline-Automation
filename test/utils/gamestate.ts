@@ -114,7 +114,7 @@ export class GameState {
     this._gameState[g.P1ResourcesState] = "0 0";
     this._gameState[g.P1ResourcesArray] = "";
     this._gameState[g.P1Discard] = "";
-    this._gameState[g.P1ClassState] = "0 0 0 0 0 0 0 0 DOWN 0 -1 0 0 0 0 0 0 -1 0 0 0 0 NA 0 0 0 - -1 0 0 0 0 0 0 - 0 0 0 0 0 0 0 0 - - 0 -1 0 0 0 0 0 - 0 0 0 0 0 -1 0 - 0 0 - 0 0 0 - -1 0 0 -";
+    this._gameState[g.P1ClassState] = "0 0 0 0 0 0 0 0 DOWN 0 -1 0 0 0 0 0 0 -1 0 0 0 0 NA 0 1 1 - -1 0 0 0 0 0 0 - 0 0 0 0 0 0 0 0 - - 0 -1 0 0 0 0 0 - 0 0 0 0 0 -1 0 - - - - 0 0 0 - -1 0 0 -";
     this._gameState[g.P1CharDisplay] = "";
     this._gameState[g.P1CardStats] = "";
     this._gameState[g.P1TurnStats] = "0 0 0 0 0 0 0 0 0 0 0 0";
