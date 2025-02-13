@@ -325,5 +325,36 @@ export const DamageCases = {
       .assert.textEquals(com.UnitDivPiece(com.EnemySpaceUnit(1), 3), '2')
       .assert.not.elementPresent(com.EnemyGroundUnit(1))
     ;
-  }
+  },
+  'Devastator when played hits base for 4': async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SOR.TarkinTown)
+      .AddLeader(1, cards.SOR.TarkinLeader)
+      .AddBase(2, cards.SOR.DagobahSwamp)
+      .AddLeader(2, cards.SOR.PalpLeader)
+      .FillResources(1, cards.SOR.DSStormTrooper, 8)
+      .AddCardToHand(1, cards.JTL.Devastator)
+      .AddUnit(2, cards.SOR.TieLnFighter)
+      .AddUnit(2, cards.JTL.HoundsTooth)
+      .AddUnit(2, cards.SOR.TieLnFighter)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    await browser
+      .waitForElementPresent(com.MyHand)
+      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
+      .click(com.HandCard(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+      .click(com.Checkbox(1)).pause(p.CheckBox)
+      .click(com.SubmitButton).pause(p.ButtonPress)
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+      .click(com.ButtonMultiChoice(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    ;
+    //assert
+    await browser.assert.textEquals(com.TheirBaseDamage, '4');
+  },
 }

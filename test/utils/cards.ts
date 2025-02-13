@@ -227,8 +227,11 @@ export const cards = {
     RioDurantLeaderUnit: '81a416eb1f',
     AckbarLeader: '7514405173',
     AckbarLeaderUnit: '36859e7ec4',
+    ThrawnLeader: '5846322081',
+    ThrawnLeaderUnit: '53207e4131',
     //units
     Leia: '7924461681',
+    MoffGideon: '7312183744',
     //pilots
     Chewbacca: '7208848194',
     Dengar: '3282713547',
@@ -243,12 +246,19 @@ export const cards = {
     SnapWexley: '0524529055',
     CassianAndor: '3475471540',
     KidAnakin: '8523415830',
+    Frisk: '0514089787',
     //vehicles
     RedLeader: '3711891756',
     HoundsTooth: '3876470102',
     MillenniumFalcon: '8845408332',
     IG2000: '3722493191',
     Devastator: '1330473789',
+    Rampart: '9720757803',
+    Chimaera: '5184505570',
+    Raddus: '8779760486',
+    RadiantVII: '3567283316',
+    DqarCargo: '5422802110',
+    Corvus: '0753794638',
     //events
     ItsATrap: '0964312065',
     Commandeer: '8105698374',

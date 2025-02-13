@@ -6,7 +6,9 @@
     "test": "nightwatch ./test/regression.ts",
     "test:headless": "nightwatch ./test/regression.ts --env headless",
     "test-engine": "nightwatch ./test/engine.ts",
-    "test-engine:headless": "nightwatch ./test/engine.ts --env headless"
+    "test-engine:headless": "nightwatch ./test/engine.ts --env headless",
+    "test-damage": "nightwatch ./test/damage-cases.ts",
+    "test-damage:headless": "nightwatch ./test/damage-cases.ts --env headless"
   },
   "keywords": [],
   "author": "",
