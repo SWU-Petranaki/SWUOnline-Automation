@@ -5,7 +5,8 @@ import {
     com, p,
     player1Window, player2Window,
     gameName,
-    src
+    src,
+    customAsserts
 } from '../utils/util';
 
 export const LeaderUnitTWICases = {
@@ -46,7 +47,7 @@ export const LeaderUnitTWICases = {
         .AddCardToDeck(1, cards.TWI.EliteP)
         .AddUnit(2, cards.SOR.TieLnFighter)
         .AddUnit(2, cards.SOR.TieLnFighter, true, 0,
-          gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
+          gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
         .AddUnit(2, cards.SOR.TieLnFighter)
         .FlushAsync(com.BeginTestCallback)
       ;
@@ -62,6 +63,6 @@ export const LeaderUnitTWICases = {
         .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
       ;
       //assert
-      await browser.assert.attributeEquals(com.UnitImg(com.EnemySpaceUnit(2)), 'style', src.NotPlayableBorderUnit);
+      await customAsserts.UnitIsNotPlayable(browser, com.EnemySpaceUnit(2));
     }
 }

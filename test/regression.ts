@@ -24,14 +24,15 @@ import { SpecificSORCases } from './cases/specific/sor';
 import { BountyCases } from './cases/bounty';
 import { SmuggleCases } from './cases/smuggle';
 import { SpecificSHDCases } from './cases/specific/shd';
+import { LeaderAbilityTWICases } from './cases/leader-ability-twi';
 import { ExploitCases } from './cases/exploit';
 import { CloneCases } from './cases/clone';
 import { SpecificTWICases } from './cases/specific/twi';
 import { PilotJTLCases } from './cases/pilots';
 import { IndirectDamageCases } from './cases/indirect-damage';
+import { SpecificJTLCases } from './cases/specific/jtl';
 
 import { LocalTestCase } from './cases/_local';
-import { LeaderAbilityTWICases } from './cases/leader-ability-twi';
 
 const home: NightwatchTests = {
   before: init,
@@ -64,6 +65,7 @@ const home: NightwatchTests = {
   ...SpecificTWICases,
   ...PilotJTLCases,
   ...IndirectDamageCases,
+  ...SpecificJTLCases,
 //end regression suite
   after: async (browser, done) => {
     await browser.window.switchTo(player2Window).window.close();

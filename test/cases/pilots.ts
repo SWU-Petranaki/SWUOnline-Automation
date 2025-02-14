@@ -66,7 +66,7 @@ export const PilotJTLCases = {
       .AddUnit(1, cards.SOR.TieLnFighter, false, 0,
           gameState.SubcardBuilder().AddUpgrade(cards.JTL.Dengar, 1, true).Build())
       .AddUnit(1, cards.SOR.TieLnFighter, false, 0,
-        gameState.SubcardBuilder().AddUpgrade(cards.JTL.BobaFettLeader, 1, true).Build())
+        gameState.SubcardBuilder().AddPilot(cards.JTL.BobaFettLeader, 1, true).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -87,7 +87,7 @@ export const PilotJTLCases = {
       .AddUnit(1, cards.SOR.TieLnFighter, false, 0,
           gameState.SubcardBuilder().AddUpgrade(cards.JTL.NienNunb, 1, true).Build())
       .AddUnit(1, cards.SOR.TieLnFighter, false, 0,
-        gameState.SubcardBuilder().AddUpgrade(cards.JTL.BobaFettLeader, 1, true).Build())
+        gameState.SubcardBuilder().AddPilot(cards.JTL.BobaFettLeader, 1, true).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -112,7 +112,7 @@ export const PilotJTLCases = {
       .AddUnit(1, cards.SOR.TieLnFighter, false, 0,
           gameState.SubcardBuilder().AddUpgrade(cards.JTL.NienNunb, 1, true).Build())
       .AddUnit(1, cards.SOR.TieLnFighter, false, 0,
-        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
+        gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act

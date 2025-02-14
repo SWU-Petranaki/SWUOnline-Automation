@@ -5,7 +5,8 @@ import {
   player1Window, player2Window,
   gameName,
   cs,
-  src
+  src,
+  customAsserts
 } from '../utils/util';
 
 export const OnAttackCases = {
@@ -51,7 +52,7 @@ export const OnAttackCases = {
       .AddUnit(1, cards.TWI.EnfysNest, true, 0,
         gameState.SubcardBuilder().AddExperience(1, 1).Build())
       .AddUnit(2, cards.SOR.TieLnFighter, false, 0,
-        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
+        gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -77,7 +78,7 @@ export const OnAttackCases = {
       .AddLeader(2, cards.JTL.HanSoloLeader, true)
       .AddUnit(1, cards.SOR.Avenger)
       .AddUnit(2, cards.SOR.AllianceXWing, false, 0,
-        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
+        gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -103,10 +104,10 @@ export const OnAttackCases = {
       .AddBase(2, cards.SOR.ECL)
       .AddLeader(2, cards.JTL.HanSoloLeader, true)
       .AddUnit(1, cards.SOR.OuterRimHH, true, 0,
-        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
+        gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
       .AddUnit(2, cards.SOR.BFMarine)
       .AddUnit(2, cards.JTL.XWing, true, 0,
-        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
+        gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
       .AddUnit(2, cards.JTL.XWing)
       .FlushAsync(com.BeginTestCallback)
     ;
@@ -120,6 +121,6 @@ export const OnAttackCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
     ;
     //assert
-    await browser.assert.attributeEquals(com.UnitImg(com.EnemySpaceUnit(1)), 'style', src.NotPlayableBorderUnit);
+    await customAsserts.UnitIsNotPlayable(browser, com.EnemySpaceUnit(1));
   }
 }

@@ -247,7 +247,7 @@ export const LeaderUnitSHDCases = {
       .AddUnit(1, cards.SHD.MandoLeaderUnit)
       .AddUnit(2, cards.SOR.TieLnFighter, false)
       .AddUnit(2, cards.SOR.TieLnFighter, true, 0,
-        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
+        gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
       .AddUnit(2, cards.SOR.TieLnFighter, false)
       .FlushAsync(com.BeginTestCallback)
     ;
@@ -265,7 +265,7 @@ export const LeaderUnitSHDCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
     //assert
-    await browser.assert.attributeEquals(com.EnemySpaceUnit(2) + ' img', 'style', src.NotPlayableBorderUnit);
+    await customAsserts.UnitIsNotPlayable(browser, com.EnemySpaceUnit(2));
   },
   'SHD: Jabba cant capture piloted leader unit': async function () {
     //arrange
@@ -281,7 +281,7 @@ export const LeaderUnitSHDCases = {
       .AddUnit(1, cards.SOR.TieLnFighter)
       .AddUnit(2, cards.SOR.TieLnFighter)
       .AddUnit(2, cards.SOR.TieLnFighter, true, 0,
-        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
+        gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
       .AddUnit(2, cards.SOR.TieLnFighter, false)
       .FlushAsync(com.BeginTestCallback)
     ;
@@ -297,6 +297,6 @@ export const LeaderUnitSHDCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
     ;
     //assert
-    await browser.assert.attributeEquals(com.UnitImg(com.EnemySpaceUnit(2)), 'style', src.NotPlayableBorderUnit);
+    await customAsserts.UnitIsNotPlayable(browser, com.EnemySpaceUnit(2));
   }
 }

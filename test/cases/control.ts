@@ -4,7 +4,8 @@ import {
   com, p,
   player1Window, player2Window,
   gameName,
-  src
+  src,
+  customAsserts
 } from '../utils/util';
 
 export const ControlCases = {
@@ -203,7 +204,7 @@ export const ControlCases = {
       .AddUnit(1, cards.SOR.Snowspeeder)
       .AddUnit(2, cards.SOR.TieLnFighter)
       .AddUnit(2, cards.SOR.TieLnFighter, false, 0,
-        gameState.SubcardBuilder().AddUpgrade(cards.JTL.AsajjLeaderUnit, 1, true).Build())
+        gameState.SubcardBuilder().AddPilot(cards.JTL.AsajjLeaderUnit, 1, true).Build())
       .AddUnit(2, cards.SOR.TieLnFighter)
       .FlushAsync(com.BeginTestCallback)
     ;
@@ -215,12 +216,12 @@ export const ControlCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
     ;
     //assert
-    await browser.assert.attributeEquals(com.UnitImg(com.AllyGroundUnit(2)), 'style', src.NotPlayableBorderUnit);
+    await customAsserts.UnitIsNotPlayable(browser, com.AllyGroundUnit(2));
     //act
     await browser.click(com.AllyGroundUnit(1))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
     ;
     //assert
-    await browser.assert.attributeEquals(com.UnitImg(com.EnemySpaceUnit(2)), 'style', src.NotPlayableBorderUnit);
+    await customAsserts.UnitIsNotPlayable(browser, com.EnemySpaceUnit(2));
   }
 }

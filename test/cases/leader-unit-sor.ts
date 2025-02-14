@@ -308,7 +308,7 @@ export const LeaderUnitSORCases = {
       .AddLeader(2, cards.JTL.AsajjLeaderUnit, true)
       .FillResources(1, cards.SOR.InfernoFour, 8)
       .AddUnit(2, cards.SOR.TieLnFighter, false, 1,
-        gameState.SubcardBuilder().AddUpgrade(cards.JTL.AsajjLeaderUnit, 2, true).Build())
+        gameState.SubcardBuilder().AddPilot(cards.JTL.AsajjLeaderUnit, 2, true).Build())
       .AddUnit(2, cards.SOR.Avenger, false, 1)
       .AddUnit(2, cards.SOR.CraftySmuggler, false, 1)
       .FlushAsync(com.BeginTestCallback)
@@ -321,6 +321,6 @@ export const LeaderUnitSORCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
     ;
     //assert
-    await browser.assert.attributeEquals(com.UnitImg(com.EnemySpaceUnit(1)), 'style', src.NotPlayableBorderUnit);
+    await customAsserts.UnitIsNotPlayable(browser, com.EnemySpaceUnit(1));
   }
 }

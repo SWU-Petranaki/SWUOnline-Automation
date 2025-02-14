@@ -4,7 +4,8 @@ import {
   com, p,
   player1Window, player2Window,
   gameName,
-  src
+  src,
+  customAsserts
 } from '../utils/util';
 
 export const BounceCases = {
@@ -64,7 +65,7 @@ export const BounceCases = {
       .AddCardToHand(1, cards.SHD.MaKlounkee)
       .AddUnit(1, cards.SOR.EscortSkiff, false, 1)
       .AddUnit(1, cards.SOR.EscortSkiff, false, 1,
-        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
+        gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
       .AddUnit(1, cards.SOR.EscortSkiff, false, 1)
       .AddUnit(2, cards.SOR.BFMarine)
       .FlushAsync(com.BeginTestCallback)
@@ -77,7 +78,7 @@ export const BounceCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
     ;
     //assert
-    await browser.assert.attributeEquals(com.UnitImg(com.AllyGroundUnit(2)), 'style', src.NotPlayableBorderUnit);
+    await customAsserts.UnitIsNotPlayable(browser, com.AllyGroundUnit(2));
   },
   'Bounce: Evacuate unique captives and ignore leaders': async function () {
     //arrange
@@ -95,7 +96,7 @@ export const BounceCases = {
         gameState.SubcardBuilder().AddCaptive(cards.SOR.LukeSkywalker, 1).Build())
       .AddUnit(2, cards.TWI.BattleDroid, false, 0,
         gameState.SubcardBuilder().AddCaptive(cards.SOR.LukeSkywalker, 1).Build())
-      .AddUnit(2, cards.SOR.TieLnFighter, false, 0, gameState.SubcardBuilder().AddUpgrade(cards.JTL.AsajjLeaderUnit, 2, true).Build())
+      .AddUnit(2, cards.SOR.TieLnFighter, false, 0, gameState.SubcardBuilder().AddPilot(cards.JTL.AsajjLeaderUnit, 2, true).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -120,10 +121,10 @@ export const BounceCases = {
       .AddLeader(2, cards.JTL.HanSoloLeader, true)
       .FillResources(1, cards.SOR.Waylay, 3)
       .AddCardToHand(1, cards.SOR.Waylay)
-      .AddUnit(2, cards.SOR.TieLnFighter)
-      .AddUnit(2, cards.SOR.TieLnFighter, false, 0,
-        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
-      .AddUnit(2, cards.SOR.TieLnFighter)
+      .AddUnit(2, cards.JTL.XWing)
+      .AddUnit(2, cards.JTL.XWing, false, 0,
+        gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
+      .AddUnit(2, cards.JTL.XWing)
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -133,7 +134,7 @@ export const BounceCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
     //assert
-    await browser.assert.attributeEquals(com.UnitImg(com.EnemySpaceUnit(2)), 'style', src.NotPlayableBorderUnit);
+    await customAsserts.UnitIsNotPlayable(browser, com.EnemySpaceUnit(2));
   },
   'Bounce: Bright Hope cant bounce piloted leader unit': async function () {
     //arrange
@@ -148,7 +149,7 @@ export const BounceCases = {
       .AddCardToHand(1, cards.SOR.BrightHope)
       .AddUnit(1, cards.SOR.Snowspeeder)
       .AddUnit(1, cards.SOR.Snowspeeder, false, 0,
-        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
+        gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -158,7 +159,7 @@ export const BounceCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
     //assert
-    await browser.assert.attributeEquals(com.UnitImg(com.AllyGroundUnit(2)), 'style', src.NotPlayableBorderUnit);
+    await customAsserts.UnitIsNotPlayable(browser, com.AllyGroundUnit(2));
   },
   'Bounce: Cunning cant bounce piloted leader unit': async function () {
     //arrange
@@ -174,7 +175,7 @@ export const BounceCases = {
       .AddUnit(2, cards.SOR.Snowspeeder)
       .AddUnit(2, cards.SOR.Snowspeeder, true, 0,
         gameState.SubcardBuilder()
-          .AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true)
+          .AddPilot(cards.JTL.HanSoloLeaderUnit, 2, true)
           .AddUpgrade(cards.TWI.PerilousPosition, 1)
           .Build())
       .AddUnit(2, cards.SOR.Snowspeeder)
@@ -191,7 +192,7 @@ export const BounceCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
     ;
     //assert
-    await browser.assert.attributeEquals(com.UnitImg(com.EnemyGroundUnit(2)), 'style', src.NotPlayableBorderUnit);
+    await customAsserts.UnitIsNotPlayable(browser, com.EnemyGroundUnit(2));
   },
   'Bounce: Cantina Bouncer cant bounce piloted leader unit': async function () {
     //arrange
@@ -206,7 +207,7 @@ export const BounceCases = {
       .AddCardToHand(1, cards.SOR.CantinaBouncer)
       .AddUnit(2, cards.SOR.Snowspeeder)
       .AddUnit(2, cards.SOR.Snowspeeder, false, 0,
-        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
+        gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
       .AddUnit(2, cards.SOR.Snowspeeder)
       .FlushAsync(com.BeginTestCallback)
     ;
@@ -217,7 +218,7 @@ export const BounceCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
     //assert
-    await browser.assert.attributeEquals(com.UnitImg(com.EnemyGroundUnit(2)), 'style', src.NotPlayableBorderUnit);
+    await customAsserts.UnitIsNotPlayable(browser, com.EnemyGroundUnit(2));
   },
   'Bounce: Enfys Nest cant bounce piloted leader unit': async function () {
     //arrange
@@ -232,7 +233,7 @@ export const BounceCases = {
       .AddCardToHand(1, cards.TWI.EnfysNest)
       .AddUnit(2, cards.SOR.Snowspeeder)
       .AddUnit(2, cards.SOR.GreenSquadAWing, false, 0,
-        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
+        gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
       .AddUnit(2, cards.SOR.Snowspeeder)
       .FlushAsync(com.BeginTestCallback)
     ;
@@ -243,7 +244,7 @@ export const BounceCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
     ;
     //assert
-    await browser.assert.attributeEquals(com.UnitImg(com.EnemySpaceUnit(1)), 'style', src.NotPlayableBorderUnit);
+    await customAsserts.UnitIsNotPlayable(browser, com.EnemySpaceUnit(1));
   },
   'Bounce: Clear the Field cant bounce piloted leader unit': async function () {
     //arrange
@@ -258,7 +259,7 @@ export const BounceCases = {
       .AddCardToHand(1, cards.TWI.ClearTheField)
       .AddUnit(2, cards.SOR.TieLnFighter)
       .AddUnit(2, cards.SOR.TieLnFighter, false, 0,
-        gameState.SubcardBuilder().AddUpgrade(cards.JTL.AsajjLeaderUnit, 2, true).Build())
+        gameState.SubcardBuilder().AddPilot(cards.JTL.AsajjLeaderUnit, 2, true).Build())
       .AddUnit(2, cards.SOR.TieLnFighter)
       .FlushAsync(com.BeginTestCallback)
     ;
@@ -269,7 +270,7 @@ export const BounceCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
     ;
     //assert
-    await browser.assert.attributeEquals(com.UnitImg(com.EnemySpaceUnit(2)), 'style', src.NotPlayableBorderUnit);
+    await customAsserts.UnitIsNotPlayable(browser, com.EnemySpaceUnit(2));
     //act
     await browser
       .click(com.EnemySpaceUnit(1))
@@ -293,7 +294,7 @@ export const BounceCases = {
       .AddCardToHand(1, cards.SHD.SpareTheTarget)
       .AddUnit(2, cards.SHD.CartelTurncoat)
       .AddUnit(2, cards.SHD.CartelTurncoat, false, 0,
-        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
+        gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
       .AddUnit(2, cards.SHD.CartelTurncoat)
       .FlushAsync(com.BeginTestCallback)
     ;
@@ -304,6 +305,6 @@ export const BounceCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
     ;
     //assert
-    await browser.assert.attributeEquals(com.UnitImg(com.EnemySpaceUnit(2)), 'style', src.NotPlayableBorderUnit);
+    await customAsserts.UnitIsNotPlayable(browser, com.EnemySpaceUnit(2));
   }
 }

@@ -3,7 +3,8 @@ import { GameState } from '../utils/gamestate';
 import {
   com, src, p,
   player1Window, player2Window,
-  gameName
+  gameName,
+  customAsserts
 } from '../utils/util';
 
 export const DamageCases = {
@@ -192,7 +193,7 @@ export const DamageCases = {
       .AddLeader(2, cards.JTL.HanSoloLeader, true)
       .AddUnit(2, cards.SOR.Snowspeeder, false, 1)
       .AddUnit(2, cards.SOR.Snowspeeder, false, 1,
-        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
+        gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
       .AddUnit(2, cards.SOR.Snowspeeder, false, 1)
       .FlushAsync(com.BeginTestCallback)
     ;
@@ -204,7 +205,7 @@ export const DamageCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
     ;
     //assert
-    await browser.assert.attributeEquals(com.UnitImg(com.EnemyGroundUnit(2)), 'style', src.NotPlayableBorderUnit);
+    await customAsserts.UnitIsNotPlayable(browser, com.EnemyGroundUnit(2));
   },
   'Palp SOR unit': async function () {
     //arrange

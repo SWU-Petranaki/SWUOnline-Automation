@@ -107,6 +107,8 @@ export const customAsserts = {
     browser.assert.attributeEquals(com.UnitDivPiece(arena == 'GROUND'
       ? com.EnemyGroundUnit(unit)
       : com.EnemySpaceUnit(unit) , divPiece), 'class', 'overlay'),
+  UnitIsNotPlayable: (browser: NightwatchAPI, selector: string) => browser.assert.attributeEquals(com.UnitImg(selector), 'style', src.NotPlayableBorderUnit),
+  HandCardIsNotPlayable: (browser: NightwatchAPI, card: number) => browser.assert.attributeEquals(com.HandCardImg(card), 'style', src.NotPlayableBorderHand),
   //Twilight of the Republic
   AllyGroundUnitIsBattleDroid: (browser: NightwatchAPI, unit: number) =>
     browser.assert.attributeEquals(com.UnitImg(com.AllyGroundUnit(unit)), 'src', src.Concat(cards.TWI.BattleDroid)),
@@ -125,6 +127,7 @@ export const customAsserts = {
     browser.assert.attributeEquals(com.UnitImg(com.AllySpaceUnit(unit)), 'src', src.Concat(cards.JTL.TieFighter)),
   EnemySpaceUnitIsTieFighter: (browser: NightwatchAPI, unit: number) =>
     browser.assert.attributeEquals(com.UnitImg(com.EnemySpaceUnit(unit)), 'src', src.Concat(cards.JTL.TieFighter)),
+
 }
 
 export const g = {

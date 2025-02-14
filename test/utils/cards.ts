@@ -249,6 +249,7 @@ export const cards = {
     CassianAndor: '3475471540',
     KidAnakin: '8523415830',
     Frisk: '0514089787',
+    R2D2: '5375722883',
     //vehicles
     RedLeader: '3711891756',
     HoundsTooth: '3876470102',
@@ -266,5 +267,6 @@ export const cards = {
     Commandeer: '8105698374',
     TandemAssault: '4334684518',
     PlanetBomb: '0425156332',
+    Eject: '8993849612',
   }
 }

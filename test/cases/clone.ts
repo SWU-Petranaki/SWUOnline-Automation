@@ -4,7 +4,8 @@ import {
   com, p,
   player1Window, player2Window,
   gameName,
-  src
+  src,
+  customAsserts
 } from '../utils/util';
 
 export const CloneCases = {
@@ -22,7 +23,7 @@ export const CloneCases = {
       .AddCardToHand(1, cards.TWI.Clone)
       .AddUnit(1, cards.SOR.DSStormTrooper)
       .AddUnit(1, cards.SOR.DSStormTrooper, false, 0,//Han Solo piggy-backing on a stormtrooper..
-        gameState.SubcardBuilder().AddUpgrade(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
+        gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
       .AddUnit(1, cards.SOR.DSStormTrooper)
       .FlushAsync(com.BeginTestCallback)
     ;
@@ -33,6 +34,6 @@ export const CloneCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
     ;
     //assert
-    await browser.assert.attributeEquals(com.UnitImg(com.AllyGroundUnit(2)), 'style', src.NotPlayableBorderUnit);
+    await customAsserts.UnitIsNotPlayable(browser, com.AllyGroundUnit(2));
   },
 }
