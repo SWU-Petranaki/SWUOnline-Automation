@@ -63,10 +63,10 @@ export const BounceCases = {
       .AddLeader(2, cards.JTL.HanSoloLeader)
       .FillResources(1, cards.SHD.MaKlounkee, 1)
       .AddCardToHand(1, cards.SHD.MaKlounkee)
-      .AddUnit(1, cards.SOR.EscortSkiff, false, 1)
-      .AddUnit(1, cards.SOR.EscortSkiff, false, 1,
+      .AddUnit(1, cards.SOR.EscortSkiff, false, false, 1)
+      .AddUnit(1, cards.SOR.EscortSkiff, false, false, 1,
         gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
-      .AddUnit(1, cards.SOR.EscortSkiff, false, 1)
+      .AddUnit(1, cards.SOR.EscortSkiff, false, false, 1)
       .AddUnit(2, cards.SOR.BFMarine)
       .FlushAsync(com.BeginTestCallback)
     ;
@@ -91,12 +91,12 @@ export const BounceCases = {
       .AddLeader(2, cards.SOR.SabineLeader, true)
       .FillResources(1, cards.SOR.Waylay, 6)
       .AddCardToHand(1, cards.SHD.Evacuate)
-      .AddUnit(2, cards.SOR.SabineLeaderUnit)
-      .AddUnit(2, cards.TWI.BattleDroid, false, 0,
+      .AddUnit(2, cards.SOR.SabineLeaderUnit, true)
+      .AddUnit(2, cards.TWI.BattleDroid, false, false, 0,
         gameState.SubcardBuilder().AddCaptive(cards.SOR.LukeSkywalker, 1).Build())
-      .AddUnit(2, cards.TWI.BattleDroid, false, 0,
+      .AddUnit(2, cards.TWI.BattleDroid, false, false, 0,
         gameState.SubcardBuilder().AddCaptive(cards.SOR.LukeSkywalker, 1).Build())
-      .AddUnit(2, cards.SOR.TieLnFighter, false, 0, gameState.SubcardBuilder().AddPilot(cards.JTL.AsajjLeaderUnit, 2, true).Build())
+      .AddUnit(2, cards.SOR.TieLnFighter, false, false, 0, gameState.SubcardBuilder().AddPilot(cards.JTL.AsajjLeaderUnit, 2, true).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -122,7 +122,7 @@ export const BounceCases = {
       .FillResources(1, cards.SOR.Waylay, 3)
       .AddCardToHand(1, cards.SOR.Waylay)
       .AddUnit(2, cards.JTL.XWing)
-      .AddUnit(2, cards.JTL.XWing, false, 0,
+      .AddUnit(2, cards.JTL.XWing, false, false, 0,
         gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
       .AddUnit(2, cards.JTL.XWing)
       .FlushAsync(com.BeginTestCallback)
@@ -148,7 +148,7 @@ export const BounceCases = {
       .FillResources(1, cards.SOR.Waylay, 4)
       .AddCardToHand(1, cards.SOR.BrightHope)
       .AddUnit(1, cards.SOR.Snowspeeder)
-      .AddUnit(1, cards.SOR.Snowspeeder, false, 0,
+      .AddUnit(1, cards.SOR.Snowspeeder, false, false, 0,
         gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
@@ -173,7 +173,7 @@ export const BounceCases = {
       .FillResources(1, cards.SOR.Waylay, 4)
       .AddCardToHand(1, cards.SOR.Cunning)
       .AddUnit(2, cards.SOR.Snowspeeder)
-      .AddUnit(2, cards.SOR.Snowspeeder, true, 0,
+      .AddUnit(2, cards.SOR.Snowspeeder, false, true, 0,
         gameState.SubcardBuilder()
           .AddPilot(cards.JTL.HanSoloLeaderUnit, 2, true)
           .AddUpgrade(cards.TWI.PerilousPosition, 1)
@@ -206,7 +206,7 @@ export const BounceCases = {
       .FillResources(1, cards.SOR.Waylay, 5)
       .AddCardToHand(1, cards.SOR.CantinaBouncer)
       .AddUnit(2, cards.SOR.Snowspeeder)
-      .AddUnit(2, cards.SOR.Snowspeeder, false, 0,
+      .AddUnit(2, cards.SOR.Snowspeeder, false, false, 0,
         gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
       .AddUnit(2, cards.SOR.Snowspeeder)
       .FlushAsync(com.BeginTestCallback)
@@ -232,7 +232,7 @@ export const BounceCases = {
       .FillResources(1, cards.SOR.Waylay, 7)
       .AddCardToHand(1, cards.TWI.EnfysNest)
       .AddUnit(2, cards.SOR.Snowspeeder)
-      .AddUnit(2, cards.SOR.GreenSquadAWing, false, 0,
+      .AddUnit(2, cards.SOR.GreenSquadAWing, false, false, 0,
         gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
       .AddUnit(2, cards.SOR.Snowspeeder)
       .FlushAsync(com.BeginTestCallback)
@@ -258,7 +258,7 @@ export const BounceCases = {
       .FillResources(1, cards.SOR.Waylay, 2)
       .AddCardToHand(1, cards.TWI.ClearTheField)
       .AddUnit(2, cards.SOR.TieLnFighter)
-      .AddUnit(2, cards.SOR.TieLnFighter, false, 0,
+      .AddUnit(2, cards.SOR.TieLnFighter, false, false, 0,
         gameState.SubcardBuilder().AddPilot(cards.JTL.AsajjLeaderUnit, 2, true).Build())
       .AddUnit(2, cards.SOR.TieLnFighter)
       .FlushAsync(com.BeginTestCallback)
@@ -293,7 +293,7 @@ export const BounceCases = {
       .FillResources(1, cards.SOR.Waylay, 3)
       .AddCardToHand(1, cards.SHD.SpareTheTarget)
       .AddUnit(2, cards.SHD.CartelTurncoat)
-      .AddUnit(2, cards.SHD.CartelTurncoat, false, 0,
+      .AddUnit(2, cards.SHD.CartelTurncoat, false, false, 0,
         gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
       .AddUnit(2, cards.SHD.CartelTurncoat)
       .FlushAsync(com.BeginTestCallback)

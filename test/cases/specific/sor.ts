@@ -17,8 +17,8 @@ const GideonHaskGameStateAsync = async () => {
     .AddLeader(2, cards.SOR.SabineLeader)
     .AddResource(2, cards.SOR.CraftySmuggler)
     .AddCardToHand(2, cards.SHD.DaringRaid)
-    .AddUnit(1, cards.SOR.KrennicLeaderUnit)
-    .AddUnit(1, cards.SOR.GideonHask, false, 3)
+    .AddUnit(1, cards.SOR.KrennicLeaderUnit, true)
+    .AddUnit(1, cards.SOR.GideonHask, false, false, 3)
     .AddUnit(2, cards.SOR.DSStormTrooper)
     .FlushAsync(com.BeginTestCallback)
   ;

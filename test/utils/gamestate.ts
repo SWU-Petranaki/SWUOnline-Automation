@@ -2,6 +2,7 @@ import fsp from 'fs/promises';
 import { NightwatchAPI } from 'nightwatch';
 
 import {
+  cs,
   g
 } from './util';
 
@@ -114,7 +115,7 @@ export class GameState {
     this._gameState[g.P1ResourcesState] = "0 0";
     this._gameState[g.P1ResourcesArray] = "";
     this._gameState[g.P1Discard] = "";
-    this._gameState[g.P1ClassState] = "0 0 0 0 0 0 0 0 DOWN 0 -1 0 0 0 0 0 0 -1 0 0 0 0 NA 0 1 1 - -1 0 0 0 0 0 0 - 0 0 0 0 0 0 0 0 - - 0 -1 0 0 0 0 0 - 0 0 0 0 0 -1 0 - - - - 0 0 0 - -1 0 0 -";
+    this._gameState[g.P1ClassState] = this.NewClassState();
     this._gameState[g.P1CharDisplay] = "";
     this._gameState[g.P1CardStats] = "";
     this._gameState[g.P1TurnStats] = "0 0 0 0 0 0 0 0 0 0 0 0";
@@ -126,7 +127,7 @@ export class GameState {
     this._gameState[g.P2ResourcesState] = "0 0";
     this._gameState[g.P2ResourcesArray] = "";
     this._gameState[g.P2Discard] = "";
-    this._gameState[g.P2ClassState] = "0 0 0 0 0 0 0 0 DOWN 0 -1 0 0 0 0 0 0 -1 0 0 0 0 NA 0 0 0 - -1 0 0 0 0 0 0 - 0 0 0 0 0 0 0 0 - - 0 -1 0 0 0 0 0 - 0 0 0 0 0 -1 0 - 0 0 - 0 0 0 - -1 0 0 -";
+    this._gameState[g.P2ClassState] = this.NewClassState();
     this._gameState[g.P2CharDisplay] = "";
     this._gameState[g.P2CardStats] = "";
     this._gameState[g.P2TurnStats] = "0 0 0 0 0 0 0 0 0 0 0 0";
@@ -157,6 +158,87 @@ export class GameState {
     this._gameState[g.InitiativeTaken] = "0";
 
     return this;
+  }
+
+  NewClassState() {
+    const arr:string[] = [];
+    arr[cs.NumVillainyPlayed] = '0';
+    arr[cs.PlayedAsUpgrade] = '0';
+    arr[cs.AtksWWeapon] = '0';
+    arr[cs.NumNonTokenVehicleAttacks] = '0';
+    arr[cs.DamagePrevention] = '0';
+    arr[cs.CardsDrawn] = '0';
+    arr[cs.DamageTaken] = '0';
+    arr[cs.NumActionsPlayed] = '0';
+    arr[8] = '0';
+    arr[cs.CharacterIndex] = '0';
+    arr[cs.PlayIndex] = '-1';
+    arr[cs.NumNonAttackCards] = '0';
+    arr[cs.CachedCharacterLevel] = '0';
+    arr[cs.PreparationCounters] = '0';
+    arr[cs.NextNAACardGoAgain] = '0';
+    arr[cs.NumAlliesDestroyed] = '0';
+    arr[cs.NumWhenDefeatedPlayed] = '0';
+    arr[cs.ResolvingLayerUniqueID] = '-1';
+    arr[cs.NextWizardNAAInstant] = '0';
+    arr[cs.ArcaneDamageTaken] = '0';
+    arr[cs.NextNAAInstant] = '0';
+    arr[cs.NextDamagePrevented] = '0';
+    arr[cs.LastAttack] = "NA";
+    arr[cs.NumLeftPlay] = '0';
+    arr[cs.NumUsesLeaderUpgrade1] = '1';
+    arr[cs.NumUsesLeaderUpgrade2] = '1';
+    arr[cs.AfterPlayedBy] = "-";
+    arr[cs.PlayCCIndex] = '-1';
+    arr[cs.NumAttackCards] = '0';
+    arr[cs.NumPlayedFromBanish] = '0';
+    arr[cs.NumAttacks] = '0';
+    arr[cs.DieRoll] = '0';
+    arr[cs.NumMandalorianAttacks] = '0';
+    arr[cs.SeparatistUnitsThatAttacked] = "-";
+    arr[cs.NumFighterAttacks] = '0';
+    arr[cs.LayerTarget] = "-";
+    arr[cs.NumSwordAttacks] = '0';
+    arr[cs.HitsWithWeapon] = '0';
+    arr[cs.ArcaneDamagePrevention] = '0';
+    arr[cs.DynCostResolved] = '0';
+    arr[cs.CardsEnteredGY] = '0';
+    arr[cs.HighestRoll] = '0';
+    arr[cs.NumMelodyPlayed] = '0';
+    arr[cs.NumAuras] = '0';
+    arr[cs.AbilityIndex] = "-";
+    arr[cs.AdditionalCosts] = "-";
+    arr[cs.NumRedPlayed] = '0';
+    arr[cs.PlayUniqueID] = '-1';
+    arr[cs.NumPhantasmAADestroyed] = '0';
+    arr[cs.NumEventsPlayed] = '0';
+    arr[cs.AlluvionUsed] = '0';
+    arr[cs.MaxQuellUsed] = '0';
+    arr[cs.DamageDealt] = '0';
+    arr[cs.ArcaneTargetsSelected] = "-";
+    arr[cs.NumDragonAttacks] = '0';
+    arr[cs.NumIllusionistAttacks] = '0';
+    arr[cs.LastDynCost] = '0';
+    arr[cs.NumIllusionistActionCardAttacks] = '0';
+    arr[cs.ArcaneDamageDealt] = '0';
+    arr[cs.LayerPlayIndex] = '-1';
+    arr[cs.NumCardsPlayed] = '0';
+    arr[cs.NamesOfCardsPlayed] = "-";
+    arr[cs.NumFirstOrderPlayed] = '0';
+    arr[cs.PlayedAsInstant] = '0';
+    arr[cs.LeaderUpgradeAbilityID1] = "-";
+    arr[cs.LeaderUpgradeAbilityID2] = "-";
+    arr[cs.HitsWithSword] = '0';
+    arr[cs.NumClonesPlayed] = '0';
+    arr[cs.UnitsThatAttackedBase] = "-";
+    arr[cs.OppIndex] = '-1';
+    arr[cs.OppCardActive] = '0';
+    arr[cs.PlayedWithExploit] = '0';
+    arr[cs.AlliesDestroyed] = "-";
+    arr[cs.NumBountyHuntersPlayed] = '0';
+    arr[cs.NumPilotsPlayed] = '0';
+
+    return arr.join(' ');
   }
 
   public AddBase(player: number, cardID: string) {
@@ -241,7 +323,7 @@ export class GameState {
     return this;
   }
 
-  public AddUnit(player: number, cardID: string, ready: boolean = true,
+  public AddUnit(player: number, cardID: string, epicAction: boolean = false, ready: boolean = true,
       damage: number = 0, subcards = "-", owner = player, carbonite = false, numUses = 1,
       turnsInPlay = 0, numAttacks = 0, cloned = false, healed = false, arenaOverride = "NA")
   {
@@ -251,7 +333,7 @@ export class GameState {
     }
     this._gameState[index] += (
       `${cardID} ${ready ? "2" : "1"} ${damage} ${carbonite ? "1" : "0"} ${subcards} ${this._uniqueIdCounter++} 0 0 `
-      + `${numUses} 0 ${numAttacks} ${owner} ${turnsInPlay} ${cloned ? "1" : "0"} ${healed ? "1" : "0"} ${arenaOverride} 0`
+      + `${numUses} 0 ${numAttacks} ${owner} ${turnsInPlay} ${cloned ? "1" : "0"} ${healed ? "1" : "0"} ${arenaOverride} ${epicAction ? "1" : "0"}`
     );
 
     return this;

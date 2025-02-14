@@ -140,12 +140,12 @@ export const SpecificSHDCases = {
       .AddLeader(2, cards.SOR.SabineLeader, true)
       .FillResources(1, cards.SOR.CraftySmuggler, 8)
       .AddCardToHand(1, cards.SHD.Snoke)
-      .AddUnit(2, cards.SOR.TieLnFighter, true, 3,
+      .AddUnit(2, cards.SOR.TieLnFighter, false, true, 3,
         gameState.SubcardBuilder().AddPilot(cards.JTL.AsajjLeaderUnit, 2, true).Build())
       .AddUnit(2, cards.TWI.CloneTrooper)
       .AddUnit(2, cards.TWI.BattleDroid)
-      .AddUnit(2, cards.SOR.SabineLeaderUnit, true, 3)
-      .AddUnit(2, cards.TWI.WTTradeOfficial, true, 1)
+      .AddUnit(2, cards.SOR.SabineLeaderUnit, false, true, 3)
+      .AddUnit(2, cards.TWI.WTTradeOfficial, false, true, 1)
       .FlushAsync(com.BeginTestCallback)
     ;
     //pre-assert

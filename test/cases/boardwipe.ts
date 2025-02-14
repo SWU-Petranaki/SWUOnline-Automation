@@ -19,12 +19,12 @@ export const BoardWipeCases = {
       .AddLeader(2, cards.SOR.KrennicLeader)
       .FillResources(1, cards.SOR.CraftySmuggler, 8)
       .AddCardToHand(1, cards.SOR.SLB)
-      .AddUnit(1, cards.SOR.IdenLeaderUnit)
+      .AddUnit(1, cards.SOR.IdenLeaderUnit, true)
       .AddUnit(2, cards.SOR.DSStormTrooper)
       .AddUnit(2, cards.SOR.TieLnFighter)
       .AddUnit(2, cards.SOR.DSStormTrooper)
       .AddUnit(2, cards.SOR.TieLnFighter)
-      .AddUnit(2, cards.SOR.AdmiralAckbar, true, 0, gameState.SubcardBuilder().AddUpgrade(cards.SHD.TopTarget, 1).Build())
+      .AddUnit(2, cards.SOR.AdmiralAckbar, true, false, 0, gameState.SubcardBuilder().AddUpgrade(cards.SHD.TopTarget, 1).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -53,11 +53,11 @@ export const BoardWipeCases = {
       .AddLeader(2, cards.SOR.IdenLeader, true)
       .FillResources(1, cards.SOR.CraftySmuggler, 8)
       .AddCardToHand(1, cards.SOR.SLB)
-      .AddUnit(1, cards.SOR.IdenLeaderUnit)
+      .AddUnit(1, cards.SOR.IdenLeaderUnit, true)
       .AddUnit(1, cards.SOR.DSStormTrooper)
       .AddUnit(2, cards.SOR.DSStormTrooper)
       .AddUnit(2, cards.SOR.TieLnFighter)
-      .AddUnit(2, cards.SOR.IdenLeaderUnit, true, 0, gameState.SubcardBuilder().AddUpgrade(cards.SHD.TopTarget, 1).Build())
+      .AddUnit(2, cards.SOR.IdenLeaderUnit, true, true, 0, gameState.SubcardBuilder().AddUpgrade(cards.SHD.TopTarget, 1).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -86,12 +86,13 @@ export const BoardWipeCases = {
       .AddLeader(2, cards.SOR.KrennicLeader)
       .FillResources(1, cards.SOR.CraftySmuggler, 15)
       .AddCardToHand(1, cards.TWI.Christophsis)
-      .AddUnit(1, cards.SOR.IdenLeaderUnit)
+      .AddUnit(1, cards.SOR.IdenLeaderUnit, true)
       .AddUnit(2, cards.SOR.DSStormTrooper)
       .AddUnit(2, cards.SOR.TieLnFighter)
       .AddUnit(2, cards.SOR.DSStormTrooper)
       .AddUnit(2, cards.SOR.TieLnFighter)
-      .AddUnit(2, cards.SOR.AdmiralAckbar, true, 0, gameState.SubcardBuilder().AddUpgrade(cards.SHD.TopTarget, 1).Build())
+      .AddUnit(2, cards.SOR.AdmiralAckbar, true, false, 0,
+        gameState.SubcardBuilder().AddUpgrade(cards.SHD.TopTarget, 1).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -122,11 +123,12 @@ export const BoardWipeCases = {
       .AddLeader(2, cards.SOR.IdenLeader, true)
       .FillResources(1, cards.SOR.CraftySmuggler, 15)
       .AddCardToHand(1, cards.TWI.Christophsis)
-      .AddUnit(1, cards.SOR.IdenLeaderUnit)
+      .AddUnit(1, cards.SOR.IdenLeaderUnit, true)
       .AddUnit(1, cards.SOR.DSStormTrooper)
       .AddUnit(2, cards.SOR.DSStormTrooper)
       .AddUnit(2, cards.SOR.TieLnFighter)
-      .AddUnit(2, cards.SOR.IdenLeaderUnit, true, 0, gameState.SubcardBuilder().AddUpgrade(cards.SHD.TopTarget, 1).Build())
+      .AddUnit(2, cards.SOR.IdenLeaderUnit, true, false, 0,
+        gameState.SubcardBuilder().AddUpgrade(cards.SHD.TopTarget, 1).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -160,9 +162,9 @@ export const BoardWipeCases = {
       .AddUnit(1, cards.SOR.DSStormTrooper)
       .AddUnit(1, cards.SOR.GideonHask)
       .AddUnit(2, cards.SOR.DSStormTrooper)
-      .AddUnit(2, cards.SOR.TieLnFighter, true, 0,
+      .AddUnit(2, cards.SOR.TieLnFighter, true, false, 0,
         gameState.SubcardBuilder().AddCaptive(cards.SOR.CraftySmuggler, 1).Build())
-      .AddUnit(2, cards.SOR.AdmiralAckbar, true, 0,
+      .AddUnit(2, cards.SOR.AdmiralAckbar, true, false, 0,
         gameState.SubcardBuilder().AddUpgrade(cards.SHD.TopTarget, 1).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
@@ -202,12 +204,12 @@ export const BoardWipeCases = {
       .AddCardToHand(1, cards.SOR.SLB)
       .AddUnit(1, cards.SOR.DSStormTrooper)
       .AddUnit(1, cards.SOR.GideonHask)
-      .AddUnit(1, cards.SOR.DarthVader, true, 0,
+      .AddUnit(1, cards.SOR.DarthVader, true, false, 0,
         gameState.SubcardBuilder().AddCaptive(cards.SOR.BFMarine, 2).Build())
       .AddUnit(2, cards.SOR.DSStormTrooper)
-      .AddUnit(2, cards.SOR.TieLnFighter, true, 0,
+      .AddUnit(2, cards.SOR.TieLnFighter, true, false, 0,
         gameState.SubcardBuilder().AddCaptive(cards.SOR.CraftySmuggler, 1).Build())
-      .AddUnit(2, cards.SOR.AdmiralAckbar, true, 0,
+      .AddUnit(2, cards.SOR.AdmiralAckbar, true, false, 0,
         gameState.SubcardBuilder().AddUpgrade(cards.SHD.TopTarget, 1).Build())
       .AddUnit(2, cards.SOR.GideonHask)
       .FlushAsync(com.BeginTestCallback)

@@ -22,16 +22,16 @@ export const LeaderUnitSHDCases = {
       .AddUnit(1, cards.SOR.TieLnFighter)
       .AddUnit(1, cards.TWI.DevGunship, true, 5,
         gameState.SubcardBuilder().AddUpgrade(cards.TWI.DroidCohort, 1).Build())
-      .AddUnit(1, cards.SHD.GarSaxonLeaderUnit)
-      .AddUnit(1, cards.SHD.FinnLeaderUnit)
-      .AddUnit(1, cards.SHD.ReyLeaderUnit)
+      .AddUnit(1, cards.SHD.GarSaxonLeaderUnit, true)
+      .AddUnit(1, cards.SHD.FinnLeaderUnit, true)
+      .AddUnit(1, cards.SHD.ReyLeaderUnit, true)
       .AddUnit(2, cards.SOR.TieLnFighter)
       .AddUnit(2, cards.SOR.TieLnFighter)
       .AddUnit(2, cards.SOR.InfernoFour)
-      .AddUnit(2, cards.SHD.HondoLeaderUnit)
-      .AddUnit(2, cards.SHD.GideonLeaderUnit)
-      .AddUnit(2, cards.SHD.HunterLeaderUnit)
-      .AddUnit(2, cards.SHD.BobaDaimyoLeaderUnit)
+      .AddUnit(2, cards.SHD.HondoLeaderUnit, true)
+      .AddUnit(2, cards.SHD.GideonLeaderUnit, true)
+      .AddUnit(2, cards.SHD.HunterLeaderUnit, true)
+      .AddUnit(2, cards.SHD.BobaDaimyoLeaderUnit, true)
       .FlushAsync(com.BeginTestCallback)
     ;
     //pre-assert
@@ -244,9 +244,9 @@ export const LeaderUnitSHDCases = {
       .AddLeader(2, cards.JTL.HanSoloLeader, true)
       .FillResources(1, cards.SHD.MandosRifle, 3)
       .AddCardToHand(1, cards.SHD.MandosRifle)
-      .AddUnit(1, cards.SHD.MandoLeaderUnit)
+      .AddUnit(1, cards.SHD.MandoLeaderUnit, true)
       .AddUnit(2, cards.SOR.TieLnFighter, false)
-      .AddUnit(2, cards.SOR.TieLnFighter, true, 0,
+      .AddUnit(2, cards.SOR.TieLnFighter, true, false, 0,
         gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
       .AddUnit(2, cards.SOR.TieLnFighter, false)
       .FlushAsync(com.BeginTestCallback)
@@ -277,10 +277,10 @@ export const LeaderUnitSHDCases = {
       .AddBase(2, cards.SOR.ECL)
       .AddLeader(2, cards.JTL.HanSoloLeader, true)
       .FillResources(1, cards.SHD.CollectionsStarhopper, 7)
-      .AddUnit(1, cards.SOR.GILeaderUnit)//Twin Suns prep
+      .AddUnit(1, cards.SOR.GILeaderUnit, true)//Twin Suns prep
       .AddUnit(1, cards.SOR.TieLnFighter)
       .AddUnit(2, cards.SOR.TieLnFighter)
-      .AddUnit(2, cards.SOR.TieLnFighter, true, 0,
+      .AddUnit(2, cards.SOR.TieLnFighter, true, false, 0,
         gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
       .AddUnit(2, cards.SOR.TieLnFighter, false)
       .FlushAsync(com.BeginTestCallback)

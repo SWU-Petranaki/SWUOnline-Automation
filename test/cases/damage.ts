@@ -19,10 +19,10 @@ export const DamageCases = {
       .AddLeader(2, cards.SOR.SabineLeader)
       .FillResources(1, cards.SOR.BFMarine, 5)
       .AddCardToHand(1, cards.SOR.OB)
-      .AddUnit(1, cards.SOR.DSStormTrooper, true, 0,
+      .AddUnit(1, cards.SOR.DSStormTrooper, false, true, 0,
         gameState.SubcardBuilder().AddExperience(1,3).Build())
       .AddUnit(1, cards.SOR.DSStormTrooper)
-      .AddUnit(2, cards.TWI.Malevolence, true, 3)
+      .AddUnit(2, cards.TWI.Malevolence, false, true, 3)
       .AddUnit(2, cards.SOR.SLT)
       .AddUnit(2, cards.TWI.WTTradeOfficial)
       .FlushAsync(com.BeginTestCallback)
@@ -72,10 +72,10 @@ export const DamageCases = {
       .AddLeader(2, cards.SOR.SabineLeader)
       .FillResources(1, cards.SOR.BFMarine, 5)
       .AddCardToHand(1, cards.SOR.OB)
-      .AddUnit(1, cards.SOR.DSStormTrooper, true, 0,
+      .AddUnit(1, cards.SOR.DSStormTrooper, false, true, 0,
         gameState.SubcardBuilder().AddExperience(1,3).Build())
       .AddUnit(1, cards.SOR.DSStormTrooper)
-      .AddUnit(2, cards.TWI.Malevolence, true, 3)
+      .AddUnit(2, cards.TWI.Malevolence, false, true, 3)
       .AddUnit(2, cards.SOR.SLT)
       .AddUnit(2, cards.TWI.WTTradeOfficial)
       .FlushAsync(com.BeginTestCallback)
@@ -118,10 +118,10 @@ export const DamageCases = {
       .AddLeader(2, cards.SOR.SabineLeader)
       .FillResources(1, cards.SOR.BFMarine, 5)
       .AddCardToHand(1, cards.SOR.OB)
-      .AddUnit(1, cards.SOR.DSStormTrooper, true, 0,
+      .AddUnit(1, cards.SOR.DSStormTrooper, false, true, 0,
         gameState.SubcardBuilder().AddExperience(1,3).Build())
       .AddUnit(1, cards.SOR.DSStormTrooper)
-      .AddUnit(2, cards.TWI.Malevolence, true, 3)
+      .AddUnit(2, cards.TWI.Malevolence, false, true, 3)
       .AddUnit(2, cards.SOR.SLT)
       .AddUnit(2, cards.TWI.WTTradeOfficial)
       .FlushAsync(com.BeginTestCallback)
@@ -161,7 +161,7 @@ export const DamageCases = {
       .AddLeader(2, cards.SOR.SabineLeader)
       .FillResources(1, cards.SOR.BFMarine, 5)
       .AddCardToHand(1, cards.SOR.OB)
-      .AddUnit(1, cards.SOR.DSStormTrooper, true, 0,
+      .AddUnit(1, cards.SOR.DSStormTrooper, false, true, 0,
         gameState.SubcardBuilder().AddExperience(1,3).Build())
       .AddUnit(1, cards.SOR.DisablingFF)
       .FlushAsync(com.BeginTestCallback)
@@ -191,10 +191,10 @@ export const DamageCases = {
       .AddLeader(1, cards.SOR.TarkinLeader)
       .AddBase(2, cards.SOR.DagobahSwamp)
       .AddLeader(2, cards.JTL.HanSoloLeader, true)
-      .AddUnit(2, cards.SOR.Snowspeeder, false, 1)
+      .AddUnit(2, cards.SOR.Snowspeeder, false, false, 1)
       .AddUnit(2, cards.SOR.Snowspeeder, false, 1,
         gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
-      .AddUnit(2, cards.SOR.Snowspeeder, false, 1)
+      .AddUnit(2, cards.SOR.Snowspeeder, false, false, 1)
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -293,8 +293,8 @@ export const DamageCases = {
       .FillResources(1, cards.SOR.DSStormTrooper, 4)
       .AddCardToHand(1, cards.JTL.IG2000)
       .AddUnit(2, cards.SOR.DarthVader, false, 6)
-      .AddUnit(2, cards.SOR.CraftySmuggler, false, 1)
-      .AddUnit(2, cards.JTL.HoundsTooth, false, 1)
+      .AddUnit(2, cards.SOR.CraftySmuggler, false, false, 1)
+      .AddUnit(2, cards.JTL.HoundsTooth, false, false, 1)
       .FlushAsync(com.BeginTestCallback)
     ;
     //act

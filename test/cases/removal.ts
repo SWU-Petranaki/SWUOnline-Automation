@@ -20,10 +20,10 @@ export const RemovalCases = {
       .FillResources(1, cards.SOR.Waylay, 5)
       .AddCardToHand(1, cards.SOR.Vanquish)
       .AddUnit(1, cards.SOR.Snowspeeder)
-      .AddUnit(1, cards.SOR.Snowspeeder, false, 0,
+      .AddUnit(1, cards.SOR.Snowspeeder, false, false, 0,
         gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
       .AddUnit(2, cards.SOR.Snowspeeder)
-      .AddUnit(2, cards.SOR.Snowspeeder, false, 0,
+      .AddUnit(2, cards.SOR.Snowspeeder, false, false, 0,
         gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
@@ -49,11 +49,11 @@ export const RemovalCases = {
       .FillResources(1, cards.SOR.Waylay, 3)
       .AddCardToHand(1, cards.TWI.MercilessContest)
       .AddUnit(1, cards.SOR.TieLnFighter)
-      .AddUnit(1, cards.SOR.TieLnFighter, false, 0,
+      .AddUnit(1, cards.SOR.TieLnFighter, false, false, 0,
         gameState.SubcardBuilder().AddPilot(cards.JTL.AsajjLeaderUnit, 1, true).Build())
       .AddUnit(1, cards.SOR.TieLnFighter)
       .AddUnit(2, cards.SOR.Snowspeeder)
-      .AddUnit(2, cards.SOR.Snowspeeder, false, 0,
+      .AddUnit(2, cards.SOR.Snowspeeder, false, false, 0,
         gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
       .AddUnit(2, cards.SOR.Snowspeeder)
       .FlushAsync(com.BeginTestCallback)
