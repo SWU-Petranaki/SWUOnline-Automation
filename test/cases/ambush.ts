@@ -1,4 +1,5 @@
 import { cards } from '../utils/cards';
+import { GamePlay } from '../utils/gameplay';
 import { GameState } from '../utils/gamestate';
 import {
   com, p,
@@ -24,23 +25,22 @@ export const AmbushCases = {
     .FlushAsync(com.BeginTestCallback)
   ;
   //act
-  await browser
-    .waitForElementPresent(com.MyHand)
-    .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-    .click(com.Base(1))
-    .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-    .click(com.HandCard(1))
-    .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-    .click(com.AllyGroundUnit(1))
-    .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-    .click(com.YesNoButton("YES")).pause(p.ButtonPress)
-    .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-    .click(com.EnemyGroundUnit(1))
-    .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+  const gameplay = new GamePlay(browser);
+  await gameplay
+     .WaitForMyHand()
+     .ClickMyBase()
+     .TargetMyHandCard(1)
+     .ClickMyGroundUnit(1)
+     .ChooseYes()
+     .TargetTheirGroundUnit(1, true)
+     .RunAsync()
   ;
   //assert
-  await browser.assert.not.elementPresent(com.EnemyGroundUnit(1));
-  await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 3), '2');
+  await gameplay.Assert()
+    .TheirGroundUnitIsGone(1)
+    .MyGroundUnitPieceEquals(1, 3, '2')
+    .RunAsync()
+  ;
   },
   'Ambush: Rukh into Krayt Dragon with ECL': async function () {
     //arrange
