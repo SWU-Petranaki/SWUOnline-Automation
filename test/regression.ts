@@ -16,6 +16,7 @@ import { ReadyCases } from './cases/ready';
 import { BoardWipeCases } from './cases/boardwipe';
 import { ControlCases } from './cases/control';
 import { DefeatUpgradeCases } from './cases/defeat-upgrade';
+import { RareBasesCases } from './cases/rare-bases';
 import { LeaderAbilitySORCases } from './cases/leader-ability-sor';
 import { LeaderUnitSORCases } from './cases/leader-unit-sor';
 import { LeaderUnitSHDCases } from './cases/leader-unit-shd';
@@ -51,6 +52,7 @@ const home: NightwatchTests = {
   ...BoardWipeCases,
   ...ControlCases,
   ...DefeatUpgradeCases,
+  ...RareBasesCases,
   ...BountyCases,
   ...SmuggleCases,
   ...ExploitCases,

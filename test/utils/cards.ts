@@ -166,6 +166,7 @@ export const cards = {
   TWI: {
     //bases
     LairOfGrievous: '7827173440',//30HP green base
+    PetranakiArena: '9652861741',
     //tokens
     BattleDroid: '3463348370',
     CloneTrooper: '3941784506',
