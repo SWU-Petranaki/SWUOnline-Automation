@@ -38,7 +38,7 @@ export const RareBasesCases = {
     //assert
     await gameplay.Assert()
       .TheirGroundUnitPieceEquals(2, 4, '3')
-      .MyGroundUnitIsGone(1)
+      .IHaveNoGroundUnits()
       .RunAsync()
     ;
   },

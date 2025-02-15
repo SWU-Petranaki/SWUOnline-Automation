@@ -1,4 +1,5 @@
 import { cards } from '../utils/cards';
+import { GamePlay } from '../utils/gameplay';
 import { GameState } from '../utils/gamestate';
 import {
     com, p,
@@ -23,33 +24,28 @@ export const BountyCases = {
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
-    await browser.waitForElementPresent(com.AllyGroundUnit(2))
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.AllyGroundUnit(2))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.ButtonMultiChoice(1)).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.EnemyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-    ;
-
-    await browser.window.switchTo(player2Window).refresh()
-      .waitForElementPresent(com.PassButton)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.PassButton).pause(p.ButtonPress)
-    ;
-
-    await browser.window.switchTo(player1Window).refresh()
-      .waitForElementPresent(com.EnemyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.AllyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.EnemyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyGroundUnit(2)
+      .ClickMyGroundUnit(2)
+      .MultichoiceButton(1)
+      .TargetTheirGroundUnit(1)
+      .WaitForAnimation()
+      .SwitchPlayerWindow()
+      .WaitForPassButton()
+      .PassTurn()
+      .SwitchPlayerWindow()
+      .WaitForMyGroundUnit(1)
+      .ClickMyGroundUnit(1)
+      .TargetTheirGroundUnit(1)
+      .RunAsync()
     ;
     //assert
-    await browser.assert.textEquals(com.MyBaseDamage, '7');
-    await browser.assert.textEquals(com.TheirBaseDamage, '10')
+    await gameplay.Assert()
+      .MyBaseDamageEquals('7')
+      .TheirBaseDamageEquals('10')
+      .RunAsync();
+    ;
   },
   'Bounty: The Client edge case': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
@@ -67,26 +63,24 @@ export const BountyCases = {
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
-    await browser.waitForElementPresent(com.AllyGroundUnit(2))
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.AllyGroundUnit(2))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.ButtonMultiChoice(1)).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.AllyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-    ;
-
-    await browser.window.switchTo(player2Window).refresh()
-      .waitForElementPresent(com.EnemyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.AllyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.EnemyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyGroundUnit(2)
+      .ClickMyGroundUnit(2)
+      .MultichoiceButton(1)
+      .TargetMyGroundUnit(1)
+      .WaitForAnimation()
+      .SwitchPlayerWindow()
+      .WaitForMyGroundUnit(1)
+      .ClickMyGroundUnit(1)
+      .TargetTheirGroundUnit(1)
+      .RunAsync()
     ;
     //assert
-    await browser.assert.textEquals(com.TheirBaseDamage, '12')
-    await browser.assert.textEquals(com.MyBaseDamage, '5');
+    await gameplay.Assert()
+      .MyBaseDamageEquals('5')
+      .TheirBaseDamageEquals('12')
+      .RunAsync()
+    ;
   }
 }

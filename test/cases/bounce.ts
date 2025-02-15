@@ -1,4 +1,5 @@
 import { cards } from '../utils/cards';
+import { GamePlay } from '../utils/gameplay';
 import { GameState } from '../utils/gamestate';
 import {
   com, p,
@@ -25,32 +26,28 @@ export const BounceCases = {
       .AddUnit(2, cards.TWI.CloneTrooper)
       .FlushAsync(com.BeginTestCallback)
     ;
-
-    await browser.waitForElementPresent(com.MyHand)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.HandCard(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.EnemyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand()
+      .ClickHandCard(1)
+      .TargetTheirGroundUnit(1)
+      .WaitForAnimation()
+      .SwitchPlayerWindow()
+      .WaitForClaimButton()
+      .ClaimInitiative()
+      .SwitchPlayerWindow()
+      .WaitForMyHand()
+      .ClickHandCard(1)
+      .RunAsync()
     ;
-
-    await browser.window.switchTo(player2Window).refresh()
-      .waitForElementPresent(com.ClaimButton)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.ClaimButton)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    //assert
+    await gameplay.Assert()
+      .TheirDiscardIsEmpty()
+      .TheirHandIsEmpty()
+      .TheyHaveNoGroundUnits()
+      .RunAsync()
     ;
-
-    await browser.window.switchTo(player1Window).refresh()
-      .waitForElementPresent(com.MyHand)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.HandCard(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-    ;
-
-    await browser.assert.elementPresent(com.TheirDiscardEmpty);
-    await browser.assert.not.elementPresent(com.EnemyGroundUnit(1));
-    await browser.assert.not.elementPresent(com.TheirHandDivs);
   },
   'MaKlounkee cannot bounce own piloted leader unit': async function () {
     //arrange
@@ -71,14 +68,17 @@ export const BounceCases = {
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
-    await browser
-      .waitForElementPresent(com.Base(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.HandCard(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand()
+      .ClickHandCard(1)
+      .RunAsync()
     ;
     //assert
-    await customAsserts.UnitIsNotPlayable(browser, com.AllyGroundUnit(2));
+    await gameplay.Assert()
+      .MyGroundUnitIsNotPlayable(2)
+      .RunAsync()
+    ;
   },
   'Bounce: Evacuate unique captives and ignore leaders': async function () {
     //arrange
@@ -100,15 +100,19 @@ export const BounceCases = {
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
-    await browser.waitForElementPresent(com.MyHand)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.HandCard(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand()
+      .ClickHandCard(1)
+      .RunAsync()
     ;
     //assert
-    await browser.assert.elementPresent(com.EnemyGroundUnit(1));
-    await browser.assert.elementPresent(com.EnemySpaceUnit(1));
-    await browser.assert.textEquals(com.PlayerPickSpan, 'You have two of this unique unit; choose one to destroy ')
+    await gameplay.Assert()
+      .TheirGroundUnitIsThere(1)
+      .TheirSpaceUnitIsThere(1)
+      .PlayerPickSpanTextEquals('You have two of this unique unit; choose one to destroy ')
+      .RunAsync()
+    ;
   },
   'Bounce: Waylay cant bounce piloted leader unit': async function () {
     //arrange

@@ -37,7 +37,7 @@ export const AmbushCases = {
   ;
   //assert
   await gameplay.Assert()
-    .TheirGroundUnitIsGone(1)
+    .TheyHaveNoGroundUnits()
     .MyGroundUnitPieceEquals(1, 3, '2')
     .RunAsync()
   ;
@@ -71,7 +71,7 @@ export const AmbushCases = {
     ;
     //assert
     await gameplay.Assert()
-      .MyGroundUnitIsGone(1)
+      .IHaveNoGroundUnits()
       .TheirGroundUnitPieceEquals(1, 3, '5')
       .RunAsync()
     ;
@@ -109,8 +109,7 @@ export const AmbushCases = {
     ;
     //assert
     await gameplay.Assert()
-      .MyGroundUnitIsGone(1)
-      .TheirGroundUnitIsGone(1)
+      .WeHaveNoGroundUnits()
       .RunAsync()
     ;
   },

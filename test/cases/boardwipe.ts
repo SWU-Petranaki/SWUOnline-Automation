@@ -39,8 +39,8 @@ export const BoardWipeCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay
-      .Assert()
+    await gameplay.Assert()
+      .WeHaveNoUnits()
       .MyBaseDamageEquals('15')
       .TheirBaseDamageEquals('9')
       .RunAsync()
@@ -76,8 +76,8 @@ export const BoardWipeCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay
-      .Assert()
+    await gameplay.Assert()
+      .WeHaveNoUnits()
       .MyBaseDamageEquals('17')
       .TheirBaseDamageEquals('18')
       .RunAsync()
@@ -151,8 +151,7 @@ export const BoardWipeCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay
-      .Assert()
+    await gameplay.Assert()
       .MyBaseDamageEquals('17')
       .TheirBaseDamageEquals('20')
       .RunAsync()
@@ -192,8 +191,7 @@ export const BoardWipeCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay
-      .Assert()
+    await gameplay.Assert()
       .MyGroundUnitPieceEquals(1, 1, 'EXPERIENCE')
       .MyGroundUnitPieceEquals(1, 2, 'EXPERIENCE')
       .MyGroundUnitPieceEquals(1, 3, 'EXPERIENCE')
@@ -245,8 +243,7 @@ export const BoardWipeCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay
-      .Assert()
+    await gameplay.Assert()
       .MyBaseDamageEquals('9')
       .TheirBaseDamageEquals('20')
       .MyGroundUnitPieceEquals(1, 1, 'EXPERIENCE')

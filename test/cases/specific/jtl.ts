@@ -378,8 +378,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay
-      .Assert()
+    await gameplay.Assert()
       .TheirBaseDamageEquals('10')
       .MyBaseDamageEquals('8')
       .RunAsync()
@@ -410,8 +409,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay
-      .Assert()
+    await gameplay.Assert()
       .TheirBaseDamageEquals('10')
       .MyBaseDamageEquals('8')
       .RunAsync()
@@ -443,8 +441,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay
-      .Assert()
+    await gameplay.Assert()
       .TheirBaseDamageEquals('10')
       .MyBaseDamageEquals('8')
       .RunAsync()
@@ -480,8 +477,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay
-      .Assert()
+    await gameplay.Assert()
       .TheirBaseDamageEquals('9')
       .MyBaseDamageEquals('7')
       .MyGroundUnitPieceEquals(2, 1, 'EXPERIENCE')

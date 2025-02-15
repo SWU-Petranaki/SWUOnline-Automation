@@ -3,174 +3,9 @@ import { Awaitable, NightwatchAPI } from "nightwatch";
 import {
   com,
   p,
-  player1Window, player2Window
+  player1Window, player2Window,
 } from '../utils/util';
-
-class GameAssert {
-  private _gamePlay: GamePlay;
-
-  public constructor(gamePlay: GamePlay) {
-    this._gamePlay = gamePlay;
-  }
-
-  public async RunAsync() {
-    return await this._gamePlay.RunAsync();
-  }
-
-  public ElementPresent(selector: string) {
-    this._gamePlay.___BrowsertAssert().elementPresent(selector);
-
-    return this;
-  }
-
-  public MyBaseDamageEquals(damage: string) {
-    this._gamePlay.___BrowsertAssert().textEquals(com.MyBaseDamage, damage);
-
-    return this;
-  }
-
-  public TheirBaseDamageEquals(damage: string) {
-    this._gamePlay.___BrowsertAssert().textEquals(com.TheirBaseDamage, damage);
-
-    return this;
-  }
-
-  public MyLeaderIsThere() {
-    this.ElementPresent(com.Leader(this._gamePlay.CurrentPlayer()));
-
-    return this;
-  }
-
-  public TheirLeaderIsThere() {
-    this.ElementPresent(com.Leader(this._gamePlay.CurrentPlayer() == 1 ? 2 : 1));
-
-    return this;
-  }
-
-  public MyLeaderHasUsedEpicAction() {
-    this._gamePlay.___BrowsertAssert()
-      .attributeEquals(com.Leader(this._gamePlay.CurrentPlayer()) + ' img:nth-of-type(2)', 'src', 'http://localhost:8080/SWUOnline/Images/ExhaustToken.png')
-
-    return this;
-  }
-
-  public TheirLeaderHasUsedEpicAction() {
-    this._gamePlay.___BrowsertAssert()
-      .attributeEquals(com.Leader(this._gamePlay.CurrentPlayer() == 1 ? 2 : 1) + ' img:nth-of-type(2)', 'src', 'http://localhost:8080/SWUOnline/Images/ExhaustToken.png')
-
-    return this;
-  }
-
-  public MyLeaderStillHasEpicAction() {
-    this._gamePlay.___BrowsertAssert()
-      .not.elementPresent(com.Leader(this._gamePlay.CurrentPlayer()) + ' img:nth-of-type(2)');
-
-    return this;
-  }
-
-  public TheirLeaderStillHasEpicAction() {
-    this._gamePlay.___BrowsertAssert()
-      .not.elementPresent(com.Leader(this._gamePlay.CurrentPlayer() == 1 ? 2 : 1) + ' img:nth-of-type(2)');
-
-    return this;
-  }
-
-  public MyGroundUnitIsThere(position: number) {
-    this.ElementPresent(com.AllyGroundUnit(position));
-
-    return this;
-  }
-
-  public MySpaceUnitIsThere(position: number) {
-    this.ElementPresent(com.AllySpaceUnit(position));
-
-    return this;
-  }
-
-  public TheirGroundUnitIsThere(position: number) {
-    this.ElementPresent(com.EnemyGroundUnit(position));
-
-    return this;
-  }
-
-  public TheirSpaceUnitIsThere(position: number) {
-    this.ElementPresent(com.EnemySpaceUnit(position));
-
-    return this;
-  }
-
-  public ElementNotPresent(selector: string) {
-    this._gamePlay.___BrowsertAssert().not.elementPresent(selector);
-
-    return this;
-  }
-
-  public MyGroundUnitIsGone(position: number) {
-    this.ElementNotPresent(com.AllyGroundUnit(position));
-
-    return this;
-  }
-
-  public MySpaceUnitIsGone(position: number) {
-    this.ElementNotPresent(com.AllySpaceUnit(position));
-
-    return this;
-  }
-
-  public TheirGroundUnitIsGone(position: number) {
-    this.ElementNotPresent(com.EnemyGroundUnit(position));
-
-    return this;
-  }
-
-  public TheirSpaceUnitIsGone(position: number) {
-    this.ElementNotPresent(com.EnemySpaceUnit(position));
-
-    return this;
-  }
-
-  public TextEquals(selector: string, text: string) {
-    this._gamePlay.___BrowsertAssert().textEquals(selector, text);
-
-    return this;
-  }
-
-  public MyGroundUnitPieceEquals(position: number, piece: number, text: string) {
-    this.TextEquals(com.UnitDivPiece(com.AllyGroundUnit(position), piece), text);
-
-    return this;
-  }
-
-  public MySpaceUnitPieceEquals(position: number, piece: number, text: string) {
-    this.TextEquals(com.UnitDivPiece(com.AllySpaceUnit(position), piece), text);
-
-    return this;
-  }
-
-  public TheirGroundUnitPieceEquals(position: number, piece: number, text: string) {
-    this.TextEquals(com.UnitDivPiece(com.EnemyGroundUnit(position), piece), text);
-
-    return this;
-  }
-
-  public TheirSpaceUnitPieceEquals(position: number, piece: number, text: string) {
-    this.TextEquals(com.UnitDivPiece(com.EnemySpaceUnit(position), piece), text);
-
-    return this;
-  }
-
-  public MyResourcesEquals(text: string) {
-    this.TextEquals(com.MyResources, text);
-
-    return this;
-  }
-
-  public TheirResourcesEquals(text: string) {
-    this.TextEquals(com.TheirResources, text);
-
-    return this;
-  }
-}
+import { GameAssert } from "./gameassert";
 
 export class GamePlay {
   private _assert: GameAssert = new GameAssert(this);
@@ -215,7 +50,7 @@ export class GamePlay {
     return this;
   }
 
-  public WaitFor(selector: string) {
+  WaitFor(selector: string) {
     this._asyncBrowser
       .waitForElementPresent(selector);
 
@@ -257,8 +92,20 @@ export class GamePlay {
 
     return this;
   }
+
+  public WaitForPassButton() {
+    this.WaitFor(com.PassButton);
+
+    return this;
+  }
+
+  public WaitForClaimButton() {
+    this.WaitFor(com.ClaimButton);
+
+    return this;
+  }
   //Clicks
-  public Click(selector: string) {
+  Click(selector: string) {
     this._asyncBrowser
       .moveToElement(com.GameChat, 0, 0).pause(p.Move).click(selector);
 
@@ -320,7 +167,7 @@ export class GamePlay {
   }
 
   //Targets
-  public Target(selector: string) {
+  Target(selector: string) {
     this._asyncBrowser
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget).click(selector);
 
@@ -377,6 +224,8 @@ export class GamePlay {
 
   public PassTurn() {
     this.Pass()._asyncBrowser.moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect);
+
+    return this;
   }
 
   public ClaimInitiative() {
