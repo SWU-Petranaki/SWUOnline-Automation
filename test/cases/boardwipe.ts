@@ -1,4 +1,5 @@
 import { cards } from '../utils/cards';
+import { GamePlay } from '../utils/gameplay';
 import { GameState } from '../utils/gamestate';
 import {
   com, p,
@@ -28,18 +29,22 @@ export const BoardWipeCases = {
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
-    await browser.waitForElementPresent(com.MyHand)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.HandCard(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.PassButton).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.Base(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand()
+      .ClickHandCard(1)
+      .WaitForAnimation()
+      .Pass()
+      .TargetMyBase()
+      .RunAsync()
     ;
     //assert
-    await browser.assert.textEquals(com.MyBaseDamage, '15');
-    await browser.assert.textEquals(com.TheirBaseDamage, '9');
+    await gameplay
+      .Assert()
+      .MyBaseDamageEquals('15')
+      .TheirBaseDamageEquals('9')
+      .RunAsync()
+    ;
   },
   'Iden Versio Leader Unit SLB Two Idens': process.env.FULL_REGRESSION !== 'true' ? '' : async function () {
     //arrange
@@ -61,18 +66,22 @@ export const BoardWipeCases = {
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
-    await browser.waitForElementPresent(com.MyHand)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.HandCard(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.PassButton).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.Base(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand()
+      .ClickHandCard(1)
+      .WaitForAnimation()
+      .Pass()
+      .TargetMyBase()
+      .RunAsync()
     ;
     //assert
-    await browser.assert.textEquals(com.MyBaseDamage, '17');
-    await browser.assert.textEquals(com.TheirBaseDamage, '18');
+    await gameplay
+      .Assert()
+      .MyBaseDamageEquals('17')
+      .TheirBaseDamageEquals('18')
+      .RunAsync()
+    ;
   },
   'Iden Versio Leader Unit Christophsis': async function () {
     //arrange
@@ -96,16 +105,15 @@ export const BoardWipeCases = {
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
-    await browser.waitForElementPresent(com.MyHand)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.HandCard(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.SubmitButton).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.PassButton).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.Base(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand()
+      .ClickHandCard(1)
+      .WaitForAnimation()
+      .Submit()
+      .Pass()
+      .TargetMyBase()
+      .RunAsync()
     ;
     //assert
     await browser.assert.textEquals(com.MyBaseDamage, '15');
@@ -132,20 +140,23 @@ export const BoardWipeCases = {
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
-    await browser.waitForElementPresent(com.MyHand)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.HandCard(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.SubmitButton).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.PassButton).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.Base(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand()
+      .ClickHandCard(1)
+      .WaitForAnimation()
+      .Submit()
+      .Pass()
+      .TargetMyBase()
+      .RunAsync()
     ;
     //assert
-    await browser.assert.textEquals(com.MyBaseDamage, '17');
-    await browser.assert.textEquals(com.TheirBaseDamage, '20');
+    await gameplay
+      .Assert()
+      .MyBaseDamageEquals('17')
+      .TheirBaseDamageEquals('20')
+      .RunAsync()
+    ;
   },
   'Gideon Hask gives XP to rescued captive': async function () {
     //arrange
@@ -169,26 +180,25 @@ export const BoardWipeCases = {
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
-    await browser.waitForElementPresent(com.MyHand)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.HandCard(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.PassButton).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.AllyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.AllyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.Base(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.AllyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand()
+      .ClickHandCard(1)
+      .Pass()
+      .TargetMyGroundUnit(1)
+      .TargetMyBase()
+      .TargetMyGroundUnit(1)
+      .RunAsync()
     ;
     //assert
-    await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 1), 'EXPERIENCE');
-    await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 2), 'EXPERIENCE');
-    await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 3), 'EXPERIENCE');
-    await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 4), '5');
+    await gameplay
+      .Assert()
+      .MyGroundUnitPieceEquals(1, 1, 'EXPERIENCE')
+      .MyGroundUnitPieceEquals(1, 2, 'EXPERIENCE')
+      .MyGroundUnitPieceEquals(1, 3, 'EXPERIENCE')
+      .MyGroundUnitPieceEquals(1, 4, '5')
+      .RunAsync()
+    ;
   },
   'Two Gideon Hasks give XP to rescued captives': async function () {
     //arrange
@@ -215,45 +225,40 @@ export const BoardWipeCases = {
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
-    await browser.waitForElementPresent(com.MyHand)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.HandCard(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.PassButton).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.AllyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.AllyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.Base(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.AllyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.AllyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-
-    await browser.window.switchTo(player2Window).refresh()
-      .waitForElementPresent(com.AllyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.AllyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.AllyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.AllyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand()
+      .ClickHandCard(1)
+      .Pass()
+      .TargetMyGroundUnit(1)
+      .TargetMyGroundUnit(1)
+      .TargetMyBase()
+      .TargetMyGroundUnit(1)
+      .TargetMyGroundUnit(1)
+      .WaitForAnimation()
+      .SwitchPlayerWindow()
+      .WaitForMyGroundUnit(1)
+      .TargetMyGroundUnit(1)
+      .TargetMyGroundUnit(1)
+      .TargetMyGroundUnit(1)
+      .RunAsync()
     ;
     //assert
-    await browser.assert.textEquals(com.TheirBaseDamage, '20');
-    await browser.assert.textEquals(com.MyBaseDamage, '9');
-
-    await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 1), 'EXPERIENCE');
-    await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 2), 'EXPERIENCE');
-    await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 3), 'EXPERIENCE');
-    await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 4), '6');
-    await browser.assert.textEquals(com.UnitDivPiece(com.EnemyGroundUnit(1), 1), 'EXPERIENCE');
-    await browser.assert.textEquals(com.UnitDivPiece(com.EnemyGroundUnit(1), 2), 'EXPERIENCE');
-    await browser.assert.textEquals(com.UnitDivPiece(com.EnemyGroundUnit(1), 3), 'EXPERIENCE');
-    await browser.assert.textEquals(com.UnitDivPiece(com.EnemyGroundUnit(1), 4), 'EXPERIENCE');
-    await browser.assert.textEquals(com.UnitDivPiece(com.EnemyGroundUnit(1), 5), '6');
+    await gameplay
+      .Assert()
+      .MyBaseDamageEquals('20')
+      .TheirBaseDamageEquals('9')
+      .MyGroundUnitPieceEquals(1, 1, 'EXPERIENCE')
+      .MyGroundUnitPieceEquals(1, 2, 'EXPERIENCE')
+      .MyGroundUnitPieceEquals(1, 3, 'EXPERIENCE')
+      .MyGroundUnitPieceEquals(1, 4, '6')
+      .MyGroundUnitPieceEquals(1, 5, 'EXPERIENCE')
+      .TheirGroundUnitPieceEquals(1, 1, 'EXPERIENCE')
+      .TheirGroundUnitPieceEquals(1, 2, 'EXPERIENCE')
+      .TheirGroundUnitPieceEquals(1, 3, 'EXPERIENCE')
+      .TheirGroundUnitPieceEquals(1, 4, 'EXPERIENCE')
+      .TheirGroundUnitPieceEquals(1, 5, '6')
+      .RunAsync()
+    ;
   }
 }

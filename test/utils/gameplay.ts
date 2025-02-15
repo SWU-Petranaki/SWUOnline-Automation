@@ -23,6 +23,18 @@ class GameAssert {
     return this;
   }
 
+  public MyBaseDamageEquals(damage: string) {
+    this._gamePlay.___BrowsertAssert().textEquals(com.MyBaseDamage, damage);
+
+    return this;
+  }
+
+  public TheirBaseDamageEquals(damage: string) {
+    this._gamePlay.___BrowsertAssert().textEquals(com.TheirBaseDamage, damage);
+
+    return this;
+  }
+
   public MyGroundUnitIsThere(position: number) {
     this.ElementPresent(com.AllyGroundUnit(position));
 
@@ -123,7 +135,7 @@ export class GamePlay {
   }
 
   public async RunAsync() {
-    return await this._asyncBrowser;
+    return await this._asyncBrowser.pause(p.WaitForEffect);
   }
 
   public async ___DebugAsync() {
@@ -243,6 +255,18 @@ export class GamePlay {
     return this;
   }
 
+  public TargetMyBase() {
+    this.Target(com.Base(this._currentPlayer));
+
+    return this;
+  }
+
+  public TargetTheirBase() {
+    this.Target(com.Base(this._currentPlayer == 1 ? 2 : 1));
+
+    return this;
+  }
+
   public TargetMyHandCard(position: number) {
     this.Target(com.HandCard(position));
 
@@ -255,11 +279,8 @@ export class GamePlay {
     return this;
   }
 
-  public TargetTheirGroundUnit(position: number, delay: boolean = false) {
+  public TargetTheirGroundUnit(position: number) {
     this.Target(com.EnemyGroundUnit(position));
-    if(delay) {
-      this._asyncBrowser.pause(p.WaitForEffect);
-    }
 
     return this;
   }
@@ -282,7 +303,7 @@ export class GamePlay {
     return this;
   }
 
-  public EndTurn() {
+  public PassTurn() {
     this.Pass()._asyncBrowser.moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect);
   }
 
@@ -293,15 +314,11 @@ export class GamePlay {
     return this;
   }
 
-  public ChooseYes(delay: boolean = false) {
+  public ChooseYes() {
     this._asyncBrowser
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
       .click(com.YesNoButton("YES")).pause(p.ButtonPress)
     ;
-
-    if(delay) {
-      this._asyncBrowser.pause(p.WaitForEffect);
-    }
 
     return this;
   }
@@ -311,6 +328,21 @@ export class GamePlay {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
       .click(com.YesNoButton("NO")).pause(p.ButtonPress)
     ;
+
+    return this;
+  }
+
+  public Submit() {
+    this._asyncBrowser
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+      .click(com.SubmitButton).pause(p.ButtonPress)
+    ;
+
+    return this;
+  }
+
+  public WaitForAnimation() {
+    this._asyncBrowser.pause(p.WaitForEffect);
 
     return this;
   }

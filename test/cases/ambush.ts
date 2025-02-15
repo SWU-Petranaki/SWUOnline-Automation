@@ -32,7 +32,7 @@ export const AmbushCases = {
      .TargetMyHandCard(1)
      .ClickMyGroundUnit(1)
      .ChooseYes()
-     .TargetTheirGroundUnit(1, true)
+     .TargetTheirGroundUnit(1)
      .RunAsync()
   ;
   //assert
@@ -62,9 +62,10 @@ export const AmbushCases = {
       .WaitForMyBase()
       .ClickMyBase()
       .TargetMyHandCard(1)
-      .ChooseYes(true)
+      .ChooseYes()
+      .WaitForAnimation()
       .SwitchPlayerWindow()
-      .TargetTheirGroundUnit(1, true)
+      .TargetTheirGroundUnit(1)
       .RunAsync()
     ;
     //assert
@@ -96,11 +97,14 @@ export const AmbushCases = {
       .TargetMyHandCard(1)
       .ClickLayerTile(1)
       .ClickLayerTile(3)
-      .ChooseYes(true)
+      .ChooseYes()
+      .WaitForAnimation()
       .Pass()
       .SwitchPlayerWindow()
       .TargetTheirGroundUnit(1)
-      .TargetTheirGroundUnit(1, true)
+      .TargetTheirGroundUnit(1)
+      .RunAsync()
+    ;
     //assert
     await gameplay.Assert()
       .MyGroundUnitIsGone(1)
