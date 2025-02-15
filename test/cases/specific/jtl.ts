@@ -1,4 +1,5 @@
 import { cards } from '../../utils/cards';
+import { GamePlay } from '../../utils/gameplay';
 import { GameState } from '../../utils/gamestate';
 import {
   com, p,
@@ -55,6 +56,7 @@ export const SpecificJTLCases = {
       .waitForElementPresent(com.AllySpaceUnit(2))
       .moveToElement(com.GameChat, 0, 0).pause(p.Move)
       .click(com.AllySpaceUnit(2))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
     //assert
@@ -350,5 +352,102 @@ export const SpecificJTLCases = {
     ;
     //assert
     await customAsserts.LeaderEpicActionUsed(browser, 1);
+  },
+  'JTL: Leia Poe ejected ground unit': async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("9 5")
+      .AddBase(1, cards.SOR.ECL)
+      .AddLeader(1, cards.JTL.PoeLeader, true)
+      .AddBase(2, cards.generic.GreenBase)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SOR.BFMarine, 3)
+      .AddCardToHand(1, cards.JTL.Leia)
+      .AddUnit(1, cards.JTL.PoeLeaderUnit, false)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand()
+      .ClickHandCard(1)
+      .TargetMyGroundUnit(1)
+      .TargetTheirBase()
+      .RunAsync()
+    ;
+    //assert
+    await gameplay
+      .Assert()
+      .TheirBaseDamageEquals('10')
+      .MyBaseDamageEquals('8')
+      .RunAsync()
+    ;
+  },
+  'JTL: Leia Poe deployed ground unit': async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("9 5")
+      .AddBase(1, cards.SOR.ECL)
+      .AddLeader(1, cards.JTL.PoeLeader, true)
+      .AddBase(2, cards.generic.GreenBase)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SOR.BFMarine, 3)
+      .AddCardToHand(1, cards.JTL.Leia)
+      .AddUnit(1, cards.JTL.PoeLeaderUnit, true)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand()
+      .ClickHandCard(1)
+      .TargetMyGroundUnit(1)
+      .TargetTheirBase()
+      .RunAsync()
+    ;
+    //assert
+    await gameplay
+      .Assert()
+      .TheirBaseDamageEquals('10')
+      .MyBaseDamageEquals('8')
+      .RunAsync()
+    ;
+  },
+  'JTL: Leia Poe space unit': async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("9 5")
+      .AddBase(1, cards.SOR.ECL)
+      .AddLeader(1, cards.JTL.PoeLeader, true)
+      .AddBase(2, cards.generic.GreenBase)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SOR.BFMarine, 3)
+      .AddCardToHand(1, cards.JTL.Leia)
+      .AddUnit(1, cards.JTL.XWing, false, true, 0,
+        gameState.SubcardBuilder().AddPilot(cards.JTL.PoeLeaderUnit, 1).Build())
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand()
+      .ClickHandCard(1)
+      .TargetMySpaceUnit(1)
+      .TargetTheirBase()
+      .RunAsync()
+    ;
+    //assert
+    await gameplay
+      .Assert()
+      .TheirBaseDamageEquals('10')
+      .MyBaseDamageEquals('8')
+      .RunAsync()
+    ;
   }
 }

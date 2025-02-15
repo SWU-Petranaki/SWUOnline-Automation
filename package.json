@@ -8,7 +8,9 @@
     "test-engine": "nightwatch ./test/engine.ts",
     "test-engine:headless": "nightwatch ./test/engine.ts --env headless",
     "test-damage": "nightwatch ./test/damage-cases.ts",
-    "test-damage:headless": "nightwatch ./test/damage-cases.ts --env headless"
+    "test-damage:headless": "nightwatch ./test/damage-cases.ts --env headless",
+    "test-jtl": "nightwatch ./test/jtl.ts",
+    "test-jtl:headless": "nightwatch ./test/jtl.ts --env headless"
   },
   "keywords": [],
   "author": "",
