@@ -449,5 +449,44 @@ export const SpecificJTLCases = {
       .MyBaseDamageEquals('8')
       .RunAsync()
     ;
-  }
+  },
+  'JTL: Sabines Masterpiece': async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("9 5")
+      .AddBase(1, cards.SOR.ECL)
+      .AddLeader(1, cards.SOR.SabineLeader)
+      .AddBase(2, cards.generic.GreenBase)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(2, cards.SOR.BFMarine, 1)
+      .AddUnit(1, cards.JTL.SabinesMP)
+      .AddUnit(1, cards.SOR.Yoda)
+      .AddUnit(1, cards.SOR.AdmiralAckbar)
+      .AddUnit(1, cards.SOR.SabineUnit)
+      .AddUnit(1, cards.SOR.MillenniumFalcon)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMySpaceUnit(1)
+      .ClickMySpaceUnit(1)
+      .TargetTheirBase()
+      .TargetMyGroundUnit(2)
+      .TargetTheirBase()
+      .MultichoiceButton(1)
+      .RunAsync()
+    ;
+    //assert
+    await gameplay
+      .Assert()
+      .TheirBaseDamageEquals('9')
+      .MyBaseDamageEquals('7')
+      .MyGroundUnitPieceEquals(2, 1, 'EXPERIENCE')
+      .TheirResourcesEquals('0/1')
+      .RunAsync()
+    ;
+  },
 }

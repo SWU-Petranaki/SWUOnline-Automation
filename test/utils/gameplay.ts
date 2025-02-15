@@ -158,6 +158,18 @@ class GameAssert {
 
     return this;
   }
+
+  public MyResourcesEquals(text: string) {
+    this.TextEquals(com.MyResources, text);
+
+    return this;
+  }
+
+  public TheirResourcesEquals(text: string) {
+    this.TextEquals(com.TheirResources, text);
+
+    return this;
+  }
 }
 
 export class GamePlay {

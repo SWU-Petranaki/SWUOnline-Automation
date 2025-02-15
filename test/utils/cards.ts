@@ -86,6 +86,7 @@ export const cards = {
     Redemption: '3896582249',
     RuthlessRaider: '1047592361',
     PalpUnit: '9097316363',
+    MillenniumFalcon: '1785627279',
     //upgrades
     Traitorous: '8055390529',
     //events
@@ -263,6 +264,7 @@ export const cards = {
     RadiantVII: '3567283316',
     DqarCargo: '5422802110',
     Corvus: '0753794638',
+    SabinesMP: '7325248681',
     //events
     ItsATrap: '0964312065',
     Commandeer: '8105698374',
