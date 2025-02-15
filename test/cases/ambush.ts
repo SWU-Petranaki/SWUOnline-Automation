@@ -57,25 +57,22 @@ export const AmbushCases = {
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
-    await browser.waitForElementPresent(com.Base(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.Base(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.HandCard(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.PassButton).pause(p.ButtonPress)
-      .click(com.YesNoButton("YES")).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-    ;
-
-    await browser.window.switchTo(player2Window).refresh()
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.EnemyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyBase()
+      .ClickMyBase()
+      .TargetMyHandCard(1)
+      .ChooseYes(true)
+      .SwitchPlayerWindow()
+      .TargetTheirGroundUnit(1, true)
+      .RunAsync()
     ;
     //assert
-    await browser.assert.not.elementPresent(com.AllyGroundUnit(1));
-    await browser.assert.textEquals(com.UnitDivPiece(com.EnemyGroundUnit(1), 3), '5');
+    await gameplay.Assert()
+      .MyGroundUnitIsGone(1)
+      .TheirGroundUnitPieceEquals(1, 3, '5')
+      .RunAsync()
+    ;
   },
   'Ambush: Rukh into Krayt Dragon with TI': async function () {
     //arrange
@@ -91,32 +88,24 @@ export const AmbushCases = {
       .AddCardToHand(1, cards.SHD.TimelyIntervention)
       .AddUnit(2, cards.SHD.KraytDragon)
       .FlushAsync(com.BeginTestCallback)
-
-    await browser.waitForElementPresent(com.MyHand)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.HandCard(2))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.HandCard(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.TriggerLayerButton(1)).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.TriggerLayerButton(3)).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.PassButton).pause(p.ButtonPress)
-      .click(com.YesNoButton("YES")).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.PassButton).pause(p.ButtonPress)
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand()
+      .ClickHandCard(2)
+      .TargetMyHandCard(1)
+      .ClickLayerTile(1)
+      .ClickLayerTile(3)
+      .ChooseYes(true)
+      .Pass()
+      .SwitchPlayerWindow()
+      .TargetTheirGroundUnit(1)
+      .TargetTheirGroundUnit(1, true)
+    //assert
+    await gameplay.Assert()
+      .MyGroundUnitIsGone(1)
+      .TheirGroundUnitIsGone(1)
+      .RunAsync()
     ;
-
-    await browser.window.switchTo(player2Window).refresh()
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.EnemyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.EnemyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-    ;
-
-    await browser.assert.not.elementPresent(com.AllyGroundUnit(1));
-    await browser.assert.not.elementPresent(com.EnemyGroundUnit(1));
   },
 }

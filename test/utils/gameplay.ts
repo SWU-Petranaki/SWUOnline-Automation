@@ -150,6 +150,12 @@ export class GamePlay {
     return this;
   }
 
+  public WaitForMyBase() {
+    this.WaitFor(com.Base(this._currentPlayer));
+
+    return this;
+  }
+
   public WaitForMyHand() {
     this.WaitFor(com.MyHand);
 
@@ -193,6 +199,12 @@ export class GamePlay {
     return this;
   }
 
+  public ClickHandCard(position: number) {
+    this.Click(com.HandCard(position));
+
+    return this;
+  }
+
   public ClickMyGroundUnit(position: number) {
     this.Click(com.AllyGroundUnit(position));
 
@@ -216,6 +228,13 @@ export class GamePlay {
 
     return this;
   }
+
+  public ClickLayerTile(position: number) {
+    this.Click(com.TriggerLayerButton(position))._asyncBrowser.pause(p.ButtonPress);
+
+    return this;
+  }
+
   //Targets
   public Target(selector: string) {
     this._asyncBrowser
@@ -274,11 +293,15 @@ export class GamePlay {
     return this;
   }
 
-  public ChooseYes() {
+  public ChooseYes(delay: boolean = false) {
     this._asyncBrowser
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
       .click(com.YesNoButton("YES")).pause(p.ButtonPress)
     ;
+
+    if(delay) {
+      this._asyncBrowser.pause(p.WaitForEffect);
+    }
 
     return this;
   }
