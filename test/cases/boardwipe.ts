@@ -186,6 +186,7 @@ export const BoardWipeCases = {
       .ClickHandCard(1)
       .Pass()
       .TargetMyGroundUnit(1)
+      .TargetMyGroundUnit(1)
       .TargetMyBase()
       .TargetMyGroundUnit(1)
       .RunAsync()
@@ -246,13 +247,12 @@ export const BoardWipeCases = {
     //assert
     await gameplay
       .Assert()
-      .MyBaseDamageEquals('20')
-      .TheirBaseDamageEquals('9')
+      .MyBaseDamageEquals('9')
+      .TheirBaseDamageEquals('20')
       .MyGroundUnitPieceEquals(1, 1, 'EXPERIENCE')
       .MyGroundUnitPieceEquals(1, 2, 'EXPERIENCE')
       .MyGroundUnitPieceEquals(1, 3, 'EXPERIENCE')
       .MyGroundUnitPieceEquals(1, 4, '6')
-      .MyGroundUnitPieceEquals(1, 5, 'EXPERIENCE')
       .TheirGroundUnitPieceEquals(1, 1, 'EXPERIENCE')
       .TheirGroundUnitPieceEquals(1, 2, 'EXPERIENCE')
       .TheirGroundUnitPieceEquals(1, 3, 'EXPERIENCE')
