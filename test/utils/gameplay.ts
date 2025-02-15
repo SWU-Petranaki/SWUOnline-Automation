@@ -35,6 +35,46 @@ class GameAssert {
     return this;
   }
 
+  public MyLeaderIsThere() {
+    this.ElementPresent(com.Leader(this._gamePlay.CurrentPlayer()));
+
+    return this;
+  }
+
+  public TheirLeaderIsThere() {
+    this.ElementPresent(com.Leader(this._gamePlay.CurrentPlayer() == 1 ? 2 : 1));
+
+    return this;
+  }
+
+  public MyLeaderHasUsedEpicAction() {
+    this._gamePlay.___BrowsertAssert()
+      .attributeEquals(com.Leader(this._gamePlay.CurrentPlayer()) + ' img:nth-of-type(2)', 'src', 'http://localhost:8080/SWUOnline/Images/ExhaustToken.png')
+
+    return this;
+  }
+
+  public TheirLeaderHasUsedEpicAction() {
+    this._gamePlay.___BrowsertAssert()
+      .attributeEquals(com.Leader(this._gamePlay.CurrentPlayer() == 1 ? 2 : 1) + ' img:nth-of-type(2)', 'src', 'http://localhost:8080/SWUOnline/Images/ExhaustToken.png')
+
+    return this;
+  }
+
+  public MyLeaderStillHasEpicAction() {
+    this._gamePlay.___BrowsertAssert()
+      .not.elementPresent(com.Leader(this._gamePlay.CurrentPlayer()) + ' img:nth-of-type(2)');
+
+    return this;
+  }
+
+  public TheirLeaderStillHasEpicAction() {
+    this._gamePlay.___BrowsertAssert()
+      .not.elementPresent(com.Leader(this._gamePlay.CurrentPlayer() == 1 ? 2 : 1) + ' img:nth-of-type(2)');
+
+    return this;
+  }
+
   public MyGroundUnitIsThere(position: number) {
     this.ElementPresent(com.AllyGroundUnit(position));
 
@@ -138,14 +178,22 @@ export class GamePlay {
     return await this._asyncBrowser.pause(p.WaitForEffect);
   }
 
-  public async ___DebugAsync() {
-    return await this._asyncBrowser.pause(p.Debug);
+  public ___Debug() {
+    this._asyncBrowser.pause(p.Debug);
+
+    return this;
   }
 
-  public async ___LongPauseAsync() {
-    return await this._asyncBrowser.pause(p.Indefinite);
+  public ___LongPause() {
+    this._asyncBrowser.pause(p.Indefinite);
+
+    return this;
   }
   //Window switch and waits
+  public CurrentPlayer() {
+    return this._currentPlayer
+  }
+
   public SwitchPlayerWindow() {
     this._currentPlayer = this._currentPlayer == 1 ? 2 : 1;
     this._asyncBrowser.window
@@ -164,6 +212,12 @@ export class GamePlay {
 
   public WaitForMyBase() {
     this.WaitFor(com.Base(this._currentPlayer));
+
+    return this;
+  }
+
+  public WaitForMyLeader() {
+    this.WaitFor(com.Leader(this._currentPlayer));
 
     return this;
   }
@@ -207,6 +261,12 @@ export class GamePlay {
 
   public ClickTheirBase() {
     this.Click(com.Base(this._currentPlayer == 1 ? 2 : 1));
+
+    return this;
+  }
+
+  public ClickMyLeader() {
+    this.Click(com.Leader(this._currentPlayer));
 
     return this;
   }
@@ -327,6 +387,24 @@ export class GamePlay {
     this._asyncBrowser
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
       .click(com.YesNoButton("NO")).pause(p.ButtonPress)
+    ;
+
+    return this;
+  }
+
+  public MultichoiceButton(choice: number) {
+    this._asyncBrowser
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+      .click(com.ButtonMultiChoice(choice)).pause(p.ButtonPress)
+    ;
+
+    return this;
+  }
+
+  public ChooseButton(index: number, choice: number) {
+    this._asyncBrowser
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+      .click(com.ChooseButton(index, choice)).pause(p.ButtonPress)
     ;
 
     return this;

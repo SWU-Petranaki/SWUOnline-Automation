@@ -1,4 +1,5 @@
 import { cards } from '../utils/cards';
+import { GamePlay } from '../utils/gameplay';
 import { GameState } from '../utils/gamestate';
 import {
   com, p,
@@ -37,4 +38,38 @@ export const DefeatUpgradeCases = {
     await browser.assert.textEquals(com.UnitDivPiece(com.EnemyGroundUnit(1), 1), '1');
     await browser.assert.textEquals(com.UnitDivPiece(com.EnemyGroundUnit(1), 2), '1');
   },
+  'Defeat Upgrade: Poe pilot': async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SOR.ECL)
+      .AddLeader(1, cards.JTL.PoeLeader)
+      .AddBase(2, cards.generic.BlueBase)
+      .AddLeader(2, cards.SHD.CadBaneLeader)
+      .FillResources(1, cards.SOR.BFMarine, 1)
+      .FillResources(2, cards.SOR.BFMarine, 1)
+      .AddCardToHand(2, cards.SOR.Confiscate)
+      .AddUnit(1, cards.JTL.XWing)
+      .FlushAsync(com.BeginTestCallback)
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader()
+      .ClickMyLeader()
+      .MultichoiceButton(1)
+      .WaitForAnimation()
+      .SwitchPlayerWindow()
+      .WaitForMyHand()
+      .ClickHandCard(1)
+      .ChooseButton(1, 1)
+      .RunAsync()
+    ;
+    //assert
+    await gameplay.Assert()
+      .TheirLeaderIsThere()
+      .TheirLeaderStillHasEpicAction()
+      .RunAsync()
+    ;
+  }
 }
