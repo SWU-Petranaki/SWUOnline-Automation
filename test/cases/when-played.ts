@@ -134,7 +134,7 @@ export const WhenPlayedCases = {
       .FillResources(1, cards.SOR.CraftySmuggler, 3)
       .AddCardToHand(1, cards.JTL.Leia)
       .AddUnit(1, cards.JTL.Mandalorian)
-      .AddUnit(1, cards.JTL.XWing, true, 1,
+      .AddUnit(1, cards.JTL.XWing, false, true, 1,
         gameState.SubcardBuilder().AddUpgrade(cards.JTL.Chewbacca, 1, true).Build())
       .AddUnit(2, cards.SOR.TieLnFighter)
       .AddUnit(2, cards.SOR.DSStormTrooper)
@@ -167,7 +167,7 @@ export const WhenPlayedCases = {
       .FillResources(1, cards.SOR.CraftySmuggler, 3)
       .AddCardToHand(1, cards.JTL.Leia)
       .AddUnit(1, cards.JTL.Mandalorian)
-      .AddUnit(1, cards.JTL.XWing, true, 1,
+      .AddUnit(1, cards.JTL.XWing, false, true, 1,
         gameState.SubcardBuilder().AddUpgrade(cards.JTL.Chewbacca, 1, true).Build())
       .AddUnit(2, cards.SOR.TieLnFighter)
       .AddUnit(2, cards.SOR.DSStormTrooper)

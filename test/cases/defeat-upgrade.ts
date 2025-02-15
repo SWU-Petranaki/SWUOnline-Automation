@@ -18,7 +18,7 @@ export const DefeatUpgradeCases = {
       .AddLeader(2, cards.SOR.SabineLeader)
       .FillResources(1, cards.SOR.Waylay, 3)
       .AddCardToHand(1, cards.SOR.DisablingFF)
-      .AddUnit(2, cards.TWI.BattleDroid, false, 0,
+      .AddUnit(2, cards.TWI.BattleDroid, false, false, 0,
         gameState.SubcardBuilder().AddUpgrade(cards.SHD.Darksaber, 2).Build())
       .FlushAsync(com.BeginTestCallback)
     ;

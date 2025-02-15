@@ -244,5 +244,56 @@ export const SpecificJTLCases = {
     //assert
     await browser.assert.elementPresent(com.AllyGroundUnit(1));
     await customAsserts.UnitIs(browser, cards.JTL.PoeLeaderUnit, com.AllyGroundUnit(1));
+  },
+  'Eject: Set 4 pilot leader used epic action': async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("9 5")
+      .AddBase(1, cards.SOR.ECL)
+      .AddLeader(1, cards.JTL.WedgeLeader)
+      .AddBase(2, cards.generic.RedBase)
+      .AddLeader(2, cards.JTL.AsajjLeader)
+      .AddCardToDeck(1, cards.SOR.BFMarine)
+      .AddCardToHand(1, cards.JTL.Eject)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .AddUnit(1, cards.JTL.XWing)
+      .AddUnit(2, "8540765053")
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    await browser
+      .waitForElementPresent(com.Leader(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
+      .click(com.Leader(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+      .click(com.ButtonMultiChoice(3)).pause(p.ButtonPress)
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
+    ;
+    await browser.window.switchTo(player2Window).refresh()
+      .waitForElementPresent(com.PassButton)
+      .moveToElement(com.PassButton, 0, 0).pause(p.Move)
+      .click(com.PassButton).pause(p.ButtonPress)
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    ;
+    await browser.window.switchTo(player1Window).refresh()
+      .waitForElementPresent(com.MyHand)
+      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
+      .click(com.HandCard(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+      .click(com.ChooseButton(1, 1)).pause(p.ButtonPress)
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    ;
+    await browser.window.switchTo(player2Window).refresh()
+      .waitForElementPresent(com.AllyGroundUnit(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
+      .click(com.AllyGroundUnit(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
+      .click(com.EnemyGroundUnit(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    ;
+    //assert
+    await customAsserts.LeaderEpicActionUsed(browser, 1);
   }
 }

@@ -38,7 +38,7 @@ export const PilotJTLCases = {
       .AddLeader(1, cards.JTL.BobaFettLeader)
       .AddBase(2, cards.SOR.EchoBase)
       .AddLeader(2, cards.JTL.HanSoloLeader)
-      .AddUnit(1, cards.SOR.TieLnFighter, true, false, 0, gameState.SubcardBuilder().AddPilot(cards.JTL.Dengar, 1).Build())
+      .AddUnit(1, cards.SOR.TieLnFighter, false, true, 0, gameState.SubcardBuilder().AddPilot(cards.JTL.Dengar, 1).Build())
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -172,9 +172,9 @@ export const PilotJTLCases = {
       .AddLeader(1, cards.JTL.BobaFettLeader)
       .AddBase(2, cards.SHD.JabbasPalace)
       .AddLeader(2, cards.JTL.HanSoloLeader)
-      .AddUnit(1, cards.JTL.TieFighter, true, false, 1,
+      .AddUnit(1, cards.JTL.TieFighter, false, true, 1,
         gameState.SubcardBuilder().AddUpgrade(cards.JTL.IG88, 1, true).Build())
-      .AddUnit(2, cards.JTL.XWing, true, false, 1)
+      .AddUnit(2, cards.JTL.XWing, false, true, 1)
       .FlushAsync(com.BeginTestCallback)
     ;
     //act

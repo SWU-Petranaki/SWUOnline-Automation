@@ -20,7 +20,7 @@ export const LeaderUnitSHDCases = {
       .FillResources(1, cards.SOR.InfernoFour, 5)
       .FillResources(2, cards.SHD.CollectionsStarhopper, 7)
       .AddUnit(1, cards.SOR.TieLnFighter)
-      .AddUnit(1, cards.TWI.DevGunship, true, 5,
+      .AddUnit(1, cards.TWI.DevGunship, false, true, 5,
         gameState.SubcardBuilder().AddUpgrade(cards.TWI.DroidCohort, 1).Build())
       .AddUnit(1, cards.SHD.GarSaxonLeaderUnit, true)
       .AddUnit(1, cards.SHD.FinnLeaderUnit, true)
@@ -245,10 +245,10 @@ export const LeaderUnitSHDCases = {
       .FillResources(1, cards.SHD.MandosRifle, 3)
       .AddCardToHand(1, cards.SHD.MandosRifle)
       .AddUnit(1, cards.SHD.MandoLeaderUnit, true)
-      .AddUnit(2, cards.SOR.TieLnFighter, false)
-      .AddUnit(2, cards.SOR.TieLnFighter, true, false, 0,
+      .AddUnit(2, cards.SOR.TieLnFighter, false, false)
+      .AddUnit(2, cards.SOR.TieLnFighter, false, true, 0,
         gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
-      .AddUnit(2, cards.SOR.TieLnFighter, false)
+      .AddUnit(2, cards.SOR.TieLnFighter, false, false)
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -280,9 +280,9 @@ export const LeaderUnitSHDCases = {
       .AddUnit(1, cards.SOR.GILeaderUnit, true)//Twin Suns prep
       .AddUnit(1, cards.SOR.TieLnFighter)
       .AddUnit(2, cards.SOR.TieLnFighter)
-      .AddUnit(2, cards.SOR.TieLnFighter, true, false, 0,
+      .AddUnit(2, cards.SOR.TieLnFighter, false, true, 0,
         gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
-      .AddUnit(2, cards.SOR.TieLnFighter, false)
+      .AddUnit(2, cards.SOR.TieLnFighter, false, false)
       .FlushAsync(com.BeginTestCallback)
     ;
     //act

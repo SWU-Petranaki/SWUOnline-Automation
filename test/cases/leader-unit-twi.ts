@@ -46,7 +46,7 @@ export const LeaderUnitTWICases = {
         .FillResources(1, cards.TWI.EliteP, 7)
         .AddCardToDeck(1, cards.TWI.EliteP)
         .AddUnit(2, cards.SOR.TieLnFighter)
-        .AddUnit(2, cards.SOR.TieLnFighter, true, false, 0,
+        .AddUnit(2, cards.SOR.TieLnFighter, false, true, 0,
           gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
         .AddUnit(2, cards.SOR.TieLnFighter)
         .FlushAsync(com.BeginTestCallback)

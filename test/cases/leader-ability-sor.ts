@@ -18,7 +18,7 @@ export const LeaderAbilitySORCases = {
       .AddLeader(1, cards.SOR.KrennicLeader)
       .AddBase(2, cards.SOR.EchoBase)
       .AddLeader(2, cards.SOR.IdenLeader)
-      .AddUnit(1, cards.SHD.HylobonEnforcer, false, 3)
+      .AddUnit(1, cards.SHD.HylobonEnforcer, false, false, 3)
       .FlushAsync(com.BeginTestCallback)
     ;
     //assert
@@ -108,7 +108,7 @@ export const LeaderAbilitySORCases = {
       .AddBase(2, cards.SOR.EchoBase)
       .AddLeader(2, cards.SOR.KrennicLeader)
       .AddResource(1, cards.SOR.Waylay)
-      .AddUnit(1, cards.SOR.R2D2, false, 0, '-', 1, false, 1, 1)
+      .AddUnit(1, cards.SOR.R2D2, false, false, 0, '-', 1, false, 1, 1)
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -133,7 +133,7 @@ export const LeaderAbilitySORCases = {
       .AddBase(2, cards.SOR.EchoBase)
       .AddLeader(2, cards.SOR.KrennicLeader)
       .AddResource(1, cards.SOR.Waylay)
-      .AddUnit(1, cards.SOR.R2D2, false, 0, '-', 1, false, 1, 0)
+      .AddUnit(1, cards.SOR.R2D2, false, false, 0, '-', 1, false, 1, 0)
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -297,7 +297,7 @@ export const LeaderAbilitySORCases = {
       .AddBase(2, cards.SOR.EchoBase)
       .AddLeader(2, cards.SOR.KrennicLeader)
       .AddUnit(1, cards.SOR.R2D2)
-      .AddUnit(1, cards.SOR.R2D2, true, 1, "-", 1, false, 1, 1, 0, true)
+      .AddUnit(1, cards.SOR.R2D2, false, true, 1, "-", 1, false, 1, 1, 0, true)
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -331,7 +331,7 @@ export const LeaderAbilitySORCases = {
       .AddBase(2, cards.SOR.EchoBase)
       .AddLeader(2, cards.SOR.IdenLeader)
       .AddUnit(1, cards.SOR.R2D2)
-      .AddUnit(1, cards.SOR.R2D2, true, 1, "-", 1, false, 1, 1, 0, true)
+      .AddUnit(1, cards.SOR.R2D2, false, true, 1, "-", 1, false, 1, 1, 0, true)
       .AddUnit(2, cards.TWI.WTTradeOfficial)
       .FlushAsync(com.BeginTestCallback)
     ;
@@ -424,7 +424,7 @@ export const LeaderAbilitySORCases = {
         .AddLeader(1, cards.SOR.GILeader)
         .AddBase(2, cards.SOR.EchoBase)
         .AddLeader(2, cards.SOR.IdenLeader)
-        .AddUnit(1, cards.TWI.WTTradeOfficial, false)
+        .AddUnit(1, cards.TWI.WTTradeOfficial, false, false)
         .FlushAsync(com.BeginTestCallback)
       ;
 

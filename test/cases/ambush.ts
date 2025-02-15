@@ -18,8 +18,8 @@ export const AmbushCases = {
     .AddLeader(2, cards.SOR.SabineLeader)
     .FillResources(1, cards.SOR.BFMarine, 2)
     .AddCardToHand(1, cards.SOR.SabineUnit)
-    .AddUnit(1, cards.SOR.SabineUnit, false)
-    .AddUnit(2, cards.SOR.CraftySmuggler, true, 0,
+    .AddUnit(1, cards.SOR.SabineUnit, false, false)
+    .AddUnit(2, cards.SOR.CraftySmuggler, false, true, 0,
       gameState.SubcardBuilder().AddShield(2).Build())
     .FlushAsync(com.BeginTestCallback)
   ;

@@ -20,9 +20,9 @@ export const IndirectDamageCases = {
       .FillResources(1, cards.SOR.BFMarine, 6)
       .AddCardToHand(1, cards.JTL.PlanetBomb)
       .AddUnit(2, cards.SOR.SLT)
-      .AddUnit(2, cards.JTL.TieFighter, false, 0,
+      .AddUnit(2, cards.JTL.TieFighter, false, false, 0,
         gameState.SubcardBuilder().AddExperience(2).Build())
-      .AddUnit(2, cards.SHD.Dengar, false, 0,
+      .AddUnit(2, cards.SHD.Dengar, false, false, 0,
         gameState.SubcardBuilder().AddShield(2).Build())
       .FlushAsync(com.BeginTestCallback);
     ;
@@ -74,9 +74,9 @@ export const IndirectDamageCases = {
       .AddLeader(2, cards.JTL.BobaFettLeader)
       .FillResources(1, cards.SOR.BFMarine, 6)
       .AddCardToHand(1, cards.JTL.PlanetBomb)
-      .AddUnit(2, cards.JTL.TieFighter, false, 0,
+      .AddUnit(2, cards.JTL.TieFighter, false, false, 0,
         gameState.SubcardBuilder().AddExperience(2).Build())
-      .AddUnit(2, cards.SHD.Dengar, false, 0,
+      .AddUnit(2, cards.SHD.Dengar, false, false, 0,
         gameState.SubcardBuilder().AddShield(2).Build())
       .FlushAsync(com.BeginTestCallback);
     ;
@@ -185,9 +185,9 @@ export const IndirectDamageCases = {
       .FillResources(1, cards.SOR.BFMarine, 6)
       .AddCardToHand(1, cards.JTL.PlanetBomb)
       .AddUnit(2, cards.SOR.SLT)
-      .AddUnit(2, cards.JTL.TieFighter, false, 0,
+      .AddUnit(2, cards.JTL.TieFighter, false, false, 0,
         gameState.SubcardBuilder().AddExperience(2).Build())
-      .AddUnit(2, cards.SHD.Dengar, false, 0,
+      .AddUnit(2, cards.SHD.Dengar, false, false, 0,
         gameState.SubcardBuilder().AddShield(2).Build())
       .AddUnit(1, cards.JTL.Devastator)
       .FlushAsync(com.BeginTestCallback);
@@ -236,9 +236,9 @@ export const IndirectDamageCases = {
       .AddLeader(2, cards.JTL.BobaFettLeader)
       .FillResources(1, cards.SOR.BFMarine, 6)
       .AddCardToHand(1, cards.JTL.PlanetBomb)
-      .AddUnit(2, cards.JTL.TieFighter, false, 0,
+      .AddUnit(2, cards.JTL.TieFighter, false, false, 0,
         gameState.SubcardBuilder().AddExperience(2).Build())
-      .AddUnit(2, cards.SHD.Dengar, false, 0,
+      .AddUnit(2, cards.SHD.Dengar, false, false, 0,
         gameState.SubcardBuilder().AddShield(2).Build())
       .AddUnit(1, cards.JTL.Devastator)
       .FlushAsync(com.BeginTestCallback);

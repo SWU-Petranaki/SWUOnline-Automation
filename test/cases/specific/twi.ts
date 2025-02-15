@@ -22,14 +22,15 @@ const ShadowedIntentionsGameStateAsync = async () =>{
     .AddCardToHand(1, cards.TWI.EliteP)
     .AddCardToHand(1, cards.TWI.MercilessContest)
     .AddCardToHand(1, cards.SOR.Waylay)
-    .AddUnit(1, cards.SOR.Greedo, true, 0,
-      gameState.SubcardBuilder().AddExperience(1).AddUpgrade(cards.TWI.ShadowedIntentions, 1).Build())
+    .AddUnit(1, cards.SOR.Greedo, false, true, 0,
+      gameState.SubcardBuilder().AddExperience(1, 1).AddUpgrade(cards.TWI.ShadowedIntentions, 1).Build())
     .AddUnit(1, cards.SHD.LurkingTie)
-    .AddUnit(2, cards.SOR.Greedo, true, 0,
-      gameState.SubcardBuilder().AddExperience(1).AddUpgrade(cards.TWI.ShadowedIntentions, 2).Build()
+    .AddUnit(2, cards.SOR.Greedo, false, true, 0,
+      gameState.SubcardBuilder().AddExperience(1, 1).AddUpgrade(cards.TWI.ShadowedIntentions, 2).Build()
     )
     .AddUnit(2, cards.SHD.LurkingTie)
     .FlushAsync(com.BeginTestCallback)
+  ;
 }
 
 export const SpecificTWICases = {

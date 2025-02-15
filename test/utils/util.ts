@@ -110,6 +110,7 @@ export const customAsserts = {
   UnitIsNotPlayable: (browser: NightwatchAPI, selector: string) => browser.assert.attributeEquals(com.UnitImg(selector), 'style', src.NotPlayableBorderUnit),
   HandCardIsNotPlayable: (browser: NightwatchAPI, card: number) => browser.assert.attributeEquals(com.HandCardImg(card), 'style', src.NotPlayableBorderHand),
   UnitIs: (browser: NightwatchAPI, cardID: string, selector: string) => browser.assert.attributeEquals(com.UnitImg(selector), 'src', src.Concat(cardID)),
+  LeaderEpicActionUsed: (browser: NightwatchAPI, player: number) => browser.assert.attributeEquals(com.Leader(player) + ' img:nth-of-type(2)', 'src', 'http://localhost:8080/SWUOnline/Images/ExhaustToken.png'),
   //Twilight of the Republic
   AllyGroundUnitIsBattleDroid: (browser: NightwatchAPI, unit: number) =>
     browser.assert.attributeEquals(com.UnitImg(com.AllyGroundUnit(unit)), 'src', src.Concat(cards.TWI.BattleDroid)),

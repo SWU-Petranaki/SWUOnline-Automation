@@ -49,7 +49,7 @@ export const OnAttackCases = {
       .AddBase(2, cards.SOR.ECL)
       .AddLeader(2, cards.JTL.HanSoloLeader, true)
       .AddCardToHand(2, cards.SOR.Waylay)
-      .AddUnit(1, cards.TWI.EnfysNest, true, false, 0,
+      .AddUnit(1, cards.TWI.EnfysNest, false, true, 0,
         gameState.SubcardBuilder().AddExperience(1, 1).Build())
       .AddUnit(2, cards.SOR.TieLnFighter, false, false, 0,
         gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
@@ -103,10 +103,10 @@ export const OnAttackCases = {
       .AddLeader(1, cards.JTL.HanSoloLeader, true)
       .AddBase(2, cards.SOR.ECL)
       .AddLeader(2, cards.JTL.HanSoloLeader, true)
-      .AddUnit(1, cards.SOR.OuterRimHH, true, false, 0,
+      .AddUnit(1, cards.SOR.OuterRimHH, false, true, 0,
         gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
       .AddUnit(2, cards.SOR.BFMarine)
-      .AddUnit(2, cards.JTL.XWing, true, false, 0,
+      .AddUnit(2, cards.JTL.XWing, false, true, 0,
         gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 2, true).Build())
       .AddUnit(2, cards.JTL.XWing)
       .FlushAsync(com.BeginTestCallback)

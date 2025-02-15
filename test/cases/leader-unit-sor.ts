@@ -183,7 +183,7 @@ export const LeaderUnitSORCases = {
       .AddCardToDeck(1, cards.SHD.QiRaUnit)
       .AddCardToDeck(2, cards.SHD.QiRaUnit)
       .AddCardToDeck(2, cards.SHD.QiRaUnit)
-      .AddUnit(1, cards.SOR.DarthVaderLeaderUnit, true, false, 3)
+      .AddUnit(1, cards.SOR.DarthVaderLeaderUnit, false, true, 3)
       .AddUnit(1, cards.SOR.GILeaderUnit, true)
       .AddUnit(1, cards.SOR.IG88LeaderUnit, true)
       .AddUnit(1, cards.SOR.CassianLeaderUnit, true)

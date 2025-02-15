@@ -22,7 +22,7 @@ export const CloneCases = {
       .FillResources(1, cards.SOR.Waylay, 7)
       .AddCardToHand(1, cards.TWI.Clone)
       .AddUnit(1, cards.SOR.DSStormTrooper)
-      .AddUnit(1, cards.SOR.DSStormTrooper, false, 0,//Han Solo piggy-backing on a stormtrooper..
+      .AddUnit(1, cards.SOR.DSStormTrooper, false, false, 0,//Han Solo piggy-backing on a stormtrooper..
         gameState.SubcardBuilder().AddPilot(cards.JTL.HanSoloLeaderUnit, 1, true).Build())
       .AddUnit(1, cards.SOR.DSStormTrooper)
       .FlushAsync(com.BeginTestCallback)
