@@ -58,7 +58,6 @@ export const DefeatUpgradeCases = {
       .WaitForMyLeader()
       .ClickMyLeader()
       .MultichoiceButton(1)
-      .WaitForAnimation()
       .SwitchPlayerWindow()
       .WaitForMyHand()
       .ClickHandCard(1)

@@ -33,7 +33,6 @@ export const BoardWipeCases = {
     await gameplay
       .WaitForMyHand()
       .ClickHandCard(1)
-      .WaitForAnimation()
       .Pass()
       .TargetMyBase()
       .RunAsync()
@@ -70,7 +69,6 @@ export const BoardWipeCases = {
     await gameplay
       .WaitForMyHand()
       .ClickHandCard(1)
-      .WaitForAnimation()
       .Pass()
       .TargetMyBase()
       .RunAsync()
@@ -109,7 +107,6 @@ export const BoardWipeCases = {
     await gameplay
       .WaitForMyHand()
       .ClickHandCard(1)
-      .WaitForAnimation()
       .Submit()
       .Pass()
       .TargetMyBase()
@@ -144,7 +141,6 @@ export const BoardWipeCases = {
     await gameplay
       .WaitForMyHand()
       .ClickHandCard(1)
-      .WaitForAnimation()
       .Submit()
       .Pass()
       .TargetMyBase()
@@ -234,7 +230,6 @@ export const BoardWipeCases = {
       .TargetMyBase()
       .TargetMyGroundUnit(1)
       .TargetMyGroundUnit(1)
-      .WaitForAnimation()
       .SwitchPlayerWindow()
       .WaitForMyGroundUnit(1)
       .TargetMyGroundUnit(1)

@@ -60,11 +60,19 @@ export const RareBasesCases = {
       .WaitForMyLeader()
       .ClickMyLeader()
       .MultichoiceButton(2)
+      .SwitchPlayerWindow()
+      .WaitForClaimButton()
+      .ClaimInitiative()
+      .SwitchPlayerWindow()
+      .WaitForMyGroundUnit(1)
+      .ClickMyGroundUnit(1)
+      .TargetTheirBase()
       .RunAsync()
     ;
     //assert
     await gameplay.Assert()
       .MyGroundUnitPieceEquals(1, 1, '3')
+      .TheirBaseDamageEquals('4')
       .RunAsync()
     ;
   }

@@ -32,7 +32,6 @@ export const BounceCases = {
       .WaitForMyHand()
       .ClickHandCard(1)
       .TargetTheirGroundUnit(1)
-      .WaitForAnimation()
       .SwitchPlayerWindow()
       .WaitForClaimButton()
       .ClaimInitiative()

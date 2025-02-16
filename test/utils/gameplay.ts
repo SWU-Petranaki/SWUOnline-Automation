@@ -43,9 +43,8 @@ export class GamePlay {
 
   public SwitchPlayerWindow() {
     this._currentPlayer = this._currentPlayer == 1 ? 2 : 1;
-    this._asyncBrowser.window
-      .switchTo(this._currentPlayer == 1 ? player1Window : player2Window)
-      .refresh();
+    this._asyncBrowser.pause(p.WaitForEffect)
+      .window.switchTo(this._currentPlayer == 1 ? player1Window : player2Window).refresh();
 
     return this;
   }
@@ -276,12 +275,6 @@ export class GamePlay {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
       .click(com.SubmitButton).pause(p.ButtonPress)
     ;
-
-    return this;
-  }
-
-  public WaitForAnimation() {
-    this._asyncBrowser.pause(p.WaitForEffect);
 
     return this;
   }

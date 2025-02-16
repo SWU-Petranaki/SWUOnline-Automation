@@ -320,6 +320,63 @@ export const SpecificJTLCases = {
     await browser.assert.elementPresent(com.AllyGroundUnit(1));
     await customAsserts.UnitIs(browser, cards.JTL.PoeLeaderUnit, com.AllyGroundUnit(1));
   },
+  'Poe Leader: Deploy defeat cant deploy next turn': async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("9 5")
+      .AddBase(1, cards.SOR.ECL)
+      .AddLeader(1, cards.JTL.PoeLeader, false, true)
+      .AddBase(2, cards.generic.RedBase)
+      .AddLeader(2, cards.JTL.AsajjLeader)
+      .AddCardToDeck(1, cards.SOR.BFMarine, 4)
+      .AddCardToDeck(2, cards.SOR.DSStormTrooper, 4)
+      .FillResources(1, cards.SOR.BFMarine, 4)
+      .AddUnit(1, cards.JTL.XWing)
+      .AddUnit(2, cards.SOR.PalpUnit)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      //deploy fails
+      .WaitForMyLeader().ClickMyLeader()
+      .RunAsync()
+    ;
+    //assert
+    await gameplay.Assert()
+      .LastLogEquals("You don't control enough resources to deploy that leader; reverting the game state.", 2)
+      .RunAsync()
+    ;
+    //act
+    await gameplay
+      .WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForPassButton().PassTurn()
+      //new round
+      .SwitchPlayerWindow().WaitForMyHand().ClickHandCard(1)
+      .SwitchPlayerWindow().WaitForMyHand().ClickHandCard(1)
+      //now really deploy
+      .SwitchPlayerWindow().WaitForMyLeader().ClickMyLeader().MultichoiceButton(2)
+      //enemy Palp one shots
+      .SwitchPlayerWindow().WaitForMyGroundUnit(1).ClickMyGroundUnit(1).TargetTheirGroundUnit(1)
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForPassButton().PassTurn()
+      //next round
+      .SwitchPlayerWindow().WaitForMyHand().ClickHandCard(1)
+      .SwitchPlayerWindow().WaitForMyHand().ClickHandCard(1)
+      //try to deploy again
+      .SwitchPlayerWindow().WaitForMyLeader().ClickMyLeader()
+      .RunAsync()
+    ;
+    //assert
+    await gameplay.Assert()
+      .MyGroundUnitIsGone(1)
+      .TheirGroundUnitIsThere(1)
+      .MySpaceUnitIsThere(1)
+      .MySpaceUnitPieceEquals(1, 1, 'POE DAMERON')
+      .RunAsync()
+  },
   'Eject: Set 4 pilot leader used epic action': async function () {
     //arrange
     const gameState = new GameState(gameName);

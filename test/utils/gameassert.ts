@@ -264,4 +264,14 @@ export class GameAssert {
 
     return this;
   }
+
+  public LastLogEquals(text: string, last: number = 1) {
+    browser.getText(com.GameLog)
+      .then((l) => {
+        const lastLog = l.split('\n').slice(-1*last)[0];
+        this._gamePlay.___BrowsertAssert().equal(lastLog, text);
+      });
+
+    return this;
+  }
 }
