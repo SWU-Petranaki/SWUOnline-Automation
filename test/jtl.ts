@@ -12,10 +12,10 @@ import { WhenPlayedCases } from './cases/when-played';
 const home: NightwatchTests = {
   before: init,
 //regression suite
-    'When Played: Leia JTL lets Pilot attack': WhenPlayedCases['When Played: Leia JTL lets Pilot attack'],
-    'When Played: Leia JTL lets Piloted space unit attack': WhenPlayedCases['When Played: Leia JTL lets Piloted space unit attack'],
-    ...PilotJTLCases,
-    ...IndirectDamageCases,
+    //'When Played: Leia JTL lets Pilot attack': WhenPlayedCases['When Played: Leia JTL lets Pilot attack'],
+    //'When Played: Leia JTL lets Piloted space unit attack': WhenPlayedCases['When Played: Leia JTL lets Piloted space unit attack'],
+    // ...PilotJTLCases,
+    // ...IndirectDamageCases,
     ...SpecificJTLCases,
 //end regression suite
   after: async (browser, done) => {

@@ -207,12 +207,28 @@ export const SpecificJTLCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.Move)
       .click(com.ButtonMultiChoice(1)).pause(p.ButtonPress)
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.AllySpaceUnit(2))
+      .click(com.AllySpaceUnit(1))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
     //assert
-    await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(2), 1), 'POE DAMERON')
+    await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 1), 'POE DAMERON')
     //act
+    await browser.window.switchTo(player2Window).refresh()
+      .waitForElementPresent(com.PassButton)
+      .moveToElement(com.PassButton, 0, 0).pause(p.Move)
+      .click(com.PassButton).pause(p.ButtonPress)
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    ;
+    await browser.window.switchTo(player1Window).refresh()
+      .waitForElementPresent(com.AllySpaceUnit(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
+      .click(com.AllySpaceUnit(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+      .click(com.ButtonMultiChoice(1)).pause(p.ButtonPress)
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
+      .click(com.Base(2))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    ;
     await browser.window.switchTo(player2Window).refresh()
       .waitForElementPresent(com.PassButton)
       .moveToElement(com.PassButton, 0, 0).pause(p.Move)
@@ -224,13 +240,15 @@ export const SpecificJTLCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.Move)
       .click(com.HandCard(1))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.AllySpaceUnit(2))
+      .click(com.AllySpaceUnit(1))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
       .click(com.ChooseButton(1, 1)).pause(p.ButtonPress)
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
     //assert
     await browser.assert.elementPresent(com.AllyGroundUnit(1));
+    await browser.assert.textEquals(com.MyBaseDamage, '9');
+    await browser.assert.textEquals(com.TheirBaseDamage, '9');
   },
   'Poe Leader: Eject combo; defeated still deploys': async function () {
     //arrange
