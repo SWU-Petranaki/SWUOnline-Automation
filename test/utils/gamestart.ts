@@ -8,7 +8,7 @@ import {
 } from "./util";
 import { GameState } from "./gamestate";
 
-const genericJangoDeck = 'https://swustats.net/TCGEngine/NextTurn.php?gameName=6128&playerID=1&folderPath=SWUDeck';
+const swustatsDeck = 'https://swustats.net/TCGEngine/NextTurn.php?gameName=6128&playerID=1&folderPath=SWUDeck';
 const maxRetries = 5;
 
 export const init: NightwatchTestHook = async (browser, done) => {
@@ -16,6 +16,7 @@ export const init: NightwatchTestHook = async (browser, done) => {
     .url('http://localhost:8080/SWUOnline/MainMenu.php')
     .window.maximize().pause(p.WaitForEffect)
     .assert.titleEquals('Karabast')
+    .pause(p.WaitToBegin)
   ;
 
   setPlayer1Window(await browser.window.getHandle());
@@ -40,7 +41,7 @@ export const init: NightwatchTestHook = async (browser, done) => {
   } else {
     await browser
       .waitForElementPresent(com.DeckInput)
-      .setValue(com.DeckInput, genericJangoDeck)
+      .setValue(com.DeckInput, swustatsDeck)
       .click(com.CreateGameButton).pause(p.ButtonPress)
       .refresh().refresh().refresh().refresh().refresh()
       .refresh().pause(p.ButtonPress)
@@ -67,7 +68,7 @@ export const init: NightwatchTestHook = async (browser, done) => {
     browser
       .url(inviteLink)
       .waitForElementPresent(com.DeckInput)
-      .setValue(com.DeckInput, genericJangoDeck)
+      .setValue(com.DeckInput, swustatsDeck)
       .waitForElementPresent(com.JoinGameButton)
       .click(com.JoinGameButton).pause(p.ButtonPress)
       .pause(p.WaitToBegin)
@@ -84,7 +85,7 @@ export const init: NightwatchTestHook = async (browser, done) => {
       .pause(p.WaitToBegin)
       .refresh().pause(p.ButtonPress).refresh().pause(p.WaitToBegin)
       .waitForElementPresent(com.DeckInput)
-      .setValue(com.DeckInput, genericJangoDeck)
+      .setValue(com.DeckInput, swustatsDeck)
       .waitForElementPresent(com.JoinGameButton)
       .click(com.JoinGameButton).pause(p.ButtonPress)
       .pause(p.WaitToBegin)
@@ -118,7 +119,7 @@ export const init: NightwatchTestHook = async (browser, done) => {
     }
 
     await browser.window.switchTo(player1Window)
-      .refresh().pause(p.WaitToBegin);
+      .refresh().pause(p.WaitToBegin).pause(p.WaitToBegin);
 
     const game = new URL(await browser.getCurrentUrl()).searchParams.get('gameName') || '';
     setGameName(game);

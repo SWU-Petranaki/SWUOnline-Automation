@@ -105,7 +105,7 @@ export const SpecificTWICases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
       .click(com.EnemyGroundUnit(1))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToBegin)
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
       .click(com.HandCard(1))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
       .click(com.HandCard(1))

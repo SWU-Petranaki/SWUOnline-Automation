@@ -166,7 +166,7 @@ export const JTLPoeCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
     await browser.window.switchTo(player1Window).refresh()
-      .pause(p.WaitToBegin)
+      .pause(p.WaitForEffect)
     ;
     //assert
     await customAsserts.UnitIsNotPlayable(browser, com.AllySpaceUnit(1));
