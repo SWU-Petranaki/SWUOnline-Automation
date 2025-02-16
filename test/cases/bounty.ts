@@ -28,7 +28,7 @@ export const BountyCases = {
     await gameplay
       .WaitForMyGroundUnit(2)
       .ClickMyGroundUnit(2)
-      .MultichoiceButton(1)
+      .MultiChoiceButton(1)
       .TargetTheirGroundUnit(1)
       .SwitchPlayerWindow()
       .WaitForPassButton()
@@ -66,7 +66,7 @@ export const BountyCases = {
     await gameplay
       .WaitForMyGroundUnit(2)
       .ClickMyGroundUnit(2)
-      .MultichoiceButton(1)
+      .MultiChoiceButton(1)
       .TargetMyGroundUnit(1)
       .SwitchPlayerWindow()
       .WaitForMyGroundUnit(1)

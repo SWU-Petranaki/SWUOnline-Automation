@@ -192,6 +192,7 @@ export const cards = {
     WolfpackEscort: '1882027961',
     OsiSobeck: '2041344712',
     CadBane: '0693815329',
+    SavageOpress: '8540765053',
     //upgrades
     ShadowedIntentions: '9003830954',
     CloneCohort: '2007876522',

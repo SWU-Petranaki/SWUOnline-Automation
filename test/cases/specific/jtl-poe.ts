@@ -27,7 +27,7 @@ export const JTLPoeCases = {
     //act
     const gameplay = new GamePlay(browser);
     await gameplay
-      .WaitForMyLeader().ClickMyLeader().MultichoiceButton(1)
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1)
       .RunAsync()
     ;
     //assert
@@ -73,7 +73,7 @@ export const JTLPoeCases = {
       .SwitchPlayerWindow().WaitForMyHand().ClickHandCard(1)
       .SwitchPlayerWindow().WaitForMyHand().ClickHandCard(1)
       //now really deploy
-      .SwitchPlayerWindow().WaitForMyLeader().ClickMyLeader().MultichoiceButton(2)
+      .SwitchPlayerWindow().WaitForMyLeader().ClickMyLeader().MultiChoiceButton(2)
       //enemy Palp one shots
       .SwitchPlayerWindow().WaitForMyGroundUnit(1).ClickMyGroundUnit(1).TargetTheirGroundUnit(1)
       .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()

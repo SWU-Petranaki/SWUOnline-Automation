@@ -265,6 +265,12 @@ export class GameAssert {
     return this;
   }
 
+  public NoMultiChoicePopup() {
+    this.ElementNotPresent(com.MultiChoicePopup);
+
+    return this;
+  }
+
   public LastLogEquals(text: string, last: number = 1) {
     browser.getText(com.GameLog)
       .then((l) => {

@@ -10,7 +10,7 @@ import {
 
 
 export const SpecificJTLCases = {
-  'Eject: Set 4 pilot leader cant deploy next turn': async function () {
+  'Eject: epic action pilot leader unit defeated cant deploy next turn': async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -25,7 +25,7 @@ export const SpecificJTLCases = {
       .AddCardToHand(1, cards.JTL.Eject)
       .FillResources(1, cards.SOR.BFMarine, 5)
       .AddUnit(1, cards.JTL.XWing)
-      .AddUnit(2, "8540765053")
+      .AddUnit(2, cards.TWI.SavageOpress)
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
@@ -33,7 +33,7 @@ export const SpecificJTLCases = {
     await gameplay
       .WaitForMyLeader()
       .ClickMyLeader()
-      .MultichoiceButton(3)
+      .MultiChoiceButton(3)
       .SwitchPlayerWindow()
       .WaitForPassButton()
       .PassTurn()
@@ -77,6 +77,51 @@ export const SpecificJTLCases = {
       .MyLeaderHasUsedEpicAction()
       .MyGroundUnitIsGone(1)
       .RunAsync()
+  },
+  'JTL: epic action pilot leader upgrade defeated cant deploy next turn': async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("9 5")
+      .AddBase(1, cards.SOR.ECL)
+      .AddLeader(1, cards.JTL.WedgeLeader)
+      .AddBase(2, cards.generic.RedBase)
+      .AddLeader(2, cards.JTL.AsajjLeader)
+      .AddCardToDeck(1, cards.SOR.BFMarine, 2)
+      .AddCardToDeck(2, cards.SOR.DSStormTrooper, 2)
+      .AddCardToHand(2, cards.SOR.DisablingFF)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .FillResources(2, cards.SOR.BFMarine, 3)
+      .AddUnit(1, cards.JTL.XWing)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(3)
+      .SwitchPlayerWindow().WaitForMyHand().ClickHandCard(1)
+      .TargetTheirSpaceUnit(1).ChooseButton(1, 1)
+      .RunAsync()
+    ;
+    //assert
+    await gameplay.Assert()
+      .TheirLeaderHasUsedEpicAction()
+      .RunAsync()
+    //act
+    await gameplay
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForPassButton().PassTurn()
+      //next round
+      .SwitchPlayerWindow().WaitForMyHand().ClickHandCard(1)
+      .SwitchPlayerWindow().WaitForMyHand().ClickHandCard(1)
+      .SwitchPlayerWindow().WaitForMyLeader().ClickMyLeader()
+      .RunAsync()
+    //assert
+    await gameplay.Assert()
+      .NoMultiChoicePopup()
+      .RunAsync()
+    ;
   },
   'JTL: Leia Poe ejected ground unit': async function () {
     //arrange
@@ -198,7 +243,7 @@ export const SpecificJTLCases = {
       .TargetTheirBase()
       .TargetMyGroundUnit(2)
       .TargetTheirBase()
-      .MultichoiceButton(1)
+      .MultiChoiceButton(1)
       .RunAsync()
     ;
     //assert

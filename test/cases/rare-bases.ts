@@ -59,7 +59,7 @@ export const RareBasesCases = {
     await gameplay
       .WaitForMyLeader()
       .ClickMyLeader()
-      .MultichoiceButton(2)
+      .MultiChoiceButton(2)
       .SwitchPlayerWindow()
       .WaitForClaimButton()
       .ClaimInitiative()

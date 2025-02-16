@@ -252,7 +252,7 @@ export class GamePlay {
     return this;
   }
 
-  public MultichoiceButton(choice: number) {
+  public MultiChoiceButton(choice: number) {
     this._asyncBrowser
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
       .click(com.ButtonMultiChoice(choice)).pause(p.ButtonPress)

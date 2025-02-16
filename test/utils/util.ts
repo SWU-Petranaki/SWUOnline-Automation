@@ -46,6 +46,7 @@ export const com = {
     PassButton: 'span.pass-label',
     ClaimButton: 'button.claimButton',
     SubmitButton: 'input[type="button"]',
+    MultiChoicePopup: 'div#BUTTONINPUT',
     YesNoButton(choice: "YES"|"NO") { return `div#mainDiv button:nth-of-type(${choice === "YES" ? 1 : 2})`; },
     PilotYesNoButton(choice:"YES"|"NO") { return `div#YESNO div div button:nth-of-type(${choice === "YES" ? 1 : 2})`; },
     ChooseButton(index: number, choice: number) { return `div > table > tbody > tr > td:nth-of-type(${index}) button:nth-of-type(${choice})`; },
