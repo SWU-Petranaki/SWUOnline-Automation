@@ -46,11 +46,9 @@ export default home;
 ```
 
 ### Testing single cases
-use `-- --testcase` to pass in a test case.
-
-For example:
+run `test:case` script, passing in the test name
 ```
-npm test -- --testcase 'Ambush: Sabine ECL Ping Shield'
+npm run test:case -- 'Ambush: Sabine ECL Ping Shield'
 ```
 
 ## Running Full Regression vs Quick Regression
@@ -58,6 +56,14 @@ by default, the suite runs a quick regression, but full regression can be enable
 
 ## Bypassing Game Creation
 by default, the suite tests game creation and join game flows. to bypass this locally, pass in an existing game name to the `.env` for `LOCAL_RUN=<N>` where \<N> is a game name from your Games\ dir
+
+## Testing New Features Locally
+run `test:local` to run the 'Local Run' test case (found in ./test/cases/_local.ts). This case also assumes the `LOCAL_RUN` env var is set to an integer corresponding to a game that's already started and has a `gamestate.txt`
+
+also run this to ignore its changes from your git commits
+```
+git update-index --assume-unchanged ./test/cases/_local.ts
+```
 
 ---
 
