@@ -46,7 +46,8 @@ module.exports = {
             '--no-sandbox',
             '--disable-dev-shm-usage',
             '--disable-gpu',
-            '--window-size=1920,1080'
+            '--window-size=1920,1080',
+            '--mute-audio',
           ]
         }
       }

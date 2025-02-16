@@ -3,14 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "nightwatch ./test/regression.ts",
-    "test:headless": "nightwatch ./test/regression.ts --env headless --retries 3",
-    "test-engine": "nightwatch ./test/engine.ts",
-    "test-engine:headless": "nightwatch ./test/engine.ts --env headless",
-    "test-damage": "nightwatch ./test/damage-cases.ts",
-    "test-damage:headless": "nightwatch ./test/damage-cases.ts --env headless",
-    "test-jtl": "nightwatch ./test/jtl.ts",
-    "test-jtl:headless": "nightwatch ./test/jtl.ts --env headless"
+    "test": "nightwatch ./test/regression.ts --env headless --retries 3",
+    "test:local": "nightwatch ./test/regression.ts --testcase 'Local Run'",
+    "test:case": "nightwatch ./test/regression.ts --testcase"
   },
   "keywords": [],
   "author": "",

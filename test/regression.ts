@@ -32,6 +32,7 @@ import { SpecificTWICases } from './cases/specific/twi';
 import { PilotJTLCases } from './cases/pilots';
 import { IndirectDamageCases } from './cases/indirect-damage';
 import { SpecificJTLCases } from './cases/specific/jtl';
+import { JTLPoeCases } from './cases/specific/jtl-poe';
 
 import { LocalTestCase } from './cases/_local';
 
@@ -68,6 +69,7 @@ const home: NightwatchTests = {
   ...PilotJTLCases,
   ...IndirectDamageCases,
   ...SpecificJTLCases,
+  ...JTLPoeCases,
 //end regression suite
   after: async (browser, done) => {
     await browser.window.switchTo(player2Window).window.close();
