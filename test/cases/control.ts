@@ -1,4 +1,5 @@
 import { cards } from '../utils/cards';
+import { GamePlay } from '../utils/gameplay';
 import { GameState } from '../utils/gamestate';
 import {
   com, p,
@@ -72,6 +73,35 @@ export const ControlCases = {
     await browser.assert.not.elementPresent(com.EnemyGroundUnit(2));
     await browser.assert.elementPresent(com.AllyGroundUnit(2));
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(2), 1), '2');
+  },
+  'Control: Traitorous fails on piloted leader unit': async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SOR.ECL)
+      .AddLeader(1, cards.JTL.HanSoloLeader)
+      .AddBase(2, cards.SOR.ECL)
+      .AddLeader(2, cards.JTL.AsajjLeader, true)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .AddCardToHand(1, cards.SOR.Traitorous)
+      .AddUnit(1, cards.SOR.BFMarine)
+      .AddUnit(2, cards.SOR.TieLnFighter, false, true, 0,
+        gameState.SubcardBuilder().AddPilot(cards.JTL.AsajjLeaderUnit, 2, true).Build())
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().ClickHandCard(1)
+      .TargetTheirSpaceUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    await gameplay.Assert()
+      .TheirSpaceUnitIsThere(1)
+      .MySpaceUnitIsGone(1)
+    ;
   },
   'Control: Change of Heart returns at end': async function () {
     //arrange
