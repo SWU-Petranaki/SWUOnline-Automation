@@ -80,5 +80,32 @@ export const BountyCases = {
       .TheirBaseDamageEquals('12')
       .RunAsync()
     ;
-  }
+  },
+  'Bounty: multiple collected': ''+async function () {//WIP
+    //arrage
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("12 10")
+      .AddBase(1, cards.SOR.ChopperBase)
+      .AddLeader(1, cards.SOR.TarkinLeader)
+      .AddBase(2, cards.SOR.KestroCity)
+      .AddLeader(2, cards.JTL.AsajjLeader)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .AddCardToHand(1, cards.SOR.OB)
+      .AddUnit(1, cards.SOR.PalpUnit)
+      .AddUnit(2, cards.SHD.HylobonEnforcer)
+      .AddUnit(2, cards.SHD.HylobonEnforcer)
+      .AddUnit(2, cards.SOR.DSStormTrooper)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand()
+      .ClickHandCard(1)
+      .TargetMyGroundUnit(1)
+      .RunAsync()
+    ;
+  },
 }

@@ -87,6 +87,9 @@ export const cards = {
     RuthlessRaider: '1047592361',
     PalpUnit: '9097316363',
     MillenniumFalcon: '1785627279',
+    Relentless: '3401690666',
+    Devastator: '4631297392',
+    AdmiralPiett: '4566580942',
     //upgrades
     Traitorous: '8055390529',
     //events
@@ -144,6 +147,7 @@ export const cards = {
     CartelTurncoat: '9108611319',
     LomPyke: '5632569775',
     PoeDameron: '5966087637',
+    Val: '0474909987',
     //upgrades
     TopTarget: '4282425335',
     Darksaber: '3141660491',
@@ -266,6 +270,7 @@ export const cards = {
     DqarCargo: '5422802110',
     Corvus: '0753794638',
     SabinesMP: '7325248681',
+    ZyggStarHopper: '7389195577',
     //events
     ItsATrap: '0964312065',
     Commandeer: '8105698374',
