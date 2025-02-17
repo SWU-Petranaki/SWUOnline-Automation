@@ -257,6 +257,8 @@ export const cards = {
     KidAnakin: '8523415830',
     Frisk: '0514089787',
     R2D2: '5375722883',
+    InterceptorAce: '3878744555',
+    PaigeTico: '1039444094',
     //vehicles
     RedLeader: '3711891756',
     HoundsTooth: '3876470102',

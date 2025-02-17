@@ -7,6 +7,7 @@ import {
 } from '../utils/util';
 import { GameState } from '../utils/gamestate';
 import { cards } from '../utils/cards';
+import { GamePlay } from '../utils/gameplay';
 
 export const LeaderAbilitySORCases = {
   'Leader Ability: Director Krennic passive buff': async function () {
@@ -52,26 +53,23 @@ export const LeaderAbilitySORCases = {
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
     await gameState.ResetGameStateLines()
-      .AddBase(1, cards.SHD.JabbasPalace)
-      .AddLeader(1, cards.SOR.ChewbaccaLeader)
-      .AddBase(2, cards.SOR.EchoBase)
-      .AddLeader(2, cards.SOR.KrennicLeader)
+      .AddBase(1, cards.SHD.JabbasPalace).AddLeader(1, cards.SOR.ChewbaccaLeader)
+      .AddBase(2, cards.SOR.EchoBase).AddLeader(2, cards.SOR.KrennicLeader)
       .FillResources(1, cards.SOR.Waylay, 2)
-      .AddCardToHand(1, cards.SOR.AllianceXWing)
+      .AddCardToHand(1, cards.JTL.PaigeTico)
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
-    await browser.waitForElementPresent(com.Leader(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.Leader(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.ButtonMultiChoice(1)).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.HandCard(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1).ClickHandCard(1)
+      .RunAsync()
     ;
     //assert
-    await browser.assert.attributeContains(com.UnitDivPiece(com.AllySpaceUnit(1), 3), 'style', src.SentinelToken);
+    await gameplay.Assert()
+      .MyGroundUnitPieceIsSentinelToken(1, 3)
+      .RunAsync()
+    ;
   },
   'Leader Ability: Chirrut Imwe buff': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange

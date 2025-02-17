@@ -1,5 +1,6 @@
 
 import { cards } from '../utils/cards';
+import { GamePlay } from '../utils/gameplay';
 import { GameState } from '../utils/gamestate';
 import {
   com, p,
@@ -35,17 +36,12 @@ export const WhenDefeatCases = {
     await browser.assert.equal(prevTopDeck2, cards.SOR.Waylay);
     await browser.assert.equal(prevBottomDeck, cards.SOR.Avenger);
     //act
-    await browser
-      .waitForElementPresent(com.MyHand)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.HandCard(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.ChooseButton(2, 2)).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.ChooseButton(1, 1)).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1)
+      .ChooseButton(2, 2).ChooseButton(1, 1)
+      .RunAsync()
     ;
-    //assert
     const lastLog = (await browser.getText(com.GameLog)).split('\n').slice(-1)[0];
     const secondLastLog = (await browser.getText(com.GameLog)).split('\n').slice(-2)[0];
     await browser.assert.equal(secondLastLog, 'Player 1 put a card on the bottom of the deck.');

@@ -1,4 +1,5 @@
 import { cards } from '../utils/cards';
+import { GamePlay } from '../utils/gameplay';
 import { GameState } from '../utils/gamestate';
 import {
   com, p,
@@ -13,10 +14,8 @@ export const WhenPlayedCases = {
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
     await gameState.ResetGameStateLines()
-      .AddBase(1, cards.SOR.EchoBase)
-      .AddLeader(1, cards.SOR.SabineLeader)
-      .AddBase(2, cards.SOR.EchoBase)
-      .AddLeader(2, cards.SOR.SabineLeader)
+      .AddBase(1, cards.SOR.EchoBase).AddLeader(1, cards.SOR.SabineLeader)
+      .AddBase(2, cards.SOR.EchoBase).AddLeader(2, cards.SOR.SabineLeader)
       .FillResources(1, cards.SOR.BFMarine, 7)
       .AddCardToHand(1, cards.SOR.UWing)
       .AddCardToDeck(1, cards.SOR.BFMarine, 2)
@@ -34,46 +33,31 @@ export const WhenPlayedCases = {
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
-    await browser
-      .waitForElementPresent(com.MyHand)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.HandCard(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.Checkbox(3)).pause(p.CheckBox)
-      .click(com.Checkbox(5)).pause(p.CheckBox)
-      .click(com.Checkbox(8)).pause(p.CheckBox)
-      .click(com.SubmitButton).pause(p.ButtonPress)
-      .click(com.AllyGroundUnit(3))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.PassButton).pause(p.ButtonPress)
-      .click(com.PassButton).pause(p.ButtonPress)
-      .click(com.AllyGroundUnit(4))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.PassButton).pause(p.ButtonPress)
-      .click(com.ChooseButton(1, 2)).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.YesNoButton("YES")).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.EnemyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.Checkbox(1)).pause(p.CheckBox)
-      .click(com.SubmitButton).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1)
+      .WaitForCheckboxes().Check(3).Check(5).Check(8).Submit()
+      .TargetMyGroundUnit(3).Pass().Pass()
+      .TargetMyGroundUnit(4).Pass().ChooseButton(1, 2)
+      .ChooseYes().TargetTheirGroundUnit(1)
+      .WaitForCheckboxes().Check(1).Submit()
+      .RunAsync()
     ;
     //assert
-    await browser.assert.not.elementPresent(com.EnemyGroundUnit(2));
-    await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(3), 3), '2');
-    await browser.assert.attributeEquals(com.HandCardImg(1), 'alt', 'Admiral Ackbar');
+    await gameplay.Assert()
+      .TheirGroundUnitIsGone(2)
+      .MyGroundUnitPieceEquals(3, 3, '2')
+      .MyHandCardIs(1, 'Admiral Ackbar')
+      .RunAsync()
+    ;
   },
   'When Played: Darth Vader multi then draw': async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
     await gameState.ResetGameStateLines()
-      .AddBase(1, cards.SOR.EchoBase)
-      .AddLeader(1, cards.SOR.MoffTarkinLeader)
-      .AddBase(2, cards.SOR.TarkinTown)
-      .AddLeader(2, cards.SOR.MoffTarkinLeader)
+      .AddBase(1, cards.SOR.EchoBase).AddLeader(1, cards.SOR.MoffTarkinLeader)
+      .AddBase(2, cards.SOR.TarkinTown).AddLeader(2, cards.SOR.MoffTarkinLeader)
       .FillResources(1, cards.SOR.BFMarine, 10)
       .AddCardToHand(1, cards.SOR.DarthVader)
       .AddCardToHand(1, cards.SHD.NoBargain)
@@ -87,39 +71,57 @@ export const WhenPlayedCases = {
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
-    await browser.waitForElementPresent(com.MyHand)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.HandCard(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.PassButton).pause(p.ButtonPress)
-      .click(com.Checkbox(1)).pause(p.CheckBox)
-      .click(com.Checkbox(9)).pause(p.CheckBox)
-      .click(com.SubmitButton).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.YesNoButton("YES")).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.EnemyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-    ;
-
-    await browser.window.switchTo(player2Window).refresh()
-      .waitForElementPresent(com.ClaimButton)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.ClaimButton).pause(p.ButtonPress)
-    ;
-
-    await browser.window.switchTo(player1Window).refresh()
-      .waitForElementPresent(com.MyHand)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.HandCard(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).Pass()
+      .WaitForCheckboxes().Check(1).Check(9).Submit()
+      .ChooseYes().TargetTheirGroundUnit(1)
+      .SwitchPlayerWindow()
+      .WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow()
+      .WaitForMyHand().PlayFromHand(1)
+      .RunAsync()
     ;
     //assert
-    await browser.assert.not.elementPresent(com.EnemyGroundUnit(2));
-    await browser.assert.elementPresent(com.AllyGroundUnit(2));
-    await browser.assert.elementPresent(com.AllyGroundUnit(3));
-    await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 3), '3');
-    await browser.assert.attributeEquals(com.HandCardImg(1), 'alt', 'Phase-III Dark Trooper');
+    await gameplay.Assert()
+      .TheirGroundUnitIsGone(2)
+      .MyGroundUnitIsThere(2)
+      .MyGroundUnitIsThere(3)
+      .MyGroundUnitPieceEquals(1, 3, '3')
+      .MyHandCardIs(1, 'Phase-III Dark Trooper')
+      .RunAsync()
+    ;
+  },
+  'When Played: Darth Vader cant pull pilots as upgrades': async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SOR.EchoBase).AddLeader(1, cards.SOR.MoffTarkinLeader)
+      .AddBase(2, cards.SOR.TarkinTown).AddLeader(2, cards.SOR.MoffTarkinLeader)
+      .FillResources(1, cards.SOR.BFMarine, 10)
+      .AddCardToHand(1, cards.SOR.DarthVader)
+      .AddCardToDeck(1, cards.JTL.InterceptorAce)
+      .AddUnit(1, cards.SOR.TieLnFighter)
+      .AddUnit(2, cards.SOR.DSStormTrooper)
+      .AddUnit(2, cards.SOR.DSStormTrooper)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).Pass()
+      .WaitForCheckboxes().Check(1).Submit()
+      .ChooseYes().TargetTheirGroundUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    await gameplay.Assert()
+      .TheirGroundUnitIsGone(2)
+      .MyGroundUnitIsThere(1)
+      .MySpaceUnitIsThere(1)
+      .RunAsync()
+    ;
   },
   'When Played: Leia JTL lets Pilot attack': async function () {
     //arrange

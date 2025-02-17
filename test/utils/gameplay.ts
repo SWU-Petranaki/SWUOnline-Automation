@@ -103,6 +103,12 @@ export class GamePlay {
 
     return this;
   }
+
+  public WaitForCheckboxes() {
+    this.WaitFor(com.CheckboxPopup);
+
+    return this;
+  }
   //Clicks
   Click(selector: string) {
     this._asyncBrowser
@@ -165,6 +171,11 @@ export class GamePlay {
     return this;
   }
 
+  public ClickCheckbox(position: number) {
+    this.Click(com.Checkbox(position))._asyncBrowser.pause(p.CheckBox);
+
+    return this
+  }
   //Targets
   Target(selector: string) {
     this._asyncBrowser
@@ -278,7 +289,14 @@ export class GamePlay {
 
     return this;
   }
+  //Aliases
+  public PlayFromHand(position: number) {
+    return this.ClickHandCard(position);
+  }
 
+  public Check(position: number) {
+    return this.ClickCheckbox(position);
+  }
   //Assertions
   public Assert() {
     return this._assert;

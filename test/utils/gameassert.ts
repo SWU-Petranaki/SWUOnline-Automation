@@ -70,6 +70,12 @@ export class GameAssert {
     return this;
   }
 
+  public MyHandCardIs(position: number, text: string) {
+    this._gamePlay.___BrowsertAssert().attributeEquals(com.HandCardImg(position), 'alt', text);
+
+    return this;
+  }
+
   public MyGroundUnitIsThere(position: number) {
     this.ElementPresent(com.AllyGroundUnit(position));
 
@@ -169,6 +175,7 @@ export class GameAssert {
     return this;
   }
 
+
   TextEquals(selector: string, text: string) {
     this._gamePlay.___BrowsertAssert().textEquals(selector, text);
 
@@ -195,6 +202,30 @@ export class GameAssert {
 
   public TheirSpaceUnitPieceEquals(position: number, piece: number, text: string) {
     this.TextEquals(com.UnitDivPiece(com.EnemySpaceUnit(position), piece), text);
+
+    return this;
+  }
+
+  public MyGroundUnitPieceIsSentinelToken(position: number, piece: number) {
+    this._gamePlay.___BrowsertAssert().attributeContains(com.UnitDivPiece(com.AllyGroundUnit(position), piece), 'style', src.SentinelToken)
+
+    return this;
+  }
+
+  public MySpaceUnitPieceIsSentinelToken(position: number, piece: number) {
+    this._gamePlay.___BrowsertAssert().attributeContains(com.UnitDivPiece(com.AllySpaceUnit(position), piece), 'style', src.SentinelToken)
+
+    return this;
+  }
+
+  public TheirGroundUnitPieceIsSentinelToken(position: number, piece: number) {
+    this._gamePlay.___BrowsertAssert().attributeContains(com.UnitDivPiece(com.EnemyGroundUnit(position), piece), 'style', src.SentinelToken)
+
+    return this;
+  }
+
+  public TheirSpaceUnitPieceIsSentinelToken(position: number, piece: number) {
+    this._gamePlay.___BrowsertAssert().attributeContains(com.UnitDivPiece(com.EnemySpaceUnit(position), piece), 'style', src.SentinelToken)
 
     return this;
   }

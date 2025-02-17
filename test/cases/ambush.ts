@@ -13,10 +13,8 @@ export const AmbushCases = {
   const gameState = new GameState(gameName);
   await gameState.LoadGameStateLinesAsync();
   await gameState.ResetGameStateLines()
-    .AddBase(1, cards.SOR.ECL)
-    .AddLeader(1, cards.SOR.SabineLeader)
-    .AddBase(2, cards.SOR.ECL)
-    .AddLeader(2, cards.SOR.SabineLeader)
+    .AddBase(1, cards.SOR.ECL).AddLeader(1, cards.SOR.SabineLeader)
+    .AddBase(2, cards.SOR.ECL).AddLeader(2, cards.SOR.SabineLeader)
     .FillResources(1, cards.SOR.BFMarine, 2)
     .AddCardToHand(1, cards.SOR.SabineUnit)
     .AddUnit(1, cards.SOR.SabineUnit, false, false)
