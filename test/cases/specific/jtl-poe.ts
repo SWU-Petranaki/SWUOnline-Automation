@@ -8,9 +8,8 @@ import {
   customAsserts
 } from '../../utils/util';
 
-
 export const JTLPoeCases = {
-  'Poe Leader: No resources, cant jump': async function () {
+  Poe_Leader_no_resources_cant_jump: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -36,7 +35,7 @@ export const JTLPoeCases = {
       .RunAsync()
     ;
   },
-  'Poe Leader: Deploy defeat cant deploy next turn': async function () {
+  Poe_Leader_deploy_defeat_cant_deploy_next_turn: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -93,7 +92,7 @@ export const JTLPoeCases = {
       .MySpaceUnitPieceEquals(1, 1, 'POE DAMERON')
       .RunAsync()
   },
-  'Poe Leader: mass testing interactions': async function () {
+  Poe_Leader_mass_testing_interactions: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -260,7 +259,7 @@ export const JTLPoeCases = {
     //assert
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 1), 'POE DAMERON');
   },
-  'Poe Leader: Eject combo': async function () {
+  Poe_Leader_eject_combo: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -333,7 +332,7 @@ export const JTLPoeCases = {
     await browser.assert.textEquals(com.MyBaseDamage, '9');
     await browser.assert.textEquals(com.TheirBaseDamage, '9');
   },
-  'Poe Leader: Eject combo; defeated still deploys': async function () {
+  Poe_Leader_eject_combo_defeated_still_deploys: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -403,7 +402,7 @@ export const JTLPoeCases = {
     await browser.assert.elementPresent(com.AllyGroundUnit(1));
     await customAsserts.UnitIs(browser, cards.JTL.PoeLeaderUnit, com.AllyGroundUnit(1));
   },
-  'JTL: Leia Poe ejected ground unit': async function () {
+  Leia_JTL_Poe_on_ejected_ground_unit: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -434,7 +433,7 @@ export const JTLPoeCases = {
       .RunAsync()
     ;
   },
-  'JTL: Leia Poe deployed ground unit': async function () {
+  Leia_JTL_Poe_on_deployed_ground_unit: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -465,7 +464,7 @@ export const JTLPoeCases = {
       .RunAsync()
     ;
   },
-  'JTL: Leia Poe space unit': async function () {
+  Leia_JTL_Poe_on_space_unit: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -497,7 +496,7 @@ export const JTLPoeCases = {
       .RunAsync()
     ;
   },
-  'Poe_Leader_Merc_Gunship_interactions':  async function () {
+  Poe_Leader_Merc_Gunship_interactions:  async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

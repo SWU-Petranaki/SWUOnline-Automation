@@ -1,4 +1,5 @@
 import fsp from 'fs/promises';
+import fs from 'fs';
 import {
   cs,
   g
@@ -18,6 +19,10 @@ export class GameState {
     }
     this._gameName = gameName;
     this._uniqueIdCounter = 1;
+  }
+
+  public static GameExists(game: string) {
+    return fs.existsSync(`${process.env.SWUONLINE_ROOT_PATH || '../SWUOnline'}/Games/${game}/gamestate.txt`);
   }
 
   public SubcardBuilder() {

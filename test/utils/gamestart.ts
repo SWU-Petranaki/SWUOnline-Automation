@@ -21,7 +21,7 @@ export const init: NightwatchTestHook = async (browser, done) => {
 
   setPlayer1Window(await browser.window.getHandle());
   const localRunningGame = process.env.LOCAL_RUN || '';
-  if(Number.isInteger(Number.parseInt(localRunningGame))) {
+  if(Number.isInteger(Number.parseInt(localRunningGame)) && GameState.GameExists(localRunningGame)) {
     const gameState = new GameState(localRunningGame);
     await gameState.LoadGameStateLinesAsync();
     const p1AuthKey = gameState.GetAuthKey(1);

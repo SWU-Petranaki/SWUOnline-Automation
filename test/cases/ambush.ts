@@ -25,12 +25,9 @@ export const AmbushCases = {
   //act
   const gameplay = new GamePlay(browser);
   await gameplay
-     .WaitForMyHand()
-     .ClickMyBase()
-     .TargetMyHandCard(1)
-     .ClickMyGroundUnit(1)
-     .ChooseYes()
-     .TargetTheirGroundUnit(1)
+     .WaitForMyHand().ClickMyBase()
+     .TargetMyHandCard(1).TargetMyGroundUnit(1)
+     .ChooseYes().TargetTheirGroundUnit(1)
      .RunAsync()
   ;
   //assert
@@ -57,13 +54,10 @@ export const AmbushCases = {
     //act
     const gameplay = new GamePlay(browser);
     await gameplay
-      .WaitForMyBase()
-      .ClickMyBase()
-      .TargetMyHandCard(1)
-      .Pass()
-      .ChooseYes()
+      .WaitForMyBase().ClickMyBase().TargetMyHandCard(1)
+      .Pass().ChooseYes()
       .SwitchPlayerWindow()
-      .TargetTheirGroundUnit(1)
+      .WaitForTheirGroundUnit(1).TargetTheirGroundUnit(1)
       .RunAsync()
     ;
     //assert
@@ -90,17 +84,11 @@ export const AmbushCases = {
     //act
     const gameplay = new GamePlay(browser);
     await gameplay
-      .WaitForMyHand()
-      .ClickHandCard(2)
-      .TargetMyHandCard(1)
-      .ClickLayerTile(1)
-      .ClickLayerTile(3)
-      .Pass()
-      .ChooseYes()
-      .Pass()
+      .WaitForMyHand().ClickHandCard(2).TargetMyHandCard(1)
+      .ClickLayerTile(1).ClickLayerTile(3)
+      .Pass().ChooseYes().Pass()
       .SwitchPlayerWindow()
-      .TargetTheirGroundUnit(1)
-      .TargetTheirGroundUnit(1)
+      .WaitForTheirGroundUnit(1).TargetTheirGroundUnit(1).TargetTheirGroundUnit(1)
       .RunAsync()
     ;
     //assert
