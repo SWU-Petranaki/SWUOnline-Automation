@@ -147,7 +147,7 @@ export const ControlCases = {
     await browser.assert.elementPresent(com.EnemyGroundUnit(1));
     await browser.assert.not.elementPresent(com.AllyGroundUnit(2));
   },
-  'Control: Mercenary Gunship both players can take control': async function () {
+  'Mercenary_Gunship_both_players_can_take_control': async function() {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -253,5 +253,34 @@ export const ControlCases = {
     ;
     //assert
     await customAsserts.UnitIsNotPlayable(browser, com.EnemySpaceUnit(2));
+  },
+  'Sly_Moore_cant_take_token_with_pilot_leader': async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.YellowBase)
+      .AddLeader(1, cards.SHD.CadBaneLeader)
+      .AddBase(2, cards.generic.YellowBase)
+      .AddLeader(2, cards.JTL.AsajjLeader, true)
+      .FillResources(1, cards.TWI.SlyMoore, 3)
+      .AddCardToHand(1, cards.TWI.SlyMoore)
+      .AddUnit(2, cards.JTL.TieFighter, false, false, 0,
+        gameState.SubcardBuilder().AddPilot(cards.JTL.AsajjLeaderUnit, 2, true).Build())
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().ClickHandCard(1)
+      .TargetTheirSpaceUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    await gameplay.Assert()
+      .TheirSpaceUnitIsGone(1)
+      .TheirLeaderHasUsedEpicAction()
+      .RunAsync()
+    ;
   }
 }

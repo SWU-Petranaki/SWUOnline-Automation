@@ -497,4 +497,67 @@ export const JTLPoeCases = {
       .RunAsync()
     ;
   },
+  'Poe_Leader_Merc_Gunship_interactions':  async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("9 5")
+      .AddBase(1, cards.SOR.ECL).AddLeader(1, cards.JTL.PoeLeader)
+      .AddBase(2, cards.generic.GreenBase).AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SOR.BFMarine, 6)
+      .FillResources(2, cards.SOR.BFMarine, 13)
+      .AddCardToDeck(1, cards.SOR.BFMarine, 2)
+      .AddCardToDeck(2, cards.SOR.BFMarine, 2)
+      .AddCardToHand(2, cards.SOR.Traitorous)
+      .AddCardToHand(2, cards.TWI.SlyMoore)
+      .AddUnit(1, cards.SHD.MercenaryGunship, false, false)
+      .AddUnit(1, cards.SHD.MercenaryGunship)
+      .AddUnit(1, cards.JTL.XWing)
+      .AddUnit(2, cards.SHD.MercenaryGunship)
+      .AddUnit(2, cards.JTL.XWing)
+      .AddUnit(2, cards.JTL.XWing)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1).TargetMySpaceUnit(1)
+      .SwitchPlayerWindow()
+      .WaitForTheirSpaceUnit(1).ClickTheirSpaceUnit(1)
+      .SwitchPlayerWindow()
+      .WaitForTheirSpaceUnit(4).ClickTheirSpaceUnit(4).MultiChoiceButton(2).TargetMySpaceUnit(1)
+      .SwitchPlayerWindow()
+      .WaitForMyHand().ClickHandCard(1).TargetTheirSpaceUnit(1)
+      .SwitchPlayerWindow()
+      .WaitForTheirSpaceUnit(5).ClickTheirSpaceUnit(5)
+      .SwitchPlayerWindow()
+      .WaitForMySpaceUnit(3).ClickMySpaceUnit(3).TargetTheirSpaceUnit(2)
+      .SwitchPlayerWindow()
+      .WaitForMySpaceUnit(2).ClickMySpaceUnit(2).TargetTheirBase()
+      .SwitchPlayerWindow()
+      .WaitForTheirSpaceUnit(2).ClickTheirSpaceUnit(2)
+      .SwitchPlayerWindow()
+      .WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow()
+      .WaitForPassButton().PassTurn()
+      .SwitchPlayerWindow()
+      .WaitForPassButton().Pass()
+      .SwitchPlayerWindow()
+      .WaitForPassButton().Pass()
+      .SwitchPlayerWindow()
+      .WaitForTheirSpaceUnit(4).ClickTheirSpaceUnit(4).MultiChoiceButton(2)
+      .SwitchPlayerWindow()
+      .WaitForMyHand().ClickHandCard(1)
+      .SwitchPlayerWindow()
+      .RunAsync()
+    ;
+    //assert
+    await gameplay.Assert()
+      .TheirSpaceUnitIsNotPlayable(4)
+      .TheirBaseDamageEquals('10')
+      .MyBaseDamageEquals('9')
+      .RunAsync()
+    ;
+  }
 }

@@ -22,7 +22,8 @@ export class GamePlay {
   }
 
   public async RunAsync() {
-    return await this._asyncBrowser.pause(p.WaitForEffect);
+    return await this._asyncBrowser
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect);
   }
 
   public ___Debug() {
@@ -86,8 +87,14 @@ export class GamePlay {
     return this;
   }
 
-  public WaitForMyUnit(arena:"GROUND"|"SPACE", position: number = 1) {
-    this.WaitFor(arena == "GROUND" ? com.AllyGroundUnit(position) : com.AllySpaceUnit(position));
+  public WaitForTheirGroundUnit(position: number = 1) {
+    this.WaitFor(com.EnemyGroundUnit(position));
+
+    return this;
+  }
+
+  public WaitForTheirSpaceUnit(position: number = 1) {
+    this.WaitFor(com.EnemySpaceUnit(position));
 
     return this;
   }
