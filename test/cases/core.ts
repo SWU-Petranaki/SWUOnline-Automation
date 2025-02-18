@@ -1,4 +1,5 @@
 import { cards } from '../utils/cards';
+import { GamePlay } from '../utils/gameplay';
 import { GameState } from '../utils/gamestate';
 import {
   com, p,
@@ -100,5 +101,34 @@ export const CoreMechanicsCases = {
     //assert
     await browser.assert.not.elementPresent(com.AllyGroundUnit(4));
     await browser.assert.textEquals(com.MyDiscardCount, '1');
-  }
+  },
+  'Leader_upgrade_under_their_control_aspects': async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage('9 16')
+      .AddBase(1, cards.SHD.JabbasPalace)
+      .AddLeader(1, cards.JTL.PoeLeader, true)
+      .AddBase(2, cards.SOR.EchoBase)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SOR.CraftySmuggler, 2)
+      .AddCardToHand(1, cards.SOR.GreenSquadAWing)
+      .AddUnit(2, cards.SHD.MercenaryGunship, false, true, 0,
+        gameState.SubcardBuilder().AddPilot(cards.JTL.PoeLeader, 1).Build())
+      .FlushAsync(com.BeginTestCallback)
+      ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand()
+      .PlayFromHand(1)
+      .RunAsync()
+    ;
+    //assert
+    await gameplay.Assert()
+      .MySpaceUnitIsThere(1)
+      .RunAsync()
+    ;
+  },
 }
