@@ -254,7 +254,7 @@ export const ControlCases = {
     //assert
     await customAsserts.UnitIsNotPlayable(browser, com.EnemySpaceUnit(2));
   },
-  'Sly_Moore_cant_take_token_with_pilot_leader': async function () {
+  Sly_Moore_cant_take_token_with_pilot_leader: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -273,7 +273,6 @@ export const ControlCases = {
     const gameplay = new GamePlay(browser);
     await gameplay
       .WaitForMyHand().ClickHandCard(1)
-      .TargetTheirSpaceUnit(1)
       .RunAsync()
     ;
     //assert
