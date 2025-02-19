@@ -256,8 +256,8 @@ export const cs = {//copied from Constants.php
   NamesOfCardsPlayed: 60, //Amulet of Echoes
   NumFirstOrderPlayed: 61,
   PlayedAsInstant: 62, //If the card was played as an instant -- some things like banish we lose memory of as soon as it is removed from the zone
-  LeaderUpgradeAbilityID1: 63,
-  LeaderUpgradeAbilityID2: 64,
+  CachedLeader1EpicAction: 63,
+  CachedLeader2EpicAction: 64,
   HitsWithSword: 65,
   NumClonesPlayed: 66,
   UnitsThatAttackedBase: 67,

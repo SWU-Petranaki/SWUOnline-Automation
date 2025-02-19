@@ -159,8 +159,8 @@ export class GameState {
     arr[cs.NamesOfCardsPlayed] = "-";
     arr[cs.NumFirstOrderPlayed] = '0';
     arr[cs.PlayedAsInstant] = '0';
-    arr[cs.LeaderUpgradeAbilityID1] = "-";
-    arr[cs.LeaderUpgradeAbilityID2] = "-";
+    arr[cs.CachedLeader1EpicAction] = "0";
+    arr[cs.CachedLeader2EpicAction] = "0";
     arr[cs.HitsWithSword] = '0';
     arr[cs.NumClonesPlayed] = '0';
     arr[cs.UnitsThatAttackedBase] = "-";
