@@ -107,6 +107,7 @@ export const cards = {
     POTDS: '0176921487',
     Vanquish: '6472095064',
     SneakAttack: '3426168686',
+    Bamboozle: '9644107128',
   },
   SHD: {
     //bases

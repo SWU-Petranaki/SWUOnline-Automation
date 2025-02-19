@@ -76,26 +76,26 @@ export class GameAssert {
     return this;
   }
 
-  public MyGroundUnitIsThere(position: number) {
-    this.ElementPresent(com.AllyGroundUnit(position));
+  public MyGroundUnitIsThere(position: number, exhausted: boolean = false) {
+    this.ElementPresent(com.AllyGroundUnit(position, exhausted));
 
     return this;
   }
 
-  public MySpaceUnitIsThere(position: number) {
-    this.ElementPresent(com.AllySpaceUnit(position));
+  public MySpaceUnitIsThere(position: number, exhausted: boolean = false) {
+    this.ElementPresent(com.AllySpaceUnit(position, exhausted));
 
     return this;
   }
 
-  public TheirGroundUnitIsThere(position: number) {
-    this.ElementPresent(com.EnemyGroundUnit(position));
+  public TheirGroundUnitIsThere(position: number, exhausted: boolean = false) {
+    this.ElementPresent(com.EnemyGroundUnit(position, exhausted));
 
     return this;
   }
 
-  public TheirSpaceUnitIsThere(position: number) {
-    this.ElementPresent(com.EnemySpaceUnit(position));
+  public TheirSpaceUnitIsThere(position: number, exhausted: boolean = false) {
+    this.ElementPresent(com.EnemySpaceUnit(position, exhausted));
 
     return this;
   }

@@ -309,5 +309,32 @@ export const BounceCases = {
     ;
     //assert
     await customAsserts.UnitIsNotPlayable(browser, com.EnemySpaceUnit(2));
+  },
+  Bamboozle_on_pilot_leader_not_in_hand: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SOR.EchoBase).AddLeader(1, cards.JTL.HanSoloLeader)
+      .AddBase(2, cards.generic.BlueBase).AddLeader(2, cards.JTL.LukeLeader, true)
+      .FillResources(1, cards.SOR.Waylay, 2)
+      .AddCardToHand(1, cards.SOR.Bamboozle)
+      .AddUnit(2, cards.SHD.CartelTurncoat, false, true, 0,
+        gameState.SubcardBuilder().AddPilot(cards.JTL.LukeLeaderUnit, 2, true).Build())
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().ClickHandCard(1).TargetTheirSpaceUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    await gameplay.Assert()
+      .TheirSpaceUnitIsThere(1, true)
+      .TheirLeaderHasUsedEpicAction()
+      .TheirHandIsEmpty()
+      .RunAsync()
+    ;
   }
 }
