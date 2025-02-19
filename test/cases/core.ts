@@ -9,7 +9,7 @@ import {
 } from '../utils/util';
 
 export const CoreMechanicsCases = {
-  'Cards go in Discard': async function() {
+  Cards_go_in_Discard: async function() {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -69,7 +69,7 @@ export const CoreMechanicsCases = {
     //assert
     await browser.assert.attributeEquals(com.MyDiscardCard(1), 'src', src.Concat(cards.SOR.CraftySmuggler));
   },
-  'Unique units trigger unique rule': async function() {
+  Unique_units_trigger_unique_rule: async function() {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -102,7 +102,7 @@ export const CoreMechanicsCases = {
     await browser.assert.not.elementPresent(com.AllyGroundUnit(4));
     await browser.assert.textEquals(com.MyDiscardCount, '1');
   },
-  'Leader_upgrade_under_their_control_aspects': async function() {
+  Leader_upgrade_under_their_control_aspects: async function() {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

@@ -8,7 +8,7 @@ import {
 } from '../utils/util';
 
 export const BoardWipeCases = {
-  'Iden Versio Leader Unit SLB': async function () {
+  Iden_Versio_Leader_Unit_SLB: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -45,7 +45,7 @@ export const BoardWipeCases = {
       .RunAsync()
     ;
   },
-  'Iden Versio Leader Unit SLB Two Idens': process.env.FULL_REGRESSION !== 'true' ? '' : async function () {
+  Iden_Versio_Leader_Unit_SLB_Two_Idens: process.env.FULL_REGRESSION !== 'true' ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -81,7 +81,7 @@ export const BoardWipeCases = {
       .RunAsync()
     ;
   },
-  'Iden Versio Leader Unit Christophsis': async function () {
+  Iden_Versio_Leader_Unit_Christophsis: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -116,7 +116,7 @@ export const BoardWipeCases = {
     await browser.assert.textEquals(com.MyBaseDamage, '15');
     await browser.assert.textEquals(com.TheirBaseDamage, '9');
   },
-  'Iden Versio Leader Unit Christophsis Two Idens': process.env.FULL_REGRESSION !== 'true' ? '' : async function () {
+  Iden_Versio_Leader_Unit_Christophsis_Two_Idens: process.env.FULL_REGRESSION !== 'true' ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -153,7 +153,7 @@ export const BoardWipeCases = {
       .RunAsync()
     ;
   },
-  'Gideon Hask gives XP to rescued captive': async function () {
+  Gideon_Hask_gives_XP_to_rescued_captive: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -195,7 +195,7 @@ export const BoardWipeCases = {
       .RunAsync()
     ;
   },
-  'Two Gideon Hasks give XP to rescued captives': async function () {
+  Two_Gideon_Hasks_give_XP_to_rescued_captives: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

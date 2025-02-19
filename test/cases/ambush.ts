@@ -8,7 +8,7 @@ import {
 } from '../utils/util';
 
 export const AmbushCases = {
-  'Ambush: ECL Sabine Ping Shield': async function () {
+  ECL_Sabine_Ping_Shield: async function () {
   //arrange
   const gameState = new GameState(gameName);
   await gameState.LoadGameStateLinesAsync();
@@ -37,7 +37,7 @@ export const AmbushCases = {
     .RunAsync()
   ;
   },
-  'Ambush: Rukh into Krayt Dragon with ECL': async function () {
+  Rukh_into_Krayt_Dragon_with_ECL: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -67,7 +67,7 @@ export const AmbushCases = {
       .RunAsync()
     ;
   },
-  'Ambush: Rukh into Krayt Dragon with TI': async function () {
+  Rukh_into_Krayt_Dragon_with_TI: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

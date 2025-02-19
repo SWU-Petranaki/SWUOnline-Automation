@@ -10,7 +10,7 @@ import {
 } from '../utils/util';
 
 export const BounceCases = {
-  'Bounce: Waylay Tokens': async function () {
+  Waylay_Tokens: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -48,7 +48,7 @@ export const BounceCases = {
       .RunAsync()
     ;
   },
-  'MaKlounkee cannot bounce own piloted leader unit': async function () {
+  MaKlounkee_cannot_bounce_own_piloted_leader_unit: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -79,7 +79,7 @@ export const BounceCases = {
       .RunAsync()
     ;
   },
-  'Bounce: Evacuate unique captives and ignore leaders': async function () {
+  Evacuate_unique_captives_and_ignore_leaders: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -113,7 +113,7 @@ export const BounceCases = {
       .RunAsync()
     ;
   },
-  'Bounce: Waylay cant bounce piloted leader unit': async function () {
+  Waylay_cant_bounce_piloted_leader_unit: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -139,7 +139,7 @@ export const BounceCases = {
     //assert
     await customAsserts.UnitIsNotPlayable(browser, com.EnemySpaceUnit(2));
   },
-  'Bounce: Bright Hope cant bounce piloted leader unit': async function () {
+  Bright_Hope_cant_bounce_piloted_leader_unit: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -164,7 +164,7 @@ export const BounceCases = {
     //assert
     await customAsserts.UnitIsNotPlayable(browser, com.AllyGroundUnit(2));
   },
-  'Bounce: Cunning cant bounce piloted leader unit': async function () {
+  Cunning_cant_bounce_piloted_leader_unit: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -197,7 +197,7 @@ export const BounceCases = {
     //assert
     await customAsserts.UnitIsNotPlayable(browser, com.EnemyGroundUnit(2));
   },
-  'Bounce: Cantina Bouncer cant bounce piloted leader unit': async function () {
+  Cantina_Bouncer_cant_bounce_piloted_leader_unit: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -223,7 +223,7 @@ export const BounceCases = {
     //assert
     await customAsserts.UnitIsNotPlayable(browser, com.EnemyGroundUnit(2));
   },
-  'Bounce: Enfys Nest cant bounce piloted leader unit': async function () {
+  Enfys_Nest_cant_bounce_piloted_leader_unit: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -249,7 +249,7 @@ export const BounceCases = {
     //assert
     await customAsserts.UnitIsNotPlayable(browser, com.EnemySpaceUnit(1));
   },
-  'Bounce: Clear the Field cant bounce piloted leader unit': async function () {
+  Clear_the_Field_cant_bounce_piloted_leader_unit: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -284,7 +284,7 @@ export const BounceCases = {
     await browser.assert.elementsCount(com.TheirHandDivs, 2);
     await browser.assert.textEquals(com.UnitDivPiece(com.EnemySpaceUnit(1), 1), 'ASAJJ VENTRESS');
   },
-  'Spare the Target cant bounce piloted leader unit': async function () {
+  Spare_the_Target_cant_bounce_piloted_leader_unit: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
