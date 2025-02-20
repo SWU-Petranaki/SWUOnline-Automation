@@ -127,7 +127,7 @@ export const cards = {
     GideonLeaderUnit: '4484318969',
     HunterLeaderUnit: 'c9ff9863d7',
     BobaDaimyoLeaderUnit: '919facb76d',
-    MandoLeader: '6421006753',
+    MandoLeader: '9005139831',
     MandoLeaderUnit: '4088c46c4d',
     //units
     KraytDragon: '4935319539',
