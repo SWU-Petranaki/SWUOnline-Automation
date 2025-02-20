@@ -306,7 +306,7 @@ export class GameAssert {
     browser.getText(com.GameLog)
       .then((l) => {
         const lastLog = l.split('\n').slice(-1*last)[0];
-        this._gamePlay.___BrowsertAssert().equal(lastLog, text);
+        this._gamePlay.WaitFor(com.GameChat).___BrowsertAssert().equal(lastLog, text);
       });
 
     return this;
