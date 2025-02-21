@@ -1,4 +1,5 @@
 import { cards } from '../../utils/cards';
+import { GameAssert } from '../../utils/gameassert';
 import { GamePlay } from '../../utils/gameplay';
 import { GameState } from '../../utils/gamestate';
 import {
@@ -30,10 +31,7 @@ export const JTLPoeCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .LastLogEquals("Not enough resources to pay for that. Reverting gamestate.", 1)
-      .RunAsync()
-    ;
+    await GameAssert.LastLogEqualsAsync(browser, "Not enough resources to pay for that. Reverting gamestate.");
   },
   Poe_Leader_deploy_defeat_cant_deploy_next_turn: async function () {
     //arrange
@@ -60,10 +58,7 @@ export const JTLPoeCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .LastLogEquals("You don't control enough resources to deploy that leader; reverting the game state.", 2)
-      .RunAsync()
-    ;
+    await GameAssert.LastLogEqualsAsync(browser, "You don't control enough resources to deploy that leader; reverting the game state.", 2);
     //act
     await gameplay
       .WaitForClaimButton().ClaimInitiative()

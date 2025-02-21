@@ -131,4 +131,44 @@ export const CoreMechanicsCases = {
       .RunAsync()
     ;
   },
+  'Piloting_yes_then_no': async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage('9 16')
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.JTL.LandoLeader)
+      .AddBase(2, cards.SOR.EchoBase)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SOR.CraftySmuggler, 8)
+      .AddCardToHand(1, cards.JTL.NienNunb)
+      .AddCardToHand(1, cards.JTL.PaigeTico)
+      .AddCardToHand(1, cards.JTL.Chewbacca)
+      .AddUnit(1, cards.JTL.XWing)
+      .AddUnit(1, cards.JTL.XWing)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).ChooseNo()
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1).ChooseYes()
+      .TargetMySpaceUnit(2).TargetMyHandCard(1).ChooseNo()
+      .RunAsync()
+    ;
+    //assert
+    await gameplay.Assert()
+      .MySpaceUnitIsThere(1)
+      .MySpaceUnitIsThere(2)
+      .MyGroundUnitIsThere(1)
+      .MyGroundUnitIsThere(2)
+      .MyResourcesEquals("0/8")
+      .TheirResourcesEquals("0/0")
+      .MyDiscardIsEmpty()
+      .TheirDiscardIsEmpty()
+      .RunAsync()
+    ;
+  }
 }

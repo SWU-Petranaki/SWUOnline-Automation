@@ -1,3 +1,4 @@
+import { NightwatchAPI } from "nightwatch";
 import { GamePlay } from "./gameplay";
 import { com, src } from "./util";
 
@@ -302,13 +303,8 @@ export class GameAssert {
     return this;
   }
 
-  public LastLogEquals(text: string, last: number = 1) {
-    browser.getText(com.GameLog)
-      .then((l) => {
-        const lastLog = l.split('\n').slice(-1*last)[0];
-        this._gamePlay.WaitFor(com.GameChat).___BrowsertAssert().equal(lastLog, text);
-      });
-
-    return this;
+  public static async LastLogEqualsAsync(browser: NightwatchAPI, text: string, last: number = 1) {
+    const lastLog = (await browser.getText(com.GameLog)).split('\n').slice(-1*last)[0];
+    await browser.assert.equal(lastLog, text);
   }
 }
