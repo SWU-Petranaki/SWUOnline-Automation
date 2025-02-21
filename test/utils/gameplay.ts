@@ -234,6 +234,7 @@ export class GamePlay {
   }
   //Core Actions
   public Pass() {
+    this._asyncBrowser.moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect);
     this.Click(com.PassButton)._asyncBrowser.pause(p.ButtonPress);
 
     return this;

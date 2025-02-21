@@ -93,6 +93,7 @@ export const cards = {
     FettsFirespray: '4300219753',
     //upgrades
     Traitorous: '8055390529',
+    MakeAnOpening: '3208391441',
     //events
     Vigilance: '8615772965',
     Command: '0073206444',
@@ -156,6 +157,7 @@ export const cards = {
     VambraceFlameThrower: '6471336466',
     MandosRifle: '0754286363',
     LegalAuthority: '8877249477',
+    Wanted: '4117365450',
     //events
     TimelyIntervention: '6847268098',
     NoBargain: '7354795397',
@@ -245,6 +247,7 @@ export const cards = {
     //units
     Leia: '7924461681',
     MoffGideon: '7312183744',
+    FOStormTrooper: '6861397107',
     //pilots
     Chewbacca: '7208848194',
     Dengar: '3282713547',

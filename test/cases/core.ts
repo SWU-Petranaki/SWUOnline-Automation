@@ -102,7 +102,7 @@ export const CoreMechanicsCases = {
     await browser.assert.not.elementPresent(com.AllyGroundUnit(4));
     await browser.assert.textEquals(com.MyDiscardCount, '1');
   },
-  'Leader_upgrade_under_their_control_aspects': async function() {
+  Leader_upgrade_under_their_control_aspects: async function() {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -131,7 +131,7 @@ export const CoreMechanicsCases = {
       .RunAsync()
     ;
   },
-  'Piloting_yes_then_no': async function() {
+  Piloting_yes_then_no: async function() {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -141,7 +141,7 @@ export const CoreMechanicsCases = {
       .AddLeader(1, cards.JTL.LandoLeader)
       .AddBase(2, cards.SOR.EchoBase)
       .AddLeader(2, cards.JTL.HanSoloLeader)
-      .FillResources(1, cards.SOR.CraftySmuggler, 8)
+      .FillResources(1, cards.SOR.BFMarine, 8)
       .AddCardToHand(1, cards.JTL.NienNunb)
       .AddCardToHand(1, cards.JTL.PaigeTico)
       .AddCardToHand(1, cards.JTL.Chewbacca)
@@ -168,6 +168,43 @@ export const CoreMechanicsCases = {
       .TheirResourcesEquals("0/0")
       .MyDiscardIsEmpty()
       .TheirDiscardIsEmpty()
+      .RunAsync()
+    ;
+  },
+  Piloting_yes_then_regular_unit_with_triggers: async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage('9 16')
+      .AddBase(1, cards.generic.YellowBase)
+      .AddLeader(1, cards.JTL.BobaFettLeader)
+      .AddBase(2, cards.generic.BlueBase)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SOR.DSStormTrooper, 3)
+      .FillResources(2, cards.SOR.CraftySmuggler, 3)
+      .AddCardToHand(1, cards.JTL.BobaFettUnit)
+      .AddCardToHand(1, cards.JTL.FOStormTrooper)
+      .AddCardToHand(2, cards.TWI.PerilousPosition)
+      .AddUnit(1, cards.JTL.TieFighter)
+      .AddUnit(1, cards.JTL.TieFighter)
+      .AddUnit(2, cards.SOR.CraftySmuggler)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).ChooseYes().TargetMySpaceUnit(2).TargetTheirGroundUnit(1)
+      .Pass().ChooseNo()
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1).TargetTheirSpaceUnit(2)
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1)
+      .RunAsync()
+    ;
+    //assert
+    await gameplay.Assert()
+      .MySpaceUnitIsThere(1)
+      .MySpaceUnitIsThere(2)
+      .MyGroundUnitIsThere(1)
       .RunAsync()
     ;
   }

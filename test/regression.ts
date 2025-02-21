@@ -20,15 +20,16 @@ import { DefeatUpgradeCases } from './cases/defeat-upgrade';
 import { RareBasesCases } from './cases/rare-bases';
 import { LeaderAbilitySORCases } from './cases/leader-ability-sor';
 import { LeaderUnitSORCases } from './cases/leader-unit-sor';
-import { LeaderUnitSHDCases } from './cases/leader-unit-shd';
-import { LeaderUnitTWICases } from './cases/leader-unit-twi';
 import { SpecificSORCases } from './cases/specific/sor';
+import { LeaderAbilitySHDCases } from './cases/leader-ability-shd';
+import { LeaderUnitSHDCases } from './cases/leader-unit-shd';
+import { SpecificSHDCases } from './cases/specific/shd';
 import { BountyCases } from './cases/bounty';
 import { SmuggleCases } from './cases/smuggle';
-import { SpecificSHDCases } from './cases/specific/shd';
-import { LeaderAbilityTWICases } from './cases/leader-ability-twi';
 import { ExploitCases } from './cases/exploit';
 import { CloneCases } from './cases/clone';
+import { LeaderUnitTWICases } from './cases/leader-unit-twi';
+import { LeaderAbilityTWICases } from './cases/leader-ability-twi';
 import { SpecificTWICases } from './cases/specific/twi';
 import { PilotJTLCases } from './cases/pilots';
 import { IndirectDamageCases } from './cases/indirect-damage';
@@ -63,6 +64,7 @@ const home: NightwatchTests = {
   ...LeaderAbilitySORCases,
   ...LeaderUnitSORCases,
   ...SpecificSORCases,
+  ...LeaderAbilitySHDCases,
   ...LeaderUnitSHDCases,
   ...SpecificSHDCases,
   ...LeaderAbilityTWICases,

@@ -27,7 +27,11 @@ export class BugReportFetch {
 
   static async LoadBugReportData(browser: NightwatchAPI, localRunningGame: string) {
     const text = await browser
-      .url(process.env.PROD_URL + '/zzBeginTurnBugAPI.php?bugReport=' + process.env.BUG_REPORT)
+      .url(process.env.PROD_URL + (
+        process.env.BEGINTURN
+        ? '/zzBeginTurnBugAPI.php?bugReport='
+        : '/zzBugAPI.php?bugReport='
+       ) + process.env.BUG_REPORT)
       .getText(com.BugReportData)
     ;
     const data = text.split('\n').join('\r\n');
