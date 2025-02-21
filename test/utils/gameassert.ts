@@ -89,6 +89,18 @@ export class GameAssert {
     return this;
   }
 
+  public MyGroundUnitIsNotExhausted(position: number) {
+    this.ElementNotPresent(com.AllyGroundUnit(position, true));
+
+    return this;
+  }
+
+  public MySpaceUnitIsNotExhausted(position: number) {
+    this.ElementNotPresent(com.AllySpaceUnit(position, true));
+
+    return this;
+  }
+
   public TheirGroundUnitIsThere(position: number, exhausted: boolean = false) {
     this.ElementPresent(com.EnemyGroundUnit(position, exhausted));
 
@@ -97,6 +109,18 @@ export class GameAssert {
 
   public TheirSpaceUnitIsThere(position: number, exhausted: boolean = false) {
     this.ElementPresent(com.EnemySpaceUnit(position, exhausted));
+
+    return this;
+  }
+
+  public TheirGroundUnitIsNotExhausted(position: number) {
+    this.ElementNotPresent(com.EnemyGroundUnit(position, true));
+
+    return this;
+  }
+
+  public TheirSpaceUnitIsNotExhausted(position: number) {
+    this.ElementNotPresent(com.EnemySpaceUnit(position, true));
 
     return this;
   }

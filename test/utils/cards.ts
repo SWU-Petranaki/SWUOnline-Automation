@@ -90,6 +90,7 @@ export const cards = {
     Relentless: '3401690666',
     Devastator: '4631297392',
     AdmiralPiett: '4566580942',
+    FettsFirespray: '4300219753',
     //upgrades
     Traitorous: '8055390529',
     //events
