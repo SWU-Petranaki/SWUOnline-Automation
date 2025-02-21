@@ -240,6 +240,7 @@ export const cards = {
     ThrawnLeaderUnit: '53207e4131',
     PoeLeader: '8520821318',
     PoeLeaderUnit: '3eb545eb4b',
+    TrenchLeader: '3905028200',
     //units
     Leia: '7924461681',
     MoffGideon: '7312183744',
