@@ -19,6 +19,8 @@ export function setGameName(name: string) {
 
 export const com = {
     BeginTestCallback: async () => await browser.window.switchTo(player1Window).refresh(),
+    LoginButton: 'div.nav-bar-user li:nth-of-type(2) a.NavBarItem',
+    BugReportData: 'body > div:nth-of-type(2)',
     GameLog: 'div#gamelog',
     GameChat: 'input#chatText',
     DeckInput: 'input#fabdb',

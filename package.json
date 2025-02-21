@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "nightwatch ./test/bug-report.ts",
     "test": "nightwatch ./test/regression.ts --env headless --retries 3 --suiteRetries 1",
     "test:local": "nightwatch ./test/regression.ts --testcase 'Local Run'",
     "test:case": "nightwatch ./test/regression.ts --testcase"

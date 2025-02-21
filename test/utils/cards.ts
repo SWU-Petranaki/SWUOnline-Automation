@@ -276,6 +276,7 @@ export const cards = {
     Corvus: '0753794638',
     SabinesMP: '7325248681',
     ZyggStarHopper: '7389195577',
+    Invincible: '9958088138',
     //events
     ItsATrap: '0964312065',
     Commandeer: '8105698374',
