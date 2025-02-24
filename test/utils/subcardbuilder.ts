@@ -8,11 +8,11 @@ export class SubcardBuilder {
     this._gameState = gameState;
   }
 
-  public AddUpgrade(cardID: string, owner: number, isPilot: boolean = false, epicAction: boolean = false) {
+  public AddUpgrade(cardID: string, owner: number, isPilot: boolean = false, epicAction: boolean = false, turnsInPlay: number = 0) {
     if(this._subcard !== '') {
       this._subcard += ',';
     }
-    this._subcard += `${cardID},${owner},${isPilot ? "1" : "0"},${this._gameState.GetNextUniqueID()},${epicAction ? "1" : "0"},0,0,0`;
+    this._subcard += `${cardID},${owner},${isPilot ? "1" : "0"},${this._gameState.GetNextUniqueID()},${epicAction ? "1" : "0"},${turnsInPlay},0,0`;
 
     return this;
   }
@@ -54,11 +54,11 @@ export class SubcardBuilder {
     return this;
   }
 
-  public AddPilot(cardID: string, owner: number, epicAction: boolean = false) {
+  public AddPilot(cardID: string, owner: number, epicAction: boolean = false, turnsInPlay: number = 0) {
     if(this._subcard !== '') {
       this._subcard += ',';
     }
-    this._subcard += `${cardID},${owner},1,${this._gameState.GetNextUniqueID()},${epicAction ? "1" : "0"},0,0,0`;
+    this._subcard += `${cardID},${owner},1,${this._gameState.GetNextUniqueID()},${epicAction ? "1" : "0"},${turnsInPlay},0,0`;
 
     return this;
   }

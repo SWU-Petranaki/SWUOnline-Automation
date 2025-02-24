@@ -3,9 +3,11 @@ import {
   player1Window, player2Window,
   gameName,
   customAsserts,
+  g,
 } from '../utils/util'
 import { GameState } from '../utils/gamestate'
 import { cards } from '../utils/cards'
+import { GamePlay } from '../utils/gameplay';
 
 export const PilotJTLCases = {
   'Dengar not piloting, attacks for 5': process.env.FULL_REGRESSION !== 'true' ? '' : async function() {
@@ -274,5 +276,75 @@ export const PilotJTLCases = {
     //assert
     await browser.assert.elementPresent(com.AllyGroundUnit(1));
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 1), '1');
-  }
+  },
+  Poe_JTL_unit_then_pilot_then_other_unit: async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("1 4")
+      .AddBase(1, cards.generic.YellowBase)
+      .AddLeader(1, cards.JTL.WedgeLeader)
+      .AddBase(2, cards.generic.RedBase)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SOR.BFMarine, 6)
+      .AddCardToHand(1, cards.JTL.PoeUnit)
+      .AddCardToHand(1, cards.SOR.CraftySmuggler)
+      .AddUnit(1, cards.JTL.XWing)
+      .AddUnit(1, cards.JTL.XWing)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).ChooseNo().ChooseYes().TargetMySpaceUnit(1)
+      .SwitchPlayerWindow()
+      .WaitForPassButton().PassTurn()
+      .SwitchPlayerWindow()
+      .WaitForMyHand()
+      .PlayFromHand(1)
+      .RunAsync()
+    ;
+    //assert
+    await gameplay.Assert()
+      .MyGroundUnitIsThere(1)
+      .MyGroundUnitIsGone(2)
+      .RunAsync()
+    ;
+  },
+  Luke_JTL_pilot_unit_defeated_then_no_shield: async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("5 11")
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.SOR.LukeLeader)
+      .AddBase(2, cards.generic.RedBase)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SOR.BFMarine, 1)
+      .FillResources(2, cards.SOR.BFMarine, 1)
+      .AddCardToHand(2, cards.SOR.Confiscate)
+      .AddUnit(1, cards.JTL.XWing, false, false, 0, gameState.SubcardBuilder().AddPilot(cards.JTL.LukeUnit, 1, false, 1).Build())
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForPassButton().PassTurn()
+      .SwitchPlayerWindow()
+      .WaitForMyHand().PlayFromHand(1).ChooseButton(1, 1)
+      .SwitchPlayerWindow()
+      .ChooseYes()
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1).TargetMyGroundUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    await gameplay.Assert()
+      .MyGroundUnitIsThere(1)
+      .MyGroundUnitPieceIsOverlay(1, 3)
+      .RunAsync()
+    ;
+  },
+
 }

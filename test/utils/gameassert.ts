@@ -213,8 +213,20 @@ export class GameAssert {
     return this;
   }
 
+  public MyGroundUnitPieceIsOverlay(position: number, piece: number) {
+    this._gamePlay.___BrowsertAssert().attributeEquals(com.UnitDivPiece(com.AllyGroundUnit(position), piece), 'class', 'overlay');
+
+    return this;
+  }
+
   public MySpaceUnitPieceEquals(position: number, piece: number, text: string) {
     this.TextEquals(com.UnitDivPiece(com.AllySpaceUnit(position), piece), text);
+
+    return this;
+  }
+
+  public MySpaceUnitPieceIsOverlay(position: number, piece: number) {
+    this._gamePlay.___BrowsertAssert().attributeEquals(com.UnitDivPiece(com.AllySpaceUnit(position), piece), 'class', 'overlay');
 
     return this;
   }
@@ -225,8 +237,20 @@ export class GameAssert {
     return this;
   }
 
+  public TheirGroundUnitPieceIsOverlay(position: number, piece: number) {
+    this._gamePlay.___BrowsertAssert().attributeEquals(com.UnitDivPiece(com.EnemyGroundUnit(position), piece), 'class', 'overlay');
+
+    return this;
+  }
+
   public TheirSpaceUnitPieceEquals(position: number, piece: number, text: string) {
     this.TextEquals(com.UnitDivPiece(com.EnemySpaceUnit(position), piece), text);
+
+    return this;
+  }
+
+  public TheirSpaceUnitPieceIsOverlay(position: number, piece: number) {
+    this._gamePlay.___BrowsertAssert().attributeEquals(com.UnitDivPiece(com.EnemySpaceUnit(position), piece), 'class', 'overlay');
 
     return this;
   }
@@ -237,8 +261,20 @@ export class GameAssert {
     return this;
   }
 
+  public MyGroundUnitPieceIsShieldToken(position: number, piece: number) {
+    this._gamePlay.___BrowsertAssert().attributeContains(com.UnitDivPiece(com.AllyGroundUnit(position), piece), 'style', src.ShieldToken)
+
+    return this;
+  }
+
   public MySpaceUnitPieceIsSentinelToken(position: number, piece: number) {
     this._gamePlay.___BrowsertAssert().attributeContains(com.UnitDivPiece(com.AllySpaceUnit(position), piece), 'style', src.SentinelToken)
+
+    return this;
+  }
+
+  public MySpaceUnitPieceIsShieldToken(position: number, piece: number) {
+    this._gamePlay.___BrowsertAssert().attributeContains(com.UnitDivPiece(com.AllySpaceUnit(position), piece), 'style', src.ShieldToken)
 
     return this;
   }
@@ -249,8 +285,20 @@ export class GameAssert {
     return this;
   }
 
+  public TheirGroundUnitPieceIsShieldToken(position: number, piece: number) {
+    this._gamePlay.___BrowsertAssert().attributeContains(com.UnitDivPiece(com.EnemyGroundUnit(position), piece), 'style', src.ShieldToken)
+
+    return this;
+  }
+
   public TheirSpaceUnitPieceIsSentinelToken(position: number, piece: number) {
     this._gamePlay.___BrowsertAssert().attributeContains(com.UnitDivPiece(com.EnemySpaceUnit(position), piece), 'style', src.SentinelToken)
+
+    return this;
+  }
+
+  public TheirSpaceUnitPieceIsShieldToken(position: number, piece: number) {
+    this._gamePlay.___BrowsertAssert().attributeContains(com.UnitDivPiece(com.EnemySpaceUnit(position), piece), 'style', src.ShieldToken)
 
     return this;
   }

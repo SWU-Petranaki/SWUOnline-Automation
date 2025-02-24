@@ -131,6 +131,7 @@ export const cards = {
     BobaDaimyoLeaderUnit: '919facb76d',
     MandoLeader: '9005139831',
     MandoLeaderUnit: '4088c46c4d',
+    HanSoloLeader: '9226435975',
     //units
     KraytDragon: '4935319539',
     TheClient: '1090660242',
@@ -266,6 +267,8 @@ export const cards = {
     R2D2: '5375722883',
     InterceptorAce: '3878744555',
     PaigeTico: '1039444094',
+    PoeUnit: '8757741946',
+    LukeUnit: '5942811090',
     //vehicles
     RedLeader: '3711891756',
     HoundsTooth: '3876470102',
