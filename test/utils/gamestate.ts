@@ -174,8 +174,8 @@ export class GameState {
     return arr.join(' ');
   }
 
-  public AddBase(player: number, cardID: string) {
-    this._gameState[player === 1 ? g.P1CharArray : g.P2CharArray] = `${cardID} 2 0 0 0 1 0 0 0 2 0`;
+  public AddBase(player: number, cardID: string, epicActionUsed: boolean = false) {
+    this._gameState[player === 1 ? g.P1CharArray : g.P2CharArray] = `${cardID} ${epicActionUsed ? 0 : 2} 0 0 0 1 0 0 0 2 0`;
     this._gameState[player === 1 ? g.P1CharDisplay : g.P2CharDisplay] = cardID;
 
     return this;
@@ -220,15 +220,15 @@ export class GameState {
     const index = player === 1 ? g.P1Discard : g.P2Discard;
     if(this._gameState[index] !== '') {
       this._gameState[index] += ' ';
-      for(let i = 0; i < times; ++i) {
-        this._gameState[index] += `${cardID} ${modififer} ${from} ${roundDiscarded}`;
-        if(i < times - 1) {
-          this._gameState[index] += ' ';
-        }
-      }
-
-      return this;
     }
+    for(let i = 0; i < times; ++i) {
+      this._gameState[index] += `${cardID} ${modififer} ${from} ${roundDiscarded}`;
+      if(i < times - 1) {
+        this._gameState[index] += ' ';
+      }
+    }
+
+    return this;
   }
 
   public AddResource(player: number, cardID: string, ready: boolean = true, stealSource: number = -1) {

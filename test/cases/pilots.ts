@@ -346,5 +346,42 @@ export const PilotJTLCases = {
       .RunAsync()
     ;
   },
-
+  Pilot_then_they_upgrade_then_other_unit: async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("1 4")
+      .AddBase(1, cards.SOR.ECL, true)
+      .AddLeader(1, cards.JTL.PoeLeader)
+      .AddBase(2, cards.generic.BlueBase)
+      .AddLeader(2, cards.JTL.TrenchLeader)
+      .FillResources(1, cards.SOR.BFMarine, 7)
+      .FillResources(2, cards.SOR.BFMarine, 2)
+      .AddCardToHand(1, cards.JTL.MillenniumFalcon)
+      .AddCardToHand(1, cards.JTL.NienNunb)
+      .AddCardToHand(1, cards.JTL.RedLeader)
+      .AddCardToHand(2, cards.SHD.TopTarget)
+      .AddCardToHand(2, cards.SHD.TopTarget)
+      .AddUnit(1, cards.SOR.BFMarine, false, true, 0, gameState.SubcardBuilder().AddUpgrade(cards.SHD.TopTarget, 2).Build())
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1)
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1).TargetTheirSpaceUnit(1)
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1).ChooseYes()
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1).TargetTheirSpaceUnit(1)
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1)
+      .RunAsync()
+    ;
+    //assert
+    await gameplay.Assert()
+      .MySpaceUnitIsThere(1)
+      .MySpaceUnitPieceEquals(1, 1, 'TOP TARGET')
+      .MySpaceUnitIsThere(2)
+      .RunAsync()
+    ;
+  }
 }

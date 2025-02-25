@@ -110,6 +110,7 @@ export const cards = {
     Vanquish: '6472095064',
     SneakAttack: '3426168686',
     Bamboozle: '9644107128',
+    BombingRun: '7916724925',
   },
   SHD: {
     //bases
@@ -123,6 +124,7 @@ export const cards = {
     JabbaLeader: '0622803599',
     JabbaLeaderUnit: 'f928681d36',
     GarSaxonLeaderUnit: '3feee05e13',
+    FinnLeader: '9596662994',
     FinnLeaderUnit: '8903067778',
     ReyLeaderUnit: 'e091d2a983',
     HondoLeaderUnit: '415bde775d',
@@ -245,6 +247,7 @@ export const cards = {
     PoeLeader: '8520821318',
     PoeLeaderUnit: '3eb545eb4b',
     TrenchLeader: '3905028200',
+    KazudaLeader: '4531112134',
     //units
     Leia: '7924461681',
     MoffGideon: '7312183744',
@@ -284,6 +287,7 @@ export const cards = {
     SabinesMP: '7325248681',
     ZyggStarHopper: '7389195577',
     Invincible: '9958088138',
+    BlueLeader: '2388374331',
     //events
     ItsATrap: '0964312065',
     Commandeer: '8105698374',

@@ -34,6 +34,7 @@ export const LeaderAbilitySHDCases = {
     await gameplay.Assert()
       .TheirSpaceUnitIsThere(1, true)
       .TheirSpaceUnitPieceEquals(1, 1, 'WANTED')
+      .RunAsync()
     ;
   },
   Mando_Leader_exhaust_with_pilot: async function() {

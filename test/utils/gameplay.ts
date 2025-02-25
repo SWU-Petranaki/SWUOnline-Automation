@@ -181,7 +181,7 @@ export class GamePlay {
   public ClickCheckbox(position: number) {
     this.Click(com.Checkbox(position))._asyncBrowser.pause(p.CheckBox);
 
-    return this
+    return this;
   }
   //Targets
   Target(selector: string) {
@@ -285,6 +285,18 @@ export class GamePlay {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
       .click(com.ChooseButton(index, choice)).pause(p.ButtonPress)
     ;
+
+    return this;
+  }
+
+  public ChooseMultiImg(position: number) {
+    this.Click(com.MultizoneImage(position))._asyncBrowser.pause(p.ButtonPress);
+
+    return this;
+  }
+
+  public ChooseModalOption(position: number) {
+    this.Click(com.ModalOption(position))._asyncBrowser.pause(p.ButtonPress);
 
     return this;
   }

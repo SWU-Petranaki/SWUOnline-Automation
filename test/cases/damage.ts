@@ -1,4 +1,5 @@
 import { cards } from '../utils/cards';
+import { GamePlay } from '../utils/gameplay';
 import { GameState } from '../utils/gamestate';
 import {
   com, src, p,
@@ -357,5 +358,37 @@ export const DamageCases = {
     ;
     //assert
     await browser.assert.textEquals(com.TheirBaseDamage, '4');
+  },
+  Bombing_Run_hits_arena_overrides: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SOR.TarkinTown)
+      .AddLeader(1, cards.SOR.TarkinLeader)
+      .AddBase(2, cards.SOR.DagobahSwamp)
+      .AddLeader(2, cards.JTL.WedgeLeader)
+      .FillResources(1, cards.SOR.DSStormTrooper, 5)
+      .FillResources(2, cards.SOR.BFMarine, 5)
+      .AddCardToHand(1, cards.SOR.BombingRun)
+      .AddCardToHand(2, cards.JTL.BlueLeader)
+      .AddUnit(2, cards.JTL.XWing)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForPassButton().PassTurn()
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1).Pass().ChooseYes().ChooseMultiImg(1).ChooseMultiImg(1)
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1).ChooseModalOption(2)
+      .RunAsync()
+    ;
+    //assert
+    await gameplay.Assert()
+      .TheirSpaceUnitIsGone(2)
+      .TheirGroundUnitIsThere(1)
+      .TheirGroundUnitPieceEquals(1, 5, '3')
+      .RunAsync()
+    ;
   },
 }

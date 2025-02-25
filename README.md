@@ -69,7 +69,7 @@ git update-index --assume-unchanged ./test/cases/_local.ts
 
 `.env` reference/example:
 ```bash
-SWUONLINE_ROOT_PATH=/Home/GitHub/Karabast-SWU/SWUOnline
+SWUONLINE_ROOT_PATH=/Home/GitHub/Petranaki-SWU/SWUOnline
 FULL_REGRESSION=false
 LOCAL_RUN=24
 ```

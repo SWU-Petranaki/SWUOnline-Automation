@@ -138,7 +138,7 @@ export const CoreMechanicsCases = {
     await gameState.ResetGameStateLines()
       .SetBasesDamage('9 16')
       .AddBase(1, cards.generic.GreenBase)
-      .AddLeader(1, cards.JTL.LandoLeader)
+      .AddLeader(1, cards.SHD.FinnLeader)
       .AddBase(2, cards.SOR.EchoBase)
       .AddLeader(2, cards.JTL.HanSoloLeader)
       .FillResources(1, cards.SOR.BFMarine, 8)
@@ -152,10 +152,11 @@ export const CoreMechanicsCases = {
     //act
     const gameplay = new GamePlay(browser);
     await gameplay
-      .WaitForMyHand().PlayFromHand(1).ChooseNo()
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1).TargetMySpaceUnit(1)
       .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
-      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1).ChooseYes()
-      .TargetMySpaceUnit(2).TargetMyHandCard(1).ChooseNo()
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1).ChooseNo()
+      .PlayFromHand(1).ChooseYes().TargetMySpaceUnit(2)
+      .TargetMyHandCard(1).ChooseNo()
       .RunAsync()
     ;
     //assert
@@ -207,5 +208,5 @@ export const CoreMechanicsCases = {
       .MyGroundUnitIsThere(1)
       .RunAsync()
     ;
-  }
+  },
 }
