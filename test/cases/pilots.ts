@@ -383,5 +383,38 @@ export const PilotJTLCases = {
       .MySpaceUnitIsThere(2)
       .RunAsync()
     ;
+  },
+  Luke_pilot_controlled_drops_on_my_side: async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("9 16")
+      .AddBase(1, cards.generic.YellowBase)
+      .AddLeader(1, cards.JTL.BobaFettLeader)
+      .AddBase(2, cards.generic.YellowBase)
+      .AddLeader(2, cards.JTL.AsajjLeader)
+      .FillResources(1, cards.SOR.BFMarine, 1)
+      .AddCardToDeck(1, cards.SOR.BFMarine, 10)
+      .AddCardToDeck(2, cards.SOR.BFMarine, 10)
+      .AddCardToDiscard(1, cards.JTL.HoundsTooth)
+      .AddUnit(1, cards.SOR.BFMarine)
+      .AddUnit(2, cards.JTL.XWing, false, true, 0,
+        gameState.SubcardBuilder().AddUpgrade(cards.SOR.Traitorous, 2).AddPilot(cards.JTL.LukeUnit, 1).Build(), 1)
+      .AddCardToHand(1, cards.SOR.Confiscate)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).ChooseButton(2, 1).ChooseYes()
+      .RunAsync()
+    ;
+    //assert
+    await gameplay.Assert()
+      .TheirSpaceUnitIsThere(1)
+      .MyGroundUnitIsThere(2)
+      .RunAsync()
+    ;
   }
 }
