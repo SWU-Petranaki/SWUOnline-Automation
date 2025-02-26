@@ -1,4 +1,4 @@
-local/
+local/*
 !local/_wrapper.ts
 .project
 .DS_Store
