@@ -209,4 +209,36 @@ export const CoreMechanicsCases = {
       .RunAsync()
     ;
   },
+  Piloting_layers: async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage('3 10')
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.JTL.KazudaLeader)
+      .AddBase(2, cards.SOR.EchoBase)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SOR.BFMarine, 2)
+      .AddCardToDeck(1, cards.SOR.BFMarine)
+      .AddCardToHand(1, cards.JTL.HanSoloUnit)
+      .AddUnit(2, cards.JTL.XWing, false, false, 0, gameState.SubcardBuilder().AddUpgrade(cards.SHD.BHQuarry, 1).Build())
+      .AddUnit(1, cards.JTL.MillenniumFalcon)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).ChooseYes().ChooseYes().TargetTheirSpaceUnit(1).Pass()
+      .WaitForCheckboxes().ClickCheckbox(1).Submit()
+      .RunAsync()
+    ;
+    //assert
+    await gameplay.Assert()
+      .MySpaceUnitIsThere(1)
+      .TheirSpaceUnitIsGone(1)
+      .MyGroundUnitIsThere(1)
+      .RunAsync()
+    ;
+  },
 }

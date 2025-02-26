@@ -161,6 +161,7 @@ export const cards = {
     MandosRifle: '0754286363',
     LegalAuthority: '8877249477',
     Wanted: '4117365450',
+    BHQuarry: '9642863632',
     //events
     TimelyIntervention: '6847268098',
     NoBargain: '7354795397',
@@ -272,6 +273,7 @@ export const cards = {
     PaigeTico: '1039444094',
     PoeUnit: '8757741946',
     LukeUnit: '5942811090',
+    HanSoloUnit: '6720065735',
     //vehicles
     RedLeader: '3711891756',
     HoundsTooth: '3876470102',
