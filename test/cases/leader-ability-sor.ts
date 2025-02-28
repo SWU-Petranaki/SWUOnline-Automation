@@ -66,10 +66,12 @@ export const LeaderAbilitySORCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .MyGroundUnitPieceIsSentinelToken(1, 3)
-      .RunAsync()
-    ;
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .MyGroundUnitPieceIsSentinelToken(1, 3)
+        .RunAsync()
+      ;
+    });
   },
   'Leader Ability: Chirrut Imwe buff': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange

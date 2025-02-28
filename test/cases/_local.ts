@@ -1,4 +1,5 @@
 import { cards } from "../utils/cards";
+import { GamePlay } from "../utils/gameplay";
 import { GameState } from "../utils/gamestate";
 import { com, cs, gameName, p } from "../utils/util";
 
@@ -34,7 +35,12 @@ export const LocalTestCase = {
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
-    //await browser.pause(p.Debug); //uncomment to pause locally for debug
-    //await browser.pause(p.Indefinite); //uncomment to pause locally for longer debug
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      //.___Debug() //uncomment to pause locally for debug
+      //.___LongPause() //uncomment to pause locally for longer debug
+      .RunAsync()
+    ;
+    //assert
   }
 }

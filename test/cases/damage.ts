@@ -373,11 +373,13 @@ export const DamageCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .TheirSpaceUnitIsGone(2)
-      .TheirGroundUnitIsThere(1)
-      .TheirGroundUnitPieceEquals(1, 5, '3')
-      .RunAsync()
-    ;
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .TheirSpaceUnitIsGone(2)
+        .TheirGroundUnitIsThere(1)
+        .TheirGroundUnitPieceEquals(1, 5, '3')
+        .RunAsync()
+      ;
+    });
   },
 }

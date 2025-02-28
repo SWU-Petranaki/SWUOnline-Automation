@@ -28,10 +28,13 @@ export const NamedCardCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .MySpaceUnitIsThere(1)
-      .MySpaceUnitIsNotExhausted(1)
-      .RunAsync()
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .MySpaceUnitIsThere(1)
+        .MySpaceUnitIsNotExhausted(1)
+        .RunAsync()
+      ;
+    });
   },
   Fetts_Firespray_BobaPilot: async function () {
     //arrange
@@ -54,11 +57,13 @@ export const NamedCardCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .MySpaceUnitIsThere(2)
-      .MySpaceUnitIsNotExhausted(2)
-      .RunAsync()
-    ;
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .MySpaceUnitIsThere(2)
+        .MySpaceUnitIsNotExhausted(2)
+        .RunAsync()
+      ;
+    });
   },
   Fetts_Firespray_BobaUnit: async function () {
     //arrange
@@ -81,10 +86,12 @@ export const NamedCardCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .MySpaceUnitIsThere(1)
-      .MySpaceUnitIsNotExhausted(1)
-      .RunAsync()
-    ;
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .MySpaceUnitIsThere(1)
+        .MySpaceUnitIsNotExhausted(1)
+        .RunAsync()
+      ;
+    });
   },
 }

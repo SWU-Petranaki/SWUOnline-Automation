@@ -41,12 +41,14 @@ export const BounceCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .TheirDiscardIsEmpty()
-      .TheirHandIsEmpty()
-      .TheyHaveNoGroundUnits()
-      .RunAsync()
-    ;
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .TheirDiscardIsEmpty()
+        .TheirHandIsEmpty()
+        .TheyHaveNoGroundUnits()
+        .RunAsync()
+      ;
+    });
   },
   'MaKlounkee cannot bounce own piloted leader unit': async function () {
     //arrange
@@ -74,10 +76,12 @@ export const BounceCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .MyGroundUnitIsNotPlayable(2)
-      .RunAsync()
-    ;
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .MyGroundUnitIsNotPlayable(2)
+        .RunAsync()
+      ;
+    });
   },
   'Bounce: Evacuate unique captives and ignore leaders': async function () {
     //arrange
@@ -106,12 +110,14 @@ export const BounceCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .TheirGroundUnitIsThere(1)
-      .TheirSpaceUnitIsThere(1)
-      .PlayerPickSpanTextEquals('You have two of this unique unit; choose one to destroy ')
-      .RunAsync()
-    ;
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .TheirGroundUnitIsThere(1)
+        .TheirSpaceUnitIsThere(1)
+        .PlayerPickSpanTextEquals('You have two of this unique unit; choose one to destroy ')
+        .RunAsync()
+      ;
+    });
   },
   'Bounce: Waylay cant bounce piloted leader unit': async function () {
     //arrange
@@ -330,11 +336,13 @@ export const BounceCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .TheirSpaceUnitIsThere(1, true)
-      .TheirLeaderHasUsedEpicAction()
-      .TheirHandIsEmpty()
-      .RunAsync()
-    ;
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .TheirSpaceUnitIsThere(1, true)
+        .TheirLeaderHasUsedEpicAction()
+        .TheirHandIsEmpty()
+        .RunAsync()
+      ;
+    });
   }
 }

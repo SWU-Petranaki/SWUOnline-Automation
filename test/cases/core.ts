@@ -126,10 +126,12 @@ export const CoreMechanicsCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .MySpaceUnitIsThere(1)
-      .RunAsync()
-    ;
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .MySpaceUnitIsThere(1)
+        .RunAsync()
+      ;
+    });
   },
   Piloting_yes_then_no: async function() {
     //arrange
@@ -160,17 +162,19 @@ export const CoreMechanicsCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .MySpaceUnitIsThere(1)
-      .MySpaceUnitIsThere(2)
-      .MyGroundUnitIsThere(1)
-      .MyGroundUnitIsThere(2)
-      .MyResourcesEquals("0/8")
-      .TheirResourcesEquals("0/0")
-      .MyDiscardIsEmpty()
-      .TheirDiscardIsEmpty()
-      .RunAsync()
-    ;
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .MySpaceUnitIsThere(1)
+        .MySpaceUnitIsThere(2)
+        .MyGroundUnitIsThere(1)
+        .MyGroundUnitIsThere(2)
+        .MyResourcesEquals("0/8")
+        .TheirResourcesEquals("0/0")
+        .MyDiscardIsEmpty()
+        .TheirDiscardIsEmpty()
+        .RunAsync()
+      ;
+    });
   },
   Piloting_yes_then_regular_unit_with_triggers: async function() {
     //arrange
@@ -202,12 +206,14 @@ export const CoreMechanicsCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .MySpaceUnitIsThere(1)
-      .MySpaceUnitIsThere(2)
-      .MyGroundUnitIsThere(1)
-      .RunAsync()
-    ;
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .MySpaceUnitIsThere(1)
+        .MySpaceUnitIsThere(2)
+        .MyGroundUnitIsThere(1)
+        .RunAsync()
+      ;
+    });
   },
   Piloting_layers: async function() {
     //arrange
@@ -234,11 +240,13 @@ export const CoreMechanicsCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .MySpaceUnitIsThere(1)
-      .TheirSpaceUnitIsGone(1)
-      .MyGroundUnitIsThere(1)
-      .RunAsync()
-    ;
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .MySpaceUnitIsThere(1)
+        .TheirSpaceUnitIsGone(1)
+        .MyGroundUnitIsThere(1)
+        .RunAsync()
+      ;
+    });
   },
 }

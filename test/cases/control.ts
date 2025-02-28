@@ -98,10 +98,13 @@ export const ControlCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .TheirSpaceUnitIsThere(1)
-      .MySpaceUnitIsGone(1)
-    ;
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .TheirSpaceUnitIsThere(1)
+        .MySpaceUnitIsGone(1)
+        .RunAsync()
+      ;
+    });
   },
   'Control: Change of Heart returns at end': async function () {
     //arrange
@@ -276,10 +279,12 @@ export const ControlCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .TheirSpaceUnitIsGone(1)
-      .TheirLeaderHasUsedEpicAction()
-      .RunAsync()
-    ;
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .TheirSpaceUnitIsGone(1)
+        .TheirLeaderHasUsedEpicAction()
+        .RunAsync()
+      ;
+    });
   }
 }

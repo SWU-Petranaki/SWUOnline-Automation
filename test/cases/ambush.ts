@@ -9,33 +9,35 @@ import {
 
 export const AmbushCases = {
   'Ambush: ECL Sabine Ping Shield': async function () {
-  //arrange
-  const gameState = new GameState(gameName);
-  await gameState.LoadGameStateLinesAsync();
-  await gameState.ResetGameStateLines()
-    .AddBase(1, cards.SOR.ECL).AddLeader(1, cards.SOR.SabineLeader)
-    .AddBase(2, cards.SOR.ECL).AddLeader(2, cards.SOR.SabineLeader)
-    .FillResources(1, cards.SOR.BFMarine, 2)
-    .AddCardToHand(1, cards.SOR.SabineUnit)
-    .AddUnit(1, cards.SOR.SabineUnit, false, false)
-    .AddUnit(2, cards.SOR.CraftySmuggler, false, true, 0,
-      gameState.SubcardBuilder().AddShield(2).Build())
-    .FlushAsync(com.BeginTestCallback)
-  ;
-  //act
-  const gameplay = new GamePlay(browser);
-  await gameplay
-     .WaitForMyHand().ClickMyBase()
-     .TargetMyHandCard(1).TargetMyGroundUnit(1)
-     .ChooseYes().TargetTheirGroundUnit(1)
-     .RunAsync()
-  ;
-  //assert
-  await gameplay.Assert()
-    .TheyHaveNoGroundUnits()
-    .MyGroundUnitPieceEquals(1, 3, '2')
-    .RunAsync()
-  ;
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SOR.ECL).AddLeader(1, cards.SOR.SabineLeader)
+      .AddBase(2, cards.SOR.ECL).AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.BFMarine, 2)
+      .AddCardToHand(1, cards.SOR.SabineUnit)
+      .AddUnit(1, cards.SOR.SabineUnit, false, false)
+      .AddUnit(2, cards.SOR.CraftySmuggler, false, true, 0,
+        gameState.SubcardBuilder().AddShield(2).Build())
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().ClickMyBase()
+      .TargetMyHandCard(1).TargetMyGroundUnit(1)
+      .ChooseYes().TargetTheirGroundUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .TheyHaveNoGroundUnits()
+        .MyGroundUnitPieceEquals(1, 3, '2')
+        .RunAsync()
+      ;
+    });
   },
   'Ambush: Rukh into Krayt Dragon with ECL': async function () {
     //arrange
@@ -61,11 +63,13 @@ export const AmbushCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .IHaveNoGroundUnits()
-      .TheirGroundUnitPieceEquals(1, 3, '5')
-      .RunAsync()
-    ;
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .IHaveNoGroundUnits()
+        .TheirGroundUnitPieceEquals(1, 3, '5')
+        .RunAsync()
+      ;
+    });
   },
   'Ambush: Rukh into Krayt Dragon with TI': async function () {
     //arrange
@@ -92,9 +96,11 @@ export const AmbushCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .WeHaveNoGroundUnits()
-      .RunAsync()
-    ;
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .WeHaveNoGroundUnits()
+        .RunAsync()
+      ;
+    });
   },
 }

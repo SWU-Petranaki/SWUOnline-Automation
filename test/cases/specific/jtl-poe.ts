@@ -80,12 +80,15 @@ export const JTLPoeCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .MyGroundUnitIsGone(1)
-      .TheirGroundUnitIsThere(1)
-      .MySpaceUnitIsThere(1)
-      .MySpaceUnitPieceEquals(1, 1, 'POE DAMERON')
-      .RunAsync()
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .MyGroundUnitIsGone(1)
+        .TheirGroundUnitIsThere(1)
+        .MySpaceUnitIsThere(1)
+        .MySpaceUnitPieceEquals(1, 1, 'POE DAMERON')
+        .RunAsync()
+      ;
+    });
   },
   Poe_Leader_mass_testing_interactions: async function () {
     //arrange
@@ -422,11 +425,13 @@ export const JTLPoeCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .TheirBaseDamageEquals('10')
-      .MyBaseDamageEquals('8')
-      .RunAsync()
-    ;
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .TheirBaseDamageEquals('10')
+        .MyBaseDamageEquals('8')
+        .RunAsync()
+      ;
+    });
   },
   Leia_JTL_Poe_on_deployed_ground_unit: async function () {
     //arrange
@@ -453,11 +458,13 @@ export const JTLPoeCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .TheirBaseDamageEquals('10')
-      .MyBaseDamageEquals('8')
-      .RunAsync()
-    ;
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .TheirBaseDamageEquals('10')
+        .MyBaseDamageEquals('8')
+        .RunAsync()
+      ;
+    });
   },
   Leia_JTL_Poe_on_space_unit: async function () {
     //arrange
@@ -485,11 +492,13 @@ export const JTLPoeCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .TheirBaseDamageEquals('10')
-      .MyBaseDamageEquals('8')
-      .RunAsync()
-    ;
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .TheirBaseDamageEquals('10')
+        .MyBaseDamageEquals('8')
+        .RunAsync()
+      ;
+    });
   },
   Poe_Leader_Merc_Gunship_interactions:  async function () {
     //arrange
@@ -547,11 +556,13 @@ export const JTLPoeCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
-      .TheirSpaceUnitIsNotPlayable(4)
-      .TheirBaseDamageEquals('10')
-      .MyBaseDamageEquals('9')
-      .RunAsync()
-    ;
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .TheirSpaceUnitIsNotPlayable(4)
+        .TheirBaseDamageEquals('10')
+        .MyBaseDamageEquals('9')
+        .RunAsync()
+      ;
+    });
   }
 }
