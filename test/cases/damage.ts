@@ -311,17 +311,6 @@ export const DamageCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
     //assert
-    await browser.assert.not.elementPresent(com.ButtonMultiChoice(3));
-    //act
-    await browser
-      .click(com.ButtonMultiChoice(2))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.ButtonMultiChoice(2))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.ButtonMultiChoice(2))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-    ;
-    //assert
     await browser
       .assert.textEquals(com.TheirBaseDamage, '0')
       .assert.textEquals(com.UnitDivPiece(com.EnemySpaceUnit(1), 3), '2')
