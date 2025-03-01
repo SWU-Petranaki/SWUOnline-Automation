@@ -5,7 +5,7 @@ module.exports = {
   test_settings: {
     default: {
       disable_error_log: false,
-      launch_url: 'http://localhost:8080/SWUOnline/',
+      launch_url: 'http://localhost:8080/Arena/',
       globals: {
         waitForConditionTimeout: 5_000,
         asyncHookTimeout: 120_000,

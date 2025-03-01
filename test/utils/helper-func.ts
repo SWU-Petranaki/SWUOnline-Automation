@@ -12,11 +12,11 @@ export async function LocalRunGameStartAsync(browser: NightwatchAPI, localRunnin
   });
 
   await gameState.SetAuthKey(2, p1AuthKey).FlushAsync();
-  await browser.url(`http://localhost:8080/SWUOnline/NextTurn4.php?gameName=${localRunningGame}&playerID=1`).refresh();
+  await browser.url(`http://localhost:8080/Arena/NextTurn4.php?gameName=${localRunningGame}&playerID=1`).refresh();
 
   setPlayer2Window(await browser.window.open('tab').window.getHandle());
 
-  await browser.url(`http://localhost:8080/SWUOnline/NextTurn4.php?gameName=${localRunningGame}&playerID=2`).refresh();
+  await browser.url(`http://localhost:8080/Arena/NextTurn4.php?gameName=${localRunningGame}&playerID=2`).refresh();
 
   setGameName(localRunningGame);
   await browser.window.switchTo(player1Window).refresh().pause(p.WaitToBegin);

@@ -45,14 +45,14 @@ export class GameAssert {
 
   public MyLeaderHasUsedEpicAction() {
     this._gamePlay.___BrowsertAssert()
-      .attributeEquals(com.Leader(this._gamePlay.CurrentPlayer()) + ' img:nth-of-type(2)', 'src', 'http://localhost:8080/SWUOnline/Images/ExhaustToken.png')
+      .attributeEquals(com.Leader(this._gamePlay.CurrentPlayer()) + ' img:nth-of-type(2)', 'src', 'http://localhost:8080/Arena/Images/ExhaustToken.png')
 
     return this;
   }
 
   public TheirLeaderHasUsedEpicAction() {
     this._gamePlay.___BrowsertAssert()
-      .attributeEquals(com.Leader(this._gamePlay.CurrentPlayer() == 1 ? 2 : 1) + ' img:nth-of-type(2)', 'src', 'http://localhost:8080/SWUOnline/Images/ExhaustToken.png')
+      .attributeEquals(com.Leader(this._gamePlay.CurrentPlayer() == 1 ? 2 : 1) + ' img:nth-of-type(2)', 'src', 'http://localhost:8080/Arena/Images/ExhaustToken.png')
 
     return this;
   }

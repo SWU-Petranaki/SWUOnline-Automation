@@ -18,7 +18,7 @@ const home: NightwatchTests = {
       }
       await BugReportFetch.LogInProdAsync(browser);
       await BugReportFetch.LoadBugReportData(browser, localRunningGame);
-      await browser.url("http://localhost:8080/SWUOnline/MainMenu.php").pause(p.WaitToBegin);
+      await browser.url("http://localhost:8080/Arena/MainMenu.php").pause(p.WaitToBegin);
       await LocalRunGameStartAsync(browser, localRunningGame);
       await browser.pause(p.Indefinite);
     }

@@ -99,7 +99,7 @@ export const src = {
   DamageGradient: 'linear-gradient(90deg, rgba(255, 0, 0, 0) 0%, rgba(255, 0, 0, 0.9) 50%, rgb(255, 0, 0) 100%), linear-gradient(270deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.9) 45%, rgba(0, 0, 0, 0) 100%)',
   NotPlayableBorderUnit: 'border: 2px solid transparent; height: 96px; width: 96px; position: relative; border-radius: 10px;',
   NotPlayableBorderHand: 'border-radius: 8px; border: 1px solid transparent; height: 96px; width: 96px; position: relative;',
-  Concat(cardID: string) { return 'http://localhost:8080/SWUOnline/concat/' + cardID + '.webp'; },
+  Concat(cardID: string) { return 'http://localhost:8080/Arena/concat/' + cardID + '.webp'; },
 }
 
 export const customAsserts = {
@@ -114,7 +114,7 @@ export const customAsserts = {
   UnitIsNotPlayable: (browser: NightwatchAPI, selector: string) => browser.assert.attributeEquals(com.UnitImg(selector), 'style', src.NotPlayableBorderUnit),
   HandCardIsNotPlayable: (browser: NightwatchAPI, card: number) => browser.assert.attributeEquals(com.HandCardImg(card), 'style', src.NotPlayableBorderHand),
   UnitIs: (browser: NightwatchAPI, cardID: string, selector: string) => browser.assert.attributeEquals(com.UnitImg(selector), 'src', src.Concat(cardID)),
-  LeaderEpicActionUsed: (browser: NightwatchAPI, player: number) => browser.assert.attributeEquals(com.Leader(player) + ' img:nth-of-type(2)', 'src', 'http://localhost:8080/SWUOnline/Images/ExhaustToken.png'),
+  LeaderEpicActionUsed: (browser: NightwatchAPI, player: number) => browser.assert.attributeEquals(com.Leader(player) + ' img:nth-of-type(2)', 'src', 'http://localhost:8080/Arena/Images/ExhaustToken.png'),
   //Twilight of the Republic
   AllyGroundUnitIsBattleDroid: (browser: NightwatchAPI, unit: number) =>
     browser.assert.attributeEquals(com.UnitImg(com.AllyGroundUnit(unit)), 'src', src.Concat(cards.TWI.BattleDroid)),

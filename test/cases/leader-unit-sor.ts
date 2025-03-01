@@ -237,7 +237,7 @@ export const LeaderUnitSORCases = {
     await browser.assert.textEquals(com.TheirBaseDamage, '7');
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(5), 3), '3');
     await browser.assert.textEquals(com.UnitDivPiece(com.EnemyGroundUnit(2), 3), '5');
-    await browser.assert.attributeEquals(com.HandCardImg(1), 'src', 'http://localhost:8080/SWUOnline/concat/7964782056.webp');
+    await browser.assert.attributeEquals(com.HandCardImg(1), 'src', 'http://localhost:8080/Arena/concat/7964782056.webp');
 
     await browser.window.switchTo(player2Window).refresh()
     .waitForElementPresent(com.AllyGroundUnit(3))
