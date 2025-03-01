@@ -11,9 +11,9 @@ import { LocalRunGameStartAsync, NewRunGameStartAsync } from "./helper-func";
 
 export const init: NightwatchTestHook = async (browser, done) => {
   await browser
-    .url('http://localhost:8080/SWUOnline/MainMenu.php')
+    .url('http://localhost:8080/Arena/MainMenu.php')
     .window.maximize().pause(p.WaitForEffect)
-    .assert.titleEquals('Karabast')
+    .assert.titleEquals('Petranaki')
     .pause(p.WaitToBegin)
   ;
   const localRunningGame = process.env.LOCAL_RUN || '';
