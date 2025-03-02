@@ -112,6 +112,7 @@ export const cards = {
     Bamboozle: '9644107128',
     BombingRun: '7916724925',
     RallyingCry: '1208707254',
+    NGTMD: '8800836530',
   },
   SHD: {
     //bases

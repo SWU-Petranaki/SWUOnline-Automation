@@ -107,5 +107,37 @@ export const RoundEffectCases = {
         .RunAsync()
       ;
     });
+  },
+  NGTMD_keeps_exhausted_next_turn: async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.YellowBase)
+      .AddLeader(1, cards.TWI.JangoLeader)
+      .AddBase(2, cards.generic.BlueBase)
+      .AddLeader(2, cards.JTL.LukeLeader, true)
+      .AddCardToHand(1, cards.SOR.NGTMD)
+      .FillResources(1, cards.SOR.CraftySmuggler, 2)
+      .AddUnit(2, cards.JTL.LukeLeaderUnit, true)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).TargetTheirGroundUnit(1)
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForPassButton().PassTurn()
+      .RunAsync()
+    ;
+    //assert
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .MyBaseDamageEquals('6')
+        .TheirBaseDamageEquals('6')
+        .TheirGroundUnitIsThere(1, true)
+        .RunAsync()
+      ;
+    });
   }
 }
