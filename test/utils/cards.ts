@@ -293,6 +293,8 @@ export const cards = {
     ZyggStarHopper: '7389195577',
     Invincible: '9958088138',
     BlueLeader: '2388374331',
+    Fireball: '4240570958',
+    TieBomber: '3504944818',
     //events
     ItsATrap: '0964312065',
     Commandeer: '8105698374',

@@ -304,5 +304,40 @@ export const SpecificJTLCases = {
         .RunAsync()
       ;
     });
+  },
+  Kazuda_Fireball: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("1 2")
+      .AddBase(1, cards.SOR.ECL)
+      .AddLeader(1, cards.JTL.KazudaLeader)
+      .AddBase(2, cards.generic.GreenBase)
+      .AddLeader(2, cards.JTL.DarthVaderLeader)
+      .FillResources(1, cards.SOR.BFMarine, 2)
+      .AddCardToHand(1, cards.JTL.Fireball)
+      .AddUnit(2, cards.JTL.TieBomber)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().ClickHandCard(1).ChooseYes()
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1).PassTurn()
+      .RunAsync()
+    ;
+    //assert
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .MyBaseDamageEquals('7')
+        .TheirBaseDamageEquals('8')
+        .MyResourcesEquals('2/2')
+        .MySpaceUnitPieceIsOverlay(1, 3)
+        .TheirSpaceUnitPieceEquals(1, 3, '3')
+        .RunAsync()
+      ;
+    });
   }
 }
