@@ -37,6 +37,7 @@ import { SpecificJTLCases } from './cases/specific/jtl';
 import { JTLPoeCases } from './cases/specific/jtl-poe';
 
 import { LocalTestCase } from './cases/_local';
+import { RoundEffectCases } from './cases/round-effects';
 
 const home: NightwatchTests = {
   before: init,
@@ -49,6 +50,7 @@ const home: NightwatchTests = {
   ...NamedCardCases,
   ...WhenTheyPlayCases,
   ...OnAttackCases,
+  ...RoundEffectCases,
   ...BounceCases,
   ...DamageCases,
   ...RemovalCases,

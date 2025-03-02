@@ -111,6 +111,7 @@ export const cards = {
     SneakAttack: '3426168686',
     Bamboozle: '9644107128',
     BombingRun: '7916724925',
+    RallyingCry: '1208707254',
   },
   SHD: {
     //bases
@@ -134,6 +135,7 @@ export const cards = {
     MandoLeader: '9005139831',
     MandoLeaderUnit: '4088c46c4d',
     HanSoloLeader: '9226435975',
+    KyloRenLeader: '1480894253',
     //units
     KraytDragon: '4935319539',
     TheClient: '1090660242',
@@ -154,6 +156,7 @@ export const cards = {
     LomPyke: '5632569775',
     PoeDameron: '5966087637',
     Val: '0474909987',
+    ZoriiBliss: '2522489681',
     //upgrades
     TopTarget: '4282425335',
     Darksaber: '3141660491',

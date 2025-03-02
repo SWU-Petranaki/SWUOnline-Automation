@@ -272,4 +272,35 @@ export const SpecificJTLCases = {
       ;
     });
   },
+  Kazuda_Millennium_Falcon: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("9 5")
+      .AddBase(1, cards.SOR.ECL)
+      .AddLeader(1, cards.JTL.KazudaLeader)
+      .AddBase(2, cards.generic.GreenBase)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SOR.BFMarine, 3)
+      .AddUnit(1, cards.SOR.MillenniumFalcon)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1)
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForPassButton().PassTurn()
+      .RunAsync()
+    ;
+    //assert
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .MySpaceUnitIsThere(1)
+        .MyResourcesEquals('3/3')
+        .RunAsync()
+      ;
+    });
+  }
 }

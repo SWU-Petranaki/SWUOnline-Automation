@@ -575,7 +575,7 @@ export const LeaderAbilitySORCases = {
       //assert
       await browser.assert.elementPresent(com.EnemyGroundUnit(1, true));
     },
-    'Leader Ability: Han Solo resource and blow up': async function () {
+    Han_Solo_resource_and_blow_up: async function () {
       //arrange
       const gameState = new GameState(gameName);
       await gameState.LoadGameStateLinesAsync();
@@ -590,36 +590,32 @@ export const LeaderAbilitySORCases = {
         .FlushAsync(com.BeginTestCallback)
       ;
       //act
-      await browser.waitForElementPresent(com.Leader(1))
-        .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-        .click(com.Leader(1))
-        .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-        .click(com.ButtonMultiChoice(1)).pause(p.ButtonPress)
-        .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-        .click(com.HandCard(1))
-        .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+      const gameplay = new GamePlay(browser);
+      await gameplay
+        .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1).ClickHandCard(1)
+        .RunAsync()
       ;
       //assert
-      await browser.assert.textEquals(com.MyResources, '8/8');
+      await browser.assert.doesNotThrow(async () => {
+        await gameplay.Assert()
+          .MyResourcesEquals('8/8')
+          .RunAsync()
+        ;
+      });
       //act
-      await browser.window.switchTo(player2Window).refresh()
-        .waitForElementPresent(com.PassButton)
-        .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-        .click(com.PassButton).pause(p.ButtonPress)
-      ;
-
-      await browser.window.switchTo(player1Window).refresh()
-        .waitForElementPresent(com.PassButton)
-        .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-        .click(com.PassButton).pause(p.ButtonPress)
-        .moveToElement(com.GameChat, 0, 0).pause(p.ButtonPress)
-        .click(com.PassButton).pause(p.ButtonPress)
-        .moveToElement(com.GameChat, 0, 0).pause(p.ButtonPress)
-        .click(com.MultizoneImage(4))
-        .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+      await gameplay
+        .SwitchPlayerWindow().WaitForPassButton().PassTurn()
+        .SwitchPlayerWindow().WaitForPassButton().PassTurn()
+        .WaitForPassButton().Pass().ChooseMultiImg(4)
+        .RunAsync()
       ;
       //assert
-      await browser.assert.textEquals(com.MyResources, '7/7');
+      await browser.assert.doesNotThrow(async () => {
+        await gameplay.Assert()
+          .MyResourcesEquals('7/7')
+          .RunAsync()
+        ;
+      });
     },
     'Leader Ability: Jyn Erso debuff': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
       //arrange
