@@ -289,7 +289,7 @@ export const SpecificJTLCases = {
     //act
     const gameplay = new GamePlay(browser);
     await gameplay
-      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1)
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1).TargetMySpaceUnit(1)
       .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
       .SwitchPlayerWindow().WaitForPassButton().PassTurn()
       .RunAsync()
@@ -297,6 +297,8 @@ export const SpecificJTLCases = {
     //assert
     return browser.assert.doesNotThrow(async () => {
       await gameplay.Assert()
+        .MyBaseDamageEquals('15')
+        .TheirBaseDamageEquals('14')
         .MySpaceUnitIsThere(1)
         .MyResourcesEquals('3/3')
         .RunAsync()
