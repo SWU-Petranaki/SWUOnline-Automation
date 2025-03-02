@@ -1,4 +1,5 @@
 import { cards } from '../../utils/cards';
+import { GamePlay } from '../../utils/gameplay';
 import { GameState } from '../../utils/gamestate';
 import {
     com, p,
@@ -34,7 +35,7 @@ const ShadowedIntentionsGameStateAsync = async () =>{
 }
 
 export const SpecificTWICases = {
-  'Regroup: Sneak Attack Jango exhaust': ''+async function() {//test case is a WIP
+  Sneak_Attack_RR_Jango_exhaust_readies: async function() {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -52,7 +53,23 @@ export const SpecificTWICases = {
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
-    await browser.pause(p.Indefinite);
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).TargetMyHandCard(1).ChooseNo()
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForPassButton().PassTurn().ChooseYes()
+      .SwitchPlayerWindow().WaitForPassButton().Pass()
+      .SwitchPlayerWindow().WaitForPassButton().Pass()
+      .RunAsync()
+    ;
+    //assert
+    await browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .TheirGroundUnitIsThere(1)
+        .TheirGroundUnitIsNotExhausted(1)
+        .RunAsync()
+      ;
+    });
   },
   'Exploit: Red Dooku TWI and triggers': process.env.FULL_REGRESSION !== "true" ? '' : async function() {
     //arrange
