@@ -65,6 +65,7 @@ export const SpecificTWICases = {
     //assert
     await browser.assert.doesNotThrow(async () => {
       await gameplay.Assert()
+        .MySpaceUnitIsGone(1)
         .TheirGroundUnitIsThere(1)
         .TheirGroundUnitIsNotExhausted(1)
         .RunAsync()
