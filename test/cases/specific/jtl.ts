@@ -339,5 +339,47 @@ export const SpecificJTLCases = {
         .RunAsync()
       ;
     });
+  },
+  Kazuda_upgrade_bounties: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("10 12")
+      .AddBase(1, cards.SOR.ECL)
+      .AddLeader(1, cards.JTL.KazudaLeader)
+      .AddBase(2, cards.generic.GreenBase)
+      .AddLeader(2, cards.JTL.DarthVaderLeader)
+      .AddResource(2, cards.SOR.Devastator, false)
+      .AddCardToDeck(2, cards.SOR.OB, 2)
+      .AddUnit(1, cards.SOR.BFMarine, false, true, 0,
+        gameState.SubcardBuilder()
+          .AddUpgrade(cards.SHD.PriceOnYourHead, 2)
+          .AddUpgrade(cards.SHD.DeathMark, 2)
+          .AddUpgrade(cards.SHD.GuildTarget, 2)
+          .AddUpgrade(cards.SHD.Wanted, 2)
+          .AddUpgrade(cards.SHD.TopTarget, 2)
+          .Build())
+      .AddUnit(2, cards.SOR.EscortSkiff, false, false, 1)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1)
+      .TargetMyGroundUnit(1).TargetTheirGroundUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    return browser.assert.doesNotThrow(async () => {
+      await gameplay.Assert()
+        .MyGroundUnitIsGone(1)
+        .TheirGroundUnitIsGone(1)
+        .TheirResourcesEquals('0/1')
+        .TheirBaseDamageEquals('12')
+        .MyBaseDamageEquals('10')
+        .RunAsync()
+      ;
+    });
   }
 }

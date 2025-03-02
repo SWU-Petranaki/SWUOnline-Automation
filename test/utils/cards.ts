@@ -166,6 +166,9 @@ export const cards = {
     LegalAuthority: '8877249477',
     Wanted: '4117365450',
     BHQuarry: '9642863632',
+    PriceOnYourHead: '2178538979',
+    DeathMark: '2740761445',
+    GuildTarget: '0807120264',
     //events
     TimelyIntervention: '6847268098',
     NoBargain: '7354795397',
