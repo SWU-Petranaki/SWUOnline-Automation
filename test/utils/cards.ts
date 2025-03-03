@@ -257,6 +257,7 @@ export const cards = {
     PoeLeaderUnit: '3eb545eb4b',
     TrenchLeader: '3905028200',
     KazudaLeader: '4531112134',
+    KazudaLeaderUnit: 'c1700fc85b',
     //units
     Leia: '7924461681',
     MoffGideon: '7312183744',

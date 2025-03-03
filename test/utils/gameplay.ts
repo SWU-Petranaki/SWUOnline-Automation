@@ -178,7 +178,7 @@ export class GamePlay {
     return this;
   }
 
-  public ClickCheckbox(position: number) {
+  ClickCheckbox(position: number) {
     this.Click(com.Checkbox(position))._asyncBrowser.pause(p.CheckBox);
 
     return this;

@@ -10,6 +10,7 @@ import { AmbushCases } from './cases/ambush';
 import { NamedCardCases } from './cases/named-card';
 import { WhenTheyPlayCases } from './cases/when-they-play';
 import { OnAttackCases } from './cases/on-attack';
+import { RoundEffectCases } from './cases/round-effects';
 import { BounceCases } from './cases/bounce';
 import { DamageCases } from './cases/damage';
 import { RemovalCases } from './cases/removal';
@@ -35,9 +36,9 @@ import { PilotJTLCases } from './cases/pilots';
 import { IndirectDamageCases } from './cases/indirect-damage';
 import { SpecificJTLCases } from './cases/specific/jtl';
 import { JTLPoeCases } from './cases/specific/jtl-poe';
+import { LeaderAbilityJTLCases } from './cases/leader-ability-jtl';
 
 import { LocalTestCase } from './cases/_local';
-import { RoundEffectCases } from './cases/round-effects';
 
 const home: NightwatchTests = {
   before: init,
@@ -76,6 +77,7 @@ const home: NightwatchTests = {
   ...IndirectDamageCases,
   ...SpecificJTLCases,
   ...JTLPoeCases,
+  ...LeaderAbilityJTLCases,
 //end regression suite
   after: async (browser, done) => {
     await browser.window.switchTo(player2Window).window.close();

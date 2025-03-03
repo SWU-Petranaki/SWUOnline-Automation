@@ -236,7 +236,7 @@ export const CoreMechanicsCases = {
     const gameplay = new GamePlay(browser);
     await gameplay
       .WaitForMyHand().PlayFromHand(1).ChooseYes().ChooseYes().TargetTheirSpaceUnit(1).Pass()
-      .WaitForCheckboxes().ClickCheckbox(1).Submit()
+      .WaitForCheckboxes().Check(1).Submit()
       .RunAsync()
     ;
     //assert

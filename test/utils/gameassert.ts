@@ -71,6 +71,18 @@ export class GameAssert {
     return this;
   }
 
+  public MyHandSizeIs(size: number) {
+    this._gamePlay.___BrowsertAssert().elementsCount(com.MyHandDivs, size);
+
+    return this;
+  }
+
+  public TheirHandSizeIs(size: number) {
+    this._gamePlay.___BrowsertAssert().elementsCount(com.TheirHandDivs, size);
+
+    return this;
+  }
+
   public MyHandCardIs(position: number, text: string) {
     this._gamePlay.___BrowsertAssert().attributeEquals(com.HandCardImg(position), 'alt', text);
 
