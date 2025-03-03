@@ -292,13 +292,15 @@ export const SpecificJTLCases = {
       .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1).TargetMySpaceUnit(1)
       .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
       .SwitchPlayerWindow().WaitForPassButton().PassTurn()
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForMySpaceUnit(1).ClickMySpaceUnit(1)
       .RunAsync()
     ;
     //assert
     return browser.assert.doesNotThrow(async () => {
       await gameplay.Assert()
         .MyBaseDamageEquals('15')
-        .TheirBaseDamageEquals('14')
+        .TheirBaseDamageEquals('17')
         .MySpaceUnitIsThere(1)
         .MyResourcesEquals('3/3')
         .RunAsync()

@@ -196,6 +196,7 @@ export const cards = {
     NalaSeLeaderUnit: 'f05184bd91',
     YodaLeader: '2847868671',
     JangoLeader: '9155536481',
+    QuinlanLeader: '2358113881',
     //units
     Malevolence: '3381931079',
     WTTradeOfficial: '0677558416',
