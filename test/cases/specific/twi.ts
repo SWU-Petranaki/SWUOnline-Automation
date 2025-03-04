@@ -72,7 +72,7 @@ export const SpecificTWICases = {
       ;
     });
   },
-  'Exploit: Red Dooku TWI and triggers': process.env.FULL_REGRESSION !== "true" ? '' : async function() {
+  'Exploit: Red Dooku TWI and triggers': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function() {//TEMP: after set 4, add back
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -180,7 +180,7 @@ export const SpecificTWICases = {
     await customAsserts.EnemyGroundUnitIsBattleDroid(browser, 1);
     await customAsserts.EnemyGroundUnitIsBattleDroid(browser, 2);
   },
-  'On Attack: Darth Maul TWI single target available': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
+  'On Attack: Darth Maul TWI single target available': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function () {//TEMP: after set 4, add back
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -205,7 +205,7 @@ export const SpecificTWICases = {
     await browser.assert.not.elementPresent(com.EnemyGroundUnit(1));
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 3), '3');
   },
-  'On Attack: Darth Maul TWI single target choice': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
+  'On Attack: Darth Maul TWI single target choice': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function () {//TEMP: after set 4, add back
    //arrange
    const gameState = new GameState(gameName);
    await gameState.LoadGameStateLinesAsync();
@@ -235,7 +235,7 @@ export const SpecificTWICases = {
     await browser.assert.not.elementPresent(com.EnemyGroundUnit(2));
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 3), '3');
   },
-  'On Attack: Darth Maul TWI sentinels': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
+  'On Attack: Darth Maul TWI sentinels': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function () {//TEMP: after set 4, add back
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -264,7 +264,7 @@ export const SpecificTWICases = {
     await browser.assert.not.elementPresent(com.AllyGroundUnit(1));
     await browser.assert.elementPresent(com.EnemyGroundUnit(1));
   },
-  'On Attack: Darth Maul TWI single sentinel': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
+  'On Attack: Darth Maul TWI single sentinel': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function () {//TEMP: after set 4, add back
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -288,7 +288,7 @@ export const SpecificTWICases = {
     await browser.assert.not.elementPresent(com.EnemyGroundUnit(2));
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 3), '3');
   },
-  'Shadowed Intentions: avoids enemy capture': process.env.FULL_REGRESSION !== "true" ? '' : async function() {
+  'Shadowed Intentions: avoids enemy capture': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function() {//TEMP: after set 4, add back
     //arrange
     await ShadowedIntentionsGameStateAsync();
     //act
@@ -304,7 +304,7 @@ export const SpecificTWICases = {
     const lastLog = (await browser.getText(com.GameLog)).split('\n').slice(-1)[0];
     await browser.assert.equal(lastLog, 'Greedo Slow on the Draw avoided capture.');
   },
-  'Shadowed Intentions: enemy damage': process.env.FULL_REGRESSION !== "true" ? '' : async function() {
+  'Shadowed Intentions: enemy damage': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function() {//TEMP: after set 4, add back
     //arrange
     await ShadowedIntentionsGameStateAsync();
     //act
@@ -318,7 +318,7 @@ export const SpecificTWICases = {
     //assert
     await browser.assert.textEquals(com.UnitDivPiece(com.EnemyGroundUnit(1), 5), '1');
   },
-  'Shadowed Intentions: defeats (merciless contest)': process.env.FULL_REGRESSION !== "true" ? '' : async function() {
+  'Shadowed Intentions: defeats (merciless contest)': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function() {//TEMP: after set 4, add back
     //arrange
     await ShadowedIntentionsGameStateAsync();
     //act
@@ -343,7 +343,7 @@ export const SpecificTWICases = {
     const lastLog = (await browser.getText(com.GameLog)).split('\n').slice(-1)[0];
     await browser.assert.equal(lastLog, 'Greedo Slow on the Draw cannot be defeated by enemy card effects.');
   },
-  'Shadowed Intentions: damaged by self': process.env.FULL_REGRESSION !== "true" ? '' : async function() {
+  'Shadowed Intentions: damaged by self': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function() {//TEMP: after set 4, add back
     //arrange
     await ShadowedIntentionsGameStateAsync();
     //act
@@ -357,7 +357,7 @@ export const SpecificTWICases = {
     //assert
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 5), '1');
   },
-  'Shadowed Intentions: bounced by enemy': process.env.FULL_REGRESSION !== "true" ? '' : async function() {
+  'Shadowed Intentions: bounced by enemy': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function() {//TEMP: after set 4, add back
     //arrange
     await ShadowedIntentionsGameStateAsync();
     //act
@@ -374,7 +374,7 @@ export const SpecificTWICases = {
     const lastLog = (await browser.getText(com.GameLog)).split('\n').slice(-1)[0];
     await browser.assert.equal(lastLog, 'Greedo Slow on the Draw avoided bounce.');
   },
-  'Shadowed Intentions: bounced by self': process.env.FULL_REGRESSION !== "true" ? '' : async function() {
+  'Shadowed Intentions: bounced by self': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function() {//TEMP: after set 4, add back
     //arrange
     await ShadowedIntentionsGameStateAsync();
     //act

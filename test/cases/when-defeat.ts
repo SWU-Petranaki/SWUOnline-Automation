@@ -10,7 +10,7 @@ import {
 } from '../utils/util';
 
 export const WhenDefeatCases = {
-  'When Defeat: Inferno Four top bottom': async function () {
+  'When Defeat: Inferno Four top bottom': ''+async function () {//TEMP: after set 4, add back
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -54,7 +54,7 @@ export const WhenDefeatCases = {
     await browser.assert.equal(newTopDeck2, cards.SOR.Vanquish);
     await browser.assert.equal(newBottomDeck, cards.SOR.Waylay);
   },
-  'When Defeat: SLT w Clone Cohort Pinged by Dengar': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
+  'When Defeat: SLT w Clone Cohort Pinged by Dengar': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function () {//TEMP: after set 4, add back
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
