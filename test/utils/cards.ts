@@ -132,6 +132,7 @@ export const cards = {
     HondoLeaderUnit: '415bde775d',
     GideonLeaderUnit: '4484318969',
     HunterLeaderUnit: 'c9ff9863d7',
+    BobaDaimyoLeader: '9334480612',
     BobaDaimyoLeaderUnit: '919facb76d',
     MandoLeader: '9005139831',
     MandoLeaderUnit: '4088c46c4d',
@@ -169,6 +170,7 @@ export const cards = {
     PriceOnYourHead: '2178538979',
     DeathMark: '2740761445',
     GuildTarget: '0807120264',
+    PublicEnemy: '1780014071',
     //events
     TimelyIntervention: '6847268098',
     NoBargain: '7354795397',
@@ -258,6 +260,8 @@ export const cards = {
     TrenchLeader: '3905028200',
     KazudaLeader: '4531112134',
     KazudaLeaderUnit: 'c1700fc85b',
+    MajorVonregLeader: '9763190770',
+    MajorVonregLeaderUnit: 'd8a5bf1a15',
     //units
     Leia: '7924461681',
     MoffGideon: '7312183744',
@@ -283,6 +287,7 @@ export const cards = {
     PoeUnit: '8757741946',
     LukeUnit: '5942811090',
     HanSoloUnit: '6720065735',
+    L337: '6032641503',
     //vehicles
     RedLeader: '3711891756',
     HoundsTooth: '3876470102',
@@ -301,6 +306,7 @@ export const cards = {
     BlueLeader: '2388374331',
     Fireball: '4240570958',
     TieBomber: '3504944818',
+    VonregsTie: '2948071304',
     //events
     ItsATrap: '0964312065',
     Commandeer: '8105698374',
