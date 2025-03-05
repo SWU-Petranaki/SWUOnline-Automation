@@ -400,7 +400,7 @@ export const JTLPoeCases = {
     await browser.assert.elementPresent(com.AllyGroundUnit(1));
     await customAsserts.UnitIs(browser, cards.JTL.PoeLeaderUnit, com.AllyGroundUnit(1));
   },
-  Leia_JTL_Poe_on_ejected_ground_unit: async function () {
+  Leia_JTL_Poe_on_ejected_ground_unit: ''+async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -433,7 +433,7 @@ export const JTLPoeCases = {
       ;
     });
   },
-  Leia_JTL_Poe_on_deployed_ground_unit: async function () {
+  Leia_JTL_Poe_on_deployed_ground_unit: ''+async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -466,7 +466,7 @@ export const JTLPoeCases = {
       ;
     });
   },
-  Leia_JTL_Poe_on_space_unit: async function () {
+  Leia_JTL_Poe_on_space_unit: ''+async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -500,7 +500,7 @@ export const JTLPoeCases = {
       ;
     });
   },
-  Poe_Leader_Merc_Gunship_interactions:  async function () {
+  Poe_Leader_Merc_Gunship_interactions:  ''+async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
