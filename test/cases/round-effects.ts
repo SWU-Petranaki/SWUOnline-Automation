@@ -27,7 +27,7 @@ export const RoundEffectCases = {
     await gameplay
       .WaitForMyHand().PlayFromHand(1)
       .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
-      .SwitchPlayerWindow().WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1)
+      .SwitchPlayerWindow().WaitForMyLeader().ClickMyLeader().MultiChoiceButton(2)
       .TargetMyGroundUnit(1).TargetMyGroundUnit(2)
       .RunAsync();
     ;
