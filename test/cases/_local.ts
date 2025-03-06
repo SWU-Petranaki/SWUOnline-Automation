@@ -41,7 +41,7 @@ export const LocalTestCase = {
     const gameplay = new GamePlay(browser);
     await gameplay
       //.___Debug() //uncomment to pause locally for debug
-      .___LongPause() //uncomment to pause locally for longer debug
+      // .___LongPause() //uncomment to pause locally for longer debug
       .RunAsync()
     ;
     //assert

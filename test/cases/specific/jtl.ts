@@ -33,7 +33,8 @@ export const SpecificJTLCases = {
     await gameplay
       .WaitForMyLeader()
       .ClickMyLeader()
-      .MultiChoiceButton(3)
+      .MultiChoiceButton(2)
+      .MultiChoiceButton(1)
       .SwitchPlayerWindow()
       .WaitForPassButton()
       .PassTurn()
@@ -103,7 +104,7 @@ export const SpecificJTLCases = {
     //act
     const gameplay = new GamePlay(browser);
     await gameplay
-      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(3)
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(2).MultiChoiceButton(1)
       .SwitchPlayerWindow().WaitForMyHand().ClickHandCard(1)
       .TargetTheirSpaceUnit(1).ChooseButton(1, 1)
       .RunAsync()

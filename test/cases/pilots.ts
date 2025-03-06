@@ -242,7 +242,7 @@ export const PilotJTLCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.Move)
       .click(com.HandCard(1))
       .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.PilotYesNoButton("YES")).pause(p.ButtonPress)
+      .click(com.PilotOrUnitButton("Pilot")).pause(p.ButtonPress)
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
     //assert
@@ -270,7 +270,7 @@ export const PilotJTLCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.Move)
       .click(com.HandCard(1))
       .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.PilotYesNoButton("NO")).pause(p.ButtonPress)
+      .click(com.PilotOrUnitButton("Unit")).pause(p.ButtonPress)
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
     //assert
