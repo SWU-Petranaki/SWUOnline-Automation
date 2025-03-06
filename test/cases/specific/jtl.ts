@@ -49,12 +49,10 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .TheirLeaderHasUsedEpicAction()
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
     //act
     await gameplay
       .SwitchPlayerWindow()
@@ -76,12 +74,11 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .MyLeaderHasUsedEpicAction()
         .MyGroundUnitIsGone(1)
-        .RunAsync()
-    });
+        .RunAsync());
   },
   'JTL: epic action pilot leader upgrade defeated cant deploy next turn': async function () {
     //arrange
@@ -110,12 +107,10 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .TheirLeaderHasUsedEpicAction()
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
     //act
     await gameplay
       .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
@@ -126,12 +121,10 @@ export const SpecificJTLCases = {
       .SwitchPlayerWindow().WaitForMyLeader().ClickMyLeader()
       .RunAsync()
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .NoMultiChoicePopup()
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   'JTL: Leia Poe ejected ground unit': async function () {
     //arrange
@@ -158,13 +151,11 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .TheirBaseDamageEquals('10')
         .MyBaseDamageEquals('8')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   'JTL: Leia Poe deployed ground unit': async function () {
     //arrange
@@ -191,13 +182,11 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .TheirBaseDamageEquals('10')
         .MyBaseDamageEquals('8')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   'JTL: Leia Poe space unit': async function () {
     //arrange
@@ -225,13 +214,11 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .TheirBaseDamageEquals('10')
         .MyBaseDamageEquals('8')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   'JTL: Sabines Masterpiece': async function () {
     //arrange
@@ -263,15 +250,13 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .TheirBaseDamageEquals('9')
         .MyBaseDamageEquals('7')
         .MyGroundUnitPieceEquals(2, 1, 'EXPERIENCE')
         .TheirResourcesEquals('0/1')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   Kazuda_Millennium_Falcon: async function () {
     //arrange
@@ -298,15 +283,13 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .MyBaseDamageEquals('15')
         .TheirBaseDamageEquals('17')
         .MySpaceUnitIsThere(1)
         .MyResourcesEquals('3/3')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   Kazuda_Fireball: async function () {
     //arrange
@@ -332,16 +315,14 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .MyBaseDamageEquals('7')
         .TheirBaseDamageEquals('8')
         .MyResourcesEquals('2/2')
         .MySpaceUnitPieceIsOverlay(1, 3)
         .TheirSpaceUnitPieceEquals(1, 3, '3')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   Kazuda_upgrade_bounties: async function () {
     //arrange
@@ -374,15 +355,13 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .MyGroundUnitIsGone(1)
         .TheirGroundUnitIsGone(1)
         .TheirResourcesEquals('0/1')
         .TheirBaseDamageEquals('12')
         .MyBaseDamageEquals('10')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   }
 }

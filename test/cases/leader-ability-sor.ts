@@ -66,12 +66,10 @@ export const LeaderAbilitySORCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .MyGroundUnitPieceIsSentinelToken(1, 3)
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   'Leader Ability: Chirrut Imwe buff': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function () {//TEMP: after set 4, add back
     //arrange
@@ -596,12 +594,10 @@ export const LeaderAbilitySORCases = {
         .RunAsync()
       ;
       //assert
-      await browser.assert.doesNotThrow(async () => {
-        await gameplay.Assert()
+      await browser.assert.doesNotThrow(()=>
+        gameplay.Assert()
           .MyResourcesEquals('8/8')
-          .RunAsync()
-        ;
-      });
+          .RunAsync());
       //act
       await gameplay
         .SwitchPlayerWindow().WaitForPassButton().PassTurn()
@@ -610,12 +606,10 @@ export const LeaderAbilitySORCases = {
         .RunAsync()
       ;
       //assert
-      await browser.assert.doesNotThrow(async () => {
-        await gameplay.Assert()
+      await browser.assert.doesNotThrow(() =>
+        gameplay.Assert()
           .MyResourcesEquals('7/7')
-          .RunAsync()
-        ;
-      });
+          .RunAsync());
     },
     'Leader Ability: Jyn Erso debuff': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function () {//TEMP: after set 4, add back
       //arrange

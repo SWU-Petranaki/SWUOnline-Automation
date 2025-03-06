@@ -38,14 +38,12 @@ export const BoardWipeCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .WeHaveNoUnits()
         .MyBaseDamageEquals('15')
         .TheirBaseDamageEquals('9')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   'Iden Versio Leader Unit SLB Two Idens': process.env.FULL_REGRESSION !== 'true' ? '' : ''+async function () {//TEMP: after set 4, add back
     //arrange
@@ -76,14 +74,12 @@ export const BoardWipeCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .WeHaveNoUnits()
         .MyBaseDamageEquals('17')
         .TheirBaseDamageEquals('18')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   'Iden Versio Leader Unit Christophsis': ''+async function () {//TEMP: after set 4, add back
     //arrange
@@ -151,13 +147,11 @@ export const BoardWipeCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .MyBaseDamageEquals('17')
         .TheirBaseDamageEquals('20')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   'Gideon Hask gives XP to rescued captive': async function () {
     //arrange
@@ -193,15 +187,13 @@ export const BoardWipeCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .MyGroundUnitPieceEquals(1, 1, 'EXPERIENCE')
         .MyGroundUnitPieceEquals(1, 2, 'EXPERIENCE')
         .MyGroundUnitPieceEquals(1, 3, 'EXPERIENCE')
         .MyGroundUnitPieceEquals(1, 4, '5')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   'Two Gideon Hasks give XP to rescued captives': async function () {
     //arrange
@@ -246,8 +238,8 @@ export const BoardWipeCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .MyBaseDamageEquals('9')
         .TheirBaseDamageEquals('20')
         .MyGroundUnitPieceEquals(1, 1, 'EXPERIENCE')
@@ -259,8 +251,6 @@ export const BoardWipeCases = {
         .TheirGroundUnitPieceEquals(1, 3, 'EXPERIENCE')
         .TheirGroundUnitPieceEquals(1, 4, 'EXPERIENCE')
         .TheirGroundUnitPieceEquals(1, 5, '6')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   }
 }

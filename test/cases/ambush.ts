@@ -31,13 +31,11 @@ export const AmbushCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .TheyHaveNoGroundUnits()
         .MyGroundUnitPieceEquals(1, 3, '2')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   'Ambush: Rukh into Krayt Dragon with ECL': async function () {
     //arrange
@@ -63,13 +61,11 @@ export const AmbushCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .IHaveNoGroundUnits()
         .TheirGroundUnitPieceEquals(1, 3, '5')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   'Ambush: Rukh into Krayt Dragon with TI': async function () {
     //arrange
@@ -96,11 +92,9 @@ export const AmbushCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .WeHaveNoGroundUnits()
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
 }

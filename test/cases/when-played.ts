@@ -44,14 +44,12 @@ export const WhenPlayedCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .TheirGroundUnitIsGone(2)
         .MyGroundUnitPieceEquals(3, 3, '2')
         .MyHandCardIs(1, 'Admiral Ackbar')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   'When Played: Darth Vader multi then draw': async function () {
     //arrange
@@ -85,16 +83,14 @@ export const WhenPlayedCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .TheirGroundUnitIsGone(2)
         .MyGroundUnitIsThere(2)
         .MyGroundUnitIsThere(3)
         .MyGroundUnitPieceEquals(1, 3, '3')
         .MyHandCardIs(1, 'Phase-III Dark Trooper')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   'When Played: Darth Vader cant pull pilots as upgrades': async function () {
     //arrange
@@ -120,14 +116,12 @@ export const WhenPlayedCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .TheirGroundUnitIsGone(2)
         .MyGroundUnitIsThere(1)
         .MySpaceUnitIsThere(1)
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   'When Played: Leia JTL lets Pilot attack': async function () {
     //arrange

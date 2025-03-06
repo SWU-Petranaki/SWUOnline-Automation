@@ -80,15 +80,13 @@ export const JTLPoeCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .MyGroundUnitIsGone(1)
         .TheirGroundUnitIsThere(1)
         .MySpaceUnitIsThere(1)
         .MySpaceUnitPieceEquals(1, 1, 'POE DAMERON')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   Poe_Leader_mass_testing_interactions: async function () {
     //arrange
@@ -425,13 +423,11 @@ export const JTLPoeCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .TheirBaseDamageEquals('10')
         .MyBaseDamageEquals('8')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   Leia_JTL_Poe_on_deployed_ground_unit: ''+async function () {
     //arrange
@@ -458,13 +454,11 @@ export const JTLPoeCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .TheirBaseDamageEquals('10')
         .MyBaseDamageEquals('8')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   Leia_JTL_Poe_on_space_unit: ''+async function () {
     //arrange
@@ -492,13 +486,11 @@ export const JTLPoeCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .TheirBaseDamageEquals('10')
         .MyBaseDamageEquals('8')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   Poe_Leader_Merc_Gunship_interactions:  ''+async function () {
     //arrange
@@ -556,13 +548,11 @@ export const JTLPoeCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .TheirSpaceUnitIsNotPlayable(4)
         .TheirBaseDamageEquals('10')
         .MyBaseDamageEquals('9')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   }
 }

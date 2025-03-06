@@ -40,13 +40,11 @@ export const BountyCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .MyBaseDamageEquals('7')
         .TheirBaseDamageEquals('10')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   'Bounty: The Client edge case': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function () {//TEMP: after set 4, add back
     //arrange
@@ -77,13 +75,11 @@ export const BountyCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .MyBaseDamageEquals('5')
         .TheirBaseDamageEquals('12')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   'Bounty: multiple collected': ''+async function () {//WIP
     //arrage

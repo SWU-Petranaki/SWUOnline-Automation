@@ -126,12 +126,10 @@ export const CoreMechanicsCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .MySpaceUnitIsThere(1)
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   Piloting_yes_then_no: async function() {
     //arrange
@@ -162,8 +160,8 @@ export const CoreMechanicsCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .MySpaceUnitIsThere(1)
         .MySpaceUnitIsThere(2)
         .MyGroundUnitIsThere(1)
@@ -172,9 +170,7 @@ export const CoreMechanicsCases = {
         .TheirResourcesEquals("0/0")
         .MyDiscardIsEmpty()
         .TheirDiscardIsEmpty()
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   Piloting_yes_then_regular_unit_with_triggers: async function() {
     //arrange
@@ -206,14 +202,12 @@ export const CoreMechanicsCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .MySpaceUnitIsThere(1)
         .MySpaceUnitIsThere(2)
         .MyGroundUnitIsThere(1)
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   Piloting_layers: async function() {
     //arrange
@@ -240,13 +234,11 @@ export const CoreMechanicsCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .MySpaceUnitIsThere(1)
         .TheirSpaceUnitIsGone(1)
         .MyGroundUnitIsThere(1)
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
 }

@@ -306,13 +306,11 @@ export const PilotJTLCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .MyGroundUnitIsThere(1)
         .MyGroundUnitIsGone(2)
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   Luke_JTL_pilot_unit_defeated_then_no_shield: async function() {
     //arrange
@@ -342,13 +340,11 @@ export const PilotJTLCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .MyGroundUnitIsThere(1)
         .MyGroundUnitPieceIsOverlay(1, 3)
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   Luke_pilot_controlled_drops_on_my_side: async function() {
     //arrange
@@ -377,12 +373,10 @@ export const PilotJTLCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .TheirSpaceUnitIsThere(1)
         .MyGroundUnitIsThere(2)
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   }
 }

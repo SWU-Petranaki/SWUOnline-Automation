@@ -31,13 +31,11 @@ export const LeaderAbilitySHDCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .TheirSpaceUnitIsThere(1, true)
         .TheirSpaceUnitPieceEquals(1, 1, 'WANTED')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   Mando_Leader_exhaust_with_pilot: async function() {
     //arrange
@@ -65,14 +63,12 @@ export const LeaderAbilitySHDCases = {
       .RunAsync()
     ;
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .TheirSpaceUnitIsThere(1, true)
         .TheirSpaceUnitIsThere(2, true)
         .TheirSpaceUnitIsNotExhausted(3)
         .MySpaceUnitPieceEquals(1, 1, 'THE MANDALORIAN')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   }
 }

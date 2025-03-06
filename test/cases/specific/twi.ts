@@ -63,14 +63,12 @@ export const SpecificTWICases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .MySpaceUnitIsGone(1)
         .TheirGroundUnitIsThere(1)
         .TheirGroundUnitIsNotExhausted(1)
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   },
   'Exploit: Red Dooku TWI and triggers': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function() {//TEMP: after set 4, add back
     //arrange

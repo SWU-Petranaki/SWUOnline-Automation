@@ -41,8 +41,8 @@ export const LeaderAbilityJTLCases = {
       .SwitchPlayerWindow().WaitForMySpaceUnit(1).ClickMySpaceUnit(1)
       .RunAsync();
     //assert
-    return browser.assert.doesNotThrow(async () => {
-      await gameplay.Assert()
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
         .TheirSpaceUnitIsGone(1)
         .MySpaceUnitIsThere(1)
         .MySpaceUnitIsGone(2)
@@ -51,8 +51,6 @@ export const LeaderAbilityJTLCases = {
         .MyResourcesEquals('1/1')
         .TheirResourcesEquals('1/1')
         .TheirBaseDamageEquals('5')
-        .RunAsync()
-      ;
-    });
+        .RunAsync());
   }
 }
