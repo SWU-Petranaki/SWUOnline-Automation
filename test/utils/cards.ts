@@ -91,6 +91,7 @@ export const cards = {
     Devastator: '4631297392',
     AdmiralPiett: '4566580942',
     FettsFirespray: '4300219753',
+    K2SO: '3232845719',
     //upgrades
     Traitorous: '8055390529',
     MakeAnOpening: '3208391441',
@@ -184,6 +185,7 @@ export const cards = {
     TakeCaptive: '3765912000',
     ANewAdventure: '4717189843',
     RelentlessPursuit: '5778949819',
+    TripleDarkRaid: '5696041568',
   },
   TWI: {
     //bases
