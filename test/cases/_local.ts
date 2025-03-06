@@ -16,7 +16,7 @@ export const LocalTestCase = {
       .AddLeader(2, cards.JTL.AsajjLeader)
       .FillResources(1, cards.SOR.BFMarine, 7)
       .AddCardToDeck(1, cards.SOR.BFMarine, 20)
-      .AddUnit(1, cards.JTL.TieFighter, false, true, 0, 
+      .AddUnit(1, cards.JTL.TieFighter, false, true, 0,
         gameState.SubcardBuilder().AddPilot("0086781673", 1).Build())
       .AddUnit(1, cards.JTL.Bossk)
       .AddUnit(2, cards.JTL.TieFighter)
@@ -41,7 +41,7 @@ export const LocalTestCase = {
     const gameplay = new GamePlay(browser);
     await gameplay
       //.___Debug() //uncomment to pause locally for debug
-      // .___LongPause() //uncomment to pause locally for longer debug
+      //.___LongPause() //uncomment to pause locally for longer debug
       .RunAsync()
     ;
     //assert
