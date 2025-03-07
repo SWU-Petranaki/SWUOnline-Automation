@@ -92,9 +92,12 @@ export const cards = {
     AdmiralPiett: '4566580942',
     FettsFirespray: '4300219753',
     K2SO: '3232845719',
+    TheGhost: '6931439330',
+    EchoBaseDefender: '6912684909',
     //upgrades
     Traitorous: '8055390529',
     MakeAnOpening: '3208391441',
+    InfiltratorsSkill: '0797226725',
     //events
     Vigilance: '8615772965',
     Command: '0073206444',
@@ -160,6 +163,7 @@ export const cards = {
     PoeDameron: '5966087637',
     Val: '0474909987',
     ZoriiBliss: '2522489681',
+    Wrecker: '2470093702',
     //upgrades
     TopTarget: '4282425335',
     Darksaber: '3141660491',
@@ -218,6 +222,7 @@ export const cards = {
     CadBane: '0693815329',
     SavageOpress: '8540765053',
     SlyMoore: '7732981122',
+    CloneCommanderCody: '9017877021',
     //upgrades
     ShadowedIntentions: '9003830954',
     CloneCohort: '2007876522',
@@ -268,6 +273,7 @@ export const cards = {
     Leia: '7924461681',
     MoffGideon: '7312183744',
     FOStormTrooper: '6861397107',
+    Yularen: '3148212344',
     //pilots
     Chewbacca: '7208848194',
     Dengar: '3282713547',
@@ -309,6 +315,8 @@ export const cards = {
     Fireball: '4240570958',
     TieBomber: '3504944818',
     VonregsTie: '2948071304',
+    PhantomII: '5306772000',
+    TheGhost: '5763330426',
     //events
     ItsATrap: '0964312065',
     Commandeer: '8105698374',
