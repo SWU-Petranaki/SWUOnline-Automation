@@ -94,6 +94,7 @@ export const cards = {
     K2SO: '3232845719',
     TheGhost: '6931439330',
     EchoBaseDefender: '6912684909',
+    WedgeAntilles: '4339330745',
     //upgrades
     Traitorous: '8055390529',
     MakeAnOpening: '3208391441',
@@ -317,6 +318,7 @@ export const cards = {
     VonregsTie: '2948071304',
     PhantomII: '5306772000',
     TheGhost: '5763330426',
+    RazorCrest: '1935873883',
     //events
     ItsATrap: '0964312065',
     Commandeer: '8105698374',

@@ -43,7 +43,7 @@ import { LocalTestCase } from './cases/_local';
 const home: NightwatchTests = {
   before: init,
 //regression suite
-  ...(process.env.LOCAL_RUN ? LocalTestCase : {}),
+  ...(process.argv[process.argv.length-1] == "Local Run" && process.env.LOCAL_RUN ? LocalTestCase : {}),
   ...CoreMechanicsCases,
   ...WhenPlayedCases,
   ...WhenDefeatCases,

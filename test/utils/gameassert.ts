@@ -43,6 +43,34 @@ export class GameAssert {
     return this;
   }
 
+  public MyLeaderIsExhausted() {
+    this._gamePlay.___BrowsertAssert()
+      .attributeContains(com.LeaderExhaustDiv(this._gamePlay.CurrentPlayer()), 'style', 'visibility: visible');
+
+    return this;
+  }
+
+  public TheirLeaderIsExhausted() {
+    this._gamePlay.___BrowsertAssert()
+      .attributeContains(com.LeaderExhaustDiv(this._gamePlay.CurrentPlayer() == 1 ? 2 : 1), 'style', 'visibility: visible');
+
+    return this;
+  }
+
+  public MyLeaderIsReady() {
+    this._gamePlay.___BrowsertAssert()
+      .attributeContains(com.LeaderExhaustDiv(this._gamePlay.CurrentPlayer()), 'style', 'visibility: hidden');
+
+    return this;
+  }
+
+  public TheirLeaderIsReady() {
+    this._gamePlay.___BrowsertAssert()
+      .attributeContains(com.LeaderExhaustDiv(this._gamePlay.CurrentPlayer() == 1 ? 2 : 1), 'style', 'visibility: hidden');
+
+    return this;
+  }
+
   public MyLeaderHasUsedEpicAction() {
     this._gamePlay.___BrowsertAssert()
       .attributeEquals(com.Leader(this._gamePlay.CurrentPlayer()) + ' img:nth-of-type(2)', 'src', 'http://localhost:8080/Arena/Images/ExhaustToken.png')

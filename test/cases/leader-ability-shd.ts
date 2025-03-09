@@ -70,5 +70,34 @@ export const LeaderAbilitySHDCases = {
         .TheirSpaceUnitIsNotExhausted(3)
         .MySpaceUnitPieceEquals(1, 1, 'THE MANDALORIAN')
         .RunAsync());
+  },
+  Mando_Leader_exhaust_with_pilot_on_Razor_Crest: async function() {
+    //arrange
+    const gamestate = new GameState(gameName);
+    await gamestate.LoadGameStateLinesAsync();
+    await gamestate.ResetGameStateLines()
+      .SetBasesDamage('5 5')
+      .AddBase(1, cards.generic.RedBase)
+      .AddLeader(1, cards.SHD.MandoLeader)
+      .AddBase(2, cards.SOR.EchoBase)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .AddCardToHand(1, cards.JTL.R2D2)
+      .AddUnit(1, cards.JTL.RazorCrest)
+      .AddUnit(2, cards.SOR.MillenniumFalcon)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).ChooseYes().ClickLayerTile(2).Pass().TargetTheirSpaceUnit(1).TargetTheirSpaceUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    await browser.assert.doesNotThrow(() =>
+      gameplay.Assert()
+        .TheirSpaceUnitIsGone(1)
+        .MySpaceUnitPieceEquals(1, 1, 'R2-D2')
+        .MyLeaderIsExhausted()
+        .RunAsync());
   }
 }

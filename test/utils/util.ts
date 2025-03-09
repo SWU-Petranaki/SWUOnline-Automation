@@ -60,6 +60,7 @@ export const com = {
     ModalOption(index: number) { return `div#CHOOSEOPTION div div.card-container div:nth-of-type(${index})`; },
     Base(player: number) { return `span#P${player}BASE a`; },
     Leader(player: number) { return `span#P${player}LEADER a`; },
+    LeaderExhaustDiv(player: number) { return `span#P${player}LEADER a div`; },
     AllyGroundUnit(index: number, exhausted: boolean = false) { return `div.groundAlliesContainer div:nth-of-type(${index})${exhausted ? '.exhausted' : ''} a`; },
     AllySpaceUnit(index: number, exhausted: boolean = false) { return `div.spaceAlliesContainer div:nth-of-type(${index})${exhausted ? '.exhausted' : ''} a`; },
     EnemyGroundUnit(index: number, exhausted: boolean = false) { return `div.groundEnemiesContainer div:nth-of-type(${index})${exhausted ? '.exhausted' : ''} a`; },
