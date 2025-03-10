@@ -49,6 +49,8 @@ export const com = {
     PassButton: 'span.pass-label',
     ClaimButton: 'button.claimButton',
     SubmitButton: 'input[type="button"]',
+    ConfirmButton: 'button.confirmButton',
+    OkButtonPopup: 'div#OK div button',
     MultiChoicePopup: 'div#BUTTONINPUT',
     YesNoButton(choice: "YES"|"NO") { return `div#mainDiv button:nth-of-type(${choice === "YES" ? 1 : 2})`; },
     PilotOrUnitButton(choice:"Pilot"|"Unit") { return `div#BUTTONINPUT div button:nth-of-type(${choice === "Pilot" ? 1 : 2})`; },
@@ -71,6 +73,9 @@ export const com = {
     //then Attack, then Defense, then damage if any,
     //then tokens like Sentinel, Shield, Clone if any
     UnitDivPiece(linkSelector: string, index: number) { return `${linkSelector} div:nth-last-of-type(${index})`; },
+    //damage increment/decrement
+    DamageIncrement(linkSelector: string) { return `${linkSelector} div.counters-control-wrapper button.increase-control`; },
+    DamageDecrement(linkSelector: string) { return `${linkSelector} div.counters-control-wrapper button.decrease-control`; },
     UnitImg(linkSelector: string) { return `${linkSelector} img`; },
     PlayerPickSpan: 'span.playerpick-span',
     MyResources: 'div.my-resources div.resources span',

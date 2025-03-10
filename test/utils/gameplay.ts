@@ -183,6 +183,102 @@ export class GamePlay {
 
     return this;
   }
+
+  public ClickMyBaseDmgInc(times: number = 1) {
+    for(let i = 0; i < times; i++) {
+      this.Click(com.DamageIncrement(com.Base(this._currentPlayer)))._asyncBrowser.pause(p.ButtonPress);
+    }
+
+    return this;
+  }
+
+  public ClickMyBaseDmgDec(times: number = 1) {
+    for(let i = 0; i < times; i++) {
+      this.Click(com.DamageDecrement(com.Base(this._currentPlayer)))._asyncBrowser.pause(p.ButtonPress);
+    }
+
+    return this;
+  }
+
+  public ClickTheirBaseDmgInc(times: number = 1) {
+    for(let i = 0; i < times; i++) {
+      this.Click(com.DamageIncrement(com.Base(this._currentPlayer == 1 ? 2 : 1)))._asyncBrowser.pause(p.ButtonPress);
+    }
+
+    return this;
+  }
+
+  public ClickTheirBaseDmgDec(times: number = 1) {
+    for(let i = 0; i < times; i++) {
+      this.Click(com.DamageDecrement(com.Base(this._currentPlayer == 1 ? 2 : 1)))._asyncBrowser.pause(p.ButtonPress);
+    }
+
+    return this;
+  }
+
+  public ClickMyGroundUnitDmgInc(position: number, times: number = 1) {
+    for(let i = 0; i < times; i++) {
+      this.Click(com.DamageIncrement(com.AllyGroundUnit(position)))._asyncBrowser.pause(p.ButtonPress);
+    }
+
+    return this;
+  }
+
+  public ClickMyGroundUnitDmgDec(position: number, times: number = 1) {
+    for(let i = 0; i < times; i++) {
+      this.Click(com.DamageDecrement(com.AllyGroundUnit(position)))._asyncBrowser.pause(p.ButtonPress);
+    }
+
+    return this;
+  }
+
+  public ClickMySpaceUnitDmgInc(position: number, times: number = 1) {
+    for(let i = 0; i < times; i++) {
+      this.Click(com.DamageIncrement(com.AllySpaceUnit(position)))._asyncBrowser.pause(p.ButtonPress);
+    }
+
+    return this;
+  }
+
+  public ClickMySpaceUnitDmgDec(position: number, times: number = 1) {
+    for(let i = 0; i < times; i++) {
+      this.Click(com.DamageDecrement(com.AllySpaceUnit(position)))._asyncBrowser.pause(p.ButtonPress);
+    }
+
+    return this;
+  }
+
+  public ClickTheirGroundUnitDmgInc(position: number, times: number = 1) {
+    for(let i = 0; i < times; i++) {
+      this.Click(com.DamageIncrement(com.EnemyGroundUnit(position)))._asyncBrowser.pause(p.ButtonPress);
+    }
+
+    return this;
+  }
+
+  public ClickTheirGroundUnitDmgDec(position: number, times: number = 1) {
+    for(let i = 0; i < times; i++) {
+      this.Click(com.DamageDecrement(com.EnemyGroundUnit(position)))._asyncBrowser.pause(p.ButtonPress);
+    }
+
+    return this;
+  }
+
+  public ClickTheirSpaceUnitDmgInc(position: number, times: number = 1) {
+    for(let i = 0; i < times; i++) {
+      this.Click(com.DamageIncrement(com.EnemySpaceUnit(position)))._asyncBrowser.pause(p.ButtonPress);
+    }
+
+    return this;
+  }
+
+  public ClickTheirSpaceUnitDmgDec(position: number, times: number = 1) {
+    for(let i = 0; i < times; i++) {
+      this.Click(com.DamageDecrement(com.EnemySpaceUnit(position)))._asyncBrowser.pause(p.ButtonPress);
+    }
+
+    return this;
+  }
   //Targets
   Target(selector: string) {
     this._asyncBrowser
@@ -248,6 +344,20 @@ export class GamePlay {
 
   public ClaimInitiative() {
     this.Click(com.ClaimButton)._asyncBrowser
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect);
+
+    return this;
+  }
+
+  public Confirm() {
+    this.Click(com.ConfirmButton)._asyncBrowser
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect);
+
+    return this;
+  }
+
+  public Ok() {
+    this.Click(com.OkButtonPopup)._asyncBrowser
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect);
 
     return this;
