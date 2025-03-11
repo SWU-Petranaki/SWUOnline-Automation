@@ -41,12 +41,12 @@ export const BounceCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
-        .TheirDiscardIsEmpty()
-        .TheirHandIsEmpty()
-        .TheyHaveNoGroundUnits()
-        .RunAsync());
+    gameplay.Assert()
+      .TheirDiscardIsEmpty()
+      .TheirHandIsEmpty()
+      .TheyHaveNoGroundUnits()
+      .RunAsync()
+    ;
   },
   'MaKlounkee cannot bounce own piloted leader unit': async function () {
     //arrange
@@ -74,10 +74,10 @@ export const BounceCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
-        .MyGroundUnitIsNotPlayable(2)
-        .RunAsync());
+    gameplay.Assert()
+      .MyGroundUnitIsNotPlayable(2)
+      .RunAsync()
+    ;
   },
   'Bounce: Evacuate unique captives and ignore leaders': async function () {
     //arrange
@@ -106,12 +106,12 @@ export const BounceCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
-        .TheirGroundUnitIsThere(1)
-        .TheirSpaceUnitIsThere(1)
-        .PlayerPickSpanTextEquals('You have two of this unique unit; choose one to destroy ')
-        .RunAsync());
+    gameplay.Assert()
+      .TheirGroundUnitIsThere(1)
+      .TheirSpaceUnitIsThere(1)
+      .PlayerPickSpanTextEquals('You have two of this unique unit; choose one to destroy ')
+      .RunAsync()
+    ;
   },
   'Bounce: Waylay cant bounce piloted leader unit': async function () {
     //arrange
@@ -330,11 +330,11 @@ export const BounceCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
-        .TheirSpaceUnitIsThere(1, true)
-        .TheirLeaderHasUsedEpicAction()
-        .TheirHandIsEmpty()
-        .RunAsync());
+    gameplay.Assert()
+      .TheirSpaceUnitIsThere(1, true)
+      .TheirLeaderHasUsedEpicAction()
+      .TheirHandIsEmpty()
+      .RunAsync()
+    ;
   }
 }

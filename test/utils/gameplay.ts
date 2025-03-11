@@ -21,8 +21,8 @@ export class GamePlay {
     this._currentPlayer = 1;
   }
 
-  public async RunAsync() {
-    return await this._asyncBrowser
+  public RunAsync() {
+    return this._asyncBrowser
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect);
   }
 

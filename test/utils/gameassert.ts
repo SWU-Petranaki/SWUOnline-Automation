@@ -9,8 +9,8 @@ export class GameAssert {
     this._gamePlay = gamePlay;
   }
 
-  public async RunAsync() {
-    return await this._gamePlay.RunAsync();
+  public RunAsync() {
+    return this._gamePlay.RunAsync();
   }
 
   ElementPresent(selector: string) {

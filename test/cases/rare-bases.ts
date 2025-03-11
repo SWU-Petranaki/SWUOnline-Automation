@@ -36,11 +36,11 @@ export const RareBasesCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
-        .TheirGroundUnitPieceEquals(2, 4, '3')
-        .IHaveNoGroundUnits()
-        .RunAsync());
+    gameplay.Assert()
+      .TheirGroundUnitPieceEquals(2, 4, '3')
+      .IHaveNoGroundUnits()
+      .RunAsync()
+    ;
   },
   'Petranaki Arena gives +1 power': async function() {
     //arrange
@@ -70,10 +70,10 @@ export const RareBasesCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
-        .MyGroundUnitPieceEquals(1, 1, '3')
-        .TheirBaseDamageEquals('4')
-        .RunAsync());
+    gameplay.Assert()
+      .MyGroundUnitPieceEquals(1, 1, '3')
+      .TheirBaseDamageEquals('4')
+      .RunAsync()
+    ;
   }
 }

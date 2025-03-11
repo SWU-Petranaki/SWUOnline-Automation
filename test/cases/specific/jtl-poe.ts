@@ -80,7 +80,7 @@ export const JTLPoeCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
+
       gameplay.Assert()
         .MyGroundUnitIsGone(1)
         .TheirGroundUnitIsThere(1)
@@ -423,7 +423,7 @@ export const JTLPoeCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
+
       gameplay.Assert()
         .TheirBaseDamageEquals('10')
         .MyBaseDamageEquals('8')
@@ -454,7 +454,7 @@ export const JTLPoeCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
+
       gameplay.Assert()
         .TheirBaseDamageEquals('10')
         .MyBaseDamageEquals('8')
@@ -486,7 +486,7 @@ export const JTLPoeCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
+
       gameplay.Assert()
         .TheirBaseDamageEquals('10')
         .MyBaseDamageEquals('8')
@@ -548,7 +548,7 @@ export const JTLPoeCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
+
       gameplay.Assert()
         .TheirSpaceUnitIsNotPlayable(4)
         .TheirBaseDamageEquals('10')

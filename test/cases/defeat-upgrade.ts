@@ -65,10 +65,10 @@ export const DefeatUpgradeCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
-        .TheirLeaderIsThere()
-        .TheirLeaderStillHasEpicAction()
-        .RunAsync());
+    gameplay.Assert()
+      .TheirLeaderIsThere()
+      .TheirLeaderStillHasEpicAction()
+      .RunAsync()
+    ;
   }
 }

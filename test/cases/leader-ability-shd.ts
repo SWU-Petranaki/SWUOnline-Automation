@@ -31,11 +31,11 @@ export const LeaderAbilitySHDCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
-        .TheirSpaceUnitIsThere(1, true)
-        .TheirSpaceUnitPieceEquals(1, 1, 'WANTED')
-        .RunAsync());
+    gameplay.Assert()
+      .TheirSpaceUnitIsThere(1, true)
+      .TheirSpaceUnitPieceEquals(1, 1, 'WANTED')
+      .RunAsync()
+    ;
   },
   Mando_Leader_exhaust_with_pilot: async function() {
     //arrange
@@ -63,13 +63,13 @@ export const LeaderAbilitySHDCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
-        .TheirSpaceUnitIsThere(1, true)
-        .TheirSpaceUnitIsThere(2, true)
-        .TheirSpaceUnitIsNotExhausted(3)
-        .MySpaceUnitPieceEquals(1, 1, 'THE MANDALORIAN')
-        .RunAsync());
+    gameplay.Assert()
+      .TheirSpaceUnitIsThere(1, true)
+      .TheirSpaceUnitIsThere(2, true)
+      .TheirSpaceUnitIsNotExhausted(3)
+      .MySpaceUnitPieceEquals(1, 1, 'THE MANDALORIAN')
+      .RunAsync()
+    ;
   },
   Mando_Leader_exhaust_with_pilot_on_Razor_Crest: async function() {
     //arrange
@@ -93,11 +93,11 @@ export const LeaderAbilitySHDCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
-        .TheirSpaceUnitIsGone(1)
-        .MySpaceUnitPieceEquals(1, 1, 'R2-D2')
-        .MyLeaderIsExhausted()
-        .RunAsync());
+    gameplay.Assert()
+      .TheirSpaceUnitIsGone(1)
+      .MySpaceUnitPieceEquals(1, 1, 'R2-D2')
+      .MyLeaderIsExhausted()
+      .RunAsync()
+    ;
   }
 }

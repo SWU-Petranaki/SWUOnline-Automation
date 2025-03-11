@@ -32,10 +32,10 @@ export const RoundEffectCases = {
       .RunAsync();
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
-        .TheirBaseDamageEquals("10")
-        .RunAsync());
+    gameplay.Assert()
+      .TheirBaseDamageEquals("10")
+      .RunAsync()
+    ;
   },
   Millenium_Falcon_Han_SOR_keep_her_running: async function() {
     //arrange
@@ -62,12 +62,12 @@ export const RoundEffectCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
-        .MySpaceUnitIsThere(1)
-        .MyResourcesEquals("2/2")
-        .MyHandCardIs(1, "Change of Heart")
-        .RunAsync());
+    gameplay.Assert()
+      .MySpaceUnitIsThere(1)
+      .MyResourcesEquals("2/2")
+      .MyHandCardIs(1, "Change of Heart")
+      .RunAsync()
+    ;
   },
   Zorii_Bliss_Discard_Before_Regroup: async function() {
     //arrange
@@ -94,13 +94,13 @@ export const RoundEffectCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
-        .MyBaseDamageEquals('0')
-        .TheirBaseDamageEquals('4')
-        .MyHandCardIs(3, "Crafty Smuggler")
-        .PlayerPickSpanTextEquals("Choose a card to discard ")
-        .RunAsync());
+    gameplay.Assert()
+      .MyBaseDamageEquals('0')
+      .TheirBaseDamageEquals('4')
+      .MyHandCardIs(3, "Crafty Smuggler")
+      .PlayerPickSpanTextEquals("Choose a card to discard ")
+      .RunAsync()
+    ;
   },
   NGTMD_keeps_exhausted_next_turn: async function() {
     //arrange
@@ -125,11 +125,11 @@ export const RoundEffectCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
-        .MyBaseDamageEquals('6')
-        .TheirBaseDamageEquals('6')
-        .TheirGroundUnitIsThere(1, true)
-        .RunAsync());
+    gameplay.Assert()
+      .MyBaseDamageEquals('6')
+      .TheirBaseDamageEquals('6')
+      .TheirGroundUnitIsThere(1, true)
+      .RunAsync()
+    ;
   }
 }

@@ -49,7 +49,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
+
       gameplay.Assert()
         .TheirLeaderHasUsedEpicAction()
         .RunAsync());
@@ -74,7 +74,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
+
       gameplay.Assert()
         .MyLeaderHasUsedEpicAction()
         .MyGroundUnitIsGone(1)
@@ -107,7 +107,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
+
       gameplay.Assert()
         .TheirLeaderHasUsedEpicAction()
         .RunAsync());
@@ -121,7 +121,7 @@ export const SpecificJTLCases = {
       .SwitchPlayerWindow().WaitForMyLeader().ClickMyLeader()
       .RunAsync()
     //assert
-    await browser.assert.doesNotThrow(() =>
+
       gameplay.Assert()
         .NoMultiChoicePopup()
         .RunAsync());
@@ -151,7 +151,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
+
       gameplay.Assert()
         .TheirBaseDamageEquals('10')
         .MyBaseDamageEquals('8')
@@ -182,7 +182,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
+
       gameplay.Assert()
         .TheirBaseDamageEquals('10')
         .MyBaseDamageEquals('8')
@@ -214,7 +214,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
+
       gameplay.Assert()
         .TheirBaseDamageEquals('10')
         .MyBaseDamageEquals('8')
@@ -250,7 +250,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
+
       gameplay.Assert()
         .TheirBaseDamageEquals('9')
         .MyBaseDamageEquals('7')
@@ -283,7 +283,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
+
       gameplay.Assert()
         .MyBaseDamageEquals('15')
         .TheirBaseDamageEquals('17')
@@ -315,7 +315,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
+
       gameplay.Assert()
         .MyBaseDamageEquals('7')
         .TheirBaseDamageEquals('8')
@@ -355,7 +355,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
+
       gameplay.Assert()
         .MyGroundUnitIsGone(1)
         .TheirGroundUnitIsGone(1)
