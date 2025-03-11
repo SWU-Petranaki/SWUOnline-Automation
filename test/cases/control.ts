@@ -282,5 +282,62 @@ export const ControlCases = {
       .TheirLeaderHasUsedEpicAction()
       .RunAsync()
     ;
-  }
+  },
+  No_Glory_Chewbacca_unit_still_defeated: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.RedBase)
+      .AddLeader(1, cards.JTL.ThrawnLeader)
+      .AddBase(2, cards.SOR.ECL)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.DSStormTrooper, 5)
+      .AddCardToHand(1, cards.JTL.NoGloryOnlyResults)
+      .AddUnit(2, cards.JTL.Chewbacca)
+      .AddUnit(2, cards.JTL.XWing)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().ClickHandCard(1).TargetTheirGroundUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheirGroundUnitIsGone(1)
+      .TheirSpaceUnitIsThere(1)
+      .RunAsync()
+    ;
+  },
+  No_Glory_Chewbacca_pilot_still_defeated: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.RedBase)
+      .AddLeader(1, cards.JTL.ThrawnLeader)
+      .AddBase(2, cards.SOR.ECL)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.DSStormTrooper, 5)
+      .AddCardToHand(1, cards.JTL.NoGloryOnlyResults)
+      .AddUnit(2, cards.JTL.XWing)
+      .AddUnit(2, cards.JTL.XWing, false, false, 0,
+        gameState.SubcardBuilder().AddPilot(cards.JTL.Chewbacca, 2).Build())
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().ClickHandCard(1).TargetTheirSpaceUnit(2)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheirSpaceUnitIsThere(1)
+      .TheirSpaceUnitIsGone(2)
+      .RunAsync()
+    ;
+  },
 }

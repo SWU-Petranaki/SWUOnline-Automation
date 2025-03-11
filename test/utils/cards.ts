@@ -325,5 +325,6 @@ export const cards = {
     TandemAssault: '4334684518',
     PlanetBomb: '0425156332',
     Eject: '8993849612',
+    NoGloryOnlyResults: '9810057689',
   }
 }
