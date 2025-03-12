@@ -235,7 +235,7 @@ export const DamageCases = {
       .AddBase(2, cards.SOR.DagobahSwamp)
       .AddLeader(2, cards.SOR.PalpLeader)
       .FillResources(1, cards.SOR.DSStormTrooper, 8)
-      .FillResources(2, cards.SOR.DSStormTrooper, 1)
+      .FillResources(2, cards.SOR.DSStormTrooper, 3)
       .AddCardToHand(1, cards.SOR.PalpUnit)
       .AddCardToHand(2, cards.SOR.DSStormTrooper)
       .FlushAsync(com.BeginTestCallback)
