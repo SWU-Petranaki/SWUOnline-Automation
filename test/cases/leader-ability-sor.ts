@@ -10,7 +10,7 @@ import { cards } from '../utils/cards';
 import { GamePlay } from '../utils/gameplay';
 
 export const LeaderAbilitySORCases = {
-  'Leader Ability: Director Krennic passive buff': ''+async function () {//TEMP: after set 4, add back
+  'Leader Ability: Director Krennic passive buff': async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -25,7 +25,7 @@ export const LeaderAbilitySORCases = {
     //assert
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 1), '5');
   },
-  'Leader Ability: Iden Versio heal if enemy defeated': ''+async function () {//TEMP: after set 4, add back
+  'Leader Ability: Iden Versio heal if enemy defeated': async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -48,7 +48,7 @@ export const LeaderAbilitySORCases = {
     //assert
     await browser.assert.textEquals(com.MyBaseDamage, '4');
   },
-  'Leader Ability: Chewbacca taunt': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function () {//TEMP: after set 4, add back
+  'Leader Ability: Chewbacca taunt': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -71,7 +71,7 @@ export const LeaderAbilitySORCases = {
       .RunAsync()
     ;
   },
-  'Leader Ability: Chirrut Imwe buff': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function () {//TEMP: after set 4, add back
+  'Leader Ability: Chirrut Imwe buff': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -96,7 +96,7 @@ export const LeaderAbilitySORCases = {
     //assert
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 2), '6');
   },
-  'Leader Ability: Luke Shield fails': ''+async function () {//TEMP: after set 4, add back
+  'Leader Ability: Luke Shield fails': async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -121,7 +121,7 @@ export const LeaderAbilitySORCases = {
     await customAsserts.AllyUnitDivPieceIsOverlay(browser, 'GROUND', 1, 3);
     await browser.assert.textEquals(com.MyResources, '0/1');
   },
-  'Leader Ability: Luke Shield': ''+async function () {//TEMP: after set 4, add back
+  'Leader Ability: Luke Shield': async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -149,7 +149,7 @@ export const LeaderAbilitySORCases = {
     await browser.assert.attributeContains(com.UnitDivPiece(com.AllyGroundUnit(1), 3), 'style', src.ShieldToken);
     await browser.assert.textEquals(com.MyResources, '0/1');
   },
-  'Leader Ability: Palp fails': ''+async function () {//TEMP: after set 4, add back
+  'Leader Ability: Palp fails': async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -176,7 +176,7 @@ export const LeaderAbilitySORCases = {
     const lastLog = (await browser.getText(com.GameLog)).split('\n').slice(-2)[0];
     await browser.assert.equal(lastLog, 'You don\'t control enough resources to deploy that leader; reverting the game state.');
   },
-  'Leader Ability: Palp destroy, ping, and draw': ''+async function () {//TEMP: after set 4, add back
+  'Leader Ability: Palp destroy, ping, and draw': async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -210,7 +210,7 @@ export const LeaderAbilitySORCases = {
     await browser.assert.elementsCount(com.MyHandDivs, 2);
     await browser.assert.textEquals(com.MyResources, '0/1');
   },
-  'Leader Ability: Tarkin fails': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function () {//TEMP: after set 4, add back
+  'Leader Ability: Tarkin fails': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -234,7 +234,7 @@ export const LeaderAbilitySORCases = {
     await customAsserts.AllyUnitDivPieceIsOverlay(browser, 'SPACE', 1, 3);
     await browser.assert.textEquals(com.MyResources, '0/1');
   },
-  'Leader Ability: Tarkin xp': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function () {//TEMP: after set 4, add back
+  'Leader Ability: Tarkin xp': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -262,7 +262,7 @@ export const LeaderAbilitySORCases = {
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 3), '2');
     await browser.assert.textEquals(com.MyResources, '0/1');
   },
-  'Leader Ability: Hera ignore aspect': ''+async function () {//TEMP: after set 4, add back
+  'Leader Ability: Hera ignore aspect': async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -384,7 +384,7 @@ export const LeaderAbilitySORCases = {
       // await browser.assert.textEquals(com.TheirDiscardCount, '2');
 
     },
-    'Leader Ability: Darth Vader ping': ''+async function () {//TEMP: after set 4, add back
+    'Leader Ability: Darth Vader ping': async function () {
       //arrange
       const gameState = new GameState(gameName);
       await gameState.LoadGameStateLinesAsync();
@@ -413,7 +413,7 @@ export const LeaderAbilitySORCases = {
       await browser.assert.textEquals(com.UnitDivPiece(com.EnemyGroundUnit(1), 3), '1');
       await browser.assert.textEquals(com.MyResources, '0/1');
     },
-    'Leader Ability: Grand Inquisitor ping ready': ''+async function () {//TEMP: after set 4, add back
+    'Leader Ability: Grand Inquisitor ping ready': async function () {
       //arrange
       const gameState = new GameState(gameName);
       await gameState.LoadGameStateLinesAsync();
@@ -438,7 +438,7 @@ export const LeaderAbilitySORCases = {
       await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 3), '2');
       await browser.assert.not.elementPresent(com.AllyGroundUnit(1, true));
     },
-    'Leader Ability: IG-88 buff': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function () {//TEMP: after set 4, add back
+    'Leader Ability: IG-88 buff': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
       //arrange
       const gameState = new GameState(gameName);
       await gameState.LoadGameStateLinesAsync();
@@ -465,7 +465,7 @@ export const LeaderAbilitySORCases = {
       //assert
       await browser.assert.textEquals(com.TheirBaseDamage, '2');
     },
-    'Leader Ability: Cassian Draw': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function () {//TEMP: after set 4, add back
+    'Leader Ability: Cassian Draw': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
       //arrange
       const gameState = new GameState(gameName);
       await gameState.LoadGameStateLinesAsync();
@@ -544,7 +544,7 @@ export const LeaderAbilitySORCases = {
 
       // await browser.assert.textEquals(com.MyResources, '5/7');
     },
-    'Leader Ability: Thrawn reveal exhaust': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function () {//TEMP: after set 4, add back
+    'Leader Ability: Thrawn reveal exhaust': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
       //arrange
       const gameState = new GameState(gameName);
       await gameState.LoadGameStateLinesAsync();
@@ -611,7 +611,7 @@ export const LeaderAbilitySORCases = {
         .RunAsync()
       ;
     },
-    'Leader Ability: Jyn Erso debuff': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function () {//TEMP: after set 4, add back
+    'Leader Ability: Jyn Erso debuff': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
       //arrange
       const gameState = new GameState(gameName);
       await gameState.LoadGameStateLinesAsync();

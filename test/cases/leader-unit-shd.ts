@@ -7,7 +7,7 @@ import {
 } from '../utils/util'
 
 export const LeaderUnitSHDCases = {
-  'SHD: Blue and Green Leader Units': ''+async function () {//TEMP: after set 4, add back
+  'SHD: Blue and Green Leader Units': async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

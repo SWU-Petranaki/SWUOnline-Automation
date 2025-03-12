@@ -9,7 +9,7 @@ import {
 } from '../utils/util';
 
 export const LeaderUnitSORCases = {
-  'SOR: Blue and Green Leader Units' : ''+async function () {//TEMP: after set 4, add back
+  'SOR: Blue and Green Leader Units' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -168,7 +168,7 @@ export const LeaderUnitSORCases = {
     await browser.assert.textEquals(com.MyBaseDamage, '0');
     await browser.assert.textEquals(com.TheirBaseDamage, '9');
   },
-  'SOR: Red and Yellow Leader Units': ''+async function () {//TEMP: after set 4, add back
+  'SOR: Red and Yellow Leader Units': async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

@@ -38,7 +38,7 @@ export const ReadyCases = {
     await browser.assert.not.elementPresent(com.AllySpaceUnit(1, true));
     await browser.assert.not.elementPresent(com.AllySpaceUnit(2, true));
   },
-  'Its A Trap! fails on more': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function() {//TEMP: after set 4, add back
+  'Its A Trap! fails on more': process.env.FULL_REGRESSION !== "true" ? '' : async function() {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -67,7 +67,7 @@ export const ReadyCases = {
     await browser.assert.elementPresent(com.AllySpaceUnit(1, true));
     await browser.assert.elementPresent(com.AllySpaceUnit(2, true));
   },
-  'Its A Trap! fails on equal': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function() {//TEMP: after set 4, add back
+  'Its A Trap! fails on equal': process.env.FULL_REGRESSION !== "true" ? '' : async function() {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

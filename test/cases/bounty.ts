@@ -46,7 +46,7 @@ export const BountyCases = {
       .RunAsync()
     ;
   },
-  'Bounty: The Client edge case': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function () {//TEMP: after set 4, add back
+  'Bounty: The Client edge case': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
