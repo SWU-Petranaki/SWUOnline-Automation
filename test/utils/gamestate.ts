@@ -175,7 +175,8 @@ export class GameState {
   }
 
   public AddBase(player: number, cardID: string, epicActionUsed: boolean = false) {
-    this._gameState[player === 1 ? g.P1CharArray : g.P2CharArray] = `${cardID} ${epicActionUsed ? 0 : 2} 0 0 0 1 0 0 0 2 0`;
+    const uniqueId = `P${player}BASE`;
+    this._gameState[player === 1 ? g.P1CharArray : g.P2CharArray] = `${cardID} ${epicActionUsed ? 0 : 2} 0 ${uniqueId} 0 1 0 0 0 2 0`;
     this._gameState[player === 1 ? g.P1CharDisplay : g.P2CharDisplay] = cardID;
 
     return this;
@@ -183,7 +184,8 @@ export class GameState {
 
   public AddLeader(player: number, cardID: string, deployed: boolean = false, exhaustedLeaderSide: boolean = false) {
     if(!deployed) {
-      this._gameState[player === 1 ? g.P1CharArray : g.P2CharArray] += ` ${cardID} ${exhaustedLeaderSide ? "1" : "2"} 0 0 0 1 0 0 0 2 0`;
+      const uniqueId = `P${player}LEADER`;
+      this._gameState[player === 1 ? g.P1CharArray : g.P2CharArray] += ` ${cardID} ${exhaustedLeaderSide ? "1" : "2"} 0 ${uniqueId} 0 1 0 0 0 2 0`;
     }
 
     this._gameState[player === 1 ? g.P1CharDisplay : g.P2CharDisplay] += (' ' + cardID);
