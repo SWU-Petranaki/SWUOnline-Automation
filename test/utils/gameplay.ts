@@ -363,6 +363,24 @@ export class GamePlay {
     return this;
   }
 
+  public ChooseYourself() {
+    this._asyncBrowser
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+      .click(com.YourselfOrOpponentButton("Yourself")).pause(p.ButtonPress)
+    ;
+
+    return this;
+  }
+
+  public ChooseOpponent() {
+    this._asyncBrowser
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+      .click(com.YourselfOrOpponentButton("Opponent")).pause(p.ButtonPress)
+    ;
+
+    return this;
+  }
+
   public ChooseYes() {
     this._asyncBrowser
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)

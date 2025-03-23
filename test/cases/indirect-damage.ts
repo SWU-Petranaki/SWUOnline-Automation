@@ -3,7 +3,6 @@ import { GamePlay } from '../utils/gameplay';
 import { GameState } from '../utils/gamestate';
 import {
   com, src, p,
-  player1Window, player2Window,
   gameName
 } from '../utils/util';
 
@@ -31,6 +30,7 @@ export const IndirectDamageCases = {
     const gameplay = new GamePlay(browser);
     await gameplay
       .WaitForMyHand().PlayFromHand(1)
+      .ChooseOpponent()
       .SwitchPlayerWindow().Ok()
       .ClickMyGroundUnitDmgInc(1)
       .ClickMyGroundUnitDmgInc(2)
@@ -67,6 +67,7 @@ export const IndirectDamageCases = {
     const gameplay = new GamePlay(browser);
     await gameplay
       .WaitForMyHand().PlayFromHand(1)
+      .ChooseOpponent()
       .SwitchPlayerWindow().Ok()
       .RunAsync()
     ;
@@ -97,6 +98,7 @@ export const IndirectDamageCases = {
     const gameplay = new GamePlay(browser);
     await gameplay
       .WaitForMyHand().PlayFromHand(1)
+      .ChooseOpponent()
       .SwitchPlayerWindow().Ok()
       .SwitchPlayerWindow()
       .ClickTheirGroundUnitDmgInc(1)
@@ -135,6 +137,7 @@ export const IndirectDamageCases = {
     const gameplay = new GamePlay(browser);
     await gameplay
       .WaitForMyHand().PlayFromHand(1)
+      .ChooseOpponent()
       .SwitchPlayerWindow().Ok()
       .RunAsync()
     ;
