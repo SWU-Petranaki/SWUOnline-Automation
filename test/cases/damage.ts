@@ -342,7 +342,7 @@ export const DamageCases = {
     const gameplay = new GamePlay(browser);
     await gameplay
       .WaitForMyHand().PlayFromHand(1)
-      .WaitForCheckboxes().Check(1).Check(2).Check(3).Submit()
+      .ClickTheirGroundUnit(1).ClickTheirGroundUnit(2).ClickTheirSpaceUnit(1)
       .RunAsync()
     ;
     //assert
