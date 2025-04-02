@@ -221,7 +221,7 @@ export const PilotJTLCases = {
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 1), '7');
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 2), '5');
   },
-  'Unique Pilot upgrades should trigger uniqueness rule': async function() {
+  Unique_Pilot_upgrades_should_trigger_uniqueness_rule: async function() {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -244,12 +244,14 @@ export const PilotJTLCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.Move)
       .click(com.PilotOrUnitButton("Pilot")).pause(p.ButtonPress)
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+      .click(com.AllyGroundUnit(1))
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
     //assert
     await browser.assert.not.elementPresent(com.AllyGroundUnit(1));
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 1), 'BOBA FETT');
   },
-  'Unique Pilot unit should trigger uniqueness rule': async function() {
+  Unique_Pilot_unit_should_trigger_uniqueness_rule: async function() {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -271,6 +273,8 @@ export const PilotJTLCases = {
       .click(com.HandCard(1))
       .moveToElement(com.GameChat, 0, 0).pause(p.Move)
       .click(com.PilotOrUnitButton("Unit")).pause(p.ButtonPress)
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+      .click(com.AllySpaceUnit(1))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
     //assert
