@@ -270,6 +270,8 @@ export const cards = {
     KazudaLeaderUnit: 'c1700fc85b',
     MajorVonregLeader: '9763190770',
     MajorVonregLeaderUnit: 'd8a5bf1a15',
+    PiettLeader: '4030832630',
+    PiettLeaderUnit: '649c6a9dbd',
     //units
     Leia: '7924461681',
     MoffGideon: '7312183744',
@@ -297,6 +299,7 @@ export const cards = {
     LukeUnit: '5942811090',
     HanSoloUnit: '6720065735',
     L337: '6032641503',
+    Hondo: '2644994192',
     //vehicles
     RedLeader: '3711891756',
     HoundsTooth: '3876470102',
