@@ -93,7 +93,7 @@ export const CoreMechanicsCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
     //assert
-    await browser.assert.textEquals(com.PlayerPickSpan, 'You have two of this unique unit; choose one to destroy ');
+    await browser.assert.textEquals(com.PlayerPickSpan, 'You have two of this unique card; choose one to destroy ');
     //act
     await browser.click(com.AllyGroundUnit(4))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)

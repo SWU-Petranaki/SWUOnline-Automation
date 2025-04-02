@@ -109,7 +109,7 @@ export const BounceCases = {
     gameplay.Assert()
       .TheirGroundUnitIsThere(1)
       .TheirSpaceUnitIsThere(1)
-      .PlayerPickSpanTextEquals('You have two of this unique unit; choose one to destroy ')
+      .PlayerPickSpanTextEquals('You have two of this unique card; choose one to destroy ')
       .RunAsync()
     ;
   },
