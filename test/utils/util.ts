@@ -45,7 +45,7 @@ export const com = {
     HandCard(index: number) { return `div#myHand span:nth-of-type(${index}) a`; },
     HandCardImg(index: number) { return `div#myHand span:nth-of-type(${index}) img`; },
     CheckboxPopup: 'div#MULTICHOOSE',
-    Checkbox(index: number, table: number = 1) { return `table:nth-of-type(${table}) td:nth-of-type(${index}) > label`; },
+    Checkbox(index: number, table: number = 1) { return `div.multichoose-wrapper:nth-of-type(${table}) div.multichoose-item:nth-of-type(${index}) > label`; },
     PassButton: 'span.pass-label',
     ClaimButton: 'button.claimButton',
     SubmitButton: 'input[type="button"]',
