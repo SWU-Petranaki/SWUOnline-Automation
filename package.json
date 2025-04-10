@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nightwatch ./test/bug-report.ts",
-    "test": "nightwatch ./test/regression.ts --env headless --retries 3 --suiteRetries 1",
+    "test": "nightwatch ./test/regression.ts --retries 3 --suiteRetries 1",
     "test:local": "nightwatch ./test/regression.ts --testcase 'Local Run'",
     "test:group": "nightwatch ./local/group.ts",
     "test:case": "nightwatch ./test/regression.ts --testcase"
@@ -14,12 +14,10 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@swc/core": "^1.10.1",
-    "nightwatch": "^3.9.0",
+    "@swc/core": "^1.11.18",
+    "chromedriver": "^135.0.1",
+    "nightwatch": "^3.12.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.2"
-  },
-  "dependencies": {
-    "chromedriver": "^133.0.3"
+    "typescript": "^5.8.3"
   }
 }
