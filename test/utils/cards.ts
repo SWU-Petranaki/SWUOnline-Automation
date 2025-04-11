@@ -99,6 +99,7 @@ export const cards = {
     Traitorous: '8055390529',
     MakeAnOpening: '3208391441',
     InfiltratorsSkill: '0797226725',
+    Protector: '4550121827',
     //events
     Vigilance: '8615772965',
     Command: '0073206444',
