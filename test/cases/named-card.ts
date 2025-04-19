@@ -14,7 +14,7 @@ export const NamedCardCases = {
     await gameState.LoadGameStateLinesAsync();
     await gameState.ResetGameStateLines()
       .AddBase(1, cards.SOR.ChopperBase)
-      .AddLeader(1, cards.TWI.JangoLeader)
+      .AddLeader(1, cards.JTL.BobaFettLeader)
       .AddBase(2, cards.SOR.DagobahSwamp)
       .AddLeader(2, cards.SOR.SabineLeader)
       .FillResources(1, cards.SOR.Waylay, 6)

@@ -14,7 +14,7 @@ const ShadowedIntentionsGameStateAsync = async () =>{
   await gameState.LoadGameStateLinesAsync();
   await gameState.ResetGameStateLines()
     .AddBase(1, cards.generic.RedBase)
-    .AddLeader(1, cards.TWI.JangoLeader)
+    .AddLeader(1, cards.TWI.CadBane)
     .AddBase(2, cards.SOR.ChopperBase)
     .AddLeader(2, cards.SOR.SabineLeader)
     .FillResources(1, cards.SOR.CraftySmuggler, 3)
@@ -35,7 +35,7 @@ const ShadowedIntentionsGameStateAsync = async () =>{
 }
 
 export const SpecificTWICases = {
-  Sneak_Attack_RR_Jango_exhaust_readies: async function() {
+  Sneak_Attack_RR_Jango_exhaust_readies: ''+async function() {//Jango banned
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -70,7 +70,7 @@ export const SpecificTWICases = {
       .RunAsync()
     ;
   },
-  'Exploit: Red Dooku TWI and triggers': process.env.FULL_REGRESSION !== "true" ? '' : async function() {
+  'Exploit: Red Dooku TWI and triggers': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function() {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

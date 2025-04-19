@@ -30,7 +30,7 @@ const LurkingTieGameStateAsync = async function() {
 }
 
 export const SpecificSHDCases = {
-  'Lurking TIE: avoids enemy capture': async function() {
+  'Lurking TIE: avoids enemy capture': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     await LurkingTieGameStateAsync();
     //act
@@ -46,7 +46,7 @@ export const SpecificSHDCases = {
     const lastLog = (await browser.getText(com.GameLog)).split('\n').slice(-1)[0];
     await browser.assert.equal(lastLog, 'Lurking TIE Phantom avoided capture.');
   },
-  'Lurking TIE: avoids enemy damage': async function() {
+  'Lurking TIE: avoids enemy damage': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     await LurkingTieGameStateAsync();
     //act
@@ -60,7 +60,7 @@ export const SpecificSHDCases = {
     //assert
     await customAsserts.EnemyUnitDivPieceIsOverlay(browser, 'SPACE', 1, 3);
   },
-  'Lurking TIE: defeats (merciless contest)': async function() {
+  'Lurking TIE: defeats (merciless contest)': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     await LurkingTieGameStateAsync();
     //act
@@ -99,7 +99,7 @@ export const SpecificSHDCases = {
     //assert
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 3), '1');
   },
-  'Lurking TIE: bounced by enemy': async function() {
+  'Lurking TIE: bounced by enemy': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     await LurkingTieGameStateAsync();
     //act
