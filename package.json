@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nightwatch ./test/bug-report.ts",
-    "test": "nightwatch ./test/regression.ts --retries 3 --suiteRetries 1",
+    "test": "nightwatch ./test/regression.ts --env=headless --retries 3 --suiteRetries 1",
     "test:local": "nightwatch ./test/regression.ts --testcase 'Local Run'",
     "test:group": "nightwatch ./local/group.ts",
     "test:case": "nightwatch ./test/regression.ts --testcase"
