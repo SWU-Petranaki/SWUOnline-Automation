@@ -340,4 +340,33 @@ export const ControlCases = {
       .RunAsync()
     ;
   },
+  No_Glory_RR_Cant_Ping_LurkingTie: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.RedBase)
+      .AddLeader(1, cards.JTL.ThrawnLeader)
+      .AddBase(2, cards.SOR.ECL)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.DSStormTrooper, 5)
+      .AddCardToHand(1, cards.JTL.NoGloryOnlyResults)
+      .AddUnit(2, cards.SHD.LurkingTie)
+      .AddUnit(2, cards.SOR.RuthlessRaider)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).TargetTheirSpaceUnit(2).ChooseYes()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheirSpaceUnitIsThere(1)
+      .TheirSpaceUnitIsGone(2)
+      .MySpaceUnitIsGone(1)
+      .TheirBaseDamageEquals('4')
+      .RunAsync()
+  },
 }

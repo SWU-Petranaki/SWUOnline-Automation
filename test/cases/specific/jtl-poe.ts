@@ -554,5 +554,42 @@ export const JTLPoeCases = {
       .MyBaseDamageEquals('9')
       .RunAsync()
     ;
+  },
+  Poe_Controlled_Defeat: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("9 5")
+      .AddBase(1, cards.generic.BlueBase)
+      .AddLeader(1, cards.JTL.PoeLeader)
+      .AddBase(2, cards.generic.GreenBase)
+      .AddLeader(2, cards.JTL.AsajjLeader)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .FillResources(2, cards.SOR.BFMarine, 6)
+      .AddCardToHand(1, cards.SOR.Takedown)
+      .AddCardToHand(2, cards.SOR.Traitorous)
+      .AddUnit(1, cards.JTL.XWing)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1)
+      .SwitchPlayerWindow().ClickMyLeader().MultiChoiceButton(2).MultiChoiceButton(2)
+      .SwitchPlayerWindow().PassTurn()
+      .SwitchPlayerWindow().PlayFromHand(1)
+      .SwitchPlayerWindow().PlayFromHand(1)
+      .SwitchPlayerWindow().ClickMyGroundUnit(1)
+      .SwitchPlayerWindow().ClickMyLeader()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyGroundUnitIsThere(1)
+      .TheirGroundUnitIsThere(1)
+      .MyBaseDamageEquals('13')
+      .RunAsync()
+    ;
   }
 }

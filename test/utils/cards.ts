@@ -119,6 +119,7 @@ export const cards = {
     BombingRun: '7916724925',
     RallyingCry: '1208707254',
     NGTMD: '8800836530',
+    Takedown: '4849184191',
   },
   SHD: {
     //bases
@@ -278,6 +279,7 @@ export const cards = {
     MoffGideon: '7312183744',
     FOStormTrooper: '6861397107',
     Yularen: '3148212344',
+    AGPryde: '9611596703',
     //pilots
     Chewbacca: '7208848194',
     Dengar: '3282713547',
