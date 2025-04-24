@@ -58,8 +58,8 @@ export const LeaderAbilitySHDCases = {
     //act
     const gameplay = new GamePlay(browser);
     await gameplay
-      .WaitForMyHand().PlayFromHand(1).ChooseYes()
-      .TargetTheirSpaceUnit(1).Pass().TargetTheirSpaceUnit(2)
+      .WaitForMyHand().PlayFromHand(1).ChooseYes().Pass()
+      .TargetTheirSpaceUnit(1).TargetTheirSpaceUnit(2)
       .RunAsync()
     ;
     //assert
@@ -89,7 +89,7 @@ export const LeaderAbilitySHDCases = {
     //act
     const gameplay = new GamePlay(browser);
     await gameplay
-      .WaitForMyHand().PlayFromHand(1).ChooseYes().ClickLayerTile(2).Pass().TargetTheirSpaceUnit(1).TargetTheirSpaceUnit(1)
+      .WaitForMyHand().PlayFromHand(1).ChooseYes().ClickLayerTile(3).Pass().TargetTheirSpaceUnit(1).TargetTheirSpaceUnit(1)
       .RunAsync()
     ;
     //assert
