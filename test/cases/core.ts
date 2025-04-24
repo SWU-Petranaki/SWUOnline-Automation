@@ -195,8 +195,7 @@ export const CoreMechanicsCases = {
     //act
     const gameplay = new GamePlay(browser);
     await gameplay
-      .WaitForMyHand().PlayFromHand(1).ChooseYes().TargetMySpaceUnit(2).TargetTheirGroundUnit(1)
-      .Pass().ChooseNo()
+      .WaitForMyHand().PlayFromHand(1).ChooseYes().TargetMySpaceUnit(2).TargetTheirGroundUnit(1).ChooseNo()
       .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1).TargetTheirSpaceUnit(2)
       .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1)
       .RunAsync()
