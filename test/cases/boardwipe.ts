@@ -105,11 +105,7 @@ export const BoardWipeCases = {
     //act
     const gameplay = new GamePlay(browser);
     await gameplay
-      .WaitForMyHand()
-      .ClickHandCard(1)
-      .Submit()
-      .Pass()
-      .TargetMyBase()
+      .WaitForMyHand().PlayFromHand(1).Pass().Pass().TargetMyBase()
       .RunAsync()
     ;
     //assert
@@ -139,11 +135,7 @@ export const BoardWipeCases = {
     //act
     const gameplay = new GamePlay(browser);
     await gameplay
-      .WaitForMyHand()
-      .ClickHandCard(1)
-      .Submit()
-      .Pass()
-      .TargetMyBase()
+      .WaitForMyHand().ClickHandCard(1).Pass().Pass().TargetMyBase()
       .RunAsync()
     ;
     //assert

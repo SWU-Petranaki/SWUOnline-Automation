@@ -144,6 +144,7 @@ export class GamePlay {
 
   public ClickHandCard(position: number) {
     this.Click(com.HandCard(position));
+    this._asyncBrowser.pause(p.WaitForEffect);
 
     return this;
   }

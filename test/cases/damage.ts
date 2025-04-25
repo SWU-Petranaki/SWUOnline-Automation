@@ -38,25 +38,24 @@ export const DamageCases = {
         .RunAsync()
       ;
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
+    gameplay.Assert()
       .TheirResourcesEquals('0/0')
-      .RunAsync());
+      .RunAsync()
     ;
     //act
     await gameplay.Confirm().PassTurn()
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
-        .TheirResourcesEquals('1/1')
-        .TheirGroundUnitIsThere(1)
-        .TheirGroundUnitPieceEquals(1, 1, '1')
-        .TheirGroundUnitPieceEquals(1, 2, '1')
-        .TheirGroundUnitIsGone(2)
-        .TheirSpaceUnitIsGone(1)
-        .RunAsync());
+    gameplay.Assert()
+      .TheirResourcesEquals('1/1')
+      .TheirGroundUnitIsThere(1)
+      .TheirGroundUnitPieceEquals(1, 1, '1')
+      .TheirGroundUnitPieceEquals(1, 2, '1')
+      .TheirGroundUnitIsGone(2)
+      .TheirSpaceUnitIsGone(1)
+      .RunAsync()
+    ;
   },
   Overwhelming_Barrage_pings_both: async function () {
     //arrange
@@ -90,15 +89,14 @@ export const DamageCases = {
       ;
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
+    gameplay.Assert()
       .TheirResourcesEquals('1/1')
       .TheirGroundUnitIsGone(2)
       .TheirGroundUnitPieceEquals(1, 3, '1')
       .TheirSpaceUnitPieceEquals(1, 3, '4')
       .MyGroundUnitPieceEquals(1, 6, '2')
       .MyGroundUnitPieceEquals(2, 1, '5')
-      .RunAsync());
+      .RunAsync()
     ;
   },
   Overwhelming_Barrage_pings_only_self: async function () {
@@ -129,15 +127,15 @@ export const DamageCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
-        .TheirSpaceUnitIsThere(1)
-        .TheirGroundUnitIsThere(1)
-        .TheirGroundUnitIsThere(2)
-        .MyGroundUnitIsGone(2)
-        .MyGroundUnitIsThere(1)
-        .MyGroundUnitPieceEquals(1, 1, '5')
-        .RunAsync());
+    gameplay.Assert()
+      .TheirSpaceUnitIsThere(1)
+      .TheirGroundUnitIsThere(1)
+      .TheirGroundUnitIsThere(2)
+      .MyGroundUnitIsGone(2)
+      .MyGroundUnitIsThere(1)
+      .MyGroundUnitPieceEquals(1, 1, '5')
+      .RunAsync()
+    ;
   },
   Overwhelming_Barrage_used_only_for_buff: async function () {
     //arrange
@@ -163,10 +161,9 @@ export const DamageCases = {
         .RunAsync()
       ;
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
-        .MyGroundUnitPieceEquals(1, 4, '8')
-        .RunAsync());
+    gameplay.Assert()
+      .MyGroundUnitPieceEquals(1, 4, '8')
+      .RunAsync()
     ;
   },
   'TarkinTown cannot hit piloted leader unit': async function () {
@@ -219,11 +216,11 @@ export const DamageCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
-        .TheirGroundUnitIsGone(2)
-        .TheirGroundUnitPieceEquals(1, 3, '5')
-        .RunAsync());
+    gameplay.Assert()
+      .TheirGroundUnitIsGone(2)
+      .TheirGroundUnitPieceEquals(1, 3, '5')
+      .RunAsync()
+    ;
   },
   Palp_SOR_unit_no_enemies: async function () {
     //arrange
@@ -249,12 +246,12 @@ export const DamageCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
-        .TheyHaveNoSpaceUnits()
-        .TheirGroundUnitIsThere(1)
-        .MyGroundUnitIsThere(1)
-        .RunAsync());
+    gameplay.Assert()
+      .TheyHaveNoSpaceUnits()
+      .TheirGroundUnitIsThere(1)
+      .MyGroundUnitIsThere(1)
+      .RunAsync()
+    ;
   },
   Vambrace_Flamethrower_hits_ground_units: async function () {
     //arrange
@@ -283,12 +280,12 @@ export const DamageCases = {
     ;
 
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
-        .TheirBaseDamageEquals('4')
-        .TheirGroundUnitPieceEquals(1, 3, '2')
-        .TheirGroundUnitIsGone(2)
-        .RunAsync());
+    gameplay.Assert()
+      .TheirBaseDamageEquals('4')
+      .TheirGroundUnitPieceEquals(1, 3, '2')
+      .TheirGroundUnitIsGone(2)
+      .RunAsync()
+    ;
   },
   Vambrace_Flamethrower_no_ground_enemies: async function () {
     //arrange
@@ -316,11 +313,11 @@ export const DamageCases = {
     ;
 
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
-        .TheirBaseDamageEquals('4')
-        .TheirGroundUnitIsThere(1)
-        .RunAsync());
+    gameplay.Assert()
+      .TheirBaseDamageEquals('4')
+      .TheirGroundUnitIsThere(1)
+      .RunAsync()
+    ;
   },
   IG2000_only_does_1_damage_per_unit: async function () {
     //arrange
@@ -342,16 +339,16 @@ export const DamageCases = {
     const gameplay = new GamePlay(browser);
     await gameplay
       .WaitForMyHand().PlayFromHand(1)
-      .ClickTheirGroundUnit(1).ClickTheirGroundUnit(2).ClickTheirSpaceUnit(1)
+      .ClickTheirSpaceUnit(1).ClickTheirGroundUnit(1).ClickTheirGroundUnit(2)
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
-        .TheirBaseDamageEquals('0')
-        .TheirSpaceUnitPieceEquals(1, 3, '2')
-        .TheirGroundUnitIsGone(1)
-        .RunAsync());
+    gameplay.Assert()
+      .TheirBaseDamageEquals('0')
+      .TheirSpaceUnitPieceEquals(1, 3, '2')
+      .TheirGroundUnitIsGone(1)
+      .RunAsync()
+    ;
   },
   Devastator_when_played_hits_base_for_4: async function () {
     //arrange
@@ -378,10 +375,10 @@ export const DamageCases = {
       .RunAsync()
     ;
     //assert
-    await browser.assert.doesNotThrow(() =>
-      gameplay.Assert()
-        .TheirBaseDamageEquals('4')
-        .RunAsync());
+    gameplay.Assert()
+      .TheirBaseDamageEquals('4')
+      .RunAsync()
+    ;
   },
   Bombing_Run_hits_arena_overrides: async function () {
     //arrange

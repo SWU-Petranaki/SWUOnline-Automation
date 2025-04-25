@@ -70,7 +70,7 @@ export const SpecificTWICases = {
       .RunAsync()
     ;
   },
-  'Exploit: Red Dooku TWI and triggers': process.env.FULL_REGRESSION !== "true" ? '' : ''+async function() {
+  Red_Dooku_Triggers: process.env.FULL_REGRESSION !== "true" ? '' : async function() {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -93,59 +93,22 @@ export const SpecificTWICases = {
       .FlushAsync(com.BeginTestCallback)
     ;
 
-    await browser
-      .waitForElementPresent(com.MyHand)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.HandCard(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.Checkbox(1)).pause(p.CheckBox)
-      .click(com.Checkbox(2)).pause(p.CheckBox)
-      .click(com.SubmitButton).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.EnemySpaceUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .pause(p.WaitToChooseTarget)
-      .click(com.EnemyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.PassButton).pause(p.ButtonPress)
-      .click(com.PassButton).pause(p.ButtonPress)
-      .click(com.YesNoButton('NO')).pause(p.ButtonPress)
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).TargetMyGroundUnit(1).TargetMySpaceUnit(1)
+      .TargetTheirGroundUnit(1).TargetTheirSpaceUnit(1).Pass().ChooseNo().Pass()
+      .SwitchPlayerWindow().ChooseYes().TargetTheirGroundUnit(1).TargetTheirGroundUnit(1)
+      .WaitForMyHand().TargetMyHandCard(1).TargetMyHandCard(1).TargetTheirGroundUnit(1)
+      .SwitchPlayerWindow().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1).TargetTheirGroundUnit(1)
+      .RunAsync()
     ;
 
-    await browser.window.switchTo(player2Window).refresh()
-      .waitForElementPresent(com.EnemyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.EnemyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.YesNoButton('YES')).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.EnemyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.HandCard(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.HandCard(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.EnemyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    gameplay.Assert()
+      .TheyHaveNoGroundUnits()
+      .TheyHaveNoSpaceUnits()
+      .RunAsync()
     ;
-
-    await browser.window.switchTo(player1Window).refresh()
-      .waitForElementPresent(com.ClaimButton)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.ClaimButton).pause(p.ButtonPress)
-    ;
-
-    await browser.window.switchTo(player2Window).refresh()
-      .waitForElementPresent(com.MyHand)
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.HandCard(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      .click(com.EnemyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-    ;
-
-    await browser.assert.not.elementPresent(com.EnemyGroundUnit(1));
   },
   'On Attack: Darth Maul TWI': async function () {
     //arrange

@@ -117,6 +117,12 @@ export class GameAssert {
     return this;
   }
 
+  public MyHandCardIsNotPlayable(position: number) {
+    this._gamePlay.___BrowsertAssert().attributeEquals(com.HandCardImg(position), 'style', src.NotPlayableBorderHand);
+
+    return this;
+  }
+
   public MyGroundUnitIsThere(position: number, exhausted: boolean = false) {
     this.ElementPresent(com.AllyGroundUnit(position, exhausted));
 
