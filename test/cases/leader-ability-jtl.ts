@@ -32,6 +32,8 @@ export const LeaderAbilityJTLCases = {
     const gameplay = new GamePlay(browser);
     await gameplay
       .WaitForMyGroundUnit(1).ClickMyGroundUnit(1)
+      //TODO: remove when we figure out how to autopass layers
+      .Pass()
       .WaitForCheckboxes().Check(2).Check(3).Submit()
       .SwitchPlayerWindow().ClickMySpaceUnit(1).TargetTheirSpaceUnit(2)
       .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()

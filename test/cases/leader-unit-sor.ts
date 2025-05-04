@@ -65,6 +65,8 @@ export const LeaderUnitSORCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
       .click(com.EnemyGroundUnit(4))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
+      //TODO: remove when we figure out how to autopass layers
+      .click(com.PassButton).moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
       .click(com.AllyGroundUnit(1))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     //Luke Skywalker gives shield to any unit
@@ -78,6 +80,8 @@ export const LeaderUnitSORCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
       .click(com.AllyGroundUnit(2))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+      //TODO: remove when we figure out how to autopass layers
+      .click(com.PassButton).moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
       .click(com.AllyGroundUnit(1))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
@@ -109,6 +113,8 @@ export const LeaderUnitSORCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.Move)
       .click(com.AllyGroundUnit(1))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
+      //TODO: remove when we figure out how to autopass layers
+      .click(com.PassButton).moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
       .click(com.AllyGroundUnit(2))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
@@ -137,11 +143,15 @@ export const LeaderUnitSORCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
       .click(com.EnemyGroundUnit(1))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
+      //TODO: remove when we figure out how to autopass layers
+      .click(com.PassButton).moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
       .click(com.AllySpaceUnit(1))
       .pause(p.WaitForEffect)
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
       .click(com.EnemyGroundUnit(1))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+      //TODO: remove when we figure out how to autopass layers
+      .click(com.PassButton).moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
     //Emperor Palpatine destroys ally unit to ping enemy unit, Iden Versio heals 1 from base when enemy defeated, Luke's shield is pinged
     await browser.assert.not.elementPresent(com.AllySpaceUnit(1));

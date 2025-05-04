@@ -31,6 +31,8 @@ export const OnAttackCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
       .click(com.Base(2))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
+      //TODO: remove when we figure out how to autopass layers
+      .click(com.PassButton).moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
       .click(com.EnemyGroundUnit(1))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
@@ -61,6 +63,8 @@ export const OnAttackCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.Move)
       .click(com.AllyGroundUnit(1))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+      //TODO: remove when we figure out how to autopass layers
+      .click(com.PassButton).moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
     //assert
     await browser.assert.textEquals(com.TheirBaseDamage, '6');
@@ -89,6 +93,8 @@ export const OnAttackCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
       .click(com.Base(2))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+      //TODO: remove when we figure out how to autopass layers
+      .click(com.PassButton).moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
     //assert
     await browser.assert.textEquals(com.TheirBaseDamage, '8');
@@ -119,6 +125,8 @@ export const OnAttackCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
       .click(com.Base(2))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
+      //TODO: remove when we figure out how to autopass layers
+      .click(com.PassButton).moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
     //assert
     await customAsserts.UnitIsNotPlayable(browser, com.EnemySpaceUnit(1));

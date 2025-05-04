@@ -8,7 +8,7 @@ import {
 } from '../utils/util';
 
 export const AmbushCases = {
-  'Ambush: ECL Sabine Ping Shield': async function () {
+  ECL_Sabine_Ping_Shield: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -26,8 +26,10 @@ export const AmbushCases = {
     const gameplay = new GamePlay(browser);
     await gameplay
       .WaitForMyHand().ClickMyBase()
-      .TargetMyHandCard(1).TargetMyGroundUnit(1)
-      .ChooseYes().TargetTheirGroundUnit(1)
+      .TargetMyHandCard(1).TargetMyGroundUnit(1).ChooseYes()
+      //TODO: remove when we figure out how to autopass layers
+      .Pass()
+      .TargetTheirGroundUnit(1)
       .RunAsync()
     ;
     //assert

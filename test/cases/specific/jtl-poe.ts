@@ -111,7 +111,7 @@ export const JTLPoeCases = {
       .AddUnit(2, cards.SOR.PalpUnit)
       .FlushAsync(com.BeginTestCallback)
     ;
-    //act
+    //act - Poe Hops on ship 2
     await browser
       .waitForElementPresent(com.Leader(1))
       .click(com.Leader(1))
@@ -123,7 +123,7 @@ export const JTLPoeCases = {
     ;
     //assert
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(2), 1), 'POE DAMERON')
-    //act
+    //act - Poe hops off ship 2 and auto-hops onto ship 1
     await browser.window.switchTo(player2Window).refresh()
       .waitForElementPresent(com.PassButton)
       .moveToElement(com.PassButton, 0, 0).pause(p.Move)
@@ -186,6 +186,8 @@ export const JTLPoeCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
       .click(com.PassButton).pause(p.ButtonPress)
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+      //TODO: remove when we figure out how to autopass layers
+      .click(com.PassButton).moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
     //assert
     await browser.assert.elementPresent(com.Leader(1));

@@ -260,6 +260,7 @@ export const cards = {
     LukeLeaderUnit: '11e54776e9',
     DarthVaderLeader: '7661383869',
     DarthVaderLeaderUnit: 'fb0da8985e',
+    DarthVaderUnit: '6079255999',
     RioDurantLeaderUnit: '81a416eb1f',
     AckbarLeader: '7514405173',
     AckbarLeaderUnit: '36859e7ec4',
@@ -332,5 +333,15 @@ export const cards = {
     PlanetBomb: '0425156332',
     Eject: '8993849612',
     NoGloryOnlyResults: '9810057689',
-  }
+  },
+  LOF: {
+    //bases
+    //tokens
+    //leaders and leader units
+    //units
+    DarthSidious: '6797297267',
+    //upgrades
+    //events
+    DrainEssence: '5083905745',
+  },
 }
