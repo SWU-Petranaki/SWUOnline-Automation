@@ -5,6 +5,8 @@ export const cards = {
     GreenBase: '2055904747',//30HP green base
     RedBase: '0461841375',//30HP red base
     YellowBase: '6093792814',//30HP yellow base
+    BlueForceBase: '0119018087',
+    GreenForceBase: '0450346170',
     //units
   },
   SOR: {
@@ -326,6 +328,7 @@ export const cards = {
     PhantomII: '5306772000',
     TheGhost: '5763330426',
     RazorCrest: '1935873883',
+    RedSquadYWing: '7831643253',
     //events
     ItsATrap: '0964312065',
     Commandeer: '8105698374',
@@ -333,13 +336,21 @@ export const cards = {
     PlanetBomb: '0425156332',
     Eject: '8993849612',
     NoGloryOnlyResults: '9810057689',
+    HotshotManuever: '6544277158',
   },
   LOF: {
     //bases
+    ShadowedUndercity: '0119018087',
+    JediTemple: '0450346170',
     //tokens
     //leaders and leader units
+    DarthMaulLeader: '0024560758',
     //units
     DarthSidious: '6797297267',
+    ObiWanPadawan: '6059510270',
+    SavageOpress: '1636013021',
+    Scimitar: '1540696516',
+    StingerMantis: '1545515980',
     //upgrades
     //events
     DrainEssence: '5083905745',
