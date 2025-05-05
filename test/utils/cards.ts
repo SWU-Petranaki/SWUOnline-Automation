@@ -97,6 +97,8 @@ export const cards = {
     TheGhost: '6931439330',
     EchoBaseDefender: '6912684909',
     WedgeAntilles: '4339330745',
+    FifthBrother: '8395007579',
+    LeiaUnit: '9680213078',
     //upgrades
     Traitorous: '8055390529',
     MakeAnOpening: '3208391441',
@@ -345,12 +347,21 @@ export const cards = {
     //tokens
     //leaders and leader units
     DarthMaulLeader: '0024560758',
+    QuiGonJinnLeader: '2580909557',
+    DarthRevanLeader: '4637578649',
+    ObiWanLeader: '2693401411',
+    ThirdSisterLeader: '3357344238',
     //units
     DarthSidious: '6797297267',
     ObiWanPadawan: '6059510270',
     SavageOpress: '1636013021',
     Scimitar: '1540696516',
     StingerMantis: '1545515980',
+    LuthenRael: '5472129982',
+    Refugee: '0102737248',
+    AnakinKid: '3967581160',
+    PloKoon: '2352895392',
+    QuiGonAethrsprite: '0661066339',
     //upgrades
     //events
     DrainEssence: '5083905745',
