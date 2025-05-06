@@ -174,9 +174,9 @@ export class GameState {
     return arr.join(' ');
   }
 
-  public AddBase(player: number, cardID: string, epicActionUsed: boolean = false) {
+  public AddBase(player: number, cardID: string, epicActionUsed: boolean = false, theForceIsWithYou: boolean = false) {
     const uniqueId = `P${player}BASE`;
-    this._gameState[player === 1 ? g.P1CharArray : g.P2CharArray] = `${cardID} ${epicActionUsed ? 0 : 2} 0 ${uniqueId} 0 1 0 0 0 2 0`;
+    this._gameState[player === 1 ? g.P1CharArray : g.P2CharArray] = `${cardID} ${epicActionUsed ? 0 : 2} 0 ${uniqueId} ${theForceIsWithYou ? 1 : 0} 1 0 0 0 2 0`;
     this._gameState[player === 1 ? g.P1CharDisplay : g.P2CharDisplay] = cardID;
 
     return this;

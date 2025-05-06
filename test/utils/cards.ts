@@ -230,6 +230,8 @@ export const cards = {
     SavageOpress: '8540765053',
     SlyMoore: '7732981122',
     CloneCommanderCody: '9017877021',
+    Soldier501st: '2800918480',
+    Stalwart: '1209133362',
     //upgrades
     ShadowedIntentions: '9003830954',
     CloneCohort: '2007876522',
@@ -364,9 +366,14 @@ export const cards = {
     QuiGonAethrsprite: '0661066339',
     Grogu: '4389144613',
     QuiGonJinnUnit: '1270747736',
+    SifoDyas: '7488326298',
+    DarthMalak: '2285555274',
+    HK47: '2407397504',
+    JediConsular: '5482818255',
     //upgrades
     DarthMaulsSaber: '2167393423',
     //events
     DrainEssence: '5083905745',
+    AsIHaveForeseen: '8569501777',
   },
 }
