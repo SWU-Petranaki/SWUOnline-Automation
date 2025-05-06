@@ -362,7 +362,10 @@ export const cards = {
     AnakinKid: '3967581160',
     PloKoon: '2352895392',
     QuiGonAethrsprite: '0661066339',
+    Grogu: '4389144613',
+    QuiGonJinnUnit: '1270747736',
     //upgrades
+    DarthMaulsSaber: '2167393423',
     //events
     DrainEssence: '5083905745',
   },

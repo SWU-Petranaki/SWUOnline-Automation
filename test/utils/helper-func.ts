@@ -30,7 +30,6 @@ export async function NewRunGameStartAsync(browser: NightwatchAPI) {
     .waitForElementPresent(com.DeckInput)
     .setValue(com.DeckInput, swustatsDeck)
     .click(com.CreateGameButton).pause(p.ButtonPress)
-    .refresh().refresh().refresh().refresh().refresh()
     .refresh().pause(p.ButtonPress)
     .refresh().pause(p.WaitToBegin)
   ;
