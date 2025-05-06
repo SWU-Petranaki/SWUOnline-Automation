@@ -36,5 +36,8 @@ export class BugReportFetch {
     ;
     const data = text.split('\n').join('\r\n');
     await fsp.writeFile(`${process.env.SWUONLINE_ROOT_PATH || '../SWUOnline'}/Games/${localRunningGame}/gamestate.txt`, data, 'ascii');
+    if(process.env.BEGINTURN) {
+      await fsp.writeFile(`${process.env.SWUONLINE_ROOT_PATH || '../SWUOnline'}/Games/${localRunningGame}/beginTurnGamestate.txt`, data, 'ascii');
+    }
   }
 }

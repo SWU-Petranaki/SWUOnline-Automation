@@ -38,7 +38,6 @@ export async function NewRunGameStartAsync(browser: NightwatchAPI) {
 
   while(!await browser.element.find(com.InviteLink).isPresent() && inviteRetry < maxRetries) {
     await browser
-    .refresh().refresh().refresh().refresh().refresh()
     .refresh().pause(p.ButtonPress)
     .refresh().pause(p.WaitToBegin)
     inviteRetry++;
