@@ -1,4 +1,5 @@
 import { cards } from '../utils/cards';
+import { GamePlay } from '../utils/gameplay';
 import { GameState } from '../utils/gamestate';
 import {
   com, p,
@@ -130,5 +131,44 @@ export const OnAttackCases = {
     ;
     //assert
     await customAsserts.UnitIsNotPlayable(browser, com.EnemySpaceUnit(1));
+  },
+  Rebel_Assault_Sabine_interactions: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("12 2")
+      .AddBase(1, cards.generic.BlueForceBase, false, true)
+      .AddLeader(1, cards.SOR.SabineLeader)
+      .AddBase(2, cards.generic.GreenForceBase)
+      .AddLeader(2, cards.JTL.LukeLeader)
+      .FillResources(1, cards.SOR.BFMarine, 12)
+      .FillResources(2, cards.SOR.BFMarine, 12)
+      .AddCardToDeck(1, cards.SOR.Avenger)
+      .AddCardToDeck(2, cards.SOR.BFMarine, 3)
+      .AddCardToHand(1, cards.SOR.RebelAssault)
+      .AddUnit(1, cards.JTL.SabinesMP)
+      .AddUnit(2, cards.JTL.SabinesMP)
+      .AddUnit(2, cards.SOR.BFMarine)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(2)
+      .SwitchPlayerWindow().ClaimInitiative()
+      .SwitchPlayerWindow().PlayFromHand(1).TargetMyGroundUnit(1).TargetTheirGroundUnit(1).Pass()
+      .TargetTheirSpaceUnit(1).Pass().TargetTheirBase()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheyHaveNoGroundUnits().TheyHaveNoSpaceUnits()
+      .IHaveNoSpaceUnits().MyGroundUnitIsThere(1, true)
+      .MyGroundUnitPieceEquals(1, 3, "3")
+      .MyBaseDamageEquals("12")
+      .TheirBaseDamageEquals("4")
+      .RunAsync()
+    ;
   }
 }

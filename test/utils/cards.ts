@@ -104,6 +104,7 @@ export const cards = {
     MakeAnOpening: '3208391441',
     InfiltratorsSkill: '0797226725',
     Protector: '4550121827',
+    Resilient: '7277605274',
     //events
     Vigilance: '8615772965',
     Command: '0073206444',
@@ -124,6 +125,7 @@ export const cards = {
     RallyingCry: '1208707254',
     NGTMD: '8800836530',
     Takedown: '4849184191',
+    RebelAssault: '8988732248',
   },
   SHD: {
     //bases
@@ -333,6 +335,7 @@ export const cards = {
     TheGhost: '5763330426',
     RazorCrest: '1935873883',
     RedSquadYWing: '7831643253',
+    Banshee: '6390089966',
     //events
     ItsATrap: '0964312065',
     Commandeer: '8105698374',
@@ -341,6 +344,7 @@ export const cards = {
     Eject: '8993849612',
     NoGloryOnlyResults: '9810057689',
     HotshotManuever: '6544277158',
+    TrenchRun: '2995807621',
   },
   LOF: {
     //bases

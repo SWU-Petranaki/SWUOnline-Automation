@@ -70,7 +70,7 @@ export const SpecificTWICases = {
       .RunAsync()
     ;
   },
-  Red_Dooku_Triggers: process.env.FULL_REGRESSION !== "true" ? '' : async function() {
+  Red_Dooku_triggers: process.env.FULL_REGRESSION !== "true" ? '' : async function() {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -110,7 +110,7 @@ export const SpecificTWICases = {
       .RunAsync()
     ;
   },
-  'On Attack: Darth Maul TWI': async function () {
+  Darth_Maul_attacks_two_units: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -141,7 +141,7 @@ export const SpecificTWICases = {
     await customAsserts.EnemyGroundUnitIsBattleDroid(browser, 1);
     await customAsserts.EnemyGroundUnitIsBattleDroid(browser, 2);
   },
-  'On Attack: Darth Maul TWI single target available': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
+  Darth_Maul_single_target: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -166,7 +166,7 @@ export const SpecificTWICases = {
     await browser.assert.not.elementPresent(com.EnemyGroundUnit(1));
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 3), '3');
   },
-  'On Attack: Darth Maul TWI single target choice': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
+  Darth_Maul_choose_one: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
    //arrange
    const gameState = new GameState(gameName);
    await gameState.LoadGameStateLinesAsync();
@@ -196,7 +196,7 @@ export const SpecificTWICases = {
     await browser.assert.not.elementPresent(com.EnemyGroundUnit(2));
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 3), '3');
   },
-  'On Attack: Darth Maul TWI sentinels': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
+  Darth_Maul_sentinels: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -225,7 +225,7 @@ export const SpecificTWICases = {
     await browser.assert.not.elementPresent(com.AllyGroundUnit(1));
     await browser.assert.elementPresent(com.EnemyGroundUnit(1));
   },
-  'On Attack: Darth Maul TWI single sentinel': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
+  Darth_Maul_single_sentinel: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -249,7 +249,7 @@ export const SpecificTWICases = {
     await browser.assert.not.elementPresent(com.EnemyGroundUnit(2));
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 3), '3');
   },
-  'Shadowed Intentions: avoids enemy capture': process.env.FULL_REGRESSION !== "true" ? '' : async function() {
+  Shadowed_Intentions_avoids_enemy_capture: process.env.FULL_REGRESSION !== "true" ? '' : async function() {
     //arrange
     await ShadowedIntentionsGameStateAsync();
     //act
@@ -265,7 +265,7 @@ export const SpecificTWICases = {
     const lastLog = (await browser.getText(com.GameLog)).split('\n').slice(-1)[0];
     await browser.assert.equal(lastLog, 'Greedo Slow on the Draw avoided capture.');
   },
-  'Shadowed Intentions: enemy damage': process.env.FULL_REGRESSION !== "true" ? '' : async function() {
+  Shadowed_Intentions_enemy_damage: process.env.FULL_REGRESSION !== "true" ? '' : async function() {
     //arrange
     await ShadowedIntentionsGameStateAsync();
     //act
@@ -279,7 +279,7 @@ export const SpecificTWICases = {
     //assert
     await browser.assert.textEquals(com.UnitDivPiece(com.EnemyGroundUnit(1), 5), '1');
   },
-  'Shadowed Intentions: defeats (merciless contest)': process.env.FULL_REGRESSION !== "true" ? '' : async function() {
+  Shadowed_Intentions_defeats_merciless_contest: process.env.FULL_REGRESSION !== "true" ? '' : async function() {
     //arrange
     await ShadowedIntentionsGameStateAsync();
     //act
@@ -304,7 +304,7 @@ export const SpecificTWICases = {
     const lastLog = (await browser.getText(com.GameLog)).split('\n').slice(-1)[0];
     await browser.assert.equal(lastLog, 'Greedo Slow on the Draw cannot be defeated by enemy card effects.');
   },
-  'Shadowed Intentions: damaged by self': process.env.FULL_REGRESSION !== "true" ? '' : async function() {
+  Shadowed_Intentions_damaged_by_self: process.env.FULL_REGRESSION !== "true" ? '' : async function() {
     //arrange
     await ShadowedIntentionsGameStateAsync();
     //act
@@ -318,7 +318,7 @@ export const SpecificTWICases = {
     //assert
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 5), '1');
   },
-  'Shadowed Intentions: bounced by enemy': process.env.FULL_REGRESSION !== "true" ? '' : async function() {
+  Shadowed_Intentions_avoids_bounce_by_enemy: process.env.FULL_REGRESSION !== "true" ? '' : async function() {
     //arrange
     await ShadowedIntentionsGameStateAsync();
     //act
@@ -335,7 +335,7 @@ export const SpecificTWICases = {
     const lastLog = (await browser.getText(com.GameLog)).split('\n').slice(-1)[0];
     await browser.assert.equal(lastLog, 'Greedo Slow on the Draw avoided bounce.');
   },
-  'Shadowed Intentions: bounced by self': process.env.FULL_REGRESSION !== "true" ? '' : async function() {
+  Shadowed_Intentions_bounced_by_self: process.env.FULL_REGRESSION !== "true" ? '' : async function() {
     //arrange
     await ShadowedIntentionsGameStateAsync();
     //act
@@ -349,5 +349,40 @@ export const SpecificTWICases = {
     //assert
     await browser.assert.not.elementPresent(com.AllyGroundUnit(1));
     await browser.assert.elementsCount(com.MyHandDivs, 4);
+  },
+  Cad_Bane_with_shield_opponent_rescues: async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SOR.ChopperBase)
+      .AddLeader(1, cards.SOR.SabineLeader)
+      .AddBase(2, cards.SOR.DagobahSwamp)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.CraftySmuggler, 4)
+      .FillResources(2, cards.SOR.CraftySmuggler, 4)
+      .AddCardToDeck(1, cards.SOR.CraftySmuggler, 2)
+      .AddUnit(1, cards.TWI.CadBane, false, true, 0,
+        gameState.SubcardBuilder().AddShield(1).AddCaptive(cards.SOR.LukeSkywalker, 2).Build()
+      )
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyGroundUnit(1).AttackWithMyGroundUnit(1).Pass()
+      .SwitchPlayerWindow().ChooseButton(1, 1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheirGroundUnitIsThere(1, true)
+      .MyGroundUnitIsThere(1, true)
+      .TheirGroundUnitPieceIsShieldToken(1, 3)
+      .MyBaseDamageEquals("7")
+      .TheirBaseDamageEquals("0")
+      .TheirHandSizeIs(2)
+      .RunAsync()
+    ;
   },
 }

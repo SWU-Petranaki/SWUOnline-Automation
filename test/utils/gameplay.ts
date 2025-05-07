@@ -446,6 +446,14 @@ export class GamePlay {
   public Check(position: number) {
     return this.ClickCheckbox(position);
   }
+
+  public AttackWithMyGroundUnit(position: number) {
+    return this.ClickMyGroundUnit(position);
+  }
+
+  public AttackWithMySpaceUnit(position: number) {
+    return this.ClickMySpaceUnit(position);
+  }
   //Assertions
   public Assert() {
     return this._assert;
