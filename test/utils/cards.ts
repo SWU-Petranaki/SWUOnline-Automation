@@ -99,6 +99,7 @@ export const cards = {
     WedgeAntilles: '4339330745',
     FifthBrother: '8395007579',
     LeiaUnit: '9680213078',
+    FrontlineShuttle: '2471223947',
     //upgrades
     Traitorous: '8055390529',
     MakeAnOpening: '3208391441',
@@ -126,6 +127,7 @@ export const cards = {
     NGTMD: '8800836530',
     Takedown: '4849184191',
     RebelAssault: '8988732248',
+    Entrenched: '3099663280',
   },
   SHD: {
     //bases
@@ -173,6 +175,7 @@ export const cards = {
     Val: '0474909987',
     ZoriiBliss: '2522489681',
     Wrecker: '2470093702',
+    JabbasRancor: '8380936981',
     //upgrades
     TopTarget: '4282425335',
     Darksaber: '3141660491',
@@ -345,6 +348,8 @@ export const cards = {
     NoGloryOnlyResults: '9810057689',
     HotshotManuever: '6544277158',
     TrenchRun: '2995807621',
+    ScrambleFighters: '5841647666',
+    Dogfight: '3436482269',
   },
   LOF: {
     //bases
@@ -357,7 +362,9 @@ export const cards = {
     DarthRevanLeader: '4637578649',
     ObiWanLeader: '2693401411',
     ThirdSisterLeader: '3357344238',
+    KananLeader: '8304104587',
     //units
+    Porg: '2971660620',
     DarthSidious: '6797297267',
     ObiWanPadawan: '6059510270',
     SavageOpress: '1636013021',
@@ -374,6 +381,9 @@ export const cards = {
     DarthMalak: '2285555274',
     HK47: '2407397504',
     JediConsular: '5482818255',
+    EzraBridger: '0726963200',
+    LukeSkywalker: '7338701361',
+    AnakinSkywalker: 'abcdefg003',
     //upgrades
     DarthMaulsSaber: '2167393423',
     //events

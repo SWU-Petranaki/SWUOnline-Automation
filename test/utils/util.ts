@@ -220,7 +220,7 @@ export const cs = {//copied from Constants.php
   NumAlliesDestroyed: 15,
   NumWhenDefeatedPlayed: 16,
   ResolvingLayerUniqueID: 17,
-  NextWizardNAAInstant: 18,
+  NumCreaturesPlayed: 18,
   ArcaneDamageTaken: 19,
   NextNAAInstant: 20,
   NextDamagePrevented: 21,
@@ -277,4 +277,10 @@ export const cs = {//copied from Constants.php
   AlliesDestroyed: 72, // List of allies (CardID) destroyed concatenated with a comma
   NumBountyHuntersPlayed: 73,
   NumPilotsPlayed: 74,
+}
+
+export const lt = {
+  Phase: 1,
+  Round: 2,
+  Permanent: 3,
 }

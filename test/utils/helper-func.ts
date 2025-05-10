@@ -20,6 +20,8 @@ export async function LocalRunGameStartAsync(browser: NightwatchAPI, localRunnin
 
   setGameName(localRunningGame);
   await browser.window.switchTo(player1Window).refresh().pause(p.WaitToBegin);
+
+  await gameState.WriteBeginTurnAsync();
 }
 
 export async function NewRunGameStartAsync(browser: NightwatchAPI) {

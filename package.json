@@ -16,7 +16,7 @@
   "description": "",
   "devDependencies": {
     "@swc/core": "^1.11.18",
-    "chromedriver": "^135.0.1",
+    "chromedriver": "^135.0.4",
     "nightwatch": "^3.12.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"

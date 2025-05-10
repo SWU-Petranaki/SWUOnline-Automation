@@ -2,7 +2,8 @@ import fsp from 'fs/promises';
 import fs from 'fs';
 import {
   cs,
-  g
+  g,
+  lt
 } from './util';
 import { SubcardBuilder } from './subcardbuilder';
 
@@ -32,6 +33,10 @@ export class GameState {
   public async LoadGameStateLinesAsync() {
     const data = await fsp.readFile(`${process.env.SWUONLINE_ROOT_PATH || '../SWUOnline'}/Games/${this._gameName}/gamestate.txt`, 'ascii');
     this._gameState = data.split('\r\n');
+  }
+
+  public async WriteBeginTurnAsync() {
+    await fsp.writeFile(`${process.env.SWUONLINE_ROOT_PATH || '../SWUOnline'}/Games/${this._gameName}/beginTurnGamestate.txt`, this._gameState.join('\r\n'), 'ascii');
   }
 
   public async FlushAsync(cb?: Function) {
@@ -113,7 +118,7 @@ export class GameState {
     arr[cs.NumAlliesDestroyed] = '0';
     arr[cs.NumWhenDefeatedPlayed] = '0';
     arr[cs.ResolvingLayerUniqueID] = '-1';
-    arr[cs.NextWizardNAAInstant] = '0';
+    arr[cs.NumCreaturesPlayed] = '0';
     arr[cs.ArcaneDamageTaken] = '0';
     arr[cs.NextNAAInstant] = '0';
     arr[cs.NextDamagePrevented] = '0';
@@ -279,6 +284,15 @@ export class GameState {
     const pieces = this._gameState[index].split(' ');
     pieces[piece] = value;
     this._gameState[index] = pieces.join(' ');
+
+    return this;
+  }
+
+  public AddCurrentTurnEffect(cardID: string, player: number, uniqueId: string = "-", numUses: number = 1, lastingType: number = lt.Phase) {
+    if(this._gameState[g.CurrentTurnEffects] !== '') {
+      this._gameState[g.CurrentTurnEffects] += ' ';
+    }
+    this._gameState[g.CurrentTurnEffects] += `${cardID} ${player} ${uniqueId} ${numUses} ${lastingType}`;
 
     return this;
   }
