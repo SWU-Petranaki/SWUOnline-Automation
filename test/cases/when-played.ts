@@ -9,7 +9,7 @@ import {
 } from '../utils/util';
 
 export const WhenPlayedCases = {
-  When_Played_UWing_Many_Played: async function () {
+  UWing_Many_Played: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

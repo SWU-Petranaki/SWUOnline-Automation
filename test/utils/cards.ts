@@ -59,6 +59,7 @@ export const cards = {
     TieLnFighter: '5562575456',
     DSStormTrooper: '2383321298',
     BFMarine: '4317911650',
+    FleetLieutenant: '3038238423',
     SLT: '8954587682',
     CraftySmuggler: '0700214503',
     SabineUnit: '3646264648',
@@ -136,6 +137,7 @@ export const cards = {
     //leaders and leader units
     BosskLeader: '2526288781',
     CadBaneLeader: '1384530409',
+    CadBaneLeaderUnit: '724979d608',
     QiRaLeader: '2432897157',
     QiRaLeaderUnit: '4aa0804b2b',
     JabbaLeader: '0622803599',
@@ -176,6 +178,7 @@ export const cards = {
     ZoriiBliss: '2522489681',
     Wrecker: '2470093702',
     JabbasRancor: '8380936981',
+    Maul: '8862896760',
     //upgrades
     TopTarget: '4282425335',
     Darksaber: '3141660491',
@@ -237,6 +240,7 @@ export const cards = {
     CloneCommanderCody: '9017877021',
     Soldier501st: '2800918480',
     Stalwart: '1209133362',
+    PoggleTheLesser: '9610332938',
     //upgrades
     ShadowedIntentions: '9003830954',
     CloneCohort: '2007876522',
@@ -339,6 +343,7 @@ export const cards = {
     RazorCrest: '1935873883',
     RedSquadYWing: '7831643253',
     Banshee: '6390089966',
+    FettsFirespray: '6648978613',
     //events
     ItsATrap: '0964312065',
     Commandeer: '8105698374',
