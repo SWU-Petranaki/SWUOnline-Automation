@@ -279,6 +279,18 @@ export class GameState {
     return this;
   }
 
+  public AddUnitWithSingleUpgrade(player: number, unitCardID: string, upgradeID: string,
+    epicAction: boolean = false, ready: boolean = true, damage: number = 0, upgradeIsPilot: boolean = false) {
+    const index = player === 1 ? g.P1AlliesArray : g.P2AlliesArray;
+    if(this._gameState[index] !== '') {
+      this._gameState[index] += ' ';
+    }
+    const subcard = this._subcardBuilder.AddUpgrade(upgradeID, index, upgradeIsPilot, epicAction, 0).Build();
+    this._gameState[index] += `${unitCardID} ${ready ? "2" : "1"} ${damage} 0 ${subcard} ${this._uniqueIdCounter++} 0 0 1 0 0 ${player} 0 0 0 NA ${epicAction ? "1" : "0"}`;
+
+    return this;
+  }
+
   public SetClassStatePiece(player: number, piece: number, value: string) {
     const index = player === 1 ? g.P1ClassState : g.P2ClassState;
     const pieces = this._gameState[index].split(' ');

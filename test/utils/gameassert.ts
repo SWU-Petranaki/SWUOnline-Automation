@@ -385,6 +385,24 @@ export class GameAssert {
     return this;
   }
 
+  public MyDiscardCountEquals(count: number) {
+    this.TextEquals(com.MyDiscardCount, count.toString());
+
+    return this;
+  }
+
+  public TheirDiscardCountEquals(count: number) {
+    this.TextEquals(com.TheirDiscardCount, count.toString());
+
+    return this;
+  }
+
+  public MyDiscardCardIs(position: number, text: string) {
+    this._gamePlay.___BrowsertAssert().attributeEquals(com.MyDiscardCard(position), 'src', src.Concat(text));
+
+    return this;
+  }
+
   public MyGroundUnitIsNotPlayable(position: number) {
     this._gamePlay.___BrowsertAssert().attributeEquals(com.UnitImg(com.AllyGroundUnit(position)), 'style', src.NotPlayableBorderUnit);
 

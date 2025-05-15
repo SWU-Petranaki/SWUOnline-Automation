@@ -280,6 +280,12 @@ export class GamePlay {
 
     return this;
   }
+
+  public ClickMyDiscard() {
+    this.Click(com.MyDiscard)._asyncBrowser.pause(p.ButtonPress);
+
+    return this;
+  }
   //Targets
   Target(selector: string) {
     this._asyncBrowser
@@ -326,6 +332,12 @@ export class GamePlay {
 
   public TargetTheirSpaceUnit(position: number) {
     this.Target(com.EnemySpaceUnit(position));
+
+    return this;
+  }
+
+  public TargetMyDiscard() {
+    this.Target(com.MyDiscard);
 
     return this;
   }
@@ -453,6 +465,10 @@ export class GamePlay {
 
   public AttackWithMySpaceUnit(position: number) {
     return this.ClickMySpaceUnit(position);
+  }
+
+  public OpenMyDiscard() {
+    return this.TargetMyDiscard();
   }
   //Assertions
   public Assert() {

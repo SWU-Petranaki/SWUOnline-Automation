@@ -7,7 +7,9 @@ export const cards = {
     YellowBase: '6093792814',//30HP yellow base
     BlueForceBase: '0119018087',
     GreenForceBase: '0450346170',
-    //units
+    //tokens
+    Shield: '8752877738',
+    Experience: '2007868442',
   },
   SOR: {
     //bases
@@ -101,12 +103,14 @@ export const cards = {
     FifthBrother: '8395007579',
     LeiaUnit: '9680213078',
     FrontlineShuttle: '2471223947',
+    AdelphiPattrolWing: '9757839764',
     //upgrades
     Traitorous: '8055390529',
     MakeAnOpening: '3208391441',
     InfiltratorsSkill: '0797226725',
     Protector: '4550121827',
     Resilient: '7277605274',
+    JediLightsaber: '8495694166',
     //events
     Vigilance: '8615772965',
     Command: '0073206444',
@@ -179,6 +183,7 @@ export const cards = {
     Wrecker: '2470093702',
     JabbasRancor: '8380936981',
     Maul: '8862896760',
+    SurvivorsGauntlet: '1503633301',
     //upgrades
     TopTarget: '4282425335',
     Darksaber: '3141660491',
@@ -205,6 +210,7 @@ export const cards = {
     ANewAdventure: '4717189843',
     RelentlessPursuit: '5778949819',
     TripleDarkRaid: '5696041568',
+    EvidenceOfTheCrime: '6452159858',
   },
   TWI: {
     //bases
@@ -241,6 +247,7 @@ export const cards = {
     Soldier501st: '2800918480',
     Stalwart: '1209133362',
     PoggleTheLesser: '9610332938',
+    MorganElsbeth: '6412545836',
     //upgrades
     ShadowedIntentions: '9003830954',
     CloneCohort: '2007876522',
@@ -344,6 +351,11 @@ export const cards = {
     RedSquadYWing: '7831643253',
     Banshee: '6390089966',
     FettsFirespray: '6648978613',
+    ShuttleST149: '1519837763',
+    VictorLeader: '9811031405',
+    StolenATHauler: '6272475624',
+    //upgrades
+    DeathStarPlans: '7501988286',
     //events
     ItsATrap: '0964312065',
     Commandeer: '8105698374',
@@ -363,11 +375,15 @@ export const cards = {
     //tokens
     //leaders and leader units
     DarthMaulLeader: '0024560758',
+    DarthMaulLeaderUnit: 'b2072f156c',
     QuiGonJinnLeader: '2580909557',
+    QuiGonJinnLeaderUnit: '6def6570f5',
     DarthRevanLeader: '4637578649',
     ObiWanLeader: '2693401411',
     ThirdSisterLeader: '3357344238',
     KananLeader: '8304104587',
+    MotherTalzinLeader: '2520636620',
+    MotherTalzinLeaderUnit: '32fd8db633',
     //units
     Porg: '2971660620',
     DarthSidious: '6797297267',
@@ -388,11 +404,16 @@ export const cards = {
     JediConsular: '5482818255',
     EzraBridger: '0726963200',
     LukeSkywalker: '7338701361',
-    AnakinSkywalker: 'abcdefg003',
+    OldDaka: '0564229530',
+    OggdoBogdo: '2508430135',
+    ChirrutImwe: '0775347605',
     //upgrades
     DarthMaulsSaber: '2167393423',
+    SithHolocron: '0412810079',
     //events
     DrainEssence: '5083905745',
     AsIHaveForeseen: '8569501777',
+    WillOfTheForce: '9021149512',
+    ImpossibleEscape: '9069308523',
   },
 }
