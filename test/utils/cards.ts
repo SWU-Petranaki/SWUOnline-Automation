@@ -133,6 +133,7 @@ export const cards = {
     Takedown: '4849184191',
     RebelAssault: '8988732248',
     Entrenched: '3099663280',
+    KeepFighting: '3058784025',
   },
   SHD: {
     //bases
@@ -193,8 +194,8 @@ export const cards = {
     Wanted: '4117365450',
     BHQuarry: '9642863632',
     PriceOnYourHead: '2178538979',
-    DeathMark: '2740761445',
-    GuildTarget: '0807120264',
+    DeathMark: '0807120264',
+    GuildTarget: '2740761445',
     PublicEnemy: '1780014071',
     //events
     TimelyIntervention: '6847268098',
@@ -253,6 +254,7 @@ export const cards = {
     CloneCohort: '2007876522',
     DroidCohort: '7547538214',
     PerilousPosition: '8061497086',
+    GeneralsBlade: '0414253215',
     //events
     MercilessContest: '4412828936',
     Christophsis: '2565830105',
@@ -380,6 +382,7 @@ export const cards = {
     QuiGonJinnLeaderUnit: '6def6570f5',
     DarthRevanLeader: '4637578649',
     ObiWanLeader: '2693401411',
+    ObiWanLeaderUnit: 'd12b136775',
     ThirdSisterLeader: '3357344238',
     KananLeader: '8304104587',
     MotherTalzinLeader: '2520636620',
@@ -415,5 +418,6 @@ export const cards = {
     AsIHaveForeseen: '8569501777',
     WillOfTheForce: '9021149512',
     ImpossibleEscape: '9069308523',
+    LuminousBeings: '6801641285',
   },
 }

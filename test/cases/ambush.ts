@@ -8,7 +8,10 @@ import {
 } from '../utils/util';
 
 export const AmbushCases = {
-  ECL_Sabine_Ping_Shield: async function () {
+  //GIVEN: i have base SOR.ECL; i have leader SOR.SabineLeader; they have base SOR.ECL; they have leader SOR.SabineLeader; i have 2 SOR.BFMarine in my resources; they have 2 SOR.BFMarine in their resources; i have SOR.SabineUnit in hand; i have SOR.SabineUnit in play; they have SOR.CraftySmuggler in play with a shield;;
+  //WHEN: i activate my base; i target the first card in my hand; i target my first ground unit; i choose yes; i pass; i target their first ground unit;;
+  //EXPECT: they have no ground units; my first ground unit's third piece equals 2;
+  ECL_Sabine_ping_shield: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -16,8 +19,10 @@ export const AmbushCases = {
       .AddBase(1, cards.SOR.ECL).AddLeader(1, cards.SOR.SabineLeader)
       .AddBase(2, cards.SOR.ECL).AddLeader(2, cards.SOR.SabineLeader)
       .FillResources(1, cards.SOR.BFMarine, 2)
+      .FillResources(2, cards.SOR.BFMarine, 2)
       .AddCardToHand(1, cards.SOR.SabineUnit)
       .AddUnit(1, cards.SOR.SabineUnit, false, false)
+      //by default, the unit is not epic action, is ready, has 0 damage, and the shield is owned by the same player that controls the unit
       .AddUnit(2, cards.SOR.CraftySmuggler, false, true, 0,
         gameState.SubcardBuilder().AddShield(2).Build())
       .FlushAsync(com.BeginTestCallback)

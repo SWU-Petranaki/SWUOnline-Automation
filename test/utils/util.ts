@@ -221,7 +221,7 @@ export const cs = {//copied from Constants.php
   NumWhenDefeatedPlayed: 16,
   ResolvingLayerUniqueID: 17,
   NumCreaturesPlayed: 18,
-  ArcaneDamageTaken: 19,
+  NumJediAttacks: 19,
   NextNAAInstant: 20,
   NextDamagePrevented: 21,
   LastAttack: 22,

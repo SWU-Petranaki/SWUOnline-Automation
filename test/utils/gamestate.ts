@@ -119,7 +119,7 @@ export class GameState {
     arr[cs.NumWhenDefeatedPlayed] = '0';
     arr[cs.ResolvingLayerUniqueID] = '-1';
     arr[cs.NumCreaturesPlayed] = '0';
-    arr[cs.ArcaneDamageTaken] = '0';
+    arr[cs.NumJediAttacks] = '0';
     arr[cs.NextNAAInstant] = '0';
     arr[cs.NextDamagePrevented] = '0';
     arr[cs.LastAttack] = "NA";
