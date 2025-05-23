@@ -264,6 +264,7 @@ export const cards = {
     LethalCrackdown: '1389085256',
     GrimResolve: '6669050232',
     ImpAmongThieves: '1302133998',
+    DisruptiveBurst: '3596811933',
   },
   JTL: {
     //bases
@@ -410,6 +411,9 @@ export const cards = {
     OldDaka: '0564229530',
     OggdoBogdo: '2508430135',
     ChirrutImwe: '0775347605',
+    JediStarfighter: '3363314608',
+    MaceWindu: '9757688123',
+    DarthVader: '2277278592',
     //upgrades
     DarthMaulsSaber: '2167393423',
     SithHolocron: '0412810079',
@@ -419,5 +423,6 @@ export const cards = {
     WillOfTheForce: '9021149512',
     ImpossibleEscape: '9069308523',
     LuminousBeings: '6801641285',
+    CureWounds: '3853063436',
   },
 }
