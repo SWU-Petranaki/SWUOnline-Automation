@@ -593,5 +593,40 @@ export const JTLPoeCases = {
       .MyBaseDamageEquals('13')
       .RunAsync()
     ;
+  },
+  Poe_Palp_Interactions: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("9 5")
+      .AddBase(1, cards.generic.BlueBase)
+      .AddLeader(1, cards.JTL.PoeLeader, true)
+      .AddBase(2, cards.generic.GreenBase)
+      .AddLeader(2, cards.SOR.PalpLeader)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .FillResources(2, cards.SOR.BFMarine, 8)
+      .AddCardToHand(1, cards.SOR.DisablingFF)
+      .AddUnit(1, cards.JTL.XWing, false, true, 1,
+        gameState.SubcardBuilder().AddPilot(cards.JTL.PoeLeaderUnit, 1).Build()
+      )
+      .FlushAsync(com.BeginTestCallback)
+      //act
+      const gameplay = new GamePlay(browser);
+      await gameplay
+        .WaitForPassButton().PassTurn()
+        .SwitchPlayerWindow().WaitForMyLeader().ClickMyLeader().TargetTheirSpaceUnit(1)
+        .SwitchPlayerWindow().WaitForMyHand().ClickHandCard(1).TargetTheirSpaceUnit(1).ChooseButton(1, 1)
+        .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+        .SwitchPlayerWindow().WaitForMyLeader().ClickMyLeader()
+        .RunAsync()
+     ;
+     //assert
+    gameplay.Assert()
+      .TheirSpaceUnitIsThere(1)
+      .TheirGroundUnitIsThere(1)
+      .MyGroundUnitIsThere(1)
+      .RunAsync()
+    ;
   }
 }
