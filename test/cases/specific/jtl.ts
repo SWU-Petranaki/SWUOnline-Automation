@@ -537,4 +537,60 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
   },
+  Chewie_survives_SLB: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.BlueBase)
+      .AddLeader(1, cards.SOR.PalpLeader)
+      .AddBase(2, cards.generic.RedBase)
+      .AddLeader(2, cards.JTL.WedgeLeader)
+      .FillResources(1, cards.SOR.BFMarine, 8)
+      .FillResources(2, cards.SOR.BFMarine, 2)
+      .AddCardToHand(1, cards.SOR.SLB)
+      .AddUnitWithPilot(1, cards.JTL.TieBomber, cards.JTL.DarthVaderLeaderUnit, true)
+      .AddUnit(2, cards.JTL.Chewbacca)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .IHaveNoSpaceUnits().IHaveNoSpaceUnits()
+      .TheyHaveNoSpaceUnits().TheirGroundUnitIsThere(1)
+      .RunAsync()
+    ;
+  },
+  Chewie_piloting_Traitorous_SLB: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.BlueBase)
+      .AddLeader(1, cards.SOR.PalpLeader)
+      .AddBase(2, cards.generic.RedBase)
+      .AddLeader(2, cards.JTL.WedgeLeader)
+      .FillResources(1, cards.SOR.BFMarine, 13)
+      .FillResources(2, cards.SOR.BFMarine, 2)
+      .AddCardToHand(1, cards.SOR.Traitorous)
+      .AddCardToHand(1, cards.SOR.SLB)
+      .AddUnitWithPilot(2, cards.JTL.XWing, cards.JTL.Chewbacca)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1)
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert().WeHaveNoUnits();
+  }
 }
