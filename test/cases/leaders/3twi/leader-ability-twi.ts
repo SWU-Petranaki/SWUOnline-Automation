@@ -1,13 +1,13 @@
 
-import { cards } from '../utils/cards';
-import { GameState } from '../utils/gamestate';
+import { cards } from '@utils/cards';
+import { GameState } from '@utils/gamestate';
 import {
     com, p,
     player1Window, player2Window,
     gameName,
     src,
     cs
-} from '../utils/util';
+} from '@utils/util';
 
 export const LeaderAbilityTWICases = {
   'Yoda draw and put card on top or bottom': async function () {

@@ -1,10 +1,10 @@
-import { cards } from '../utils/cards';
-import { GameState } from '../utils/gamestate';
+import { cards } from '@utils/cards';
+import { GameState } from '@utils/gamestate';
 import {
   com, p,
   player1Window, player2Window,
   gameName
-} from '../utils/util';
+} from '@utils/util';
 
 export const WhenTheyPlayCases = {
   'When They Play: POTDS Krayt Dragon': async function () {

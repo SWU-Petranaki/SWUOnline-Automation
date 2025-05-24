@@ -4,10 +4,10 @@ import {
   customAsserts,
   gameName,
   cs,
-} from '../utils/util';
-import { GameState } from '../utils/gamestate';
-import { cards } from '../utils/cards';
-import { GamePlay } from '../utils/gameplay';
+} from '@utils/util';
+import { GameState } from '@utils/gamestate';
+import { cards } from '@utils/cards';
+import { GamePlay } from '@utils/gameplay';
 
 export const LeaderAbilitySHDCases = {
   Mando_Leader_exhaust_with_bounty: async function() {

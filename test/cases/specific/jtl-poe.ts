@@ -1,13 +1,13 @@
-import { cards } from '../../utils/cards';
-import { GameAssert } from '../../utils/gameassert';
-import { GamePlay } from '../../utils/gameplay';
-import { GameState } from '../../utils/gamestate';
+import { cards } from '@utils/cards';
+import { GameAssert } from '@utils/gameassert';
+import { GamePlay } from '@utils/gameplay';
+import { GameState } from '@utils/gamestate';
 import {
   com, p,
   player1Window, player2Window,
   gameName,
   customAsserts
-} from '../../utils/util';
+} from '@utils/util';
 
 export const JTLPoeCases = {
   Poe_Leader_no_resources_cant_jump: async function () {

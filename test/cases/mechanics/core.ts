@@ -1,12 +1,12 @@
-import { cards } from '../utils/cards';
-import { GamePlay } from '../utils/gameplay';
-import { GameState } from '../utils/gamestate';
+import { cards } from '@utils/cards';
+import { GamePlay } from '@utils/gameplay';
+import { GameState } from '@utils/gamestate';
 import {
   com, p,
   player1Window, player2Window,
   gameName,
   src
-} from '../utils/util';
+} from '@utils/util';
 
 export const CoreMechanicsCases = {
   // GIVEN: bases are set to "9 16"; i have base SHD.JabbasPalace; i have leader TWI.YodaLeader; they have base SOR.EchoBase; they have leader JTL.HanSoloLeader; i have 3 SOR.CraftySmuggler in my resources; they have 2 SOR.CraftySmuggler in their resources; i have a TWI.PerilousPosition in hand; they have a SOR.CraftySmuggler in hand;;

@@ -4,10 +4,10 @@ import {
   gameName,
   customAsserts,
   g,
-} from '../utils/util'
-import { GameState } from '../utils/gamestate'
-import { cards } from '../utils/cards'
-import { GamePlay } from '../utils/gameplay';
+} from '@utils/util'
+import { GameState } from '@utils/gamestate'
+import { cards } from '@utils/cards'
+import { GamePlay } from '@utils/gameplay';
 
 export const PilotJTLCases = {
   'Dengar not piloting, attacks for 5': process.env.FULL_REGRESSION !== 'true' ? '' : async function() {

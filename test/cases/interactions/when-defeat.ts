@@ -1,13 +1,13 @@
 
-import { cards } from '../utils/cards';
-import { GamePlay } from '../utils/gameplay';
-import { GameState } from '../utils/gamestate';
+import { cards } from '@utils/cards';
+import { GamePlay } from '@utils/gameplay';
+import { GameState } from '@utils/gamestate';
 import {
   com, p,
   player1Window, player2Window,
   gameName,
   customAsserts
-} from '../utils/util';
+} from '@utils/util';
 
 export const WhenDefeatCases = {
   'When Defeat: Inferno Four top bottom': async function () {

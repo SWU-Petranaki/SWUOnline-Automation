@@ -1,12 +1,12 @@
-import { cards } from '../utils/cards';
-import { GameState } from '../utils/gamestate';
+import { cards } from '@utils/cards';
+import { GameState } from '@utils/gamestate';
 import {
   com, p,
   player1Window, player2Window,
   gameName,
   src,
   customAsserts
-} from '../utils/util';
+} from '@utils/util';
 
 export const CloneCases = {
   'Clone: cant clone piloted leader unit': process.env.FULL_REGRESSION !== 'true' ? '' : async function () {

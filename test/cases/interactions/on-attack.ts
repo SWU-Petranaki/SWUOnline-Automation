@@ -1,6 +1,6 @@
-import { cards } from '../utils/cards';
-import { GamePlay } from '../utils/gameplay';
-import { GameState } from '../utils/gamestate';
+import { cards } from '@utils/cards';
+import { GamePlay } from '@utils/gameplay';
+import { GameState } from '@utils/gamestate';
 import {
   com, p,
   player1Window, player2Window,
@@ -8,7 +8,7 @@ import {
   cs,
   src,
   customAsserts
-} from '../utils/util';
+} from '@utils/util';
 
 export const OnAttackCases = {
   'OnAttack: Enfys Nest TWI bounce': async function () {

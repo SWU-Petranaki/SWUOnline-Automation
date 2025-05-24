@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "tscne": "tsc --noEmit",
     "start": "nightwatch ./test/bug-report.ts",
     "test": "nightwatch ./test/regression.ts --env=headless --retries 3 --suiteRetries 1",
     "test:visual": "nightwatch ./test/regression.ts",
@@ -19,6 +20,7 @@
     "chromedriver": "^135.0.4",
     "nightwatch": "^3.12.1",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.8.3"
   }
 }

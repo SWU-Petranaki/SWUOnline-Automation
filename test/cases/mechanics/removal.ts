@@ -1,11 +1,11 @@
-import { cards } from '../utils/cards';
-import { GameState } from '../utils/gamestate';
+import { cards } from '@utils/cards';
+import { GameState } from '@utils/gamestate';
 import {
   com, src, p,
   player1Window, player2Window,
   gameName,
   customAsserts
-} from '../utils/util';
+} from '@utils/util';
 
 export const RemovalCases = {
   'Removal: Vanquish cant target piloted leader unit': async function () {

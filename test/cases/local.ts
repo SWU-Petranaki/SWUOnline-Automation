@@ -1,6 +1,6 @@
-import { cards } from "../utils/cards";
-import { GameState, SubcardBuilder } from "../utils/gamestate";
-import { com, gameName, p } from "../utils/util";
+import { cards } from "@utils/cards";
+import { GameState } from "@utils/gamestate";
+import { com, gameName, p } from "@utils/util";
 
 export const LocalTestCase = {
   'Local Run': !Number.isInteger(Number.parseInt(process.env.LOCAL_RUN || '')) ? '' : async function() {

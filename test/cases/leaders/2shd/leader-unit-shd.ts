@@ -1,10 +1,10 @@
-import { cards } from '../utils/cards';
-import { GameState } from '../utils/gamestate';
+import { cards } from '@utils/cards';
+import { GameState } from '@utils/gamestate';
 import {
   com, p, src, customAsserts,
   player1Window, player2Window,
   gameName
-} from '../utils/util'
+} from '@utils/util'
 
 export const LeaderUnitSHDCases = {
   'SHD: Blue and Green Leader Units': process.env.FULL_REGRESSION !== "true" ? '' : async function () {

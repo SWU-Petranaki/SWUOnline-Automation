@@ -2,10 +2,10 @@ import {
   com, p,
   player1Window, player2Window,
   gameName
-} from '../utils/util';
-import { GameState } from '../utils/gamestate';
-import { cards } from '../utils/cards';
-import { GamePlay } from '../utils/gameplay';
+} from '@utils/util';
+import { GameState } from '@utils/gamestate';
+import { cards } from '@utils/cards';
+import { GamePlay } from '@utils/gameplay';
 
 export const RoundEffectCases = {
   Rallying_Cry_only_units_in_play: async function() {

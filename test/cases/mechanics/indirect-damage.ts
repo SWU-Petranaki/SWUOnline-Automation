@@ -1,10 +1,10 @@
-import { cards } from '../utils/cards';
-import { GamePlay } from '../utils/gameplay';
-import { GameState } from '../utils/gamestate';
+import { cards } from '@utils/cards';
+import { GamePlay } from '@utils/gameplay';
+import { GameState } from '@utils/gamestate';
 import {
   com, src, p,
   gameName
-} from '../utils/util';
+} from '@utils/util';
 
 export const IndirectDamageCases = {
   Planetary_Bombardment_pings_simultaneously: async function () {

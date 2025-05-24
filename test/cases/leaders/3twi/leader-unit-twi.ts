@@ -1,13 +1,13 @@
 
-import { cards } from '../utils/cards';
-import { GameState } from '../utils/gamestate';
+import { cards } from '@utils/cards';
+import { GameState } from '@utils/gamestate';
 import {
     com, p,
     player1Window, player2Window,
     gameName,
     src,
     customAsserts
-} from '../utils/util';
+} from '@utils/util';
 
 export const LeaderUnitTWICases = {
     'Leader Unit: Nala Se TWI Ignore Aspect': async function () {

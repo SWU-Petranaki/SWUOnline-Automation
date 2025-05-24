@@ -1,12 +1,12 @@
-import { cards } from '../utils/cards';
-import { GameState } from '../utils/gamestate';
+import { cards } from '@utils/cards';
+import { GameState } from '@utils/gamestate';
 import {
   com, p, src,
   player1Window, player2Window,
   customAsserts,
   gameName,
   cs
-} from '../utils/util';
+} from '@utils/util';
 
 export const LeaderUnitSORCases = {
   'SOR: Blue and Green Leader Units': process.env.FULL_REGRESSION !== "true" ? '' : async function () {

@@ -1,6 +1,6 @@
 import { NightwatchAPI } from "nightwatch";
-import { GameState } from "./gamestate";
-import { com, p, player1Window, player2Window, setGameName, setPlayer2Window } from "./util";
+import { GameState } from "@utils/gamestate";
+import { com, p, player1Window, player2Window, setGameName, setPlayer2Window } from "@utils/util";
 
 export async function LocalRunGameStartAsync(browser: NightwatchAPI, localRunningGame: string) {
   const gameState = new GameState(localRunningGame);

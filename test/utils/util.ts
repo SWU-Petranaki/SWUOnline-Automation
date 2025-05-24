@@ -1,9 +1,9 @@
 import {promises as fsp} from 'fs';
 import { browser, NightwatchAPI } from 'nightwatch';
-import { cards } from './cards';
+import { cards } from '@utils/cards';
 
-export var player1Window = '';
-export var player2Window = '';
+export var player1Window:string = '';
+export var player2Window:string = '';
 export var gameName = '';
 
 export function setPlayer1Window(window: string) {

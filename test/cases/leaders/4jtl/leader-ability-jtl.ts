@@ -1,14 +1,14 @@
 
-import { cards } from '../utils/cards';
-import { GamePlay } from '../utils/gameplay';
-import { GameState } from '../utils/gamestate';
+import { cards } from '@utils/cards';
+import { GamePlay } from '@utils/gameplay';
+import { GameState } from '@utils/gamestate';
 import {
     com, p,
     player1Window, player2Window,
     gameName,
     src,
     cs
-} from '../utils/util';
+} from '@utils/util';
 
 export const LeaderAbilityJTLCases = {
   Kazuda_Leader_Unit_on_attack: async function () {
@@ -52,6 +52,34 @@ export const LeaderAbilityJTLCases = {
       .MyResourcesEquals('1/1')
       .TheirResourcesEquals('1/1')
       .TheirBaseDamageEquals('5')
+      .RunAsync()
+    ;
+  },
+  Piett_discounts: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SOR.ChopperBase)
+      .AddLeader(1, cards.JTL.PiettLeader)
+      .AddBase(2, cards.SOR.EchoBase)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.CraftySmuggler, 5)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddCardToHand(1, cards.JTL.Invincible)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1).TargetMyHandCard(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyHandIsEmpty()
+      .MyResourcesEquals('0/5')
+      .MySpaceUnitIsThere(1)
       .RunAsync()
     ;
   }

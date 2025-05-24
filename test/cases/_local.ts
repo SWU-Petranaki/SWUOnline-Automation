@@ -1,7 +1,7 @@
-import { cards } from "../utils/cards";
-import { GamePlay } from "../utils/gameplay";
-import { GameState } from "../utils/gamestate";
-import { com, cs, gameName, p } from "../utils/util";
+import { cards } from "@utils/cards";
+import { GamePlay } from "@utils/gameplay";
+import { GameState } from "@utils/gamestate";
+import { com, cs, gameName, p } from "@utils/util";
 
 export const LocalTestCase = {
   'Local Run': !Number.isInteger(Number.parseInt(process.env.LOCAL_RUN || '')) ? '' : async function() {

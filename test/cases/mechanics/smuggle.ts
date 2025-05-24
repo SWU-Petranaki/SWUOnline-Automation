@@ -2,9 +2,9 @@ import {
   com, p,
   player1Window, player2Window,
   gameName
-} from '../utils/util';
-import { GameState } from '../utils/gamestate';
-import { cards } from '../utils/cards';
+} from '@utils/util';
+import { GameState } from '@utils/gamestate';
+import { cards } from '@utils/cards';
 
 export const SmuggleCases = {
   'Smuggle works even with no cards in deck': async function() {

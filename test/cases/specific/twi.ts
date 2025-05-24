@@ -1,13 +1,13 @@
-import { cards } from '../../utils/cards';
-import { GamePlay } from '../../utils/gameplay';
-import { GameState } from '../../utils/gamestate';
+import { cards } from '@utils/cards';
+import { GamePlay } from '@utils/gameplay';
+import { GameState } from '@utils/gamestate';
 import {
     com, p,
     player1Window, player2Window,
     customAsserts,
     src,
     gameName
-} from '../../utils/util';
+} from '@utils/util';
 
 const ShadowedIntentionsGameStateAsync = async () =>{
   const gameState = new GameState(gameName);

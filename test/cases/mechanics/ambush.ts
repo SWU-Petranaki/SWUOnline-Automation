@@ -1,11 +1,11 @@
-import { cards } from '../utils/cards';
-import { GamePlay } from '../utils/gameplay';
-import { GameState } from '../utils/gamestate';
+import { cards } from '@utils/cards';
+import { GamePlay } from '@utils/gameplay';
+import { GameState } from '@utils/gamestate';
 import {
   com, p,
   player1Window, player2Window,
   gameName
-} from '../utils/util';
+} from '@utils/util';
 
 export const AmbushCases = {
   //GIVEN: i have base SOR.ECL; i have leader SOR.SabineLeader; they have base SOR.ECL; they have leader SOR.SabineLeader; i have 2 SOR.BFMarine in my resources; they have 2 SOR.BFMarine in their resources; i have SOR.SabineUnit in hand; i have SOR.SabineUnit in play; they have SOR.CraftySmuggler in play with a shield;;

@@ -4,7 +4,7 @@ import {
   com,
   p,
   player1Window, player2Window,
-} from '../utils/util';
+} from '@utils/util';
 import { GameAssert } from "./gameassert";
 
 export class GamePlay {

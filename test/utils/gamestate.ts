@@ -5,7 +5,7 @@ import {
   g,
   lt
 } from './util';
-import { SubcardBuilder } from './subcardbuilder';
+import { SubcardBuilder } from '@utils/subcardbuilder';
 
 export class GameState {
   private _subcardBuilder: SubcardBuilder = new SubcardBuilder(this);

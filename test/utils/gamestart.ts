@@ -5,9 +5,9 @@ import {
   player1Window, player2Window,
   setGameName,
   setPlayer1Window, setPlayer2Window,
-} from "./util";
-import { GameState } from "./gamestate";
-import { LocalRunGameStartAsync, NewRunGameStartAsync } from "./helper-func";
+} from "@utils/util";
+import { GameState } from "@utils/gamestate";
+import { LocalRunGameStartAsync, NewRunGameStartAsync } from "@utils//helper-func";
 
 export const init: NightwatchTestHook = async (browser, done) => {
   await browser
