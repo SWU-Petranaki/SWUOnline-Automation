@@ -39,12 +39,9 @@ import { SpecificJTLCases } from '@cases/specific/jtl';
 import { JTLPoeCases } from '@cases/specific/jtl-poe';
 import { LeaderAbilityJTLCases } from '@cases/leaders/4jtl/leader-ability-jtl';
 
-//import { LocalTestCase } from '@cases/_local';
-
 const home: NightwatchTests = {
   before: init,
 //regression suite
-  //...(process.argv[process.argv.length-1] == "Local Run" && process.env.LOCAL_RUN ? LocalTestCase : {}),
   ...CoreMechanicsCases,
   ...WhenPlayedCases,
   ...WhenDefeatCases,
