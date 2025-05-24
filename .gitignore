@@ -32,3 +32,4 @@ test-results.xml
 chromedriver-mobile/
 *.sw[po]
 screenshots/
+test/cases/_local.ts

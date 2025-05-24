@@ -18,6 +18,7 @@ import { ReadyCases } from '@cases/mechanics/ready';
 import { BoardWipeCases } from '@cases/mechanics/boardwipe';
 import { ControlCases } from '@cases/mechanics/control';
 import { DefeatUpgradeCases } from '@cases/mechanics/defeat-upgrade';
+import { DebuffCases } from '@cases/mechanics/debuff';
 import { RareBasesCases } from '@cases/rare-bases';
 import { LeaderAbilitySORCases } from '@cases/leaders/1sor/leader-ability-sor';
 import { LeaderUnitSORCases } from '@cases/leaders/1sor/leader-unit-sor';
@@ -59,6 +60,7 @@ const home: NightwatchTests = {
   ...BoardWipeCases,
   ...ControlCases,
   ...DefeatUpgradeCases,
+  ...DebuffCases,
   ...RareBasesCases,
   ...BountyCases,
   ...SmuggleCases,

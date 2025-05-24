@@ -189,6 +189,7 @@ export const cards = {
     Maul: '8862896760',
     SurvivorsGauntlet: '1503633301',
     MigsMayfeld: '6910883839',
+    Grogu: '6536128825',
     //upgrades
     TopTarget: '4282425335',
     Darksaber: '3141660491',
@@ -217,6 +218,7 @@ export const cards = {
     TripleDarkRaid: '5696041568',
     EvidenceOfTheCrime: '6452159858',
     Pillage: '4772866341',
+    MysticReflection: '9999079491',
   },
   TWI: {
     //bases
@@ -232,6 +234,8 @@ export const cards = {
     YodaLeader: '2847868671',
     JangoLeader: '9155536481',
     QuinlanLeader: '2358113881',
+    ChancellorPalpatineLeader: '0026166404',
+    DarthSidiousLeader: 'ad86d54e97',
     //units
     Malevolence: '3381931079',
     WTTradeOfficial: '0677558416',
@@ -270,6 +274,7 @@ export const cards = {
     GrimResolve: '6669050232',
     ImpAmongThieves: '1302133998',
     DisruptiveBurst: '3596811933',
+    HelloThere: '4036958275',
   },
   JTL: {
     //bases
@@ -376,6 +381,7 @@ export const cards = {
     TrenchRun: '2995807621',
     ScrambleFighters: '5841647666',
     Dogfight: '3436482269',
+    OutTheAirlock: '3782661648',
   },
   LOF: {
     //bases
@@ -404,6 +410,7 @@ export const cards = {
     LuthenRael: '5472129982',
     Refugee: '0102737248',
     AnakinKid: '3967581160',
+    AnakinAdult: '4236013558',
     PloKoon: '2352895392',
     QuiGonAethrsprite: '0661066339',
     Grogu: '4389144613',
@@ -420,6 +427,7 @@ export const cards = {
     JediStarfighter: '3363314608',
     MaceWindu: '9757688123',
     DarthVader: '2277278592',
+    TalzinsAssassin: '2410965424',
     //upgrades
     DarthMaulsSaber: '2167393423',
     SithHolocron: '0412810079',
