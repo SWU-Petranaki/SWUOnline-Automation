@@ -8,9 +8,9 @@ import {
 } from '@utils/util';
 
 export const AmbushCases = {
-  //GIVEN: i have base SOR.ECL; i have leader SOR.SabineLeader; they have base SOR.ECL; they have leader SOR.SabineLeader; i have 2 SOR.BFMarine in my resources; they have 2 SOR.BFMarine in their resources; i have SOR.SabineUnit in hand; i have SOR.SabineUnit in play; they have SOR.CraftySmuggler in play with a shield;;
-  //WHEN: i activate my base; i target the first card in my hand; i target my first ground unit; i choose yes; i pass; i target their first ground unit;;
-  //EXPECT: they have no ground units; my first ground unit's third piece equals 2;
+  // GIVEN: i have base SOR.ECL; i have leader SOR.SabineLeader; they have base SOR.ECL; they have leader SOR.SabineLeader; i have 2 SOR.BFMarine in my resources; they have 2 SOR.BFMarine in their resources; i have SOR.SabineUnit in hand; i have SOR.SabineUnit in play; they have SOR.CraftySmuggler in play with a shield;;
+  // WHEN: i activate my base; i target the first card in my hand; i target my first ground unit; i choose yes; i pass; i target their first ground unit;;
+  // EXPECT: they have no ground units; my first ground unit's third piece equals 2;
   ECL_Sabine_ping_shield: async function () {
     //arrange
     const gameState = new GameState(gameName);

@@ -152,6 +152,7 @@ export const cards = {
     GarSaxonLeaderUnit: '3feee05e13',
     FinnLeader: '9596662994',
     FinnLeaderUnit: '8903067778',
+    ReyLeader: '4352150438',
     ReyLeaderUnit: 'e091d2a983',
     HondoLeaderUnit: '415bde775d',
     GideonLeaderUnit: '4484318969',

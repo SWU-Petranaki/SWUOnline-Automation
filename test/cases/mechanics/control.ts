@@ -369,4 +369,34 @@ export const ControlCases = {
       .TheirBaseDamageEquals('4')
       .RunAsync()
   },
+  // GIVEN: i have base SOR.ECL; i have leader SOR.KrennicLeader; they have base SOR.ECL; they have leader SOR.SabineLeader; i have 5 SOR.BFMarine in my resources; they have 2 SOR.BFMarine in their resources; i have JTL.NoGloryOnlyResults in hand; they have SHD.LurkingTie in play;;
+  // WHEN: i play the first card from my hand;;
+  // EXPECT: they have no space units;;
+  No_Glory_Lurking_Tie: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SOR.ECL)
+      .AddLeader(1, cards.SOR.KrennicLeader)
+      .AddBase(2, cards.SOR.ECL)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .FillResources(2, cards.SOR.BFMarine, 2)
+      .AddCardToHand(1, cards.JTL.NoGloryOnlyResults)
+      .AddUnit(2, cards.SHD.LurkingTie)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().ClickHandCard(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheirSpaceUnitIsGone(1)
+      .RunAsync()
+    ;
+  }
 }

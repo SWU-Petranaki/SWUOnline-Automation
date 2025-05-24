@@ -432,4 +432,109 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
   },
+  // GIVEN: i have base generic.BlueBase; i have leader SHD.ReyLeader; they have base generic.RedBase; they have leader SHD.MandoLeader; i have SOR.R2D2 in play with an experience token; i have JTL.Hondo in play;;
+  // WHEN: i attack with my second ground unit; i pass; i target my first ground unit; i choose button (1,1); i target my second ground unit;;
+  // EXPECT: my first ground unit's first piece equals '1'; my second ground unit's first piece equals 'EXPERIENCE'; their base's damage equals '4';
+  Hondo_on_attack: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.BlueBase)
+      .AddLeader(1, cards.SHD.ReyLeader)
+      .AddBase(2, cards.generic.RedBase)
+      .AddLeader(2, cards.SHD.MandoLeader)
+      .AddUnit(1, cards.SOR.R2D2, false, true, 0,
+        gameState.SubcardBuilder().AddExperience(1).Build())
+      .AddUnit(1, cards.JTL.Hondo)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyGroundUnit(1).AttackWithMyGroundUnit(2)
+      .Pass().TargetMyGroundUnit(1).ChooseButton(1, 1).TargetMyGroundUnit(2)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyGroundUnitPieceEquals(1, 1, '1')
+      .MyGroundUnitPieceEquals(2, 1, 'EXPERIENCE')
+      .TheirBaseDamageEquals('4')
+      .RunAsync()
+  },
+  // GIVEN: i have base generic.BlueBase; i have leader SHD.ReyLeader; they have base generic.RedBase; they have leader SHD.MandoLeader; i have JTL.Hondo in play; they have JTL.TheGhost in play: not from epic action, ready, with 2 damage, with JTL.PhantomII owned by Player 2 as a pilot;;
+  // WHEN: i attack with my first ground unit; i pass; i target their first space unit; i choose button (1,1); i pass;;
+  // EXPECT: my first ground unit is there; their first space unit is there; their base's damage equals '3'; their first space unit's first piece equals 'PHANTOM II';
+  Hondo_on_attack_Ghost_Phantom_cant: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.BlueBase)
+      .AddLeader(1, cards.SHD.ReyLeader)
+      .AddBase(2, cards.generic.RedBase)
+      .AddLeader(2, cards.SHD.MandoLeader)
+      .FillResources(1, cards.SOR.BFMarine, 2)
+      .FillResources(2, cards.SOR.BFMarine, 2)
+      .AddUnit(1, cards.JTL.Hondo)
+      .AddUnit(2, cards.JTL.TheGhost, false, true, 2,
+        gameState.SubcardBuilder().AddPilot(cards.JTL.PhantomII, 2).Build()
+      )
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyGroundUnit(1).AttackWithMyGroundUnit(1)
+      .Pass().TargetTheirSpaceUnit(1).ChooseButton(1, 1).Pass()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyGroundUnitIsThere(1)
+      .TheirSpaceUnitIsThere(1)
+      .TheirBaseDamageEquals('3')
+      .TheirSpaceUnitPieceEquals(1, 1, 'PHANTOM II')
+      .RunAsync()
+    ;
+  },
+  // GIVEN: i have base generic.BlueBase; i have leader SHD.ReyLeader; they have base generic.RedBase; they have leader SHD.MandoLeader; i have JTL.Hondo in play; i have JTL.TheGhost in play; they have JTL.TheGhost in play: not from epic action, ready, with 2 damage, with JTL.PhantomII owned by Player 2 as a pilot;;
+  // WHEN: i attack with my first ground unit; i pass; i target their first space unit; i choose button (1,1); i target my first space unit; i pass;;
+  // EXPECT: my first ground unit is there; their first space unit is there; their base's damage equals '3'; my first space unit's first piece equals 'PHANTOM II'; their first space unit's first piece equals '5';;
+  Hondo_on_attack_Ghost_Phantom_own_Ghost: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.BlueBase)
+      .AddLeader(1, cards.SHD.ReyLeader)
+      .AddBase(2, cards.generic.RedBase)
+      .AddLeader(2, cards.SHD.MandoLeader)
+      .FillResources(1, cards.SOR.BFMarine, 2)
+      .FillResources(2, cards.SOR.BFMarine, 2)
+      .AddUnit(1, cards.JTL.Hondo)
+      .AddUnit(1, cards.JTL.TheGhost)
+      .AddUnit(2, cards.JTL.TheGhost, false, true, 2,
+        gameState.SubcardBuilder().AddPilot(cards.JTL.PhantomII, 2).Build()
+      )
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyGroundUnit(1).AttackWithMyGroundUnit(1)
+      .Pass().TargetTheirSpaceUnit(1).ChooseButton(1, 1).TargetMySpaceUnit(1).Pass()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyGroundUnitIsThere(1)
+      .TheirSpaceUnitIsThere(1)
+      .TheirBaseDamageEquals('3')
+      .MySpaceUnitPieceEquals(1, 1, 'PHANTOM II')
+      .TheirSpaceUnitPieceEquals(1, 1, '5')
+      .RunAsync()
+    ;
+  },
 }
