@@ -134,6 +134,8 @@ export const cards = {
     RebelAssault: '8988732248',
     Entrenched: '3099663280',
     KeepFighting: '3058784025',
+    ForceThrow: '1705806419',
+    ForceChoke: '1446471743',
   },
   SHD: {
     //bases
@@ -185,6 +187,7 @@ export const cards = {
     JabbasRancor: '8380936981',
     Maul: '8862896760',
     SurvivorsGauntlet: '1503633301',
+    MigsMayfeld: '6910883839',
     //upgrades
     TopTarget: '4282425335',
     Darksaber: '3141660491',
@@ -212,6 +215,7 @@ export const cards = {
     RelentlessPursuit: '5778949819',
     TripleDarkRaid: '5696041568',
     EvidenceOfTheCrime: '6452159858',
+    Pillage: '4772866341',
   },
   TWI: {
     //bases
@@ -306,6 +310,7 @@ export const cards = {
     FOStormTrooper: '6861397107',
     Yularen: '3148212344',
     AGPryde: '9611596703',
+    DirectorKrennic: '6311662442',
     //pilots
     Chewbacca: '7208848194',
     Dengar: '3282713547',

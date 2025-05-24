@@ -10,7 +10,7 @@ import {
 
 
 export const SpecificJTLCases = {
-  'Eject: epic action pilot leader unit defeated cant deploy next turn': async function () {
+  Eject_epic_action_pilot_leader_unit_defeated_cant_deploy_next_turn: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -80,7 +80,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
   },
-  'JTL: epic action pilot leader upgrade defeated cant deploy next turn': async function () {
+  epic_action_pilot_leader_upgrade_defeated_cant_deploy_next_turn: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -126,7 +126,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
   },
-  'JTL: Leia Poe ejected ground unit': async function () {
+  Leia_Poe_Ejected_ground_unit: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -157,7 +157,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
   },
-  'JTL: Leia Poe deployed ground unit': async function () {
+  Leia_Poe_deployed_ground_unit: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -188,7 +188,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
   },
-  'JTL: Leia Poe space unit': async function () {
+  Leia_Poe_space_piloted_unit: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -220,7 +220,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
   },
-  'JTL: Sabines Masterpiece': async function () {
+  Sabines_Masterpiece: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -365,5 +365,71 @@ export const SpecificJTLCases = {
       .MyBaseDamageEquals('10')
       .RunAsync()
     ;
-  }
+  },
+  Krennic_discounts_first_card_only: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("9 5")
+      .AddBase(1, cards.SOR.ECL)
+      .AddLeader(1, cards.JTL.ThrawnLeader)
+      .AddBase(2, cards.generic.GreenBase)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SOR.BFMarine, 3)
+      .FillResources(2, cards.SOR.BFMarine, 2)
+      .AddCardToHand(1, cards.TWI.WTTradeOfficial)
+      .AddCardToHand(1, cards.TWI.WTTradeOfficial)
+      .AddUnit(1, cards.JTL.DirectorKrennic)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1)
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1)
+    ;
+    //assert
+    gameplay.Assert()
+      .MyResourcesEquals('0/3')
+      .TheirResourcesEquals('2/2')
+      .MyGroundUnitIsThere(3)
+      .RunAsync()
+    ;
+  },
+  Krennic_no_discount_after: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("9 5")
+      .AddBase(1, cards.SOR.ECL)
+      .AddLeader(1, cards.JTL.ThrawnLeader)
+      .AddBase(2, cards.generic.GreenBase)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .FillResources(2, cards.SOR.BFMarine, 2)
+      .AddCardToHand(1, cards.TWI.WTTradeOfficial)
+      .AddCardToHand(1, cards.JTL.DirectorKrennic)
+      .AddCardToHand(1, cards.TWI.WTTradeOfficial)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1)
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1)
+    ;
+    //assert
+    gameplay.Assert()
+      .MyResourcesEquals('1/5')
+      .TheirResourcesEquals('2/2')
+      .MyGroundUnitIsThere(2)
+      .MyGroundUnitIsGone(3)
+      .MyHandCardIsNotPlayable(1)
+      .RunAsync()
+    ;
+  },
 }

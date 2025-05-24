@@ -1,4 +1,5 @@
 import { cards } from '@utils/cards';
+import { GamePlay } from '@utils/gameplay';
 import { GameState } from '@utils/gamestate';
 import {
     com, p,
@@ -165,5 +166,76 @@ export const SpecificSHDCases = {
     await browser.assert.elementPresent(com.EnemySpaceUnit(1));
     await browser.assert.elementPresent(com.EnemyGroundUnit(1));
     await browser.assert.not.elementPresent(com.EnemyGroundUnit(2));
+  },
+  Migs_Mayfeld_discard_ping_once_per_round: async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SHD.JabbasPalace)
+      .AddLeader(1, cards.SHD.KyloRenLeader)
+      .AddBase(2, cards.SOR.EchoBase)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.CraftySmuggler, 2)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddCardToHand(1, cards.SOR.ForceThrow)
+      .AddCardToHand(1, cards.SOR.ForceThrow)
+      .AddCardToHand(2, cards.SOR.BFMarine)
+      .AddUnit(1, cards.SHD.MigsMayfeld)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().ClickMyLeader().MultiChoiceButton(1).TargetMyHandCard(1).TargetTheirBase()
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1).MultiChoiceButton(2)
+      .SwitchPlayerWindow().WaitForMyHand().TargetMyHandCard(1)
+      .SwitchPlayerWindow().WaitForMyBase().TargetTheirBase()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyHandIsEmpty()
+      .TheirHandIsEmpty()
+      .MyResourcesEquals('1/2')
+      .MyGroundUnitPieceEquals(1, 1, '4')
+      .TheirBaseDamageEquals('2')
+      .RunAsync()
+  },
+  Migs_Mayfeld_Pillage_only_one_ping: async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SHD.JabbasPalace)
+      .AddLeader(1, cards.SHD.KyloRenLeader)
+      .AddBase(2, cards.SOR.EchoBase)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.CraftySmuggler, 4)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddCardToHand(1, cards.SHD.Pillage)
+      .AddCardToHand(2, cards.SOR.BFMarine)
+      .AddCardToHand(2, cards.SOR.BFMarine)
+      .AddUnit(1, cards.SHD.MigsMayfeld)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).MultiChoiceButton(2)
+      .SwitchPlayerWindow().WaitForMyHand().TargetMyHandCard(1).TargetMyHandCard(1)
+      .SwitchPlayerWindow().WaitForMyBase().TargetTheirBase().TargetTheirBase()
+      .SwitchPlayerWindow().SwitchPlayerWindow()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyHandIsEmpty()
+      .TheirHandIsEmpty()
+      .MyResourcesEquals('0/4')
+      .TheirBaseDamageEquals('2')
+      .RunAsync()
+    ;
   }
 }
