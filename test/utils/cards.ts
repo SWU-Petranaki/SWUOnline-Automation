@@ -136,6 +136,7 @@ export const cards = {
     KeepFighting: '3058784025',
     ForceThrow: '1705806419',
     ForceChoke: '1446471743',
+    OpenFire: '8148673131',
   },
   SHD: {
     //bases
@@ -258,6 +259,7 @@ export const cards = {
     Stalwart: '1209133362',
     PoggleTheLesser: '9610332938',
     MorganElsbeth: '6412545836',
+    PadawanStarfighter: '4718895864',
     //upgrades
     ShadowedIntentions: '9003830954',
     CloneCohort: '2007876522',
@@ -368,6 +370,7 @@ export const cards = {
     ShuttleST149: '1519837763',
     VictorLeader: '9811031405',
     StolenATHauler: '6272475624',
+    BlackOne: '3389903389',
     //upgrades
     DeathStarPlans: '7501988286',
     //events

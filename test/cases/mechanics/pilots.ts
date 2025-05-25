@@ -382,5 +382,131 @@ export const PilotJTLCases = {
       .MyGroundUnitIsThere(2)
       .RunAsync()
     ;
+  },
+  PadawanStarfighter_and_Traitorous_Kid_Anakin: async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.SOR.LukeLeader)
+      .AddBase(2, cards.generic.RedBase)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .FillResources(2, cards.SOR.BFMarine, 2)
+      .AddCardToHand(1, cards.SOR.Traitorous)
+      .AddUnit(2, cards.TWI.PadawanStarfighter, false, false, 0,
+        gameState.SubcardBuilder().AddPilot(cards.JTL.KidAnakin, 2).Build())
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheirSpaceUnitIsGone(1)
+      .MySpaceUnitPieceEquals(1, 3, '3')
+      .MySpaceUnitPieceEquals(1, 4, '6')
+      .RunAsync()
+    ;
+  },
+  PadawanStarfighter_and_EotC_Kid_Anakin: async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.SOR.LukeLeader)
+      .AddBase(2, cards.generic.RedBase)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SOR.BFMarine, 3)
+      .FillResources(2, cards.SOR.BFMarine, 2)
+      .AddCardToHand(1, cards.SHD.EvidenceOfTheCrime)
+      .AddUnit(1, cards.TWI.PadawanStarfighter)
+      .AddUnit(2, cards.JTL.XWing, false, false, 0,
+        gameState.SubcardBuilder().AddPilot(cards.JTL.KidAnakin, 2).Build())
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).ChooseButton(1, 1).TargetMySpaceUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheirSpaceUnitIsThere(1)
+      .MySpaceUnitPieceEquals(1, 1, 'ANAKIN SKYWALKER')
+      .MySpaceUnitPieceEquals(1, 2, '4')
+      .MySpaceUnitPieceEquals(1, 3, '7')
+      .RunAsync()
+    ;
+  },
+  Black_One_and_Traitorous_Poe_pilot: async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.SOR.SabineLeader)
+      .AddBase(2, cards.generic.RedBase)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .FillResources(2, cards.SOR.BFMarine, 2)
+      .AddCardToHand(1, cards.SOR.Traitorous)
+      .AddUnit(2, cards.SOR.DisablingFF)
+      .AddUnit(2, cards.JTL.BlackOne, false, true, 0,
+        gameState.SubcardBuilder().AddPilot(cards.JTL.PoeUnit, 2).Build())
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).TargetTheirSpaceUnit(2)
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForMySpaceUnit(1).AttackWithMySpaceUnit(1).TargetTheirBase()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheirSpaceUnitIsGone(2)
+      .MySpaceUnitPieceEquals(1, 1, 'TRAITOROUS')
+      .TheirBaseDamageEquals('5')
+  },
+  Luke_pilot_taken_control_drops_on_their_side: async function() {//currently failing
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.BlueBase)
+      .AddLeader(1, cards.SOR.PalpLeader)
+      .AddBase(2, cards.generic.GreenBase)
+      .AddLeader(2, cards.JTL.LukeLeader)
+      .FillResources(1, cards.SOR.BFMarine, 3)
+      .FillResources(2, cards.SOR.BFMarine, 3)
+      .AddCardToHand(1, cards.SHD.EvidenceOfTheCrime)
+      .AddCardToHand(2, cards.SOR.OpenFire)
+      .AddUnit(1, cards.JTL.TieFighter)
+      .AddUnitWithPilot(2, cards.JTL.XWing, cards.JTL.LukeUnit)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).ChooseButton(1, 1).TargetMySpaceUnit(1)
+      .SwitchPlayerWindow().PlayFromHand(1).TargetTheirSpaceUnit(1)
+      .SwitchPlayerWindow().ChooseYes()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheirSpaceUnitIsThere(1)
+      .MySpaceUnitIsGone(1)
+      .MyGroundUnitIsThere(1)
+      .RunAsync()
+
   }
 }
