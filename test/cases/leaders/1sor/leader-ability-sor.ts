@@ -390,7 +390,7 @@ export const LeaderAbilitySORCases = {
       await gameState.LoadGameStateLinesAsync();
       await gameState.ResetGameStateLines()
         .AddBase(1, cards.SOR.EchoBase)
-        .AddLeader(1, cards.SOR.VaderLeader)
+        .AddLeader(1, cards.SOR.DarthVaderLeader)
         .AddBase(2, cards.SOR.EchoBase)
         .AddLeader(2, cards.SOR.IdenLeader)
         .AddUnit(2, cards.TWI.WTTradeOfficial)

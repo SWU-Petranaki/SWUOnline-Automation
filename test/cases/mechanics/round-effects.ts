@@ -110,7 +110,7 @@ export const RoundEffectCases = {
     await gameState.LoadGameStateLinesAsync();
     await gameState.ResetGameStateLines()
       .AddBase(1, cards.generic.YellowBase)
-      .AddLeader(1, cards.TWI.CadBane)
+      .AddLeader(1, cards.SHD.CadBaneLeader)
       .AddBase(2, cards.generic.BlueBase)
       .AddLeader(2, cards.JTL.LukeLeader, true)
       .AddCardToHand(1, cards.SOR.NGTMD)

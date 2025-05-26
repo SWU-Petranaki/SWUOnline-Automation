@@ -42,7 +42,7 @@ export const cards = {
     HeraLeaderUnit: '80df3928eb',
     LeiaLeader: '6514927936',
     LeiaLeaderUnit: '87e8807695',
-    VaderLeader: '6088773439',
+    DarthVaderLeader: '6088773439',
     DarthVaderLeaderUnit: '0ca1902a46',
     GILeader: '7911083239',
     GILeaderUnit: '6827598372',
@@ -431,6 +431,7 @@ export const cards = {
     MaceWindu: '9757688123',
     DarthVader: '2277278592',
     TalzinsAssassin: '2410965424',
+    EethKoth: '1160624693',
     //upgrades
     DarthMaulsSaber: '2167393423',
     SithHolocron: '0412810079',

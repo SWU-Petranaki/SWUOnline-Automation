@@ -236,4 +236,55 @@ export const CoreMechanicsCases = {
       .RunAsync()
     ;
   },
+  units_ready_after_resourcing: async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SHD.JabbasPalace)
+      .AddLeader(1, cards.SHD.MandoLeader)
+      .AddBase(2, cards.SOR.EchoBase)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SOR.CraftySmuggler, 2)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddCardToDeck(1, cards.SOR.BFMarine, 3)
+      .AddCardToDeck(2, cards.SOR.BFMarine, 3)
+      .AddUnit(1, cards.JTL.RazorCrest)
+      .AddUnit(2, cards.SOR.MillenniumFalcon)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMySpaceUnit(1).AttackWithMySpaceUnit(1).TargetTheirBase()
+      .SwitchPlayerWindow().WaitForMySpaceUnit(1).AttackWithMySpaceUnit(1).TargetTheirBase()
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForPassButton().PassTurn()
+      .SwitchPlayerWindow()
+      .RunAsync()
+    ;
+    //assert
+    await gameplay.Assert()
+      .MySpaceUnitIsThere(1, true)
+      .TheirSpaceUnitIsThere(1, true)
+      .RunAsync()
+    ;
+    //act
+    await gameplay
+      .WaitForMyHand().TargetMyHandCard(1)
+      .SwitchPlayerWindow().WaitForMyHand().TargetMyHandCard(1)
+      .ChooseYes().ChooseMultiImg(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MySpaceUnitIsNotExhausted(1)
+      .TheirSpaceUnitIsNotExhausted(1)
+      .MyResourcesEquals("2/3")
+      .TheirResourcesEquals("3/3")
+      .MyBaseDamageEquals('3')
+      .TheirBaseDamageEquals('3')
+      .RunAsync()
+    ;
+  }
 }

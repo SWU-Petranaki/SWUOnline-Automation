@@ -1,11 +1,13 @@
 import { cards } from '@utils/cards';
+import { GamePlay } from '@utils/gameplay';
 import { GameState } from '@utils/gamestate';
 import {
   com, p, src,
   player1Window, player2Window,
   customAsserts,
   gameName,
-  cs
+  cs,
+  lt
 } from '@utils/util';
 
 export const LeaderUnitSORCases = {
@@ -332,5 +334,128 @@ export const LeaderUnitSORCases = {
     ;
     //assert
     await customAsserts.UnitIsNotPlayable(browser, com.EnemySpaceUnit(1));
-  }
+  },
+  Chirrut_leader_defeated_ready: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.RedBase)
+      .AddLeader(1, cards.SOR.ChirrutLeader, true)
+      .AddBase(2, cards.generic.BlueBase)
+      .AddLeader(2, cards.SOR.DarthVaderLeader)
+      .FillResources(1, cards.SOR.InfernoFour, 5)
+      .FillResources(2, cards.SOR.InfernoFour, 3)
+      .AddCardToHand(2, cards.SOR.OpenFire)
+      .AddUnit(1, cards.SOR.ChirrutLeaderUnit, true, true, 4)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1).TargetTheirGroundUnit(1).PassTurn()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyBaseDamageEquals('6')
+      .TheirBaseDamageEquals('6')
+      .WeHaveNoUnits()
+      .TheirLeaderHasUsedEpicAction()
+      .TheirLeaderIsReady()
+      .RunAsync()
+    ;
+  },
+  Chirrut_leader_defeated_ready_bountied: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage('0 8')
+      .AddBase(1, cards.generic.RedBase)
+      .AddLeader(1, cards.SOR.ChirrutLeader, true)
+      .AddBase(2, cards.generic.BlueBase)
+      .AddLeader(2, cards.SOR.DarthVaderLeader)
+      .FillResources(1, cards.SOR.InfernoFour, 5)
+      .AddCardToDeck(2, cards.SOR.DSStormTrooper)
+      .FillResources(2, cards.SOR.InfernoFour, 3)
+      .AddCardToHand(2, cards.SOR.OpenFire)
+      .AddUnitWithSingleUpgrade(1, cards.SOR.ChirrutLeaderUnit, cards.SHD.TopTarget, true, true, 4)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1).TargetTheirGroundUnit(1).PassTurn()
+      .TargetMyBase()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyBaseDamageEquals('5')
+      .TheirBaseDamageEquals('6')
+      .WeHaveNoUnits()
+      .TheirLeaderHasUsedEpicAction()
+      .TheirLeaderIsReady()
+      .RunAsync()
+    ;
+  },
+  Chirrut_leader_defeated_RR_and_bountied: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage('0 8')
+      .AddBase(1, cards.generic.RedBase)
+      .AddLeader(1, cards.SOR.ChirrutLeader, true)
+      .AddBase(2, cards.generic.BlueBase)
+      .AddLeader(2, cards.SOR.DarthVaderLeader)
+      .FillResources(1, cards.SOR.InfernoFour, 5)
+      .AddCardToDeck(1, cards.SOR.GreenSquadAWing, 3)
+      .AddCardToDeck(2, cards.SOR.DSStormTrooper, 3)
+      .FillResources(2, cards.SOR.InfernoFour, 3)
+      .AddUnit(2, cards.SOR.RuthlessRaider)
+      .AddCurrentTurnEffect(cards.SOR.SneakAttack + "-2", 2, '9', 1, lt.Round)
+      .AddUnit(1, cards.SOR.ChirrutLeaderUnit, true, true, 4,
+        gameState.SubcardBuilder().AddUpgrade(cards.SHD.TopTarget, 2).AddUpgrade(cards.SHD.BHQuarry, 2).Build()
+      )
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().PassTurn().Pass().TargetMyBase()
+      .Pass().WaitForCheckboxes().Check(1).Submit()
+      .RunAsync()
+    ;
+    //assert
+    await gameplay.Assert()
+      .MyBaseDamageEquals('2')
+      .TheirBaseDamageEquals('2')
+      .TheyHaveNoGroundUnits().TheyHaveNoSpaceUnits()
+      .IHaveNoSpaceUnits().MyGroundUnitIsThere(1, true)
+      .TheirLeaderHasUsedEpicAction()
+      .TheirLeaderIsExhausted()
+      .RunAsync()
+    ;
+    //act
+    await gameplay
+      .SwitchPlayerWindow().Pass()
+      .SwitchPlayerWindow().Pass()
+      .RunAsync()
+    ;
+    //assert
+    await gameplay.Assert()
+      .MyBaseDamageEquals('2')
+      .TheirBaseDamageEquals('2')
+      .TheyHaveNoGroundUnits().TheyHaveNoSpaceUnits()
+      .IHaveNoSpaceUnits().MyGroundUnitIsThere(1)
+      .TheirLeaderHasUsedEpicAction()
+      .TheirLeaderIsReady()
+      .RunAsync()
+    ;
+  },
 }
