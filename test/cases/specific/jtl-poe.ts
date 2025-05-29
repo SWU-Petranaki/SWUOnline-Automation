@@ -578,7 +578,7 @@ export const JTLPoeCases = {
     const gameplay = new GamePlay(browser);
     await gameplay
       .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1)
-      .SwitchPlayerWindow().ClickMyLeader().MultiChoiceButton(2).MultiChoiceButton(2)
+      .SwitchPlayerWindow().ClickMyLeader().MultiChoiceButton(2)
       .SwitchPlayerWindow().PassTurn()
       .SwitchPlayerWindow().PlayFromHand(1).TargetTheirSpaceUnit(1)
       .SwitchPlayerWindow().PlayFromHand(1)
