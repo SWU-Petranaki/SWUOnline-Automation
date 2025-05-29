@@ -199,7 +199,7 @@ export const RoundEffectCases = {
     const gameplay = new GamePlay(browser);
     await gameplay
       .WaitForPassButton().PassTurn()
-      .SwitchPlayerWindow().WaitForMyLeader().ClickMyLeader().MultiChoiceButton(2).ChooseNo()
+      .SwitchPlayerWindow().WaitForMyLeader().ClickMyLeader().MultiChoiceButton(2)
       .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1).TargetTheirGroundUnit(1)
       .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
       .SwitchPlayerWindow().WaitForPassButton().PassTurn()
