@@ -279,7 +279,7 @@ export class GameState {
     return this;
   }
 
-  public AddUnitWithSingleUpgrade(player: number, unitCardID: string, upgradeID: string,
+  public AddUnitWithUpgrade(player: number, unitCardID: string, upgradeID: string,
     epicAction: boolean = false, ready: boolean = true, damage: number = 0, upgradeIsPilot: boolean = false) {
     const index = player === 1 ? g.P1AlliesArray : g.P2AlliesArray;
     if(this._gameState[index] !== '') {
@@ -298,6 +298,36 @@ export class GameState {
     }
     const subcard = this._subcardBuilder.AddPilot(pilotID, player, epicAction).Build();
     this._gameState[index] += `${unitCardID} ${ready ? "2" : "1"} ${damage} 0 ${subcard} ${this._uniqueIdCounter++} 0 0 1 0 0 ${player} 0 0 0 NA 0`;
+
+    return this;
+  }
+
+  public AddUnitWithDamage(player: number, cardID: string, damage: number, epicAction: boolean = false, ready: boolean = true) {
+    const index = player === 1 ? g.P1AlliesArray : g.P2AlliesArray;
+    if(this._gameState[index] !== '') {
+      this._gameState[index] += ' ';
+    }
+    this._gameState[index] += `${cardID} ${ready ? "2" : "1"} ${damage} 0 - ${this._uniqueIdCounter++} 0 0 1 0 0 ${player} 0 0 0 NA ${epicAction ? "1" : "0"}`;
+
+    return this;
+  }
+
+  public AddUnitWithTurnsInPlay(player: number, cardID: string, turnsInPlay: number, epicAction: boolean = false, ready: boolean = true) {
+    const index = player === 1 ? g.P1AlliesArray : g.P2AlliesArray;
+    if(this._gameState[index] !== '') {
+      this._gameState[index] += ' ';
+    }
+    this._gameState[index] += `${cardID} ${ready ? "2" : "1"} 0 0 - ${this._uniqueIdCounter++} 0 0 1 0 0 ${player} ${turnsInPlay} 0 0 NA ${epicAction ? "1" : "0"}`;
+
+    return this;
+  }
+
+  public AddUnitWithOwner(player: number, cardID: string, owner: number, epicAction: boolean = false, ready: boolean = true) {
+    const index = player === 1 ? g.P1AlliesArray : g.P2AlliesArray;
+    if(this._gameState[index] !== '') {
+      this._gameState[index] += ' ';
+    }
+    this._gameState[index] += `${cardID} ${ready ? "2" : "1"} 0 0 - ${this._uniqueIdCounter++} 0 0 1 0 0 ${owner} 0 0 0 NA ${epicAction ? "1" : "0"}`;
 
     return this;
   }

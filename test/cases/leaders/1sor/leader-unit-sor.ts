@@ -381,7 +381,7 @@ export const LeaderUnitSORCases = {
       .AddCardToDeck(2, cards.SOR.DSStormTrooper)
       .FillResources(2, cards.SOR.InfernoFour, 3)
       .AddCardToHand(2, cards.SOR.OpenFire)
-      .AddUnitWithSingleUpgrade(1, cards.SOR.ChirrutLeaderUnit, cards.SHD.TopTarget, true, true, 4)
+      .AddUnitWithUpgrade(1, cards.SOR.ChirrutLeaderUnit, cards.SHD.TopTarget, true, true, 4)
       .FlushAsync(com.BeginTestCallback)
     ;
     //act

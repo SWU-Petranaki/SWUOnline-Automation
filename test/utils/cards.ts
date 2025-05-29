@@ -137,6 +137,7 @@ export const cards = {
     ForceThrow: '1705806419',
     ForceChoke: '1446471743',
     OpenFire: '8148673131',
+    ItBindsAllThings: '0867878280',
   },
   SHD: {
     //bases
@@ -191,6 +192,7 @@ export const cards = {
     SurvivorsGauntlet: '1503633301',
     MigsMayfeld: '6910883839',
     Grogu: '6536128825',
+    CassianAndor: '6234506067',
     //upgrades
     TopTarget: '4282425335',
     Darksaber: '3141660491',
@@ -403,6 +405,8 @@ export const cards = {
     KananLeader: '8304104587',
     MotherTalzinLeader: '2520636620',
     MotherTalzinLeaderUnit: '32fd8db633',
+    MorganElsbethLeader: '5045607736',
+    MorganElsbethLeaderUnit: 'b70416cfea',
     //units
     Porg: '2971660620',
     DarthSidious: '6797297267',
@@ -432,6 +436,8 @@ export const cards = {
     DarthVader: '2277278592',
     TalzinsAssassin: '2410965424',
     EethKoth: '1160624693',
+    KiAdiMundi: '0531276830',
+    IWarrior: '7323186775',
     //upgrades
     DarthMaulsSaber: '2167393423',
     SithHolocron: '0412810079',

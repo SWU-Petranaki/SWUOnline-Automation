@@ -104,7 +104,7 @@ export const RoundEffectCases = {
       .RunAsync()
     ;
   },
-  NGTMD_keeps_exhausted_next_turn: async function() {
+  NGTMD_keeps_exhausted_next_round: async function() {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -113,8 +113,12 @@ export const RoundEffectCases = {
       .AddLeader(1, cards.SHD.CadBaneLeader)
       .AddBase(2, cards.generic.BlueBase)
       .AddLeader(2, cards.JTL.LukeLeader, true)
+      .FillResources(1, cards.SOR.CraftySmuggler, 5)
+      .AddCardToDeck(1, cards.SOR.NGTMD, 2)
+      .FillResources(2, cards.SOR.CraftySmuggler, 5)
+      .AddCardToDeck(2, cards.SOR.CraftySmuggler, 2)
+      .AddCardToDeck(2, cards.SOR.BFMarine, 4)
       .AddCardToHand(1, cards.SOR.NGTMD)
-      .FillResources(1, cards.SOR.CraftySmuggler, 2)
       .AddUnit(2, cards.JTL.LukeLeaderUnit, true)
       .FlushAsync(com.BeginTestCallback)
     ;
@@ -124,12 +128,129 @@ export const RoundEffectCases = {
       .WaitForMyHand().PlayFromHand(1).TargetTheirGroundUnit(1)
       .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
       .SwitchPlayerWindow().WaitForPassButton().PassTurn()
+      .SwitchPlayerWindow().WaitForMyHand().ClickHandCard(1)
+      .SwitchPlayerWindow().WaitForMyHand().ClickHandCard(1)
       .RunAsync()
     ;
     //assert
     gameplay.Assert()
-      .MyBaseDamageEquals('6')
-      .TheirBaseDamageEquals('6')
+      .MyBaseDamageEquals('0')
+      .TheirBaseDamageEquals('0')
+      .TheirGroundUnitIsThere(1, true)
+      .RunAsync()
+    ;
+  },
+  NGTMD_keeps_exhausted_even_if_played_exhausted: async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.YellowBase)
+      .AddLeader(1, cards.SHD.CadBaneLeader)
+      .AddBase(2, cards.generic.BlueBase)
+      .AddLeader(2, cards.JTL.LukeLeader)
+      .FillResources(1, cards.SOR.CraftySmuggler, 2)
+      .AddCardToDeck(1, cards.SOR.NGTMD, 2)
+      .FillResources(2, cards.SOR.CraftySmuggler, 4)
+      .AddCardToDeck(2, cards.SOR.CraftySmuggler, 2)
+      .AddCardToDeck(2, cards.SOR.BFMarine, 4)
+      .AddCardToHand(1, cards.SOR.NGTMD)
+      .AddCardToHand(2, cards.SOR.SabineUnit)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForPassButton().PassTurn()
+      .SwitchPlayerWindow().PlayFromHand(1)
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1).TargetTheirGroundUnit(1)
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForPassButton().PassTurn()
+      .SwitchPlayerWindow().WaitForMyHand().ClickHandCard(1)
+      .SwitchPlayerWindow().WaitForMyHand().ClickHandCard(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyBaseDamageEquals('0')
+      .TheirBaseDamageEquals('0')
+      .TheirGroundUnitIsThere(1, true)
+      .RunAsync()
+    ;
+  },
+  NGTMD_keeps_exhausted_leader_deploy_next_round: async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.YellowBase)
+      .AddLeader(1, cards.SHD.CadBaneLeader)
+      .AddBase(2, cards.generic.BlueBase)
+      .AddLeader(2, cards.JTL.LukeLeader)
+      .FillResources(1, cards.SOR.CraftySmuggler, 6)
+      .AddCardToDeck(1, cards.SOR.NGTMD, 2)
+      .FillResources(2, cards.SOR.CraftySmuggler, 6)
+      .AddCardToDeck(2, cards.SOR.CraftySmuggler, 2)
+      .AddCardToDeck(2, cards.SOR.BFMarine, 4)
+      .AddCardToHand(1, cards.SOR.NGTMD)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForPassButton().PassTurn()
+      .SwitchPlayerWindow().WaitForMyLeader().ClickMyLeader().MultiChoiceButton(2).ChooseNo()
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1).TargetTheirGroundUnit(1)
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForPassButton().PassTurn()
+      .SwitchPlayerWindow().WaitForMyHand().ClickHandCard(1)
+      .SwitchPlayerWindow().WaitForMyHand().ClickHandCard(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyBaseDamageEquals('0')
+      .TheirBaseDamageEquals('0')
+      .TheirGroundUnitIsThere(1, true)
+      .RunAsync()
+    ;
+  },
+  NGTMD_keeps_exhausted_even_if_entered_ready_and_attacked_already: async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.YellowBase)
+      .AddLeader(1, cards.SHD.CadBaneLeader)
+      .AddBase(2, cards.generic.BlueBase)
+      .AddLeader(2, cards.JTL.LukeLeader)
+      .FillResources(1, cards.SOR.CraftySmuggler, 2)
+      .AddCardToDeck(1, cards.SOR.NGTMD, 2)
+      .FillResources(2, cards.SOR.CraftySmuggler, 4)
+      .AddResource(2, cards.SHD.CassianAndor)
+      .AddCardToDeck(2, cards.SOR.CraftySmuggler, 2)
+      .AddCardToDeck(2, cards.SOR.BFMarine, 4)
+      .AddCardToHand(1, cards.SOR.NGTMD)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForPassButton().PassTurn()
+      .SwitchPlayerWindow().OpenMyResources().ChooseResourceImg(5).CloseResourcePopup()
+      .SwitchPlayerWindow().WaitForPassButton().PassTurn()
+      .SwitchPlayerWindow().WaitForMyGroundUnit().AttackWithMyGroundUnit(1)
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1).TargetTheirGroundUnit(1)
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForPassButton().PassTurn()
+      .SwitchPlayerWindow().WaitForMyHand().ClickHandCard(1)
+      .SwitchPlayerWindow().WaitForMyHand().ClickHandCard(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyBaseDamageEquals('3')
+      .TheirBaseDamageEquals('0')
       .TheirGroundUnitIsThere(1, true)
       .RunAsync()
     ;

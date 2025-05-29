@@ -116,6 +116,12 @@ export class GamePlay {
 
     return this;
   }
+
+  public WaitForMyResources() {
+    this.WaitFor(com.MyResources);
+
+    return this;
+  }
   //Clicks
   Click(selector: string) {
     this._asyncBrowser
@@ -286,6 +292,12 @@ export class GamePlay {
 
     return this;
   }
+
+  public ClickMyResources() {
+    this.Click(com.MyResources)._asyncBrowser.pause(p.ButtonPress);
+
+    return this;
+  }
   //Targets
   Target(selector: string) {
     this._asyncBrowser
@@ -338,6 +350,12 @@ export class GamePlay {
 
   public TargetMyDiscard() {
     this.Target(com.MyDiscard);
+
+    return this;
+  }
+
+  public TargetMyResources() {
+    this.Target(com.MyResources);
 
     return this;
   }
@@ -442,6 +460,19 @@ export class GamePlay {
     return this;
   }
 
+  public ChooseResourceImg(position: number) {
+    this.Click(com.ResourcePopupImgOption(position))._asyncBrowser.pause(p.WaitForEffect);
+
+    return this;
+  }
+
+  public CloseResourcePopup() {
+    this.Click(com.ResourcePopupCloseButton)._asyncBrowser
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect);
+
+    return this;
+  }
+
   public Submit() {
     this._asyncBrowser
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
@@ -469,6 +500,10 @@ export class GamePlay {
 
   public OpenMyDiscard() {
     return this.TargetMyDiscard();
+  }
+
+  public OpenMyResources() {
+    return this.TargetMyResources();
   }
   //Assertions
   public Assert() {
