@@ -82,5 +82,63 @@ export const LeaderAbilityJTLCases = {
       .MySpaceUnitIsThere(1)
       .RunAsync()
     ;
-  }
+  },
+  Wedge_soft_pass: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.BlueBase)
+      .AddLeader(1, cards.JTL.WedgeLeader)
+      .AddBase(2, cards.generic.GreenBase)
+      .AddLeader(2, cards.JTL.AsajjLeader)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .FillResources(2, cards.SOR.BFMarine, 5)
+      .AddUnitWithPilot(1, cards.JTL.XWing, cards.JTL.Chewbacca)
+      .AddCardToHand(1, cards.JTL.CassianAndor)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyBaseDamageEquals('0')
+      .TheirBaseDamageEquals('0')
+      .MyHandSizeIs(1)
+      .RunAsync()
+    ;
+  },
+  Wedge_soft_pass_may: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.BlueBase)
+      .AddLeader(1, cards.JTL.WedgeLeader)
+      .AddBase(2, cards.generic.GreenBase)
+      .AddLeader(2, cards.JTL.AsajjLeader)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .FillResources(2, cards.SOR.BFMarine, 5)
+      .AddUnit(1, cards.JTL.XWing)
+      .AddCardToHand(1, cards.JTL.CassianAndor)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1).Pass()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyBaseDamageEquals('0')
+      .TheirBaseDamageEquals('0')
+      .MyHandSizeIs(1)
+      .RunAsync()
+    ;
+  },
 }

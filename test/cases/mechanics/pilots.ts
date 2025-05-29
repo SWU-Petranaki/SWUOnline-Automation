@@ -272,7 +272,6 @@ export const PilotJTLCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.Move)
       .click(com.HandCard(1))
       .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.PilotOrUnitButton("Unit")).pause(p.ButtonPress)
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
       .click(com.AllySpaceUnit(1))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
