@@ -592,5 +592,65 @@ export const SpecificJTLCases = {
     ;
     //assert
     gameplay.Assert().WeHaveNoUnits();
+  },
+  R2D2_extra_pilot: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.SHD.ReyLeader)
+      .AddBase(2, cards.generic.RedBase)
+      .AddLeader(2, cards.JTL.WedgeLeader)
+      .FillResources(1, cards.SOR.BFMarine, 3)
+      .FillResources(2, cards.SOR.BFMarine, 2)
+      .AddCardToHand(1, cards.JTL.Chewbacca)
+      .AddUnitWithPilot(1, cards.JTL.XWing, cards.JTL.R2D2)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).MultiChoiceButton(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MySpaceUnitPieceEquals(1, 1, 'CHEWBACCA')
+      .MySpaceUnitPieceEquals(1, 2, 'R2-D2')
+      .MySpaceUnitPieceEquals(1, 3, '6')
+      .MySpaceUnitPieceEquals(1, 4, '6')
+      .RunAsync()
+    ;
+  },
+  R2D2_on_piloted: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.SHD.ReyLeader)
+      .AddBase(2, cards.generic.RedBase)
+      .AddLeader(2, cards.JTL.WedgeLeader)
+      .FillResources(1, cards.SOR.BFMarine, 3)
+      .FillResources(2, cards.SOR.BFMarine, 2)
+      .AddCardToHand(1, cards.JTL.R2D2)
+      .AddUnitWithPilot(1, cards.JTL.XWing, cards.JTL.Chewbacca)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).MultiChoiceButton(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MySpaceUnitPieceEquals(1, 1, 'R2-D2')
+      .MySpaceUnitPieceEquals(1, 2, 'CHEWBACCA')
+      .MySpaceUnitPieceEquals(1, 3, '6')
+      .MySpaceUnitPieceEquals(1, 4, '6')
+      .RunAsync()
+    ;
   }
 }
