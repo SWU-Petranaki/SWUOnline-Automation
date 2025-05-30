@@ -207,6 +207,7 @@ export const cards = {
     DeathMark: '0807120264',
     GuildTarget: '2740761445',
     PublicEnemy: '1780014071',
+    MandoArmor: '3514010297',
     //events
     TimelyIntervention: '6847268098',
     NoBargain: '7354795397',

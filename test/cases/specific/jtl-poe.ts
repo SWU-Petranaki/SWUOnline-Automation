@@ -9,7 +9,7 @@ import {
   customAsserts
 } from '@utils/util';
 
-export const JTLPoeCases = {
+export const JTLPoeCases = process.env.FULL_REGRESSION !== "true" ? {} : {
   Poe_Leader_no_resources_cant_jump: async function () {
     //arrange
     const gameState = new GameState(gameName);
