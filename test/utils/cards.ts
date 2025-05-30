@@ -104,6 +104,7 @@ export const cards = {
     LeiaUnit: '9680213078',
     FrontlineShuttle: '2471223947',
     AdelphiPattrolWing: '9757839764',
+    Bossk: '0052542605',
     //upgrades
     Traitorous: '8055390529',
     MakeAnOpening: '3208391441',
@@ -138,6 +139,7 @@ export const cards = {
     ForceChoke: '1446471743',
     OpenFire: '8148673131',
     ItBindsAllThings: '0867878280',
+    SurpriseStrike: '3809048641',
   },
   SHD: {
     //bases
@@ -344,6 +346,7 @@ export const cards = {
     HanSoloUnit: '6720065735',
     L337: '6032641503',
     Hondo: '2644994192',
+    HeraSyndulla: '9430527677',
     //vehicles
     RedLeader: '3711891756',
     HoundsTooth: '3876470102',
@@ -438,6 +441,8 @@ export const cards = {
     EethKoth: '1160624693',
     KiAdiMundi: '0531276830',
     IWarrior: '7323186775',
+    Yaddle: '4808722909',
+    AurraSing: '7877401512',
     //upgrades
     DarthMaulsSaber: '2167393423',
     SithHolocron: '0412810079',
@@ -448,5 +453,6 @@ export const cards = {
     ImpossibleEscape: '9069308523',
     LuminousBeings: '6801641285',
     CureWounds: '3853063436',
+    ShienFlurry: '7981459508',
   },
 }

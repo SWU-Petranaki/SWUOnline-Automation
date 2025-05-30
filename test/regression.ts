@@ -4,6 +4,7 @@ import { player1Window, player2Window } from '@utils/util';
 import { init } from '@utils/gamestart';
 
 import { CoreMechanicsCases } from '@cases/mechanics/core';
+import { AttackEventsCases } from '@cases/interactions/attack-events';
 import { WhenPlayedCases } from '@cases/interactions/when-played';
 import { WhenDefeatCases } from '@cases/interactions/when-defeat';
 import { AmbushCases } from '@cases/mechanics/ambush';
@@ -43,6 +44,7 @@ const home: NightwatchTests = {
   before: init,
 //regression suite
   ...CoreMechanicsCases,
+  ...AttackEventsCases,
   ...WhenPlayedCases,
   ...WhenDefeatCases,
   ...AmbushCases,
