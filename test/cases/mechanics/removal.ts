@@ -1,4 +1,5 @@
 import { cards } from '@utils/cards';
+import { GamePlay } from '@utils/gameplay';
 import { GameState } from '@utils/gamestate';
 import {
   com, src, p,
@@ -78,5 +79,89 @@ export const RemovalCases = {
     ;
     //assert
     await customAsserts.UnitIsNotPlayable(browser, com.AllyGroundUnit(2));
+  },
+  Takedown_removes_unit: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SOR.DagobahSwamp)
+      .AddLeader(1, cards.JTL.HanSoloLeader)
+      .AddBase(2, cards.SOR.DagobahSwamp)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SOR.Takedown, 4)
+      .FillResources(2, cards.SOR.Takedown, 2)
+      .AddCardToHand(1, cards.SOR.Takedown)
+      .AddUnit(2, cards.SOR.CraftySmuggler)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().ClickHandCard(1).TargetTheirGroundUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyHandIsEmpty()
+      .TheirGroundUnitIsGone(1)
+      .RunAsync()
+    ;
+  },
+  Takedown_fails_too_much_HP: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SOR.DagobahSwamp)
+      .AddLeader(1, cards.JTL.HanSoloLeader)
+      .AddBase(2, cards.SOR.DagobahSwamp)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SOR.Takedown, 4)
+      .FillResources(2, cards.SOR.Takedown, 2)
+      .AddCardToHand(1, cards.SOR.Takedown)
+      .AddUnit(2, cards.SOR.Snowspeeder)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().ClickHandCard(1).TargetTheirGroundUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyHandIsEmpty()
+      .TheirGroundUnitIsThere(1)
+      .RunAsync()
+    ;
+  },
+  Takedown_fails_Lurking_Tie: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SOR.DagobahSwamp)
+      .AddLeader(1, cards.JTL.HanSoloLeader)
+      .AddBase(2, cards.SOR.DagobahSwamp)
+      .AddLeader(2, cards.JTL.HanSoloLeader)
+      .FillResources(1, cards.SOR.Takedown, 4)
+      .FillResources(2, cards.SOR.Takedown, 2)
+      .AddCardToHand(1, cards.SOR.Takedown)
+      .AddUnit(2, cards.SHD.LurkingTie)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().ClickHandCard(1).TargetTheirSpaceUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyHandIsEmpty()
+      .TheirSpaceUnitIsThere(1)
+      .RunAsync()
+    ;
   },
 }

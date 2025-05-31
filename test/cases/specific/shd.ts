@@ -61,7 +61,7 @@ export const SpecificSHDCases = {
     //assert
     await customAsserts.EnemyUnitDivPieceIsOverlay(browser, 'SPACE', 1, 3);
   },
-  'Lurking TIE: defeats (merciless contest)': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
+  'Lurking TIE: defeats (merciless contest)': async function () {
     //arrange
     await LurkingTieGameStateAsync();
     //act
@@ -129,6 +129,35 @@ export const SpecificSHDCases = {
     //assert
     await browser.assert.not.elementPresent(com.AllySpaceUnit(2));
     await browser.assert.elementsCount(com.MyHandDivs, 4);
+  },
+  Lurking_Tie_Avenger_interaction: async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.BlueBase)
+      .AddLeader(1, cards.SHD.KyloRenLeader)
+      .AddBase(2, cards.SOR.EchoBase)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.CraftySmuggler, 9)
+      .FillResources(2, cards.SOR.CraftySmuggler, 4)
+      .AddCardToHand(1, cards.SOR.Avenger)
+      .AddUnit(2, cards.SHD.LurkingTie)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).TargetTheirSpaceUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyHandIsEmpty()
+      .TheirSpaceUnitIsThere(1)
+      .MyResourcesEquals('0/9')
+      .RunAsync()
+    ;
   },
   'Snoke wipes non-leaders and token units': async function() {
     //arrange

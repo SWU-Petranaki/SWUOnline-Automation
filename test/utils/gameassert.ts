@@ -117,6 +117,12 @@ export class GameAssert {
     return this;
   }
 
+  public MyHandCardImgSrcEquals(position: number, text: string) {
+    this._gamePlay.___BrowsertAssert().attributeEquals(com.HandCardImg(position), 'src', src.Concat(text));
+
+    return this;
+  }
+
   public MyHandCardIsNotPlayable(position: number) {
     this._gamePlay.___BrowsertAssert().attributeEquals(com.HandCardImg(position), 'style', src.NotPlayableBorderHand);
 

@@ -279,7 +279,7 @@ export const SpecificTWICases = {
     //assert
     await browser.assert.textEquals(com.UnitDivPiece(com.EnemyGroundUnit(1), 5), '1');
   },
-  Shadowed_Intentions_defeats_merciless_contest: process.env.FULL_REGRESSION !== "true" ? '' : async function() {
+  Shadowed_Intentions_defeats_merciless_contest: async function() {
     //arrange
     await ShadowedIntentionsGameStateAsync();
     //act
