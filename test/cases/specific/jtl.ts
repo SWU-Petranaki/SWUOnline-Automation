@@ -652,5 +652,39 @@ export const SpecificJTLCases = {
       .MySpaceUnitPieceEquals(1, 4, '6')
       .RunAsync()
     ;
+  },
+  BB8_Black_Squad_Scout_Wing: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.YellowBase)
+      .AddLeader(1, cards.JTL.PoeLeader)
+      .AddBase(2, cards.generic.RedBase)
+      .AddLeader(2, cards.JTL.WedgeLeader)
+      .FillResources(1, cards.SOR.BFMarine, 3)
+      .FillResources(2, cards.SOR.BFMarine, 2)
+      .AddCardToHand(1, cards.JTL.BB8)
+      .AddUnit(1, cards.JTL.BlackSquadScoutWing)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMySpaceUnit().AttackWithMySpaceUnit(1)
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1).ChooseYes()
+      .Pass().ChooseYes().ChooseMultiImg(1).ChooseMultiImg(1).ChooseYes()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyHandIsEmpty()
+      .TheirHandIsEmpty()
+      .MySpaceUnitPieceEquals(1, 1, 'BB-8')
+      .MySpaceUnitPieceEquals(1, 2, '5')
+      .TheirBaseDamageEquals('10')
+      .RunAsync()
+    ;
   }
 }

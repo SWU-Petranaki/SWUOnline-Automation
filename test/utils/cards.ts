@@ -195,6 +195,7 @@ export const cards = {
     MigsMayfeld: '6910883839',
     Grogu: '6536128825',
     CassianAndor: '6234506067',
+    L337: '9552605383',
     //upgrades
     TopTarget: '4282425335',
     Darksaber: '3141660491',
@@ -377,6 +378,7 @@ export const cards = {
     VictorLeader: '9811031405',
     StolenATHauler: '6272475624',
     BlackOne: '3389903389',
+    BlackSquadScoutWing: '6354077246',
     //upgrades
     DeathStarPlans: '7501988286',
     //events
@@ -444,6 +446,8 @@ export const cards = {
     IWarrior: '7323186775',
     Yaddle: '4808722909',
     AurraSing: '7877401512',
+    KelleranBeq: '1553569317',
+    KyloRen: '4145147486',
     //upgrades
     DarthMaulsSaber: '2167393423',
     SithHolocron: '0412810079',
