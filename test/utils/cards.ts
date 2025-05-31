@@ -196,6 +196,7 @@ export const cards = {
     Grogu: '6536128825',
     CassianAndor: '6234506067',
     L337: '9552605383',
+    GeneralRieekan: '3468546373',
     //upgrades
     TopTarget: '4282425335',
     Darksaber: '3141660491',

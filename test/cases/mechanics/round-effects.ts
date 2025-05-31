@@ -254,5 +254,41 @@ export const RoundEffectCases = {
       .TheirGroundUnitIsThere(1, true)
       .RunAsync()
     ;
-  }
+  },
+  NGTMD_keeps_exhausted_even_if_player2_claims: async function() {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.BlueBase)
+      .AddLeader(1, cards.JTL.LukeLeader)
+      .AddBase(2, cards.generic.YellowBase)
+      .AddLeader(2, cards.SHD.CadBaneLeader)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddCardToDeck(2, cards.SOR.CraftySmuggler, 2)
+      .FillResources(1, cards.SOR.CraftySmuggler, 4)
+      .AddResource(1, cards.SHD.CassianAndor)
+      .AddCardToDeck(2, cards.SOR.CraftySmuggler, 2)
+      .AddCardToDeck(1, cards.SOR.BFMarine, 4)
+      .AddCardToHand(2, cards.SOR.NGTMD)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyResources().OpenMyResources().ChooseResourceImg(5).CloseResourcePopup()
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1).TargetTheirGroundUnit(1)
+      .SwitchPlayerWindow().WaitForPassButton().PassTurn()
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative().TargetMyHandCard(1)
+      .SwitchPlayerWindow().WaitForMyHand().ClickHandCard(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyBaseDamageEquals('0')
+      .TheirBaseDamageEquals('0')
+      .MyGroundUnitIsThere(1, true)
+      .RunAsync()
+    ;
+  },
 }
