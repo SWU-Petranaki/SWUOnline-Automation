@@ -98,7 +98,7 @@ export const RemovalCases = {
     //act
     const gameplay = new GamePlay(browser);
     await gameplay
-      .WaitForMyHand().ClickHandCard(1).TargetTheirGroundUnit(1)
+      .WaitForMyHand().ClickHandCard(1)
       .RunAsync()
     ;
     //assert
