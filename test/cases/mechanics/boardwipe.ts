@@ -244,5 +244,5 @@ export const BoardWipeCases = {
       .TheirGroundUnitPieceEquals(1, 5, '6')
       .RunAsync()
     ;
-  }
+  },
 }

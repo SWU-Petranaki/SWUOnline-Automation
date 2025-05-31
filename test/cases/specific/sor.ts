@@ -1,4 +1,5 @@
 import { cards } from '@utils/cards';
+import { GamePlay } from '@utils/gameplay';
 import { GameState } from '@utils/gamestate';
 import {
   com, p,
@@ -110,4 +111,69 @@ export const SpecificSORCases = {
     //assert
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 1), '2');
   },
+  Gideon_Hask_no_xp_when_defeated: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("5 9")
+      .AddBase(1, cards.SOR.DagobahSwamp)
+      .AddLeader(1, cards.SOR.KrennicLeader)
+      .AddBase(2, cards.SOR.ECL)
+      .AddLeader(2, cards.SOR.KrennicLeader)
+      .FillResources(1, cards.SOR.CraftySmuggler, 2)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddUnit(1, cards.SOR.GideonHask)
+      .AddUnit(1, cards.SOR.TieLnFighter)
+      .AddUnit(2, cards.SHD.KraytDragon)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForMyGroundUnit().AttackWithMyGroundUnit(1).TargetTheirGroundUnit(1)
+      .SwitchPlayerWindow().WaitForMySpaceUnit().TargetMySpaceUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheirBaseDamageEquals('9')
+      .MyBaseDamageEquals('10')
+      .MySpaceUnitPieceEquals(1, 1, '2')
+      .MySpaceUnitPieceEquals(1, 2, '1')
+      .RunAsync()
+    ;
+  },
+  Iden_Versio_leader_unit_no_heal_when_defeated: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("5 9")
+      .AddBase(1, cards.SOR.DagobahSwamp)
+      .AddLeader(1, cards.SOR.KrennicLeader)
+      .AddBase(2, cards.SOR.ECL)
+      .AddLeader(2, cards.SOR.KrennicLeader)
+      .FillResources(1, cards.SOR.CraftySmuggler, 2)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddUnit(1, cards.SOR.IdenLeaderUnit, true)
+      .AddUnit(2, cards.SHD.KraytDragon)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForMyGroundUnit().AttackWithMyGroundUnit(1).TargetTheirGroundUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheyHaveNoGroundUnits()
+      .TheirBaseDamageEquals('11')
+      .MyBaseDamageEquals('9')
+      .RunAsync()
+    ;
+  }
 }
