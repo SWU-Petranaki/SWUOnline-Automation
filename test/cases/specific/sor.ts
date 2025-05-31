@@ -111,7 +111,7 @@ export const SpecificSORCases = {
     //assert
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 1), '2');
   },
-  Gideon_Hask_no_xp_when_defeated: async function () {
+  Gideon_Hask_no_xp_when_defeated: ''+async function () {//TDD
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -145,7 +145,7 @@ export const SpecificSORCases = {
       .RunAsync()
     ;
   },
-  Iden_Versio_leader_unit_no_heal_when_defeated: async function () {
+  Iden_Versio_leader_unit_no_heal_when_defeated: ''+async function () {//TDD
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
