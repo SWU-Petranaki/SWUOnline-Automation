@@ -40,6 +40,7 @@ import { SpecificJTLCases } from '@cases/specific/jtl';
 import { JTLPoeCases } from '@cases/specific/jtl-poe';
 import { LeaderAbilityJTLCases } from '@cases/leaders/4jtl/leader-ability-jtl';
 import { SpecificLOFCases } from '@cases/specific/lof';
+import { ExhaustCases } from '@cases/mechanics/exhaust';
 
 
 const home: NightwatchTests = {
@@ -57,6 +58,7 @@ const home: NightwatchTests = {
   ...BounceCases,
   ...DamageCases,
   ...RemovalCases,
+  ...ExhaustCases,
   ...ReadyCases,
   ...BoardWipeCases,
   ...ControlCases,

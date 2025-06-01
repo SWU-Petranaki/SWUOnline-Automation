@@ -1,6 +1,7 @@
 import { NightwatchAPI } from "nightwatch";
 import { GamePlay } from "./gameplay";
 import { com, src } from "./util";
+import { cards } from "./cards";
 
 export class GameAssert {
   private _gamePlay: GamePlay;
@@ -177,8 +178,63 @@ export class GameAssert {
     return this;
   }
 
+  public MyGroundUnitIsBattleDroid(position: number) {
+    this._gamePlay.___BrowsertAssert().attributeEquals(com.UnitImg(com.AllyGroundUnit(position)), 'src', src.Concat(cards.TWI.BattleDroid));
+
+    return this;
+  }
+
+  public TheirGroundUnitIsBattleDroid(position: number) {
+    this._gamePlay.___BrowsertAssert().attributeEquals(com.UnitImg(com.EnemyGroundUnit(position)), 'src', src.Concat(cards.TWI.BattleDroid));
+
+    return this;
+  }
+
+  public MyGroundUnitIsCloneTrooper(position: number) {
+    this._gamePlay.___BrowsertAssert().attributeEquals(com.UnitImg(com.AllyGroundUnit(position)), 'src', src.Concat(cards.TWI.CloneTrooper));
+
+    return this;
+  }
+
+  public TheirGroundUnitIsCloneTrooper(position: number) {
+    this._gamePlay.___BrowsertAssert().attributeEquals(com.UnitImg(com.EnemyGroundUnit(position)), 'src', src.Concat(cards.TWI.CloneTrooper));
+
+    return this;
+  }
+
+  public MySpaceUnitIsTieFighter(position: number) {
+    this._gamePlay.___BrowsertAssert().attributeEquals(com.UnitImg(com.AllySpaceUnit(position)), 'src', src.Concat(cards.JTL.TieFighter));
+
+    return this;
+  }
+
+  public TheirSpaceUnitIsTieFighter(position: number) {
+    this._gamePlay.___BrowsertAssert().attributeEquals(com.UnitImg(com.EnemySpaceUnit(position)), 'src', src.Concat(cards.JTL.TieFighter));
+
+    return this;
+  }
+
+  public MySpaceUnitIsXWing(position: number) {
+    this._gamePlay.___BrowsertAssert().attributeEquals(com.UnitImg(com.AllySpaceUnit(position)), 'src', src.Concat(cards.JTL.XWing));
+
+    return this;
+  }
+
+  public TheirSpaceUnitIsXWing(position: number) {
+    this._gamePlay.___BrowsertAssert().attributeEquals(com.UnitImg(com.EnemySpaceUnit(position)), 'src', src.Concat(cards.JTL.XWing));
+
+    return this;
+  }
+
   ElementNotPresent(selector: string) {
     this._gamePlay.___BrowsertAssert().not.elementPresent(selector);
+
+    return this;
+  }
+
+  public IHaveNoUnits() {
+    this.ElementNotPresent(com.AllyGroundUnit(1));
+    this.ElementNotPresent(com.AllySpaceUnit(1));
 
     return this;
   }
@@ -191,6 +247,13 @@ export class GameAssert {
 
   public IHaveNoSpaceUnits() {
     this.ElementNotPresent(com.AllySpaceUnit(1));
+
+    return this;
+  }
+
+  public TheyHaveNoUnits() {
+    this.ElementNotPresent(com.EnemyGroundUnit(1));
+    this.ElementNotPresent(com.EnemySpaceUnit(1));
 
     return this;
   }
@@ -248,6 +311,30 @@ export class GameAssert {
 
   public TheirSpaceUnitIsGone(position: number) {
     this.ElementNotPresent(com.EnemySpaceUnit(position));
+
+    return this;
+  }
+
+  public MyGroundUnitIsExhausted(position: number) {
+    this.MyGroundUnitIsThere(position, true);
+
+    return this;
+  }
+
+  public MySpaceUnitIsExhausted(position: number) {
+    this.MySpaceUnitIsThere(position, true);
+
+    return this;
+  }
+
+  public TheirGroundUnitIsExhausted(position: number) {
+    this.TheirGroundUnitIsThere(position, true);
+
+    return this;
+  }
+
+  public TheirSpaceUnitIsExhausted(position: number) {
+    this.TheirSpaceUnitIsThere(position, true);
 
     return this;
   }

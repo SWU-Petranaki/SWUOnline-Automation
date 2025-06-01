@@ -450,8 +450,7 @@ export const SpecificJTLCases = {
     //act
     const gameplay = new GamePlay(browser);
     await gameplay
-      .WaitForMyGroundUnit(1).AttackWithMyGroundUnit(2)
-      .Pass().TargetMyGroundUnit(1).ChooseButton(1, 1).TargetMyGroundUnit(2)
+      .WaitForMyGroundUnit(1).AttackWithMyGroundUnit(2).TargetMyGroundUnit(1).ChooseButton(1, 1).TargetMyGroundUnit(2)
       .RunAsync()
     ;
     //assert
@@ -484,8 +483,7 @@ export const SpecificJTLCases = {
     //act
     const gameplay = new GamePlay(browser);
     await gameplay
-      .WaitForMyGroundUnit(1).AttackWithMyGroundUnit(1)
-      .Pass().TargetTheirSpaceUnit(1).ChooseButton(1, 1).Pass()
+      .WaitForMyGroundUnit(1).AttackWithMyGroundUnit(1).TargetTheirSpaceUnit(1).ChooseButton(1, 1).Pass()
       .RunAsync()
     ;
     //assert
@@ -522,7 +520,7 @@ export const SpecificJTLCases = {
     const gameplay = new GamePlay(browser);
     await gameplay
       .WaitForMyGroundUnit(1).AttackWithMyGroundUnit(1)
-      .Pass().TargetTheirSpaceUnit(1).ChooseButton(1, 1).TargetMySpaceUnit(1).Pass()
+      .TargetTheirSpaceUnit(1).ChooseButton(1, 1).TargetMySpaceUnit(1).Pass()
       .RunAsync()
     ;
     //assert

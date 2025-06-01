@@ -370,7 +370,7 @@ export const SpecificTWICases = {
     //act
     const gameplay = new GamePlay(browser);
     await gameplay
-      .WaitForMyGroundUnit(1).AttackWithMyGroundUnit(1).Pass()
+      .WaitForMyGroundUnit(1).AttackWithMyGroundUnit(1)
       .SwitchPlayerWindow().ChooseButton(1, 1)
       .RunAsync()
     ;

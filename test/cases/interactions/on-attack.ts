@@ -149,8 +149,8 @@ export const OnAttackCases = {
     await gameplay
       .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(2)
       .SwitchPlayerWindow().ClaimInitiative()
-      .SwitchPlayerWindow().PlayFromHand(1).TargetMyGroundUnit(1).TargetTheirGroundUnit(1).Pass()
-      .TargetTheirSpaceUnit(1).Pass().TargetTheirBase()
+      .SwitchPlayerWindow().PlayFromHand(1).TargetMyGroundUnit(1).TargetTheirGroundUnit(1)
+      .TargetTheirSpaceUnit(1).TargetTheirBase()
       .RunAsync()
     ;
     //assert
