@@ -41,6 +41,64 @@ export const ExhaustCases = {
       .RunAsync()
     ;
   },
+  Ackbar_Leader_exhaust_them_they_get_XWing: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("5 2")
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.JTL.AckbarLeader)
+      .AddBase(2, cards.generic.BlueBase)
+      .AddLeader(2, cards.SHD.CadBaneLeader)
+      .FillResources(1, cards.SOR.BFMarine, 2)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddUnit(2, cards.JTL.TieFighter)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyResourcesEquals('1/2')
+      .TheirSpaceUnitIsExhausted(1)
+      .TheirSpaceUnitIsXWing(2)
+      .RunAsync()
+    ;
+  },
+  Ackbar_Leader_exhaust_mine_i_get_XWing: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("5 2")
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.JTL.AckbarLeader)
+      .AddBase(2, cards.generic.BlueBase)
+      .AddLeader(2, cards.SHD.CadBaneLeader)
+      .FillResources(1, cards.SOR.BFMarine, 2)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddUnit(1, cards.JTL.XWing)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyResourcesEquals('1/2')
+      .MySpaceUnitIsExhausted(1)
+      .MySpaceUnitIsXWing(2)
+      .RunAsync()
+    ;
+  },
   Mythosaur_ally_NGTMD_after_attack: async function () {
     //arrange
     const gameState = new GameState(gameName);
