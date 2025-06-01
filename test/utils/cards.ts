@@ -452,6 +452,7 @@ export const cards = {
     AurraSing: '7877401512',
     KelleranBeq: '1553569317',
     KyloRen: '4145147486',
+    Mythosaur: 'abcdefg045',//manual card
     //upgrades
     DarthMaulsSaber: '2167393423',
     SithHolocron: '0412810079',
