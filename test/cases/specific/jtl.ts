@@ -243,8 +243,6 @@ export const SpecificJTLCases = {
     await gameplay
       .WaitForMySpaceUnit(1)
       .ClickMySpaceUnit(1)
-      //TODO: remove when we figure out how to autopass layers
-      .Pass()
       .TargetTheirBase()
       .TargetMyGroundUnit(2)
       .TargetTheirBase()

@@ -123,8 +123,6 @@ export const LeaderUnitSHDCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
       .click(com.EnemyGroundUnit(5))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      //TODO: remove when we figure out how to autopass layers
-      .click(com.PassButton).moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
       .click(com.AllyGroundUnit(3))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
@@ -189,8 +187,6 @@ export const LeaderUnitSHDCases = {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
       .click(com.EnemyGroundUnit(5))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitToChooseTarget)
-      //TODO: remove when we figure out how to autopass layers
-      .click(com.PassButton).moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
       .click(com.AllyGroundUnit(3))
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
       .click(com.ChooseButton(1, 1)).pause(p.ButtonPress)

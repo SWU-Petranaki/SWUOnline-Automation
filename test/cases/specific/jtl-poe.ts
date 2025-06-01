@@ -186,8 +186,6 @@ export const JTLPoeCases = process.env.FULL_REGRESSION !== "true" ? {} : {
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
       .click(com.PassButton).pause(p.ButtonPress)
       .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      //TODO: remove when we figure out how to autopass layers
-      .click(com.PassButton).moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
     ;
     //assert
     await browser.assert.elementPresent(com.Leader(1));

@@ -60,8 +60,6 @@ export const RareBasesCases = {
       .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(2)
       .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
       .SwitchPlayerWindow().WaitForMyGroundUnit(1).ClickMyGroundUnit(1)
-      //TODO: remove when we figure out how to autopass layers
-      .Pass()
       .TargetTheirBase()
       .RunAsync()
     ;

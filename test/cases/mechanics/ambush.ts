@@ -32,8 +32,6 @@ export const AmbushCases = {
     await gameplay
       .WaitForMyHand().ClickMyBase()
       .TargetMyHandCard(1).TargetMyGroundUnit(1).ChooseYes()
-      //TODO: remove when we figure out how to autopass layers
-      .Pass()
       .TargetTheirGroundUnit(1)
       .RunAsync()
     ;
