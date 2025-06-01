@@ -255,7 +255,7 @@ export const RoundEffectCases = {
       .RunAsync()
     ;
   },
-  NGTMD_keeps_exhausted_even_if_player2_claims: ''+async function() {//TDD
+  NGTMD_keeps_exhausted_even_if_player2_claims: async function() {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

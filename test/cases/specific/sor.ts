@@ -27,7 +27,7 @@ const GideonHaskGameStateAsync = async () => {
 
 
 export const SpecificSORCases = {
-  'Gideon Hask: traded from enemy unit': async function () {
+  Gideon_attacked_trades_gives_xp: async function () {
     //arrange
     await GideonHaskGameStateAsync();
     //act
@@ -111,7 +111,98 @@ export const SpecificSORCases = {
     //assert
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 1), '2');
   },
-  Gideon_Hask_no_xp_when_defeated: ''+async function () {//TDD
+  Gideon_Hask_defeats_enemy_unit_gives_xp: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("4 9")
+      .AddBase(1, cards.SOR.ECL)
+      .AddLeader(1, cards.SOR.KrennicLeader, true)
+      .AddBase(2, cards.SOR.ChopperBase)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .AddUnit(1, cards.SOR.KrennicLeaderUnit, true)
+      .AddUnit(1, cards.SOR.GideonHask)
+      .AddUnit(2, cards.SOR.DSStormTrooper)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyGroundUnit(2).AttackWithMyGroundUnit(2).TargetTheirGroundUnit(1).TargetMyGroundUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyGroundUnitPieceEquals(1, 1, 'EXPERIENCE')
+      .MyGroundUnitPieceEquals(1, 2, '3')
+      .MyGroundUnitPieceEquals(1, 3, '8')
+      .MyGroundUnitPieceEquals(2, 1, '6')
+      .MyGroundUnitPieceEquals(2, 2, '5')
+      .MyGroundUnitPieceEquals(2, 3, '3')
+      .RunAsync()
+    ;
+  },
+  Gideon_Hask_sacrifices_into_enemy_unit_no_xp: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("4 9")
+      .AddBase(1, cards.SOR.ECL)
+      .AddLeader(1, cards.SOR.KrennicLeader, true)
+      .AddBase(2, cards.SOR.ChopperBase)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .AddUnit(1, cards.SOR.KrennicLeaderUnit, true)
+      .AddUnit(1, cards.SOR.GideonHask)
+      .AddUnit(2, cards.SHD.KraytDragon)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyGroundUnit(2).AttackWithMyGroundUnit(2).TargetTheirGroundUnit(1).TargetMyGroundUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyGroundUnitPieceEquals(1, 1, '2')
+      .MyGroundUnitPieceEquals(1, 2, '7')
+      .MyGroundUnitIsGone(2)
+      .RunAsync()
+    ;
+  },
+  Gideon_Hask_trades_into_enemy_unit_gives_xp: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("4 9")
+      .AddBase(1, cards.SOR.ECL)
+      .AddLeader(1, cards.SOR.KrennicLeader, true)
+      .AddBase(2, cards.SOR.ChopperBase)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .AddUnit(1, cards.SOR.KrennicLeaderUnit, true)
+      .AddUnit(1, cards.SOR.GideonHask, false, true, 3)
+      .AddUnit(2, cards.SOR.DSStormTrooper)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyGroundUnit(2).AttackWithMyGroundUnit(2).TargetTheirGroundUnit(1).TargetMyGroundUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyGroundUnitPieceEquals(1, 1, 'EXPERIENCE')
+      .MyGroundUnitPieceEquals(1, 2, '3')
+      .MyGroundUnitPieceEquals(1, 3, '8')
+      .MyGroundUnitIsGone(2)
+      .RunAsync()
+    ;
+  },
+  Gideon_Hask_no_xp_when_defeated: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -145,7 +236,7 @@ export const SpecificSORCases = {
       .RunAsync()
     ;
   },
-  Iden_Versio_leader_unit_no_heal_when_defeated: ''+async function () {//TDD
+  Iden_Versio_leader_unit_no_heal_when_defeated: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
