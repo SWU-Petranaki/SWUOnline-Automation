@@ -105,6 +105,7 @@ export const cards = {
     FrontlineShuttle: '2471223947',
     AdelphiPattrolWing: '9757839764',
     Bossk: '0052542605',
+    ColonelYularen: '0961039929',
     //upgrades
     Traitorous: '8055390529',
     MakeAnOpening: '3208391441',
@@ -197,6 +198,7 @@ export const cards = {
     CassianAndor: '6234506067',
     L337: '9552605383',
     GeneralRieekan: '3468546373',
+    MazKanata: '9850906885',
     //upgrades
     TopTarget: '4282425335',
     Darksaber: '3141660491',
@@ -227,6 +229,7 @@ export const cards = {
     EvidenceOfTheCrime: '6452159858',
     Pillage: '4772866341',
     MysticReflection: '9999079491',
+    EndlessLegions: '5576996578',
   },
   TWI: {
     //bases

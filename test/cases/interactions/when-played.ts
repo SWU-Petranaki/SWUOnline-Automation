@@ -37,10 +37,11 @@ export const WhenPlayedCases = {
     await gameplay
       .WaitForMyHand().PlayFromHand(1)
       .WaitForCheckboxes().Check(3).Check(5).Check(8).Submit()
-      .TargetMyGroundUnit(3).Pass().Pass()
-      .TargetMyGroundUnit(4).Pass().ChooseButton(1, 2)
-      .ChooseYes().TargetTheirGroundUnit(1)
+      .ClickLayerTile(3).ClickLayerTile(2).Pass()
+      .TargetMyGroundUnit(3).Pass()
+      .TargetMyGroundUnit(3).Pass().Pass().ChooseButton(1, 2)
       .WaitForCheckboxes().Check(1).Submit()
+      .ChooseYes().TargetTheirGroundUnit(1)
       .RunAsync()
     ;
     //assert
