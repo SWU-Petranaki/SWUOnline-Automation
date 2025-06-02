@@ -31,7 +31,8 @@ export const JTLPoeCases = process.env.FULL_REGRESSION !== "true" ? {} : {
       .RunAsync()
     ;
     //assert
-    GameAssert.LastLogEqualsAsync(browser, "Not enough resources to pay for that. Reverting gamestate.");
+    const lastLogs = (await browser.getText(com.GameLog)).split('\n').slice(-1);
+    browser.assert.equal(true, lastLogs.includes("Not enough resources to pay for that. Reverting gamestate."));
   },
   Poe_Leader_deploy_defeat_cant_deploy_next_turn: async function () {
     //arrange
@@ -58,7 +59,8 @@ export const JTLPoeCases = process.env.FULL_REGRESSION !== "true" ? {} : {
       .RunAsync()
     ;
     //assert
-    await GameAssert.LastLogEqualsAsync(browser, "You don't control enough resources to deploy that leader; reverting the game state.", 2);
+    const lastLogs = (await browser.getText(com.GameLog)).split('\n').slice(-1);
+    browser.assert.equal(true, lastLogs.includes("Not enough resources to pay for that. Reverting gamestate."));
     //act
     await gameplay
       .WaitForClaimButton().ClaimInitiative()

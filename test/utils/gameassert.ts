@@ -531,9 +531,4 @@ export class GameAssert {
 
     return this;
   }
-
-  public static async LastLogEqualsAsync(browser: NightwatchAPI, text: string, last: number = 1) {
-    const lastLog = (await browser.getText(com.GameLog)).split('\n').slice(-1*last)[0];
-    browser.assert.equal(lastLog, text);
-  }
 }
