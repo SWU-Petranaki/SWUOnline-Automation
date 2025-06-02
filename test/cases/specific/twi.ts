@@ -249,6 +249,68 @@ export const SpecificTWICases = {
       .RunAsync()
     ;
   },
+  Darth_Maul_shoots_first_both_sentinels: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SOR.ChopperBase)
+      .AddLeader(1, cards.SOR.SabineLeader)
+      .AddBase(2, cards.SOR.DagobahSwamp)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.CraftySmuggler, 2)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddCardToHand(1, cards.SOR.ShootFirst)
+      .AddUnit(1, cards.TWI.DarthMaul)
+      .AddUnit(2, cards.SHD.NiimaOutposts)
+      .AddUnit(2, cards.SHD.NiimaOutposts)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).TargetTheirGroundUnit(2).TargetTheirGroundUnit(1)
+      .SwitchPlayerWindow()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheirGroundUnitIsThere(1, true)
+      .TheirGroundUnitPieceIsOverlay(1, 3)
+      .RunAsync()
+    ;
+  },
+  Darth_Maul_shoots_first_one_sentinel_survives: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.SOR.ChopperBase)
+      .AddLeader(1, cards.SOR.SabineLeader)
+      .AddBase(2, cards.SOR.DagobahSwamp)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.CraftySmuggler, 2)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddCardToHand(1, cards.SOR.ShootFirst)
+      .AddUnit(1, cards.TWI.DarthMaul)
+      .AddUnit(2, cards.SHD.NiimaOutposts)
+      .AddUnit(2, cards.SOR.Bendu)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).TargetTheirGroundUnit(2).TargetTheirGroundUnit(1)
+      .SwitchPlayerWindow()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheirGroundUnitIsThere(1, true)
+      .TheirGroundUnitPieceEquals(1, 3, '4')
+      .RunAsync()
+    ;
+  },
   Shadowed_Intentions_avoids_enemy_capture: process.env.FULL_REGRESSION !== "true" ? '' : async function() {
     //arrange
     await ShadowedIntentionsGameStateAsync();

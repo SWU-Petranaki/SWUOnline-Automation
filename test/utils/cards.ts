@@ -106,6 +106,7 @@ export const cards = {
     AdelphiPattrolWing: '9757839764',
     Bossk: '0052542605',
     ColonelYularen: '0961039929',
+    Bendu: '5707383130',
     //upgrades
     Traitorous: '8055390529',
     MakeAnOpening: '3208391441',
@@ -141,6 +142,7 @@ export const cards = {
     OpenFire: '8148673131',
     ItBindsAllThings: '0867878280',
     SurpriseStrike: '3809048641',
+    ShootFirst: '8297630396',
   },
   SHD: {
     //bases
@@ -199,6 +201,7 @@ export const cards = {
     L337: '9552605383',
     GeneralRieekan: '3468546373',
     MazKanata: '9850906885',
+    NiimaOutposts: '6409922374',
     //upgrades
     TopTarget: '4282425335',
     Darksaber: '3141660491',
