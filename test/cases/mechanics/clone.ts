@@ -9,7 +9,7 @@ import {
 } from '@utils/util';
 
 export const CloneCases = {
-  'Clone: cant clone piloted leader unit': process.env.FULL_REGRESSION !== 'true' ? '' : async function () {
+  cant_clone_piloted_leader_unit: process.env.FULL_REGRESSION !== 'true' ? '' : async function () {
     //technically not possible, but here just in case future rules allow it
     //arrange
     const gameState = new GameState(gameName);

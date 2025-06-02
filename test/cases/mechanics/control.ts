@@ -10,7 +10,7 @@ import {
 } from '@utils/util';
 
 export const ControlCases = {
-  'Control: Traitorous enemy joins my side': async function () {
+  Traitorous_enemy_joins_my_side: async function () {
   //arrange
   const gameState = new GameState(gameName);
   await gameState.LoadGameStateLinesAsync();
@@ -22,8 +22,7 @@ export const ControlCases = {
     .FillResources(1, cards.SOR.BFMarine, 5)
     .AddCardToHand(1, cards.SOR.Traitorous)
     .AddUnit(1, cards.SOR.SabineUnit, false, false)
-    .AddUnit(2, cards.SOR.CraftySmuggler, false, true, 0,
-      gameState.SubcardBuilder().AddShield(2).Build())
+    .AddUnitWithUpgrade(2, cards.SOR.CraftySmuggler, cards.generic.Shield)
     .FlushAsync(com.BeginTestCallback)
   ;
   //act
@@ -40,7 +39,7 @@ export const ControlCases = {
   await browser.assert.elementPresent(com.AllyGroundUnit(2));
   await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(2), 1), 'TRAITOROUS');
   },
-  'Control: Traitorous enemy returns when upgrade defeated': async function () {
+  Traitorous_enemy_returns_when_upgrade_defeated: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -74,7 +73,7 @@ export const ControlCases = {
     await browser.assert.elementPresent(com.AllyGroundUnit(2));
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(2), 1), '2');
   },
-  'Control: Traitorous fails on piloted leader unit': async function () {
+  Traitorous_fails_on_piloted_leader_unit: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -104,7 +103,7 @@ export const ControlCases = {
       .RunAsync()
     ;
   },
-  'Control: Change of Heart returns at end': async function () {
+  Change_Of_Heart_returns_at_end: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -148,7 +147,7 @@ export const ControlCases = {
     await browser.assert.elementPresent(com.EnemyGroundUnit(1));
     await browser.assert.not.elementPresent(com.AllyGroundUnit(2));
   },
-  Mercenary_Gunship_both_players_can_take_control: async function() {
+  Mercenary_Gunship_both_players_can_take_control: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -183,7 +182,7 @@ export const ControlCases = {
     await browser.assert.not.elementPresent(com.EnemySpaceUnit(1));
     await browser.assert.elementPresent(com.AllySpaceUnit(1));
   },
-  'Control: Choose Sides on opponent': async function () {
+  Choose_Sides_on_opponent: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -218,7 +217,7 @@ export const ControlCases = {
     await browser.assert.textEquals(com.UnitDivPiece(com.EnemyGroundUnit(1), 1), '3');
     await browser.assert.textEquals(com.UnitDivPiece(com.EnemyGroundUnit(1), 2), '1');
   },
-  'Control: Choose Sides cant choose piloted leader units': async function () {
+  Choose_Sides_cant_choose_piloted_leader_units: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -255,7 +254,7 @@ export const ControlCases = {
     //assert
     await customAsserts.UnitIsNotPlayable(browser, com.EnemySpaceUnit(2));
   },
-  Sly_Moore_cant_take_token_with_pilot_leader: async function () {
+  Sly_Moore_cant_take_token_with_pilot_leader: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

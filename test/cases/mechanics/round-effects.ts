@@ -8,7 +8,7 @@ import { cards } from '@utils/cards';
 import { GamePlay } from '@utils/gameplay';
 
 export const RoundEffectCases = {
-  Rallying_Cry_only_units_in_play: async function() {
+  Rallying_Cry_only_units_in_play: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -69,7 +69,7 @@ export const RoundEffectCases = {
       .RunAsync()
     ;
   },
-  Zorii_Bliss_Discard_Before_Regroup: async function() {
+  Zorii_Bliss_Discard_Before_Regroup: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

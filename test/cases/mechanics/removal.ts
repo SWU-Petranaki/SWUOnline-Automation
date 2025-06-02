@@ -9,7 +9,7 @@ import {
 } from '@utils/util';
 
 export const RemovalCases = {
-  'Removal: Vanquish cant target piloted leader unit': async function () {
+  Vanquish_cant_target_piloted_leader_unit: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -38,7 +38,7 @@ export const RemovalCases = {
     await customAsserts.UnitIsNotPlayable(browser, com.EnemyGroundUnit(2));
     await customAsserts.UnitIsNotPlayable(browser, com.AllyGroundUnit(2));
   },
-  'Removal: Merciless Contest cant target piloted leader unit': async function () {
+  Merciless_Contest_cant_target_piloted_leader_unit_: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

@@ -34,7 +34,7 @@ export const LeaderUnitTWICases = {
 
       await browser.assert.textEquals(com.MyResources, '0/2');
     },
-    'Leader Unit: Yoda flip cant defeat piloted leader unit': async function () {
+    'Leader Unit: Yoda flip cant defeat piloted leader unit': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
       //arrange
       const gameState = new GameState(gameName);
       await gameState.LoadGameStateLinesAsync();

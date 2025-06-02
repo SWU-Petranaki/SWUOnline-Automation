@@ -42,7 +42,7 @@ export const AmbushCases = {
       .RunAsync()
     ;
   },
-  'Ambush: Rukh into Krayt Dragon with ECL': async function () {
+  ECL_Rukh_Krayt_Dragon: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -72,7 +72,7 @@ export const AmbushCases = {
       .RunAsync()
     ;
   },
-  'Ambush: Rukh into Krayt Dragon with TI': async function () {
+  TI_Rukh_Krayt_Dragon: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

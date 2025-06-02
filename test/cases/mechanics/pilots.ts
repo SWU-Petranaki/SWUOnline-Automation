@@ -10,7 +10,7 @@ import { cards } from '@utils/cards'
 import { GamePlay } from '@utils/gameplay';
 
 export const PilotJTLCases = {
-  'Dengar not piloting, attacks for 5': process.env.FULL_REGRESSION !== 'true' ? '' : async function() {
+  Dengar_not_piloting_attacks_for_five: process.env.FULL_REGRESSION !== 'true' ? '' : async function() {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -31,7 +31,7 @@ export const PilotJTLCases = {
     //assert
     await browser.assert.textEquals(com.TheirBaseDamage, '5');
   },
-  'Dengar as pilot, deals 2 indirect damage': process.env.FULL_REGRESSION !== 'true' ? '' : ''+async function() {//currently failing
+  Dengar_as_pilot_deals_two_indirect_damage: process.env.FULL_REGRESSION !== 'true' ? '' : ''+async function() {//currently failing
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -54,7 +54,7 @@ export const PilotJTLCases = {
     //assert
     await browser.assert.textEquals(com.TheirBaseDamage, '6');
   },
-  'Nien Nunb not piloting, gets buff' : async function() {
+  Nien_Nunb_not_piloting_gets_buff : process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -76,7 +76,7 @@ export const PilotJTLCases = {
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 1), '4');
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 2), '2');
   },
-  'Nien Nunb as pilot, gives buff' : async function() {
+  Nien_Nunb_as_pilot_gives_buff : process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -98,7 +98,7 @@ export const PilotJTLCases = {
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 2), '5');
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 3), '3');
   },
-  'Red Leader costs less and creates X-Wing on attach Pilot': async function() {
+  Red_Leader_costs_less_and_creates_XWing_on_attach_Pilot: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -145,7 +145,7 @@ export const PilotJTLCases = {
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(3), 3), '5');
     customAsserts.AllySpaceUnitIsXWing(browser, 4);
   },
-  'IG-88 pilot gives no buff if no damaged enemies': async function() {
+  IG88_pilot_no_buff_if_no_damaged_enemies: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -165,7 +165,7 @@ export const PilotJTLCases = {
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 2), '1');
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 3), '4');
   },
-  'IG-88 pilot gives buff if damaged enemies': async function() {
+  IG88_pilot_gives_buff_if_damaged_enemies: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -185,7 +185,7 @@ export const PilotJTLCases = {
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 2), '4');
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 3), '4');
   },
-  'IG-88 ground unit not buffed if no damaged enemies': async function() {
+  IG88_ground_unit_not_buffed_if_no_damaged_enemies: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -203,7 +203,7 @@ export const PilotJTLCases = {
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 1), '4');
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 2), '5');
   },
-  'IG-88 ground unit buffed if damaged enemies': async function() {
+  IG88_ground_unit_buffed_if_damaged_enemies: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -221,7 +221,7 @@ export const PilotJTLCases = {
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 1), '7');
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 2), '5');
   },
-  Unique_Pilot_upgrades_should_trigger_uniqueness_rule: async function() {
+  unique_pilot_upgrades_should_trigger_uniqueness_rule: async function() {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -251,7 +251,7 @@ export const PilotJTLCases = {
     await browser.assert.not.elementPresent(com.AllyGroundUnit(1));
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 1), 'BOBA FETT');
   },
-  Unique_Pilot_unit_should_trigger_uniqueness_rule: async function() {
+  unique_pilot_unit_should_trigger_uniqueness_rule: async function() {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -280,7 +280,7 @@ export const PilotJTLCases = {
     await browser.assert.elementPresent(com.AllyGroundUnit(1));
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 1), '1');
   },
-  Poe_JTL_unit_then_pilot_then_other_unit: async function() {
+  Poe_JTL_unit_then_pilot_then_other_unit: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -382,7 +382,7 @@ export const PilotJTLCases = {
       .RunAsync()
     ;
   },
-  PadawanStarfighter_and_Traitorous_Kid_Anakin: async function() {
+  PadawanStarfighter_and_Traitorous_Kid_Anakin: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -412,7 +412,7 @@ export const PilotJTLCases = {
       .RunAsync()
     ;
   },
-  PadawanStarfighter_and_EotC_Kid_Anakin: async function() {
+  PadawanStarfighter_and_EotC_Kid_Anakin: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

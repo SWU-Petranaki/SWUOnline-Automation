@@ -10,7 +10,7 @@ import { cards } from '@utils/cards';
 import { GamePlay } from '@utils/gameplay';
 
 export const LeaderAbilitySHDCases = {
-  Mando_Leader_exhaust_with_bounty: async function() {
+  Mando_Leader_exhaust_with_bounty: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gamestate = new GameState(gameName);
     await gamestate.LoadGameStateLinesAsync();
@@ -37,7 +37,7 @@ export const LeaderAbilitySHDCases = {
       .RunAsync()
     ;
   },
-  Mando_Leader_exhaust_with_pilot: async function() {
+  Mando_Leader_exhaust_with_pilot: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gamestate = new GameState(gameName);
     await gamestate.LoadGameStateLinesAsync();
@@ -71,7 +71,7 @@ export const LeaderAbilitySHDCases = {
       .RunAsync()
     ;
   },
-  Mando_Leader_exhaust_with_pilot_on_Razor_Crest: async function() {
+  Mando_Leader_exhaust_with_pilot_on_Razor_Crest: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gamestate = new GameState(gameName);
     await gamestate.LoadGameStateLinesAsync();

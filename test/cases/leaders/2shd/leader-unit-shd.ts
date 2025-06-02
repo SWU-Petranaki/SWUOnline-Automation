@@ -233,7 +233,7 @@ export const LeaderUnitSHDCases = {
     ;
     //await browser.pause(p.Debug);
   },
-  'SHD: Mando cant capture piloted leader unit w Rifle': async function () {
+  'SHD: Mando cant capture piloted leader unit w Rifle': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -267,7 +267,7 @@ export const LeaderUnitSHDCases = {
     //assert
     await customAsserts.UnitIsNotPlayable(browser, com.EnemySpaceUnit(2));
   },
-  'SHD: Jabba cant capture piloted leader unit': async function () {
+  'SHD: Jabba cant capture piloted leader unit': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

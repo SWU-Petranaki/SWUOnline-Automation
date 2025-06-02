@@ -327,7 +327,7 @@ export const LeaderUnitSORCases = {
     //assert
     await customAsserts.UnitIsNotPlayable(browser, com.EnemySpaceUnit(1));
   },
-  Chirrut_leader_defeated_ready: async function () {
+  Chirrut_leader_defeated_ready: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -359,7 +359,7 @@ export const LeaderUnitSORCases = {
       .RunAsync()
     ;
   },
-  Chirrut_leader_defeated_ready_bountied: async function () {
+  Chirrut_leader_defeated_ready_bountied: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -394,7 +394,7 @@ export const LeaderUnitSORCases = {
       .RunAsync()
     ;
   },
-  Chirrut_leader_defeated_RR_and_bountied: async function () {
+  Chirrut_leader_defeated_RR_and_bountied: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

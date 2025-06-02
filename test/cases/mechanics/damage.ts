@@ -57,7 +57,7 @@ export const DamageCases = {
       .RunAsync()
     ;
   },
-  Overwhelming_Barrage_pings_both: async function () {
+  Overwhelming_Barrage_pings_both: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -99,7 +99,7 @@ export const DamageCases = {
       .RunAsync()
     ;
   },
-  Overwhelming_Barrage_pings_only_self: async function () {
+  Overwhelming_Barrage_pings_only_self: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -137,7 +137,7 @@ export const DamageCases = {
       .RunAsync()
     ;
   },
-  Overwhelming_Barrage_used_only_for_buff: async function () {
+  Overwhelming_Barrage_used_only_for_buff: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -166,7 +166,7 @@ export const DamageCases = {
       .RunAsync()
     ;
   },
-  'TarkinTown cannot hit piloted leader unit': async function () {
+  TarkinTown_cannot_hit_piloted_leader_unit: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -253,7 +253,7 @@ export const DamageCases = {
       .RunAsync()
     ;
   },
-  Vambrace_Flamethrower_hits_ground_units: async function () {
+  Vambrace_Flamethrower_hits_ground_units: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -287,7 +287,7 @@ export const DamageCases = {
       .RunAsync()
     ;
   },
-  Vambrace_Flamethrower_no_ground_enemies: async function () {
+  Vambrace_Flamethrower_no_ground_enemies: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

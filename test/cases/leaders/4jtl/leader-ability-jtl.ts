@@ -11,7 +11,7 @@ import {
 } from '@utils/util';
 
 export const LeaderAbilityJTLCases = {
-  Kazuda_Leader_Unit_on_attack: async function () {
+  Kazuda_Leader_Unit_on_attack: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -81,7 +81,7 @@ export const LeaderAbilityJTLCases = {
       .RunAsync()
     ;
   },
-  Wedge_soft_pass: async function () {
+  Wedge_soft_pass: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -110,7 +110,7 @@ export const LeaderAbilityJTLCases = {
       .RunAsync()
     ;
   },
-  Wedge_soft_pass_may: async function () {
+  Wedge_soft_pass_may: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

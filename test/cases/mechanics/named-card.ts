@@ -7,7 +7,7 @@ import {
   gameName
 } from '@utils/util';
 
-export const NamedCardCases = {
+export const NamedCardCases = process.env.FULL_REGRESSION !== "true" ? {} : {
   Fetts_Firespray_with_leader: async function () {
     //arrange
     const gameState = new GameState(gameName);

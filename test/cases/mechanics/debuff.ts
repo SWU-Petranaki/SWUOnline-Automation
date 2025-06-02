@@ -104,7 +104,7 @@ export const DebuffCases = {
       .RunAsync()
     ;
   },
-  Hello_There_debuff: async function () {
+  Hello_There_debuff: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -199,7 +199,7 @@ export const DebuffCases = {
       .RunAsync()
     ;
   },
-  Out_The_Airlock_pilot_leaders: async function () {
+  Out_The_Airlock_pilot_leaders: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

@@ -8,7 +8,7 @@ import {
 } from '@utils/util';
 
 export const BountyCases = {
-  'Bounty: The Client heal': async function () {
+  The_Client_heal: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -46,7 +46,7 @@ export const BountyCases = {
       .RunAsync()
     ;
   },
-  'Bounty: The Client edge case': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
+  The_Client_edge_case_self: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -81,8 +81,8 @@ export const BountyCases = {
       .RunAsync()
     ;
   },
-  'Bounty: multiple collected': ''+async function () {//WIP
-    //arrage
+  'Bounty: multiple collected': ''+async function () {//TODO: finish this case
+    //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
     await gameState.ResetGameStateLines()

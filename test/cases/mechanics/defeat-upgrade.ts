@@ -8,7 +8,7 @@ import {
 } from '@utils/util';
 
 export const DefeatUpgradeCases = {
-  'Defeat Upgrade: Disabling Fang Fighter': async function () {
+  Disabling_Fang_Fighter: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -38,7 +38,7 @@ export const DefeatUpgradeCases = {
     await browser.assert.textEquals(com.UnitDivPiece(com.EnemyGroundUnit(1), 1), '1');
     await browser.assert.textEquals(com.UnitDivPiece(com.EnemyGroundUnit(1), 2), '1');
   },
-  'Defeat Upgrade: Poe pilot': async function () {
+  Poe_pilot: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
