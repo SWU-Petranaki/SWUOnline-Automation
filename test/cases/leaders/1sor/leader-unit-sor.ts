@@ -440,7 +440,7 @@ export const LeaderUnitSORCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
+    gameplay.Assert()
       .MyBaseDamageEquals('2')
       .TheirBaseDamageEquals('2')
       .TheyHaveNoGroundUnits().TheyHaveNoSpaceUnits()

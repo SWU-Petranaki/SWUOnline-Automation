@@ -32,7 +32,7 @@ export const AttackEventsCases = {
       .RunAsync()
     ;
     //assert
-    await gameplay.Assert()
+    gameplay.Assert()
       .MyBaseDamageEquals("0")
       .TheirBaseDamageEquals("10")
       .RunAsync()

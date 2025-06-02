@@ -122,26 +122,25 @@ export const SpecificTWICases = {
       .AddUnit(1, cards.TWI.DarthMaul)
       .AddUnit(2, cards.TWI.WTTradeOfficial)
       .AddUnit(2, cards.TWI.WTTradeOfficial)
+      .AddUnit(2, cards.TWI.WTTradeOfficial)
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
-    await browser
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.AllyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.ButtonMultiChoice(2)).pause(p.ButtonPress)
-      .click(com.Checkbox(1)).pause(p.CheckBox)
-      .click(com.Checkbox(2)).pause(p.CheckBox)
-      .click(com.SubmitButton).pause(p.ButtonPress)
-      .click(com.PassButton).pause(p.ButtonPress)
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyGroundUnit().AttackWithMyGroundUnit(1).MultiChoiceButton(2).TargetTheirGroundUnit(1).TargetTheirGroundUnit(3).Pass()
+      .RunAsync()
     ;
     //assert
-    await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 3), '2');
-    await browser.assert.not.elementPresent(com.EnemyGroundUnit(3));
-    await customAsserts.EnemyGroundUnitIsBattleDroid(browser, 1);
-    await customAsserts.EnemyGroundUnitIsBattleDroid(browser, 2);
+    gameplay.Assert()
+      .TheirGroundUnitIsBattleDroid(2)
+      .TheirGroundUnitIsBattleDroid(3)
+      .TheirGroundUnitIsGone(4)
+      .MyGroundUnitPieceEquals(1, 3, '2')
+      .RunAsync()
+    ;
   },
-  Darth_Maul_single_target: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
+  Darth_Maul_single_target: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -155,18 +154,19 @@ export const SpecificTWICases = {
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
-    await browser.waitForElementPresent(com.AllyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.AllyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.ButtonMultiChoice(2)).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyGroundUnit().AttackWithMyGroundUnit(1).MultiChoiceButton(2).TargetTheirGroundUnit(1)
+      .RunAsync()
     ;
     //assert
-    await browser.assert.not.elementPresent(com.EnemyGroundUnit(1));
-    await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 3), '3');
+    gameplay.Assert()
+      .TheyHaveNoGroundUnits()
+      .MyGroundUnitPieceEquals(1, 3, '3')
+      .RunAsync()
+    ;
   },
-  Darth_Maul_choose_one: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
+  Darth_Maul_choose_one: async function () {
    //arrange
    const gameState = new GameState(gameName);
    await gameState.LoadGameStateLinesAsync();
@@ -181,22 +181,20 @@ export const SpecificTWICases = {
      .FlushAsync(com.BeginTestCallback)
    ;
    //act
-    await browser.waitForElementPresent(com.AllyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.AllyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.ButtonMultiChoice(2)).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.Checkbox(1)).pause(p.CheckBox)
-      .click(com.SubmitButton).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyGroundUnit().AttackWithMyGroundUnit(1).MultiChoiceButton(2).TargetTheirGroundUnit(1).Pass()
+      .RunAsync()
     ;
     //assert
-    await browser.assert.elementPresent(com.EnemyGroundUnit(1));
-    await browser.assert.not.elementPresent(com.EnemyGroundUnit(2));
-    await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 3), '3');
+    gameplay.Assert()
+      .TheirGroundUnitIsThere(1)
+      .TheirGroundUnitIsGone(2)
+      .MyGroundUnitPieceEquals(1, 3, '3')
+      .RunAsync()
+    ;
   },
-  Darth_Maul_sentinels: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
+  Darth_Maul_sentinels: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -212,20 +210,19 @@ export const SpecificTWICases = {
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
-    await browser.waitForElementPresent(com.AllyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.AllyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
-      .click(com.Checkbox(1)).pause(p.CheckBox)
-      .click(com.Checkbox(2)).pause(p.CheckBox)
-      .click(com.SubmitButton).pause(p.ButtonPress)
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyGroundUnit().AttackWithMyGroundUnit(1).TargetTheirGroundUnit(2).TargetTheirGroundUnit(1)
+      .RunAsync()
     ;
     //assert
-    await browser.assert.not.elementPresent(com.AllyGroundUnit(1));
-    await browser.assert.elementPresent(com.EnemyGroundUnit(1));
+    gameplay.Assert()
+      .MyGroundUnitIsGone(1)
+      .TheirGroundUnitIsThere(1)
+      .RunAsync()
+    ;
   },
-  Darth_Maul_single_sentinel: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
+  Darth_Maul_single_sentinel: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -240,14 +237,17 @@ export const SpecificTWICases = {
       .FlushAsync(com.BeginTestCallback)
     ;
     //act
-    await browser.waitForElementPresent(com.AllyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.Move)
-      .click(com.AllyGroundUnit(1))
-      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect)
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyGroundUnit().AttackWithMyGroundUnit(1)
+      .RunAsync()
     ;
     //assert
-    await browser.assert.not.elementPresent(com.EnemyGroundUnit(2));
-    await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 3), '3');
+    gameplay.Assert()
+      .TheirGroundUnitIsGone(2)
+      .MyGroundUnitPieceEquals(1, 3, '3')
+      .RunAsync()
+    ;
   },
   Shadowed_Intentions_avoids_enemy_capture: process.env.FULL_REGRESSION !== "true" ? '' : async function() {
     //arrange

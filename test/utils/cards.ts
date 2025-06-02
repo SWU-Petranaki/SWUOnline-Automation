@@ -400,8 +400,14 @@ export const cards = {
   },
   LOF: {
     //bases
+    //force bases
     ShadowedUndercity: '0119018087',
     JediTemple: '0450346170',
+    FortressVader: '5396502974',
+    CrystalCaves: '4352576521',
+    StrangledCliffs: '8710346686',
+    //rare bases
+    TempleOfDestruction: '9453163990',
     //tokens
     //leaders and leader units
     DarthMaulLeader: '0024560758',
