@@ -461,7 +461,7 @@ export const cards = {
     AurraSing: '7877401512',
     KelleranBeq: '1553569317',
     KyloRen: '4145147486',
-    Mythosaur: 'abcdefg045',//manual card
+    Mythosaur: '1462779761',
     //upgrades
     DarthMaulsSaber: '2167393423',
     SithHolocron: '0412810079',
@@ -473,5 +473,6 @@ export const cards = {
     LuminousBeings: '6801641285',
     CureWounds: '3853063436',
     ShienFlurry: '7981459508',
+    DeathField: '4092125792',
   },
 }
