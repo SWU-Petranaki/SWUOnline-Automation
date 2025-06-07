@@ -238,6 +238,7 @@ export const cards = {
     Pillage: '4772866341',
     MysticReflection: '9999079491',
     EndlessLegions: '5576996578',
+    RemnantReserves: '1565760222',
   },
   TWI: {
     //bases
@@ -474,6 +475,7 @@ export const cards = {
     Mythosaur: '1462779761',
     TheDaughter: '0662915879',
     JediSentinel: '5573238875',
+    ReyUnit: '6172986745',
     //upgrades
     DarthMaulsSaber: '2167393423',
     SithHolocron: '0412810079',

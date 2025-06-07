@@ -139,5 +139,44 @@ export const SpecificLOFCases = {
       .TheirResourcesEquals("2/2")
       .RunAsync()
     ;
+  },
+  Rey_Drawn_Multi: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.RedBase, false, true)
+      .AddLeader(1, cards.LOF.MorganElsbethLeader)
+      .AddBase(2, cards.generic.YellowBase)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.BFMarine, 4)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddCardToHand(1, cards.SHD.RemnantReserves)
+      .AddCardToDeck(1, cards.LOF.ReyUnit)
+      .AddCardToDeck(1, cards.LOF.ReyUnit)
+      .AddCardToDeck(1, cards.LOF.SavageOpress)
+      .AddCardToDeck(1, cards.LOF.SavageOpress)
+      .AddCardToDeck(1, cards.LOF.SavageOpress)
+      .AddUnit(2, cards.SOR.R2D2)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).WaitForCheckboxes().Check(1).Check(2).Check(3).Submit()
+      .SwitchPlayerWindow().WaitForMyLeader()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheirHandSizeIs(3)
+      .MyHandIsEmpty()
+      .TheirDiscardCountEquals(1)
+      .MyDiscardCountEquals(1)
+      .MyGroundUnitIsGone(1)
+      .MyBaseDamageEquals("4")
+      .TheirBaseDamageEquals("0")
+      .RunAsync()
+    ;
   }
 }
