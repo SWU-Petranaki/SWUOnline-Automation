@@ -473,6 +473,7 @@ export const cards = {
     KyloRen: '4145147486',
     Mythosaur: '1462779761',
     TheDaughter: '0662915879',
+    JediSentinel: '5573238875',
     //upgrades
     DarthMaulsSaber: '2167393423',
     SithHolocron: '0412810079',

@@ -106,5 +106,38 @@ export const SpecificLOFCases = {
       .TheirBaseDamageEquals("2")
       .RunAsync()
     ;
+  },
+  Eeth_Koth_on_zero_resources: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.YellowBase, false, true)
+      .AddLeader(1, cards.LOF.AnakinLeader)
+      .AddBase(2, cards.generic.YellowBase, false, true)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .AddResource(1, cards.SOR.CraftySmuggler, false)
+      .AddResource(1, cards.SOR.CraftySmuggler, false)
+      .AddResource(1, cards.SOR.CraftySmuggler, false)
+      .AddResource(1, cards.SOR.CraftySmuggler, false)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddUnit(1, cards.LOF.EethKoth)
+      .AddUnit(2, cards.LOF.JediSentinel)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyGroundUnit().AttackWithMyGroundUnit(1).MouseAway().ChooseYes()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyGroundUnitIsGone(1)
+      .TheirGroundUnitIsGone(1)
+      .MyResourcesEquals("0/5")
+      .TheirResourcesEquals("2/2")
+      .RunAsync()
+    ;
   }
 }

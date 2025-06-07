@@ -306,6 +306,13 @@ export class GamePlay {
     return this;
   }
 
+  public MouseAway() {
+    this._asyncBrowser
+      .moveToElement(com.GameChat, 0, 0).pause(p.WaitForEffect);
+
+    return this;
+  }
+
   public TargetMyBase() {
     this.Target(com.Base(this._currentPlayer));
 
