@@ -214,7 +214,7 @@ export const cs = {//copied from Constants.php
   CharacterIndex: 9,
   PlayIndex: 10,
   NumNonAttackCards: 11,
-  CachedCharacterLevel: 12,
+  NumForcePlayedNonUnit: 12,
   PreparationCounters: 13,
   NextNAACardGoAgain: 14,
   NumAlliesDestroyed: 15,

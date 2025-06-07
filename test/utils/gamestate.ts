@@ -112,7 +112,7 @@ export class GameState {
     arr[cs.CharacterIndex] = '0';
     arr[cs.PlayIndex] = '-1';
     arr[cs.NumNonAttackCards] = '0';
-    arr[cs.CachedCharacterLevel] = '0';
+    arr[cs.NumForcePlayedNonUnit] = '0';
     arr[cs.PreparationCounters] = '0';
     arr[cs.NextNAACardGoAgain] = '0';
     arr[cs.NumAlliesDestroyed] = '0';

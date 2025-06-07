@@ -114,6 +114,8 @@ export const cards = {
     Protector: '4550121827',
     Resilient: '7277605274',
     JediLightsaber: '8495694166',
+    HardpointHeavyBlaster: '3987987905',
+    FallenLightsaber: '0160548661',
     //events
     Vigilance: '8615772965',
     Command: '0073206444',
@@ -202,6 +204,8 @@ export const cards = {
     GeneralRieekan: '3468546373',
     MazKanata: '9850906885',
     NiimaOutposts: '6409922374',
+    FourLom: '6097248635',
+    Zuckuss: '1690726274',
     //upgrades
     TopTarget: '4282425335',
     Darksaber: '3141660491',
@@ -215,6 +219,7 @@ export const cards = {
     GuildTarget: '2740761445',
     PublicEnemy: '1780014071',
     MandoArmor: '3514010297',
+    UnrefusableOffer: '7270736993',
     //events
     TimelyIntervention: '6847268098',
     NoBargain: '7354795397',
@@ -273,6 +278,7 @@ export const cards = {
     PoggleTheLesser: '9610332938',
     MorganElsbeth: '6412545836',
     PadawanStarfighter: '4718895864',
+    R2D2: '5616678900',
     //upgrades
     ShadowedIntentions: '9003830954',
     CloneCohort: '2007876522',
@@ -411,6 +417,7 @@ export const cards = {
     StrangledCliffs: '8710346686',
     //rare bases
     TempleOfDestruction: '9453163990',
+    TombOfEilram: '2699176260',
     //tokens
     //leaders and leader units
     DarthMaulLeader: '0024560758',
@@ -426,6 +433,8 @@ export const cards = {
     MotherTalzinLeaderUnit: '32fd8db633',
     MorganElsbethLeader: '5045607736',
     MorganElsbethLeaderUnit: 'b70416cfea',
+    AnakinLeader: '8536024453',
+    AnakinLeaderUnit: '7d9f8bcb9b',
     //units
     Porg: '2971660620',
     DarthSidious: '6797297267',
@@ -462,9 +471,12 @@ export const cards = {
     KelleranBeq: '1553569317',
     KyloRen: '4145147486',
     Mythosaur: '1462779761',
+    TheDaughter: '0662915879',
     //upgrades
     DarthMaulsSaber: '2167393423',
     SithHolocron: '0412810079',
+    CorruptedSaber: '8085392838',
+    KyloRensLightsaber: '1637958279',
     //events
     DrainEssence: '5083905745',
     AsIHaveForeseen: '8569501777',

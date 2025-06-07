@@ -76,4 +76,35 @@ export const SpecificLOFCases = {
       .RunAsync()
     ;
   },
+  Daughter_Sabine_ping_heals: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("2 1")
+      .AddBase(1, cards.generic.YellowBase, false, true)
+      .AddLeader(1, cards.LOF.AnakinLeader)
+      .AddBase(2, cards.generic.YellowBase)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.BFMarine, 2)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddUnit(1, cards.LOF.TheDaughter)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForPassButton().PassTurn()
+      .SwitchPlayerWindow().WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1)
+      .SwitchPlayerWindow().WaitForMyGroundUnit(1).ChooseYes()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyGroundUnitIsThere(1)
+      .MyBaseDamageEquals("1")
+      .TheirBaseDamageEquals("2")
+      .RunAsync()
+    ;
+  }
 }
