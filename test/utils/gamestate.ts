@@ -6,6 +6,7 @@ import {
   lt
 } from './util';
 import { SubcardBuilder } from '@utils/subcardbuilder';
+import { cards } from './cards';
 
 export class GameState {
   private _subcardBuilder: SubcardBuilder = new SubcardBuilder(this);
@@ -286,6 +287,30 @@ export class GameState {
       this._gameState[index] += ' ';
     }
     const subcard = this._subcardBuilder.AddUpgrade(upgradeID, player, upgradeIsPilot, epicAction, 0).Build();
+    this._gameState[index] += `${unitCardID} ${ready ? "2" : "1"} ${damage} 0 ${subcard} ${this._uniqueIdCounter++} 0 0 1 0 0 ${player} 0 0 0 NA ${epicAction ? "1" : "0"}`;
+
+    return this;
+  }
+
+  public AddUnitWithShield(player: number, unitCardID: string, shield: number = 1,
+    epicAction: boolean = false, ready: boolean = true, damage: number = 0) {
+    const index = player === 1 ? g.P1AlliesArray : g.P2AlliesArray;
+    if(this._gameState[index] !== '') {
+      this._gameState[index] += ' ';
+    }
+    const subcard = this._subcardBuilder.AddShield(player, shield).Build();
+    this._gameState[index] += `${unitCardID} ${ready ? "2" : "1"} ${damage} 0 ${subcard} ${this._uniqueIdCounter++} 0 0 1 0 0 ${player} 0 0 0 NA ${epicAction ? "1" : "0"}`;
+
+    return this;
+  }
+
+  public AddUnitWithExperience(player: number, unitCardID: string, experience: number = 1,
+      epicAction: boolean = false, ready: boolean = true, damage: number = 0) {
+    const index = player === 1 ? g.P1AlliesArray : g.P2AlliesArray;
+    if(this._gameState[index] !== '') {
+      this._gameState[index] += ' ';
+    }
+    const subcard = this._subcardBuilder.AddExperience(player, experience).Build();
     this._gameState[index] += `${unitCardID} ${ready ? "2" : "1"} ${damage} 0 ${subcard} ${this._uniqueIdCounter++} 0 0 1 0 0 ${player} 0 0 0 NA ${epicAction ? "1" : "0"}`;
 
     return this;

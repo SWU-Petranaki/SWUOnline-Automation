@@ -6,7 +6,8 @@ import {
   player1Window, player2Window,
   gameName,
   customAsserts,
-  cs
+  cs,
+  g
 } from '@utils/util';
 
 export const SpecificLOFCases = {
@@ -175,6 +176,43 @@ export const SpecificLOFCases = {
       .MyDiscardCountEquals(1)
       .MyGroundUnitIsGone(1)
       .MyBaseDamageEquals("4")
+      .TheirBaseDamageEquals("0")
+      .RunAsync()
+    ;
+  },
+  Deceptive_Shades_deploy_leader: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.YellowBase, false, true)
+      .AddLeader(1, cards.LOF.DarthRevanLeader)
+      .AddBase(2, cards.generic.GreenBase)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .FillResources(2, cards.SOR.CraftySmuggler, 4)
+      .AddUnit(1, cards.LOF.DeceptiveShades)
+      .AddUnit(2, cards.SOR.BFMarine)
+      .AddCardToHand(1, cards.SOR.CraftySmuggler)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyGroundUnit().AttackWithMyGroundUnit(1).TargetTheirGroundUnit(1)
+      .SwitchPlayerWindow().WaitForMyGroundUnit().AttackWithMyGroundUnit(1)
+      .SwitchPlayerWindow().WaitForMyLeader().ClickMyLeader()
+      .SwitchPlayerWindow().WaitForMyLeader().ClickMyLeader().MultiChoiceButton(2)
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1).Pass().ChooseYes().TargetTheirGroundUnit(1).ChooseYes()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyGroundUnitIsThere(2)
+      .TheirGroundUnitIsGone(2)
+      .MyGroundUnitPieceEquals(2, 1, 'EXPERIENCE')
+      .MyGroundUnitPieceIsOverlay(2, 4)
+      .MyBaseDamageEquals("3")
       .TheirBaseDamageEquals("0")
       .RunAsync()
     ;

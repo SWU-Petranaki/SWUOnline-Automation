@@ -41,6 +41,7 @@ import { JTLPoeCases } from '@cases/specific/jtl-poe';
 import { LeaderAbilityJTLCases } from '@cases/leaders/4jtl/leader-ability-jtl';
 import { SpecificLOFCases } from '@cases/specific/lof';
 import { ExhaustCases } from '@cases/mechanics/exhaust';
+import { LeaderAbilityLOFCases } from '@cases/leaders/5lof/leader-ability';
 
 
 const home: NightwatchTests = {
@@ -84,6 +85,7 @@ const home: NightwatchTests = {
   ...JTLPoeCases,
   ...LeaderAbilityJTLCases,
   ...SpecificLOFCases,
+  ...LeaderAbilityLOFCases,
 //end regression suite
   after: async (browser, done) => {
     await browser.window.switchTo(player2Window).window.close();

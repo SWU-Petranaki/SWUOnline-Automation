@@ -7,6 +7,8 @@ export const cards = {
     YellowBase: '6093792814',//30HP yellow base
     BlueForceBase: '0119018087',
     GreenForceBase: '0450346170',
+    RedForceBase: '8710346686',
+    YellowForceBase: '4352576521',
     //tokens
     Shield: '8752877738',
     Experience: '2007868442',
@@ -63,6 +65,7 @@ export const cards = {
     BFMarine: '4317911650',
     FleetLieutenant: '3038238423',
     SLT: '8954587682',
+    BobaFettUnit: '4156799805',
     CraftySmuggler: '0700214503',
     SabineUnit: '3646264648',
     Rukh: '3280523224',
@@ -410,23 +413,16 @@ export const cards = {
     OutTheAirlock: '3782661648',
   },
   LOF: {
-    //bases
-    //force bases
-    ShadowedUndercity: '0119018087',
-    JediTemple: '0450346170',
-    FortressVader: '5396502974',
-    CrystalCaves: '4352576521',
-    StrangledCliffs: '8710346686',
     //rare bases
     TempleOfDestruction: '9453163990',
     TombOfEilram: '2699176260',
-    //tokens
     //leaders and leader units
     DarthMaulLeader: '0024560758',
     DarthMaulLeaderUnit: 'b2072f156c',
     QuiGonJinnLeader: '2580909557',
     QuiGonJinnLeaderUnit: '6def6570f5',
     DarthRevanLeader: '4637578649',
+    DarthRevanLeaderUnit: '754e979196',
     ObiWanLeader: '2693401411',
     ObiWanLeaderUnit: 'd12b136775',
     ThirdSisterLeader: '3357344238',
@@ -476,6 +472,7 @@ export const cards = {
     TheDaughter: '0662915879',
     JediSentinel: '5573238875',
     ReyUnit: '6172986745',
+    DeceptiveShades: '2554581368',
     //upgrades
     DarthMaulsSaber: '2167393423',
     SithHolocron: '0412810079',
