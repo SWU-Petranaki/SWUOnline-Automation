@@ -483,6 +483,7 @@ export const cards = {
     SithHolocron: '0412810079',
     CorruptedSaber: '8085392838',
     KyloRensLightsaber: '1637958279',
+    SizeMattersNot: '6980075962',
     //events
     DrainEssence: '5083905745',
     AsIHaveForeseen: '8569501777',

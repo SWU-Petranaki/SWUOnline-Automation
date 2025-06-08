@@ -8,7 +8,7 @@
     "test": "nightwatch ./test/regression.ts --env=headless --retries 3 --suiteRetries 1",
     "test:visual": "nightwatch ./test/regression.ts",
     "test:local": "nightwatch ./test/cases/_local.ts",
-    "test:group": "nightwatch ./local/group.ts",
+    "test:group": "nightwatch ./test/cases/_group.ts",
     "test:case": "nightwatch ./test/regression.ts --testcase"
   },
   "keywords": [],

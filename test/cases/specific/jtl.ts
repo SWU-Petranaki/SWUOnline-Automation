@@ -682,5 +682,33 @@ export const SpecificJTLCases = {
       .TheirBaseDamageEquals('10')
       .RunAsync()
     ;
-  }
+  },
+  Poe_unit_hops_on_XWing: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.JTL.PoeLeader)
+      .AddBase(2, cards.generic.RedBase)
+      .AddLeader(2, cards.JTL.WedgeLeader)
+      .FillResources(1, cards.SOR.BFMarine, 4)
+      .FillResources(2, cards.SOR.BFMarine, 2)
+      .AddCardToHand(1, cards.JTL.PoeUnit)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).ChooseYes()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MySpaceUnitPieceEquals(1, 1, 'POE DAMERON')
+      .MySpaceUnitPieceEquals(1, 2, '4')
+      .MySpaceUnitPieceEquals(1, 3, '5')
+      .MyGroundUnitIsGone(1)
+      .RunAsync()
+  },
 }

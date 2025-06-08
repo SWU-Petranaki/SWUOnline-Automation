@@ -1,5 +1,8 @@
 local/*
 !local/_wrapper.ts
+test/cases/_local.ts
+test/cases/_group.ts
+# Ignore local configuration files
 .project
 .DS_Store
 *.vim
@@ -32,4 +35,3 @@ test-results.xml
 chromedriver-mobile/
 *.sw[po]
 screenshots/
-test/cases/_local.ts
