@@ -477,6 +477,7 @@ export const cards = {
     Leia: '2236831712',
     PurrgilKing: '2968188569',
     DagoyanMaster: '1708605474',
+    BaylanSkoll: '4729355863',
     //upgrades
     DarthMaulsSaber: '2167393423',
     SithHolocron: '0412810079',

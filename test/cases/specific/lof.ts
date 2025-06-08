@@ -291,5 +291,39 @@ export const SpecificLOFCases = {
       .MyGroundUnitPieceEquals(1, 2, '7')
       .RunAsync()
     ;
+  },
+  Baylan_Skoll_bounces_token: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("5 2")
+      .AddBase(1, cards.generic.YellowBase, false, true)
+      .AddLeader(1, cards.SOR.IG88Leader)
+      .AddBase(2, cards.generic.BlueBase)
+      .AddLeader(2, cards.SHD.CadBaneLeader)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .FillResources(2, cards.SOR.CraftySmuggler, 3)
+      .AddCardToHand(1, cards.LOF.BaylanSkoll)
+      .AddUnit(2, cards.TWI.BattleDroid)
+      .AddCardToHand(2, cards.TWI.MercilessContest)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).ChooseYes()
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .WeHaveNoUnits()
+      .MyDiscardCountEquals(1)
+      .TheirDiscardCountEquals(1)
+      .MyResourcesEquals("0/3")
+      .TheirResourcesEquals("0/5")
+      .RunAsync()
+    ;
   }
 }
