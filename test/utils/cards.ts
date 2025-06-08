@@ -148,6 +148,7 @@ export const cards = {
     ItBindsAllThings: '0867878280',
     SurpriseStrike: '3809048641',
     ShootFirst: '8297630396',
+    ForceLightning: '2639435822',
   },
   SHD: {
     //bases
@@ -474,6 +475,8 @@ export const cards = {
     ReyUnit: '6172986745',
     DeceptiveShades: '2554581368',
     Leia: '2236831712',
+    PurrgilKing: '2968188569',
+    DagoyanMaster: '1708605474',
     //upgrades
     DarthMaulsSaber: '2167393423',
     SithHolocron: '0412810079',
