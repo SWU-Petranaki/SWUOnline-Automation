@@ -473,6 +473,7 @@ export const cards = {
     JediSentinel: '5573238875',
     ReyUnit: '6172986745',
     DeceptiveShades: '2554581368',
+    Leia: '2236831712',
     //upgrades
     DarthMaulsSaber: '2167393423',
     SithHolocron: '0412810079',

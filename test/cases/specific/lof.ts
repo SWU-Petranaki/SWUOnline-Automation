@@ -216,5 +216,80 @@ export const SpecificLOFCases = {
       .TheirBaseDamageEquals("0")
       .RunAsync()
     ;
+  },
+  Sneak_Attack_Leia_Force_base_combo: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.YellowForceBase)
+      .AddLeader(1, cards.LOF.ObiWanLeader)
+      .AddBase(2, cards.generic.YellowBase)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.BFMarine, 4)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddCardToHand(1, cards.SOR.SneakAttack)
+      .AddCardToHand(1, cards.LOF.Leia)
+      .AddUnit(1, cards.SHD.CartelTurncoat)
+      .AddUnit(1, cards.SHD.CartelTurncoat)
+      .AddUnit(1, cards.SOR.EchoBaseDefender)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).TargetMyHandCard(1)
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForMySpaceUnit(3).ClickMySpaceUnit(3).MultiChoiceButton(2)
+      .ClickMySpaceUnit(3)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MySpaceUnitIsGone(3)
+      .MySpaceUnitPieceEquals(1, 1, '4')
+      .MySpaceUnitPieceEquals(1, 2, '5')
+      .MySpaceUnitPieceEquals(2, 1, '4')
+      .MySpaceUnitPieceEquals(2, 2, '5')
+      .MyGroundUnitPieceEquals(1, 1, '6')
+      .MyGroundUnitPieceEquals(1, 2, '5')
+      .MyGroundUnitPieceEquals(2, 1, '7')
+      .MyGroundUnitPieceEquals(2, 2, '7')
+      .TheirBaseDamageEquals("5")
+      .MyBaseDamageEquals("0")
+      .RunAsync()
+    ;
+  },
+  Sneak_Attack_Leia_moves_ready: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.YellowForceBase, false, true)
+      .AddLeader(1, cards.LOF.ObiWanLeader)
+      .AddBase(2, cards.generic.YellowBase)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.BFMarine, 4)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddCardToHand(1, cards.SOR.SneakAttack)
+      .AddCardToHand(1, cards.LOF.Leia)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).TargetMyHandCard(1)
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForMySpaceUnit(1).ClickMySpaceUnit(1).MultiChoiceButton(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MySpaceUnitIsGone(1)
+      .MyGroundUnitIsNotExhausted(1)
+      .MyGroundUnitPieceEquals(1, 1, '7')
+      .MyGroundUnitPieceEquals(1, 2, '7')
+      .RunAsync()
+    ;
   }
 }
