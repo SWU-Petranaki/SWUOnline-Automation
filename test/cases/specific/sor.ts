@@ -266,5 +266,93 @@ export const SpecificSORCases = {
       .MyBaseDamageEquals('9')
       .RunAsync()
     ;
+  },
+  UWing_one_unit_swap_turn: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("1 0")
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.SOR.SabineLeader)
+      .AddBase(2, cards.generic.BlueBase)
+      .AddLeader(2, cards.SOR.PalpLeader)
+      .FillResources(1, cards.SOR.BFMarine, 7)
+      .FillResources(2, cards.SOR.AdmiralPiett, 2)
+      .AddCardToHand(1, cards.SOR.UWing)
+      .AddCardToDeck(1, cards.SOR.MillenniumFalcon)
+      .AddCardToDeck(1, cards.SOR.BFMarine, 9)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).WaitForCheckboxes().Check(1).Submit().TargetMySpaceUnit(1)
+      .SwitchPlayerWindow()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyBaseDamageEquals('0')
+    ;
+  },
+  UWing_two_units_swap_turn: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("1 0")
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.SOR.SabineLeader)
+      .AddBase(2, cards.generic.BlueBase)
+      .AddLeader(2, cards.SOR.PalpLeader)
+      .FillResources(1, cards.SOR.BFMarine, 7)
+      .FillResources(2, cards.SOR.AdmiralPiett, 2)
+      .AddCardToHand(1, cards.SOR.UWing)
+      .AddCardToDeck(1, cards.SOR.MillenniumFalcon)
+      .AddCardToDeck(1, cards.SOR.BFMarine, 9)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).WaitForCheckboxes().Check(1).Check(2).Submit().Pass().TargetMySpaceUnit(1)
+      .SwitchPlayerWindow()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyBaseDamageEquals('0')
+    ;
+  },
+  UWing_three_units_swap_turn: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("1 0")
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.SOR.SabineLeader)
+      .AddBase(2, cards.generic.BlueBase)
+      .AddLeader(2, cards.SOR.PalpLeader)
+      .FillResources(1, cards.SOR.BFMarine, 7)
+      .FillResources(2, cards.SOR.AdmiralPiett, 2)
+      .AddCardToHand(1, cards.SOR.UWing)
+      .AddCardToDeck(1, cards.SOR.MillenniumFalcon)
+      .AddCardToDeck(1, cards.SOR.BFMarine, 9)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).WaitForCheckboxes().Check(1).Check(2).Check(3).Submit()
+      .ClickLayerTile(3).Pass().TargetMySpaceUnit(1)
+      .SwitchPlayerWindow()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyBaseDamageEquals('0')
+    ;
   }
 }
