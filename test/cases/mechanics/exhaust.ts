@@ -166,5 +166,32 @@ export const ExhaustCases = {
       .MyGroundUnitIsExhausted(1)
       .RunAsync()
     ;
-  }
+  },
+  Kylo_Ren_with_his_lightsaber_Cal_Kestis: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.YellowBase)
+      .AddLeader(1, cards.LOF.KyloRenLeader, true)
+      .AddBase(2, cards.generic.YellowBase, false, true)
+      .AddLeader(2, cards.LOF.CalKestisLeader)
+      .FillResources(1, cards.SOR.BFMarine, 7)
+      .FillResources(2, cards.SOR.CraftySmuggler, 5)
+      .AddUnitWithUpgrade(1, cards.LOF.KyloRenLeaderUnit, cards.LOF.KyloRensLightsaber)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForPassButton().PassTurn()
+      .SwitchPlayerWindow().WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheirGroundUnitIsNotExhausted(1)
+      .RunAsync()
+    ;
+  },
 }

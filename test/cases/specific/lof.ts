@@ -392,5 +392,5 @@ export const SpecificLOFCases = {
       .TheirBaseDamageEquals("9")
       .RunAsync()
     ;
-  }
+  },
 }

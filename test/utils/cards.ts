@@ -435,6 +435,10 @@ export const cards = {
     MorganElsbethLeaderUnit: 'b70416cfea',
     AnakinLeader: '8536024453',
     AnakinLeaderUnit: '7d9f8bcb9b',
+    KyloRenLeader: '5174764156',
+    KyloRenLeaderUnit: 'd911b778e4',
+    CalKestisLeader: '6677799440',
+    CalKestisLeaderUnit: 'bf3545c5e0',
     //units
     Porg: '2971660620',
     DarthSidious: '6797297267',
