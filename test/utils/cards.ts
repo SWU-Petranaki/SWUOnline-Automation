@@ -210,6 +210,7 @@ export const cards = {
     NiimaOutposts: '6409922374',
     FourLom: '6097248635',
     Zuckuss: '1690726274',
+    DoctorPershing: '6722700037',
     //upgrades
     TopTarget: '4282425335',
     Darksaber: '3141660491',
@@ -478,6 +479,7 @@ export const cards = {
     PurrgilKing: '2968188569',
     DagoyanMaster: '1708605474',
     BaylanSkoll: '4729355863',
+    Yoda: '5098263349',
     //upgrades
     DarthMaulsSaber: '2167393423',
     SithHolocron: '0412810079',

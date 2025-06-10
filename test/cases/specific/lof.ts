@@ -325,5 +325,40 @@ export const SpecificLOFCases = {
       .TheirResourcesEquals("0/5")
       .RunAsync()
     ;
+  },
+  Kazuda_Space_Leia: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("1 2")
+      .AddBase(1, cards.generic.GreenBase, false, true)
+      .AddLeader(1, cards.JTL.KazudaLeader)
+      .AddBase(2, cards.generic.BlueBase)
+      .AddLeader(2, cards.SHD.CadBaneLeader)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddUnit(1, cards.LOF.Leia, false, false)
+      .AddCardToDeck(1, cards.SOR.BFMarine, 2)
+      .AddCardToDeck(2, cards.SOR.CraftySmuggler, 2)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1).ClaimInitiative()
+      .SwitchPlayerWindow().WaitForPassButton().PassTurn()
+      .SwitchPlayerWindow().WaitForMyHand().ClickHandCard(1)
+      .SwitchPlayerWindow().WaitForMyHand().ClickHandCard(1)
+      .SwitchPlayerWindow().WaitForMySpaceUnit().ClickMySpaceUnit(1).MultiChoiceButton(1)
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForMyGroundUnit().AttackWithMyGroundUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheirBaseDamageEquals("9")
+      .RunAsync()
+    ;
   }
 }
