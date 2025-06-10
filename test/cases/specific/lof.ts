@@ -11,6 +11,38 @@ import {
 } from '@utils/util';
 
 export const SpecificLOFCases = {
+  UWing_Obi_wan_padawan: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.YellowBase)
+      .AddLeader(1, cards.LOF.ObiWanLeader)
+      .AddBase(2, cards.generic.YellowBase)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.BFMarine, 7)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddCardToHand(1, cards.SOR.UWing)
+      .AddCardToDeck(1, cards.LOF.ObiWanPadawan)
+      .AddCardToDeck(1, cards.SOR.BFMarine, 9)
+      .AddCardToDeck(1, cards.JTL.LukeUnit)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1)
+      .WaitForCheckboxes().Check(1).Check(2).Check(3).Submit().Pass().Pass()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyHandIsEmpty()
+      .MyGroundUnitIsThere(2)
+      .MyGroundUnitPieceIsSentinelToken(1, 3)
+      .RunAsync()
+    ;
+  },
   Kelleran_Beq_UWing_QuiGons_Aethersprite: async function () {
     //arrange
     const gameState = new GameState(gameName);
