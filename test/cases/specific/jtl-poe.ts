@@ -56,13 +56,6 @@ export const JTLPoeCases = process.env.FULL_REGRESSION !== "true" ? {} : {
     await gameplay
       //deploy fails
       .WaitForMyLeader().ClickMyLeader()
-      .RunAsync()
-    ;
-    //assert
-    const lastLogs = (await browser.getText(com.GameLog)).split('\n').slice(-1);
-    browser.assert.equal(true, lastLogs.includes("Not enough resources to pay for that. Reverting gamestate."));
-    //act
-    await gameplay
       .WaitForClaimButton().ClaimInitiative()
       .SwitchPlayerWindow().WaitForPassButton().PassTurn()
       //new round

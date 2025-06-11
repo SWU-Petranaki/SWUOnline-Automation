@@ -354,5 +354,38 @@ export const SpecificSORCases = {
     gameplay.Assert()
       .MyBaseDamageEquals('0')
     ;
+  },
+  UWing_layers: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("5 2")
+      .AddBase(1, cards.generic.GreenBase, false, true)
+      .AddLeader(1, cards.LOF.CalKestisLeader)
+      .AddBase(2, cards.generic.BlueBase)
+      .AddLeader(2, cards.SHD.CadBaneLeader)
+      .FillResources(1, cards.SOR.BFMarine, 7)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddCardToHand(1, cards.SOR.UWing)
+      .AddUnit(1, cards.LOF.LukeSkywalker)
+      .AddCardToDeck(1, cards.LOF.ObiWanPadawan)
+      .AddCardToDeck(1, cards.SOR.BFMarine)
+      .AddCardToDeck(1, cards.LOF.BD1)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).WaitForCheckboxes().Check(1).Check(2).Check(3).Submit()
+      .Pass().Pass().Pass().ChooseYes().TargetMyGroundUnit(1).TargetMyGroundUnit(1)
+      .SwitchPlayerWindow()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyBaseDamageEquals('2')
+      .RunAsync()
+    ;
   }
 }

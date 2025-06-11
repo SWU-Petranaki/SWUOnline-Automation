@@ -484,6 +484,7 @@ export const cards = {
     DagoyanMaster: '1708605474',
     BaylanSkoll: '4729355863',
     Yoda: '5098263349',
+    BD1: '0024409893',
     //upgrades
     DarthMaulsSaber: '2167393423',
     SithHolocron: '0412810079',
