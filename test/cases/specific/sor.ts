@@ -387,5 +387,36 @@ export const SpecificSORCases = {
       .MyBaseDamageEquals('2')
       .RunAsync()
     ;
-  }
+  },
+  UWing_layers_when_played: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("5 2")
+      .AddBase(1, cards.generic.GreenBase, false, true)
+      .AddLeader(1, cards.LOF.CalKestisLeader)
+      .AddBase(2, cards.generic.BlueBase)
+      .AddLeader(2, cards.SHD.CadBaneLeader)
+      .FillResources(1, cards.SOR.BFMarine, 7)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddCardToHand(1, cards.SOR.UWing)
+      .AddUnit(1, cards.SOR.BFMarine)
+      .AddUnit(2, cards.SOR.BFMarine)
+      .AddCardToDeck(1, cards.TWI.EnfysNest)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).WaitForCheckboxes().Check(1).Submit().TargetTheirGroundUnit(1).TargetMyGroundUnit(1)
+      .SwitchPlayerWindow()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyBaseDamageEquals('2')
+      .RunAsync()
+    ;
+  },
 }
