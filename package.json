@@ -17,7 +17,7 @@
   "description": "",
   "devDependencies": {
     "@swc/core": "^1.11.18",
-    "chromedriver": "^135.0.4",
+    "chromedriver": "^137.0.3",
     "nightwatch": "^3.12.1",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
