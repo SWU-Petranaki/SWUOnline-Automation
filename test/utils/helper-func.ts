@@ -29,13 +29,14 @@ export async function NewRunGameStartAsync(browser: NightwatchAPI) {
   const maxRetries = 5;
 
   await browser
+    .refresh().pause(p.WaitToBegin)
     .waitForElementPresent(com.DeckInput)
+    .moveToElement(com.DeckInput, 10, 10)
     .setValue(com.DeckInput, swustatsDeck)
     .waitForElementVisible(com.CreateGameButton)
     .moveToElement(com.CreateGameButton, 10, 10)
     .click(com.CreateGameButton).pause(p.ButtonPress)
-    .refresh().pause(p.ButtonPress)
-    .refresh().pause(p.WaitToBegin)
+    .pause(p.WaitToBegin)
   ;
 
   let inviteRetry = 0;
