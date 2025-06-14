@@ -149,6 +149,7 @@ export const cards = {
     SurpriseStrike: '3809048641',
     ShootFirst: '8297630396',
     ForceLightning: '2639435822',
+    Restock: '6087834273',
   },
   SHD: {
     //bases

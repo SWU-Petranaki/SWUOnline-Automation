@@ -496,6 +496,30 @@ export class GameAssert {
     return this;
   }
 
+  public MyDeckCountEquals(count: number) {
+    this.TextEquals(com.MyDeckCount, count.toString());
+
+    return this;
+  }
+
+  public TheirDeckCountEquals(count: number) {
+    this.TextEquals(com.TheirDeckCount, count.toString());
+
+    return this;
+  }
+
+  public MyDeckIsEmpty() {
+    this.ElementPresent(com.MyDeckEmpty);
+
+    return this;
+  }
+
+  public TheirDeckIsEmpty() {
+    this.ElementPresent(com.TheirDeckEmpty);
+
+    return this;
+  }
+
   public MyGroundUnitIsNotPlayable(position: number) {
     this._gamePlay.___BrowsertAssert().attributeEquals(com.UnitImg(com.AllyGroundUnit(position)), 'style', src.NotPlayableBorderUnit);
 
