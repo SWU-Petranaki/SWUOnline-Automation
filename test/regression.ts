@@ -43,6 +43,7 @@ import { SpecificLOFCases } from '@cases/specific/lof';
 import { ExhaustCases } from '@cases/mechanics/exhaust';
 import { LeaderAbilityLOFCases } from '@cases/leaders/5lof/leader-ability';
 import { RestockCases } from '@cases/mechanics/restock';
+import { ForceTokenCases } from '@cases/mechanics/force-token';
 
 
 const home: NightwatchTests = {
@@ -86,6 +87,7 @@ const home: NightwatchTests = {
   ...SpecificJTLCases,
   ...JTLPoeCases,
   ...LeaderAbilityJTLCases,
+  ...ForceTokenCases,
   ...SpecificLOFCases,
   ...LeaderAbilityLOFCases,
 //end regression suite

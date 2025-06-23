@@ -287,6 +287,7 @@ export const cards = {
     PadawanStarfighter: '4718895864',
     R2D2: '5616678900',
     B1SecurityTeam: '6257858302',
+    PloKoon: '7494987248',
     //upgrades
     ShadowedIntentions: '9003830954',
     CloneCohort: '2007876522',
