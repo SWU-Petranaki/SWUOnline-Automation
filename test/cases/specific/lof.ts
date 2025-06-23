@@ -196,7 +196,7 @@ export const SpecificLOFCases = {
     //act
     const gameplay = new GamePlay(browser);
     await gameplay
-      .WaitForMyHand().PlayFromHand(1).WaitForCheckboxes().Check(1).Check(2).Check(3).Submit()
+      .WaitForMyHand().PlayFromHand(1).WaitForCheckboxes().Check(1).Check(2).Check(3).Submit().ChooseYes().ChooseYes()
       .SwitchPlayerWindow().WaitForMyLeader()
       .RunAsync()
     ;
