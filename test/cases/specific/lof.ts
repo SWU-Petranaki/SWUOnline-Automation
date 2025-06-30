@@ -68,8 +68,8 @@ export const SpecificLOFCases = {
     const gameplay = new GamePlay(browser);
     await gameplay
       .WaitForMyHand().PlayFromHand(1)
-      .WaitForCheckboxes().Check(1).Submit().Check(2).Submit()
-      .ChooseYes().WaitForCheckboxes().Check(5).Submit()
+      .WaitForCheckboxes().MouseAway().Check(1).Submit().MouseAway().Check(2).Submit()
+      .ChooseYes().WaitForCheckboxes().MouseAway().Check(5).Submit()
       .RunAsync()
     ;
     //assert

@@ -419,7 +419,7 @@ export const SpecificSORCases = {
       .RunAsync()
     ;
   },
-  UWing_layers_when_played_Falcon: ''+async function () {
+  UWing_layers_when_played_Falcon: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
