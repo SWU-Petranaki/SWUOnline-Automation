@@ -110,6 +110,7 @@ export const cards = {
     Bossk: '0052542605',
     ColonelYularen: '0961039929',
     Bendu: '5707383130',
+    NinetySeventhLegion: '7648077180',
     //upgrades
     Traitorous: '8055390529',
     MakeAnOpening: '3208391441',

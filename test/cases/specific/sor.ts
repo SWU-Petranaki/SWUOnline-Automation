@@ -419,4 +419,64 @@ export const SpecificSORCases = {
       .RunAsync()
     ;
   },
+  UWing_layers_when_played_Falcon: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("5 2")
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.SOR.SabineLeader)
+      .AddBase(2, cards.generic.BlueBase)
+      .AddLeader(2, cards.SHD.CadBaneLeader)
+      .FillResources(1, cards.SOR.BFMarine, 7)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddCardToDeck(1, cards.SOR.MillenniumFalcon)
+      .AddCardToDeck(1, cards.SHD.L337)
+      .AddCardToHand(1, cards.SOR.UWing)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).WaitForCheckboxes().Check(1).Check(2).Submit().ClickLayerTile(2)
+      .Pass().Pass().TargetMySpaceUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MySpaceUnitIsNotExhausted(1)
+      .MyBaseDamageEquals('5')
+      .TheirBaseDamageEquals('2')
+      .RunAsync()
+    ;
+  },
+  NinetySeventh_Legion: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("5 2")
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.SOR.SabineLeader)
+      .AddBase(2, cards.generic.BlueBase)
+      .AddLeader(2, cards.SHD.CadBaneLeader)
+      .FillResources(1, cards.SOR.BFMarine, 9)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddCardToHand(1, cards.SOR.NinetySeventhLegion)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyGroundUnitPieceEquals(1, 1, '9')
+      .MyGroundUnitPieceEquals(1, 2, '9')
+      .RunAsync()
+    ;
+  }
 }
