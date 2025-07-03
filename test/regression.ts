@@ -44,6 +44,7 @@ import { ExhaustCases } from '@cases/mechanics/exhaust';
 import { LeaderAbilityLOFCases } from '@cases/leaders/5lof/leader-ability';
 import { RestockCases } from '@cases/mechanics/restock';
 import { ForceTokenCases } from '@cases/mechanics/force-token';
+import { HiddenCases } from '@cases/mechanics/hidden';
 
 
 const home: NightwatchTests = {
@@ -72,6 +73,8 @@ const home: NightwatchTests = {
   ...BountyCases,
   ...SmuggleCases,
   ...ExploitCases,
+  ...PilotJTLCases,
+  ...HiddenCases,
   ...CloneCases,
   ...LeaderAbilitySORCases,
   ...LeaderUnitSORCases,
@@ -82,7 +85,6 @@ const home: NightwatchTests = {
   ...LeaderAbilityTWICases,
   ...LeaderUnitTWICases,
   ...SpecificTWICases,
-  ...PilotJTLCases,
   ...IndirectDamageCases,
   ...SpecificJTLCases,
   ...JTLPoeCases,
