@@ -130,4 +130,63 @@ export const LeaderAbilityLOFCases = {
       .RunAsync()
     ;
   },
+  AnakinLeader_play_villainy_pilot: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.YellowForceBase, false, true)
+      .AddLeader(1, cards.LOF.AnakinLeader)
+      .AddBase(2, cards.generic.YellowBase)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.CraftySmuggler, 3)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddUnit(1, cards.JTL.Fireball, false, true, 1)
+      .AddCardToHand(1, cards.JTL.InterceptorAce)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1).TargetMyHandCard(1)
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForMySpaceUnit(1).AttackWithMySpaceUnit(1).TargetTheirBase()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheirBaseDamageEquals("6")
+      .MyBaseDamageEquals("0")
+      .MySpaceUnitPieceEquals(1, 1, 'INTERCEPTOR ACE')
+      .RunAsync()
+    ;
+  },
+  AnakinLeader_play_villainy_pilot_invalid: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.YellowForceBase, false, true)
+      .AddLeader(1, cards.LOF.AnakinLeader)
+      .AddBase(2, cards.generic.YellowBase)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.CraftySmuggler, 3)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddCardToHand(1, cards.JTL.InterceptorAce)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1).TargetMyHandCard(1)
+      .WaitForClaimButton().ClaimInitiative()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .WeHaveNoUnits()
+      .MyHandSizeIs(1)
+      .RunAsync()
+    ;
+  },
 }
