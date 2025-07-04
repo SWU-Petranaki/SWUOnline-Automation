@@ -393,4 +393,40 @@ export const SpecificLOFCases = {
       .RunAsync()
     ;
   },
+  Rey_drawn_by_Yoda_TWI_Leader: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.RedBase)
+      .AddLeader(1, cards.TWI.YodaLeader)
+      .AddBase(2, cards.generic.RedBase)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.BFMarine, 2)
+      .FillResources(2, cards.SOR.CraftySmuggler, 2)
+      .AddCardToDeck(1, cards.LOF.ReyUnit)
+      .AddCardToDeck(1, cards.SOR.Restock, 2)
+      .AddCardToHand(1, cards.SOR.Restock)
+      .AddCardToHand(1, cards.SHD.CassianAndor)
+      .SetClassStatePiece(1, cs.NumLeftPlay, '1')
+      .AddUnit(1, cards.SOR.GreenSquadAWing)
+      .AddUnit(2, cards.SOR.GreenSquadAWing)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1).ChooseModalOption(2)
+      .TargetMyHandCard(2).ChooseButton(1, 1).TargetTheirSpaceUnit(1).TargetMySpaceUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheirBaseDamageEquals("2")
+      .MyBaseDamageEquals("0")
+      .MySpaceUnitIsThere(1)
+      .MySpaceUnitPieceIsOverlay(1, 3)
+      .TheirSpaceUnitPieceEquals(1, 3, "2")
+      .RunAsync()
+  },
 }
