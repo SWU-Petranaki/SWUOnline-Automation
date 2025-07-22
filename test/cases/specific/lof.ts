@@ -429,4 +429,72 @@ export const SpecificLOFCases = {
       .TheirSpaceUnitPieceEquals(1, 3, "2")
       .RunAsync()
   },
+  Drengir_Spawn_defeats_leader_unit_with_grit: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.YellowBase)
+      .AddLeader(1, cards.LOF.MorganElsbethLeader)
+      .AddBase(2, cards.generic.YellowBase)
+      .AddLeader(2, cards.SHD.QiRaLeader, true)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .FillResources(2, cards.SOR.CraftySmuggler, 5)
+      .AddUnitWithExperience(1, cards.LOF.DrengirSpawn, 3, false, true, 3)
+      .AddUnitWithDamage(2, cards.SHD.QiRaLeaderUnit, 2)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyGroundUnit().AttackWithMyGroundUnit(1).TargetTheirGroundUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyGroundUnitIsThere(1)
+      .TheirGroundUnitIsGone(1)
+      .MyGroundUnitPieceEquals(1, 1, 'EXPERIENCE')
+      .MyGroundUnitPieceEquals(1, 2, 'EXPERIENCE')
+      .MyGroundUnitPieceEquals(1, 3, 'EXPERIENCE')
+      .MyGroundUnitPieceEquals(1, 4, 'EXPERIENCE')
+      .MyGroundUnitPieceEquals(1, 5, 'EXPERIENCE')
+      .MyGroundUnitPieceEquals(1, 6, 'EXPERIENCE')
+      .MyGroundUnitPieceEquals(1, 7, 'EXPERIENCE')
+      .MyGroundUnitPieceEquals(1, 8, 'EXPERIENCE')
+      .MyGroundUnitPieceEquals(1, 9, '11')
+      .MyGroundUnitPieceEquals(1, 10, '11')
+      .MyGroundUnitPieceEquals(1, 11, '5')
+      .MyGroundUnitPieceIsOverlay(1, 12)
+      .RunAsync()
+    ;
+  },
+  Boba_Daimyo_Obiwan_unit: async function () {
+    // arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.YellowBase)
+      .AddLeader(1, cards.SHD.BobaDaimyoLeader)
+      .AddBase(2, cards.generic.YellowBase)
+      .AddLeader(2, cards.SHD.CadBaneLeader)
+      .FillResources(1, cards.SOR.BFMarine, 3)
+      .FillResources(2, cards.SOR.CraftySmuggler, 3)
+      .AddCardToHand(1, cards.LOF.ObiWanPadawan)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    // act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).Pass().TargetMyGroundUnit(1)
+      .RunAsync()
+    ;
+    // assert
+    gameplay.Assert()
+      .MyHandIsEmpty()
+      .MyGroundUnitIsThere(1)
+      .MyGroundUnitPieceEquals(1, 1, '4')
+      .RunAsync()
+    ;
+  }
 }

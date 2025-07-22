@@ -488,6 +488,7 @@ export const cards = {
     BaylanSkoll: '4729355863',
     Yoda: '5098263349',
     BD1: '0024409893',
+    DrengirSpawn: '3092212109',
     //upgrades
     DarthMaulsSaber: '2167393423',
     SithHolocron: '0412810079',
@@ -504,4 +505,30 @@ export const cards = {
     ShienFlurry: '7981459508',
     DeathField: '4092125792',
   },
+  IBH: {
+    //bases
+    //leaders and leader units
+    LeiaLeader: '9970912404',
+    VaderLeader: '9389694773',
+    //units
+    RogueSquadronSpeeder: '8332320550',
+    LukeSkywalker: '1174196426',
+    R2D2: '3366353612',
+    C3PO: '2404973143',
+    HanSolo: '4136801536',
+    GeneralVeers: '6776733024',
+    AdmiralPiett: '0274964861',
+    Avenger: '4184803715',
+    BlizzardOne: '5480486728',
+    HothLieutenant: '4512477799',
+    //upgrades
+    //events
+    Recovery: '0375794695',
+    GoForTheLegs: '2859074789',
+    ImprovisedDetonation: '1758639231',
+    IllCoverForYou: '1941072965',
+    IWantProofNotLeads: '2796502553',
+    TheDesolationOfHoth: '4087028261',
+    YouHaveFailedMe: '4187779775',
+  }
 }
