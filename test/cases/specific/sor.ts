@@ -478,5 +478,68 @@ export const SpecificSORCases = {
       .MyGroundUnitPieceEquals(1, 2, '9')
       .RunAsync()
     ;
+  },
+  Bombing_Run_with_captive: ''+async function () {//TODO: failing test
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("5 2")
+      .AddBase(1, cards.generic.RedBase)
+      .AddLeader(1, cards.SHD.CadBaneLeader)
+      .AddBase(2, cards.generic.YellowBase)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .FillResources(2, cards.SOR.CraftySmuggler, 5)
+      .AddCardToHand(1, cards.SOR.BombingRun)
+      .AddUnitWithCaptive(2, cards.TWI.SanctioneerShuttle, cards.JTL.MistHunter)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).ChooseModalOption(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheirSpaceUnitIsGone(1)
+      .MySpaceUnitIsThere(1)
+      .MySpaceUnitPieceEquals(1, 1, '3')
+      .MySpaceUnitPieceEquals(1, 2, '4')
+      .MySpaceUnitPieceIsOverlay(1, 3)
+      .RunAsync()
+    ;
+  },
+  Iden_Versio_leader_unit_no_heal_when_defeated_by_when_defeated_unit: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("5 5")
+      .AddBase(1, cards.SOR.DagobahSwamp)
+      .AddLeader(1, cards.LOF.QuiGonJinnLeader)
+      .AddBase(2, cards.SOR.ECL)
+      .AddLeader(2, cards.SOR.IdenLeader, true)
+      .FillResources(1, cards.SOR.CraftySmuggler, 7)
+      .FillResources(2, cards.SOR.CraftySmuggler, 7)
+      .AddCardToHand(1, cards.LOF.QuiGonJinnUnit)
+      .AddUnit(2, cards.SOR.IdenLeaderUnit, true)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).ChooseYes()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheyHaveNoGroundUnits()
+      .MyGroundUnitPieceEquals(1, 3, '4')
+      .TheirBaseDamageEquals('5')
+      .MyBaseDamageEquals('5')
+      .RunAsync()
+    ;
   }
 }

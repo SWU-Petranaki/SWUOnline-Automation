@@ -393,7 +393,7 @@ export const SpecificLOFCases = {
       .RunAsync()
     ;
   },
-  Rey_drawn_by_Yoda_TWI_Leader: async function () {
+  Rey_drawn_by_Yoda_TWI_leader: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -496,5 +496,222 @@ export const SpecificLOFCases = {
       .MyGroundUnitPieceEquals(1, 1, '4')
       .RunAsync()
     ;
-  }
+  },
+  Kylo_Ren_leader_Migs_SHD_ping: async function () {
+    // arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.RedBase)
+      .AddLeader(1, cards.LOF.KyloRenLeader)
+      .AddBase(2, cards.generic.YellowBase)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.BFMarine, 3)
+      .FillResources(2, cards.SOR.CraftySmuggler, 3)
+      .AddCardToHand(1, cards.SOR.POTDS)
+      .AddUnit(1, cards.SHD.MigsMayfeld)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    // act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(1).TargetMyHandCard(1).TargetTheirBase().MouseAway()
+      .RunAsync()
+    ;
+    // assert
+    gameplay.Assert()
+      .MyHandIsEmpty()
+      .MyGroundUnitIsThere(1)
+      .TheirBaseDamageEquals("2")
+      .RunAsync()
+    ;
+  },
+  Sith_Holocron_double_trigger: async function () {
+    // arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.RedBase)
+      .AddLeader(1, cards.LOF.KyloRenLeader, true)
+      .AddBase(2, cards.generic.GreenBase)
+      .AddLeader(2, cards.SHD.QiRaLeader)
+      .FillResources(1, cards.SOR.BFMarine, 7)
+      .FillResources(2, cards.SOR.CraftySmuggler, 7)
+      .AddUnit(1, cards.LOF.KyloRenLeaderUnit, true, true, 1,
+        gameState.SubcardBuilder()
+        .AddUpgrade(cards.LOF.SithHolocron, 1)
+        .AddUpgrade(cards.LOF.SithHolocron, 1)
+        .AddUpgrade(cards.LOF.KyloRensLightsaber, 1)
+        .Build())
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    // act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyGroundUnit().AttackWithMyGroundUnit(1).Pass().ChooseYes().ChooseYes()
+      .RunAsync()
+    ;
+    // assert
+    gameplay.Assert()
+      .MyGroundUnitIsThere(1)
+      .TheirBaseDamageEquals("12")
+      .RunAsync()
+  },
+  HK47_no_ping_when_defeated_by_vanilla: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.YellowBase)
+      .AddLeader(1, cards.SOR.IG88Leader)
+      .AddBase(2, cards.generic.YellowBase)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .FillResources(2, cards.SOR.CraftySmuggler, 5)
+      .AddUnitWithDamage(1, cards.LOF.HK47, 2)
+      .AddUnit(2, cards.SOR.BFMarine)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForMyGroundUnit().AttackWithMyGroundUnit(1).TargetTheirGroundUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheyHaveNoUnits()
+      .MyGroundUnitPieceEquals(1, 3, '2')
+      .TheirBaseDamageEquals('0')
+      .MyBaseDamageEquals('0')
+      .RunAsync()
+    ;
+  },
+  HK47_no_ping_when_defeated_self: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.YellowBase)
+      .AddLeader(1, cards.SOR.IG88Leader)
+      .AddBase(2, cards.generic.YellowBase)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .FillResources(2, cards.SOR.CraftySmuggler, 5)
+      .AddUnitWithDamage(1, cards.LOF.HK47, 2)
+      .AddUnit(2, cards.SOR.BFMarine)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyGroundUnit().AttackWithMyGroundUnit(1).TargetTheirGroundUnit(1)
+      .SwitchPlayerWindow().WaitForMyGroundUnit().AttackWithMyGroundUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheyHaveNoUnits()
+      .MyGroundUnitPieceEquals(1, 3, '2')
+      .TheirBaseDamageEquals('0')
+      .MyBaseDamageEquals('0')
+      .RunAsync()
+    ;
+  },
+  HK47_no_ping_when_defeated_by_when_defeated_unit: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.YellowBase)
+      .AddLeader(1, cards.SOR.IG88Leader)
+      .AddBase(2, cards.generic.YellowBase)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.BFMarine, 7)
+      .FillResources(2, cards.SOR.CraftySmuggler, 7)
+      .AddUnit(1, cards.LOF.HK47)
+      .AddCardToHand(2, cards.LOF.QuiGonJinnUnit)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForMyHand().PlayFromHand(1).ChooseYes()
+      .SwitchPlayerWindow()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .IHaveNoUnits()
+      .MyGroundUnitIsGone(1)
+      .TheirGroundUnitPieceEquals(1, 3, '2')
+      .MyBaseDamageEquals('0')
+      .TheirBaseDamageEquals('0')
+      .RunAsync()
+    ;
+  },
+  HK47_no_ping_when_defeated_self_on_defeated_unit: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.YellowBase)
+      .AddLeader(1, cards.SOR.IG88Leader)
+      .AddBase(2, cards.generic.YellowBase)
+      .AddLeader(2, cards.SOR.SabineLeader)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .FillResources(2, cards.SOR.CraftySmuggler, 5)
+      .AddUnit(1, cards.LOF.HK47)
+      .AddUnit(2, cards.LOF.QuiGonJinnUnit)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyGroundUnit().AttackWithMyGroundUnit(1).TargetTheirGroundUnit(1)
+      .SwitchPlayerWindow().WaitForMyLeader()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheyHaveNoUnits()
+      .MyGroundUnitPieceEquals(1, 3, '2')
+      .TheirBaseDamageEquals('0')
+      .MyBaseDamageEquals('0')
+      .RunAsync()
+    ;
+  },
+  HK47_no_ping_when_defeated_by_ambush: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.YellowBase)
+      .AddLeader(1, cards.SOR.IG88Leader)
+      .AddBase(2, cards.generic.YellowBase)
+      .AddLeader(2, cards.SOR.DarthVaderLeader)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .FillResources(2, cards.SOR.CraftySmuggler, 5)
+      .AddUnit(2, cards.LOF.HK47)
+      .AddCardToHand(1, cards.SOR.Bossk)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).ChooseYes()
+      .SwitchPlayerWindow()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .IHaveNoUnits()
+      .TheirGroundUnitPieceEquals(1, 3, '2')
+      .TheirBaseDamageEquals('0')
+      .MyBaseDamageEquals('0')
+      .RunAsync()
+    ;
+  },
 }

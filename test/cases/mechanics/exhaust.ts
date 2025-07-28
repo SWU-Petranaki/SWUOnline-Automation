@@ -41,7 +41,7 @@ export const ExhaustCases = {
       .RunAsync()
     ;
   },
-  Ackbar_Leader_exhaust_them_they_get_XWing: async function () {
+  Ackbar_leader_exhaust_them_they_get_XWing: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -70,7 +70,7 @@ export const ExhaustCases = {
       .RunAsync()
     ;
   },
-  Ackbar_Leader_exhaust_mine_i_get_XWing: async function () {
+  Ackbar_leader_exhaust_mine_i_get_XWing: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

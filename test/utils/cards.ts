@@ -402,6 +402,7 @@ export const cards = {
     StolenATHauler: '6272475624',
     BlackOne: '3389903389',
     BlackSquadScoutWing: '6354077246',
+    MistHunter: '7192849828',
     //upgrades
     DeathStarPlans: '7501988286',
     //events
@@ -495,6 +496,7 @@ export const cards = {
     CorruptedSaber: '8085392838',
     KyloRensLightsaber: '1637958279',
     SizeMattersNot: '6980075962',
+    YodasLightsaber: '5800386133',
     //events
     DrainEssence: '5083905745',
     AsIHaveForeseen: '8569501777',
@@ -504,6 +506,7 @@ export const cards = {
     CureWounds: '3853063436',
     ShienFlurry: '7981459508',
     DeathField: '4092125792',
+    DoOrDoNot: '2062827036',
   },
   IBH: {
     //bases
@@ -516,6 +519,7 @@ export const cards = {
     R2D2: '3366353612',
     C3PO: '2404973143',
     HanSolo: '4136801536',
+    MillenniumFalcon: '6270777752',
     GeneralVeers: '6776733024',
     AdmiralPiett: '0274964861',
     Avenger: '4184803715',
@@ -530,5 +534,13 @@ export const cards = {
     IWantProofNotLeads: '2796502553',
     TheDesolationOfHoth: '4087028261',
     YouHaveFailedMe: '4187779775',
+  },
+  SEC: {
+    //units
+    CadBane: '8365930807',
+    //upgrades
+    ArmorOfFortune: '0024944513',
+    //events:
+    ChargedWithMurder: '7930132943',
   }
 }

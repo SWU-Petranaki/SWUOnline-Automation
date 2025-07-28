@@ -5,7 +5,7 @@
   "scripts": {
     "tscne": "tsc --noEmit",
     "start": "nightwatch ./test/bug-report.ts",
-    "test": "nightwatch ./test/regression.ts --env=headless --retries 3 --suiteRetries 1",
+    "test": "nightwatch ./test/regression.ts --env=headless --retries 1 --suiteRetries 1",
     "test:visual": "nightwatch ./test/regression.ts",
     "test:local": "nightwatch ./test/cases/_local.ts",
     "test:group": "nightwatch ./test/cases/_group.ts",
@@ -17,7 +17,7 @@
   "description": "",
   "devDependencies": {
     "@swc/core": "^1.12.1",
-    "chromedriver": "^137.0.3",
+    "chromedriver": "^139.0.0",
     "nightwatch": "^3.12.2",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",

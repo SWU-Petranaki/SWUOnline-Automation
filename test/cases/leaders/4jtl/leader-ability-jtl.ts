@@ -11,7 +11,7 @@ import {
 } from '@utils/util';
 
 export const LeaderAbilityJTLCases = {
-  Kazuda_Leader_Unit_on_attack: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
+  Kazuda_leader_unit_on_attack: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

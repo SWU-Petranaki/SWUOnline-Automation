@@ -327,6 +327,7 @@ export const LeaderUnitSORCases = {
     //assert
     await customAsserts.UnitIsNotPlayable(browser, com.EnemySpaceUnit(1));
   },
+  //TODO: look into these full regression failures
   Chirrut_leader_defeated_ready: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);

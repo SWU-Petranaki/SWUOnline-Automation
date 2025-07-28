@@ -8,7 +8,7 @@ import {
 } from '@utils/util';
 
 export const BoardWipeCases = {
-  Iden_Versio_Leader_unit_SLB: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
+  Iden_Versio_leader_unit_SLB: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -45,7 +45,7 @@ export const BoardWipeCases = {
       .RunAsync()
     ;
   },
-  Iden_Versio_Leader_unit_SLB_Two_Iden: process.env.FULL_REGRESSION !== 'true' ? '' : async function () {
+  Iden_Versio_leader_unit_SLB_Two_Iden: process.env.FULL_REGRESSION !== 'true' ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -81,7 +81,7 @@ export const BoardWipeCases = {
       .RunAsync()
     ;
   },
-  Iden_Versio_Leader_unit_Christophsis: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
+  Iden_Versio_leader_unit_Christophsis: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -112,7 +112,7 @@ export const BoardWipeCases = {
     await browser.assert.textEquals(com.MyBaseDamage, '15');
     await browser.assert.textEquals(com.TheirBaseDamage, '9');
   },
-  Iden_Versio_Leader_unit_Christophsis_Two_Idens: process.env.FULL_REGRESSION !== 'true' ? '' : async function () {
+  Iden_Versio_leader_unit_Christophsis_Two_Idens: process.env.FULL_REGRESSION !== 'true' ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

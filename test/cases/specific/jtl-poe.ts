@@ -10,7 +10,7 @@ import {
 } from '@utils/util';
 
 export const JTLPoeCases = process.env.FULL_REGRESSION !== "true" ? {} : {
-  Poe_Leader_no_resources_cant_jump: async function () {
+  Poe_leader_no_resources_cant_jump: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -34,7 +34,7 @@ export const JTLPoeCases = process.env.FULL_REGRESSION !== "true" ? {} : {
     const lastLogs = (await browser.getText(com.GameLog)).split('\n').slice(-1);
     browser.assert.equal(true, lastLogs.includes("Not enough resources to pay for that. Reverting gamestate."));
   },
-  Poe_Leader_deploy_defeat_cant_deploy_next_turn: async function () {
+  Poe_leader_deploy_defeat_cant_deploy_next_turn: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -83,7 +83,7 @@ export const JTLPoeCases = process.env.FULL_REGRESSION !== "true" ? {} : {
       .RunAsync()
     ;
   },
-  Poe_Leader_mass_testing_interactions: async function () {
+  Poe_leader_mass_testing_interactions: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -250,7 +250,7 @@ export const JTLPoeCases = process.env.FULL_REGRESSION !== "true" ? {} : {
     //assert
     await browser.assert.textEquals(com.UnitDivPiece(com.AllySpaceUnit(1), 1), 'POE DAMERON');
   },
-  Poe_Leader_eject_combo: async function () {
+  Poe_leader_eject_combo: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -323,7 +323,7 @@ export const JTLPoeCases = process.env.FULL_REGRESSION !== "true" ? {} : {
     await browser.assert.textEquals(com.MyBaseDamage, '9');
     await browser.assert.textEquals(com.TheirBaseDamage, '9');
   },
-  Poe_Leader_eject_combo_defeated_still_deploys: async function () {
+  Poe_leader_eject_combo_defeated_still_deploys: async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -487,7 +487,7 @@ export const JTLPoeCases = process.env.FULL_REGRESSION !== "true" ? {} : {
       .RunAsync()
     ;
   },
-  Poe_Leader_Merc_Gunship_interactions:  async function () {
+  Poe_leader_Merc_Gunship_interactions:  async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
