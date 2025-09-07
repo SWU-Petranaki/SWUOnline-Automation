@@ -151,6 +151,7 @@ export const cards = {
     ShootFirst: '8297630396',
     ForceLightning: '2639435822',
     Restock: '6087834273',
+    SparkOfRebellion: '2050990622',
   },
   SHD: {
     //bases
@@ -213,6 +214,7 @@ export const cards = {
     FourLom: '6097248635',
     Zuckuss: '1690726274',
     DoctorPershing: '6722700037',
+    BazineNetal: '5830140660',
     //upgrades
     TopTarget: '4282425335',
     Darksaber: '3141660491',
@@ -536,6 +538,11 @@ export const cards = {
     YouHaveFailedMe: '4187779775',
   },
   SEC: {
+    //leaders and leader units
+    ChancellorPalpatineLeader: '1020365882',
+    ChancellorPalpatineLeaderUnit: 'f5c367b02f',
+    PadmeAmidalaLeader: '3399415368',
+    PadmeAmidalaLeaderUnit: '9efccff9d9',
     //units
     CadBane: '8365930807',
     //upgrades

@@ -45,6 +45,7 @@ import { LeaderAbilityLOFCases } from '@cases/leaders/5lof/leader-ability';
 import { RestockCases } from '@cases/mechanics/restock';
 import { ForceTokenCases } from '@cases/mechanics/force-token';
 import { HiddenCases } from '@cases/mechanics/hidden';
+import { LeaderAbilitySECCases } from '@cases/leaders/6sec/leader-ability-sec';
 
 
 const home: NightwatchTests = {
@@ -92,6 +93,7 @@ const home: NightwatchTests = {
   ...ForceTokenCases,
   ...SpecificLOFCases,
   ...LeaderAbilityLOFCases,
+  ...LeaderAbilitySECCases,
 //end regression suite
   after: async (browser, done) => {
     await browser.window.switchTo(player2Window).window.close();
