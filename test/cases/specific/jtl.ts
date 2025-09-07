@@ -10,7 +10,7 @@ import {
 
 
 export const SpecificJTLCases = {
-  Eject_epic_action_pilot_leader_unit_defeated_cant_deploy_next_turn: async function () {
+  Eject_epic_action_pilot_leader_unit_defeated_cant_deploy_next_turn: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -80,7 +80,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
   },
-  epic_action_pilot_leader_upgrade_defeated_cant_deploy_next_turn: async function () {
+  epic_action_pilot_leader_upgrade_defeated_cant_deploy_next_turn: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -126,7 +126,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
   },
-  Leia_Poe_Ejected_ground_unit: async function () {
+  Leia_Poe_Ejected_ground_unit: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -157,7 +157,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
   },
-  Leia_Poe_deployed_ground_unit: async function () {
+  Leia_Poe_deployed_ground_unit: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -188,7 +188,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
   },
-  Leia_Poe_space_piloted_unit: async function () {
+  Leia_Poe_space_piloted_unit: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -220,7 +220,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
   },
-  Sabines_Masterpiece: async function () {
+  Sabines_Masterpiece: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -324,7 +324,7 @@ export const SpecificJTLCases = {
       .RunAsync()
     ;
   },
-  Kazuda_upgrade_bounties: async function () {
+  Kazuda_upgrade_bounties: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -433,7 +433,7 @@ export const SpecificJTLCases = {
   // GIVEN: i have base generic.BlueBase; i have leader SHD.ReyLeader; they have base generic.RedBase; they have leader SHD.MandoLeader; i have SOR.R2D2 in play with an experience token; i have JTL.Hondo in play;;
   // WHEN: i attack with my second ground unit; i pass; i target my first ground unit; i choose button (1,1); i target my second ground unit;;
   // EXPECT: my first ground unit's first piece equals '1'; my second ground unit's first piece equals 'EXPERIENCE'; their base's damage equals '4';
-  Hondo_on_attack: async function () {
+  Hondo_on_attack: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -463,7 +463,7 @@ export const SpecificJTLCases = {
   // GIVEN: i have base generic.BlueBase; i have leader SHD.ReyLeader; they have base generic.RedBase; they have leader SHD.MandoLeader; i have JTL.Hondo in play; they have JTL.TheGhost in play: not from epic action, ready, with 2 damage, with JTL.PhantomII owned by Player 2 as a pilot;;
   // WHEN: i attack with my first ground unit; i pass; i target their first space unit; i choose button (1,1); i pass;;
   // EXPECT: my first ground unit is there; their first space unit is there; their base's damage equals '3'; their first space unit's first piece equals 'PHANTOM II';
-  Hondo_on_attack_Ghost_Phantom_cant: async function () {
+  Hondo_on_attack_Ghost_Phantom_cant: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -498,7 +498,7 @@ export const SpecificJTLCases = {
   // GIVEN: i have base generic.BlueBase; i have leader SHD.ReyLeader; they have base generic.RedBase; they have leader SHD.MandoLeader; i have JTL.Hondo in play; i have JTL.TheGhost in play; they have JTL.TheGhost in play: not from epic action, ready, with 2 damage, with JTL.PhantomII owned by Player 2 as a pilot;;
   // WHEN: i attack with my first ground unit; i pass; i target their first space unit; i choose button (1,1); i target my first space unit; i pass;;
   // EXPECT: my first ground unit is there; their first space unit is there; their base's damage equals '3'; my first space unit's first piece equals 'PHANTOM II'; their first space unit's first piece equals '5';;
-  Hondo_on_attack_Ghost_Phantom_own_Ghost: async function () {
+  Hondo_on_attack_Ghost_Phantom_own_Ghost: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();

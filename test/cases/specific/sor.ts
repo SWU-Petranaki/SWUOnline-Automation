@@ -56,7 +56,7 @@ export const SpecificSORCases = {
     //assert
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 1), 'EXPERIENCE');
   },
-  'Gideon Hask: opponent pings self': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
+  Gideon_Hask_opponent_pings_self: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     await GideonHaskGameStateAsync();
     //act
@@ -83,7 +83,7 @@ export const SpecificSORCases = {
     //assert
     await browser.assert.textEquals(com.UnitDivPiece(com.AllyGroundUnit(1), 1), 'EXPERIENCE');
   },
-  'Gideon Hask: pinged to death': process.env.FULL_REGRESSION !== "true" ? '' : async function () {
+  Gideon_Hask_pinged_to_death: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     await GideonHaskGameStateAsync();
     //act

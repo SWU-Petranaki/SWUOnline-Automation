@@ -110,7 +110,7 @@ export const SpecificTWICases = {
       .RunAsync()
     ;
   },
-  Darth_Maul_attacks_two_units: async function () {
+  Darth_Maul_attacks_two_units: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -140,7 +140,7 @@ export const SpecificTWICases = {
       .RunAsync()
     ;
   },
-  Darth_Maul_single_target: async function () {
+  Darth_Maul_single_target: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -166,7 +166,7 @@ export const SpecificTWICases = {
       .RunAsync()
     ;
   },
-  Darth_Maul_choose_one: async function () {
+  Darth_Maul_choose_one: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
    //arrange
    const gameState = new GameState(gameName);
    await gameState.LoadGameStateLinesAsync();
@@ -194,7 +194,7 @@ export const SpecificTWICases = {
       .RunAsync()
     ;
   },
-  Darth_Maul_sentinels: async function () {
+  Darth_Maul_sentinels: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -222,7 +222,7 @@ export const SpecificTWICases = {
       .RunAsync()
     ;
   },
-  Darth_Maul_single_sentinel: async function () {
+  Darth_Maul_single_sentinel: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -249,7 +249,7 @@ export const SpecificTWICases = {
       .RunAsync()
     ;
   },
-  Darth_Maul_shoots_first_both_sentinels: async function () {
+  Darth_Maul_shoots_first_both_sentinels: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
@@ -280,7 +280,7 @@ export const SpecificTWICases = {
       .RunAsync()
     ;
   },
-  Darth_Maul_shoots_first_one_sentinel_survives: async function () {
+  Darth_Maul_shoots_first_one_sentinel_survives: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);
     await gameState.LoadGameStateLinesAsync();
