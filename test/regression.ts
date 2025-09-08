@@ -47,6 +47,7 @@ import { ForceTokenCases } from '@cases/mechanics/force-token';
 import { HiddenCases } from '@cases/mechanics/hidden';
 import { LeaderAbilitySECCases } from '@cases/leaders/6sec/leader-ability-sec';
 import { SpecificSECCases } from '@cases/specific/sec';
+import { PlotCases } from '@cases/mechanics/plot';
 
 
 const home: NightwatchTests = {
@@ -94,6 +95,7 @@ const home: NightwatchTests = {
   ...ForceTokenCases,
   ...SpecificLOFCases,
   ...LeaderAbilityLOFCases,
+  ...PlotCases,
   ...LeaderAbilitySECCases,
   ...SpecificSECCases,
 //end regression suite
