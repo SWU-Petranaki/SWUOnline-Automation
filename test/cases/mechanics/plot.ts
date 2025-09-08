@@ -68,5 +68,60 @@ export const PlotCases = {
       .MyResourcesEquals("0/7")
       .RunAsync()
     ;
+  },
+  Plot_with_resources_used: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.LOF.KyloRenLeader)
+      .AddBase(2, cards.generic.GreenBase)
+      .AddLeader(2, cards.SEC.PadmeAmidalaLeader)
+      .AddResource(1, cards.SEC.CadBane, false)
+      .AddResource(1, cards.SOR.BFMarine, false)
+      .AddCardToDeck(1, cards.SOR.BFMarine)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(2).ChooseMultiImg(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyGroundUnitIsThere(2)
+      .MyResourcesEquals("0/7")
+      .RunAsync()
+    ;
+  },
+  Plot_with_resources_used_no_deck: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.LOF.KyloRenLeader)
+      .AddBase(2, cards.generic.GreenBase)
+      .AddLeader(2, cards.SEC.PadmeAmidalaLeader)
+      .AddResource(1, cards.SEC.CadBane, false)
+      .AddResource(1, cards.SOR.BFMarine, false)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(2).ChooseMultiImg(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyGroundUnitIsThere(2)
+      .MyResourcesEquals("0/6")
+      .RunAsync()
+    ;
   }
 }
