@@ -215,6 +215,7 @@ export const cards = {
     Zuckuss: '1690726274',
     DoctorPershing: '6722700037',
     BazineNetal: '5830140660',
+    FreetownBackup: '4534554684',
     //upgrades
     TopTarget: '4282425335',
     Darksaber: '3141660491',
@@ -543,8 +544,17 @@ export const cards = {
     ChancellorPalpatineLeaderUnit: 'f5c367b02f',
     PadmeAmidalaLeader: '3399415368',
     PadmeAmidalaLeaderUnit: '9efccff9d9',
+    //tokens:
+    Spy: '6665455613',
     //units
     CadBane: '8365930807',
+    SlyMoore: '7069246970',
+    ChancellorPalpatineUnit: '7936097828',
+    MajorPartagaz: '2183727633',
+    NabooRoyalStarship: '2919204327',
+    MinaBonteri: '9378249305',
+    CaptainTypho: '8088607505',
+    MonMothma: '1347170274',
     //upgrades
     ArmorOfFortune: '0024944513',
     //events:
