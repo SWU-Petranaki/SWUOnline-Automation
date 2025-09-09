@@ -559,6 +559,7 @@ export const cards = {
     AhsokaTano: '7352167785',
     //upgrades
     ArmorOfFortune: '0024944513',
+    UnveiledMight: '2877797132',
     //events:
     ChargedWithMurder: '7930132943',
   }

@@ -176,5 +176,38 @@ export const PlotCases = {
       .MyResourcesEquals("0/5")
       .RunAsync()
     ;
+  },
+  Plot_make_play_after: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.LOF.CalKestisLeader)
+      .AddBase(2, cards.generic.GreenBase)
+      .AddLeader(2, cards.SEC.PadmeAmidalaLeader)
+      .FillResources(1, cards.SOR.BFMarine, 3)
+      .FillResources(1, cards.SEC.UnveiledMight, 1)
+      .AddCardToDeck(1, cards.SOR.BFMarine)
+      .AddCardToDeck(1, cards.SOR.BFMarine)
+      .AddCardToDeck(1, cards.SOR.BFMarine)
+      .AddCardToHand(1, cards.SOR.BFMarine)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(2).ChooseMultiImg(1)
+      .SwitchPlayerWindow().WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForMyGroundUnit().AttackWithMyGroundUnit(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheirBaseDamageEquals("5")
+      .MyGroundUnitIsThere(1)
+      .MyResourcesEquals("0/4")
+      .RunAsync()
+    ;
   }
 }
