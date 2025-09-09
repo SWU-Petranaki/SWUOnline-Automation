@@ -555,6 +555,7 @@ export const cards = {
     MinaBonteri: '9378249305',
     CaptainTypho: '8088607505',
     MonMothma: '1347170274',
+    AhsokaTano: '7352167785',
     //upgrades
     ArmorOfFortune: '0024944513',
     //events:

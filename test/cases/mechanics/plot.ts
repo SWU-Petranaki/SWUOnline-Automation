@@ -123,5 +123,58 @@ export const PlotCases = {
       .MyResourcesEquals("0/6")
       .RunAsync()
     ;
+  },
+  Plot_off_aspect_no_deck: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.LOF.CalKestisLeader)
+      .AddBase(2, cards.generic.GreenBase)
+      .AddLeader(2, cards.SEC.PadmeAmidalaLeader)
+      .FillResources(1, cards.SOR.BFMarine, 4)
+      .FillResources(1, cards.SEC.ChancellorPalpatineUnit, 1)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(2).ChooseMultiImg(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyGroundUnitIsThere(2)
+      .MyResourcesEquals("0/4")
+      .RunAsync()
+    ;
+  },
+  Plot_off_aspect: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.LOF.CalKestisLeader)
+      .AddBase(2, cards.generic.GreenBase)
+      .AddLeader(2, cards.SEC.PadmeAmidalaLeader)
+      .FillResources(1, cards.SOR.BFMarine, 4)
+      .FillResources(1, cards.SEC.ChancellorPalpatineUnit, 1)
+      .AddCardToDeck(1, cards.SOR.BFMarine)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(2).ChooseMultiImg(1)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyGroundUnitIsThere(2)
+      .MyResourcesEquals("0/5")
+      .RunAsync()
+    ;
   }
 }
