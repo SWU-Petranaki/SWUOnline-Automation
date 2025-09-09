@@ -412,4 +412,34 @@ export const DamageCases = {
       .RunAsync()
     ;
   },
+  Bombing_Run_ignores_rescued_captives_on_Player_2_side: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.SOR.CassianLeader)
+      .AddBase(2, cards.SOR.DagobahSwamp)
+      .AddLeader(2, cards.SOR.PalpLeader)
+      .FillResources(1, cards.SOR.BFMarine, 5)
+      .FillResources(2, cards.SOR.DSStormTrooper, 5)
+      .AddCardToHand(1, cards.SOR.BombingRun)
+      .AddUnitWithCaptive(2, cards.SOR.DSStormTrooper, cards.SOR.AdmiralAckbar)
+      .AddUnit(2, cards.SOR.DSStormTrooper)
+      .AddUnit(2, cards.SOR.DSStormTrooper)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyHand().PlayFromHand(1).ChooseModalOption(2)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .TheyHaveNoUnits()
+      .MyGroundUnitPieceIsOverlay(1, 3)
+      .RunAsync()
+    ;
+  }
 }

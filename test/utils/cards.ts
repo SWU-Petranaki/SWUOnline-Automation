@@ -266,6 +266,7 @@ export const cards = {
     QuinlanLeader: '2358113881',
     ChancellorPalpatineLeader: '0026166404',
     DarthSidiousLeader: 'ad86d54e97',
+    MaceWinduLeader: '4628885755',
     //units
     Malevolence: '3381931079',
     WTTradeOfficial: '0677558416',
