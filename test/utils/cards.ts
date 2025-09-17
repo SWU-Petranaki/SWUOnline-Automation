@@ -111,6 +111,7 @@ export const cards = {
     ColonelYularen: '0961039929',
     Bendu: '5707383130',
     NinetySeventhLegion: '7648077180',
+    MaceWindu: '5230572435',
     //upgrades
     Traitorous: '8055390529',
     MakeAnOpening: '3208391441',
@@ -545,6 +546,12 @@ export const cards = {
     ChancellorPalpatineLeaderUnit: 'f5c367b02f',
     PadmeAmidalaLeader: '3399415368',
     PadmeAmidalaLeaderUnit: '9efccff9d9',
+    SatineKryzeLeader: '2070613552',
+    SatineKryzeLeaderUnit: '1cd07cdf58',
+    SlyMooreLeader: '4672831370',
+    SlyMooreLeaderUnit: '039c73c1ec',
+    DedraMeeroLeader: '0955276339',
+    LuthenRaelLeader: '8780923793',
     //tokens:
     Spy: '6665455613',
     //units
@@ -557,10 +564,15 @@ export const cards = {
     CaptainTypho: '8088607505',
     MonMothma: '1347170274',
     AhsokaTano: '7352167785',
+    CantwellArrestorCruiser: '5577542957',
+    VARampart: '6496365934',
+    BoKatan: '2959504320',
     //upgrades
     ArmorOfFortune: '0024944513',
     UnveiledMight: '2877797132',
     //events:
     ChargedWithMurder: '7930132943',
+    WithThunderousApplause: '1156033141',
+    ItsNotOverYet: '1126903253',
   }
 }

@@ -209,5 +209,39 @@ export const PlotCases = {
       .MyResourcesEquals("0/4")
       .RunAsync()
     ;
+  },
+  Plot_with_discounts: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.LOF.CalKestisLeader)
+      .AddBase(2, cards.generic.GreenBase)
+      .AddLeader(2, cards.SEC.PadmeAmidalaLeader)
+      .AddResource(1, cards.SOR.BFMarine, false)
+      .AddResource(1, cards.SOR.BFMarine, false)
+      .AddResource(1, cards.SOR.BFMarine, true)
+      .AddResource(1, cards.SEC.UnveiledMight, false)
+      .AddCardToDeck(1, cards.SOR.BFMarine)
+      .AddCardToDeck(1, cards.SOR.BFMarine)
+      .AddCardToDeck(1, cards.SOR.BFMarine)
+      .AddCardToHand(1, cards.SOR.BFMarine)
+      .AddCurrentTurnEffect(cards.SEC.ChancellorPalpatineLeaderUnit, 1)
+      .AddUnit(1, cards.SOR.BFMarine)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForMyLeader().ClickMyLeader().MultiChoiceButton(2).ChooseMultiImg(1).TargetMyGroundUnit(2)
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .MyGroundUnitIsThere(2)
+      .MyResourcesEquals("0/4")
+      .RunAsync()
+    ;
   }
 }
