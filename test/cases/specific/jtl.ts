@@ -10,6 +10,33 @@ import {
 
 
 export const SpecificJTLCases = {
+  Millennium_Falcon_SOR_Chewbacca_pilot: async function () {
+    //arrange
+    const gameState = new GameState(gameName);
+    await gameState.LoadGameStateLinesAsync();
+    await gameState.ResetGameStateLines()
+      .SetBasesDamage("9 5")
+      .AddBase(1, cards.generic.GreenBase)
+      .AddLeader(1, cards.JTL.HanSoloLeader)
+      .AddBase(2, cards.SOR.ECL)
+      .AddLeader(2, cards.JTL.KazudaLeader)
+      .FillResources(1, cards.SOR.BFMarine, 3)
+      .FillResources(2, cards.SOR.BFMarine, 3)
+      .AddUnitWithPilot(2, cards.SOR.MillenniumFalcon, cards.JTL.Chewbacca)
+      .FlushAsync(com.BeginTestCallback)
+    ;
+    //act
+    const gameplay = new GamePlay(browser);
+    await gameplay
+      .WaitForClaimButton().ClaimInitiative()
+      .SwitchPlayerWindow().WaitForPassButton().PassTurn().ChooseNo()
+      .RunAsync()
+    ;
+    //assert
+    gameplay.Assert()
+      .IHaveNoUnits()
+      .MyDiscardCountEquals(1)
+  },
   Eject_epic_action_pilot_leader_unit_defeated_cant_deploy_next_turn: process.env.FULL_REGRESSION !== "true" ? '' : async function () {
     //arrange
     const gameState = new GameState(gameName);

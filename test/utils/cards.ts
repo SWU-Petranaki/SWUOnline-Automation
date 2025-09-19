@@ -567,6 +567,11 @@ export const cards = {
     CantwellArrestorCruiser: '5577542957',
     VARampart: '6496365934',
     BoKatan: '2959504320',
+    Mandalorian: '7522568119',
+    C3PO: '7588883291',
+    SyrilKarn: '8108381803',
+    LuthensHaulcraft: '7243187516',
+    KaydelConnix: '0602708575',
     //upgrades
     ArmorOfFortune: '0024944513',
     UnveiledMight: '2877797132',
